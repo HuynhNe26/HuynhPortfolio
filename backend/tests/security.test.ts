@@ -5,7 +5,7 @@ import { Socket } from 'node:net';
 import { Writable } from 'node:stream';
 import { assertOrigin, digest, hashPassword, sessionCookie, verifyPassword } from '../src/auth.js';
 import { closeDatabase } from '../src/database.js';
-import { handleRequest } from '../src/server.js';
+import { handleRequest, server } from '../src/server.js';
 import { contactSchema, projectSchema } from '../src/validation.js';
 
 const base = 'http://localhost';
@@ -18,6 +18,7 @@ before(() => {
 });
 
 after(async () => {
+  server.close();
   await closeDatabase();
 });
 
