@@ -1,9 +1,20 @@
 import type { ObjectId } from 'mongodb';
 import type { z } from 'zod';
-import type { profileSchema, projectSchema } from './validation.js';
+import type {
+  certificateItemSchema,
+  chapterSchema,
+  educationItemSchema,
+  profileSchema,
+  projectSchema,
+  siteSettingsSchema,
+} from './validation.js';
 
 export type ProjectInput = z.infer<typeof projectSchema>;
 export type ProfileInput = z.infer<typeof profileSchema>;
+export type ChapterInput = z.infer<typeof chapterSchema>;
+export type EducationInput = z.infer<typeof educationItemSchema>;
+export type CertificateInput = z.infer<typeof certificateItemSchema>;
+export type SiteSettingsInput = z.infer<typeof siteSettingsSchema>;
 
 export interface Project extends ProjectInput {
   _id: ObjectId;
@@ -43,4 +54,21 @@ export interface Message {
   status: 'unread' | 'read' | 'archived';
   delivery: 'pending' | 'sent' | 'failed';
   createdAt: Date;
+}
+
+export interface MediaAsset {
+  _id: ObjectId;
+  url: string;
+  publicId?: string;
+  altText: string;
+  format?: string;
+  width?: number;
+  height?: number;
+  bytes?: number;
+  createdAt: Date;
+}
+
+export interface SiteSettings extends SiteSettingsInput {
+  _id: 'settings';
+  updatedAt: Date;
 }

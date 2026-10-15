@@ -6,54 +6,124 @@ const text = (minimum: number, maximum: number) => {
 
 const safeUrl = z.union([
   z.literal(''),
-  z.url().max(2048).refine((value) => {
-    const url = new URL(value);
-    return url.protocol === 'https:' && !url.username && !url.password;
+  z.string().url().max(2048).refine((value) => {
+    try {
+      const url = new URL(value);
+      return url.protocol === 'https:' && !url.username && !url.password;
+    } catch {
+      return false;
+    }
   }, 'Use an HTTPS URL without embedded credentials.'),
 ]);
 
+export const screenshotSchema = z.object({
+  url: safeUrl,
+  caption: text(1, 200),
+  description: text(0, 1000).optional(),
+  alt: text(0, 200).optional(),
+});
+
+export const chapterSchema = z.object({
+  id: text(1, 50),
+  number: text(1, 10),
+  title: text(1, 120),
+  content: text(1, 10000),
+  screenshots: z.array(screenshotSchema).optional(),
+  technicalNotes: z.array(text(1, 300)).optional(),
+});
+
 export const projectSchema = z.object({
-  title: text(2, 100),
+  title: text(2, 150),
   slug: text(2, 100).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use lowercase letters, numbers and hyphens.'),
-  summary: text(10, 400),
-  category: text(2, 60),
+  summary: text(10, 600),
+  category: text(2, 80),
   role: text(2, 100),
+  teamSize: z.number().int().min(1).max(100).optional(),
+  timeline: text(0, 100).optional(),
+  status: z.enum(['Completed', 'Ongoing']).optional(),
   year: z.number().int().min(2000).max(2100),
-  technologies: z.array(text(1, 40)).min(1).max(20),
-  problem: text(20, 8000),
-  approach: text(20, 8000),
-  outcome: text(20, 8000),
-  coverUrl: safeUrl,
-  liveUrl: safeUrl,
-  sourceUrl: safeUrl,
+  technologies: z.array(text(1, 50)).min(1).max(30),
+  themeColor: text(0, 50).optional(),
+  themeBg: text(0, 50).optional(),
+  problem: text(10, 10000),
+  approach: text(10, 10000),
+  outcome: text(10, 10000),
+  coverUrl: safeUrl.optional(),
+  liveUrl: safeUrl.optional(),
+  sourceUrl: safeUrl.optional(),
   featured: z.boolean(),
   published: z.boolean(),
+  order: z.number().int().optional(),
+  chapters: z.array(chapterSchema).optional(),
 }).strict();
+
+export const educationItemSchema = z.object({
+  institution: text(2, 150),
+  major: text(2, 100),
+  degree: text(2, 150),
+  period: text(2, 50),
+  gpa: text(1, 20),
+  note: text(0, 300).optional(),
+});
+
+export const certificateItemSchema = z.object({
+  name: text(2, 150),
+  issuer: text(2, 100),
+  score: text(1, 50),
+  issueDate: text(2, 50),
+  verificationUrl: safeUrl.optional(),
+});
+
+export const categorizedSkillsSchema = z.object({
+  frontend: z.array(text(1, 50)),
+  backend: z.array(text(1, 50)),
+  databases: z.array(text(1, 50)),
+  apis: z.array(text(1, 50)),
+  tools: z.array(text(1, 50)),
+});
 
 export const profileSchema = z.object({
-  name: text(2, 80),
-  headline: text(5, 160),
-  introduction: text(10, 600),
-  biography: text(20, 4000),
-  location: text(0, 100),
-  availability: text(0, 100),
-  skills: z.array(text(1, 40)).max(30),
-  githubUrl: safeUrl,
-  linkedinUrl: safeUrl,
-}).strict();
+  name: text(2, 100),
+  title: text(2, 120).optional(),
+  headline: text(5, 200),
+  introduction: text(10, 1000),
+  biography: text(20, 6000),
+  dateOfBirth: text(0, 50).optional(),
+  hometown: text(0, 100).optional(),
+  email: z.string().email().max(254).optional(),
+  phone: text(0, 50).optional(),
+  location: text(0, 100).optional(),
+  availability: text(0, 150).optional(),
+  skills: z.array(text(1, 50)).max(50),
+  skillsCategorized: categorizedSkillsSchema.optional(),
+  education: z.array(educationItemSchema).optional(),
+  certificates: z.array(certificateItemSchema).optional(),
+  avatarUrl: safeUrl.optional(),
+  resumeUrl: safeUrl.optional(),
+  githubUrl: safeUrl.optional(),
+  linkedinUrl: safeUrl.optional(),
+});
 
 export const loginSchema = z.object({
-  email: z.email().max(254).transform((value) => value.toLowerCase()),
+  email: z.string().email().max(254).transform((value) => value.toLowerCase()),
   password: z.string().min(1).max(256),
 }).strict();
 
 export const contactSchema = z.object({
   name: text(2, 100),
-  email: z.email().max(254),
-  message: text(20, 5000),
+  email: z.string().email().max(254),
+  message: text(10, 5000),
   website: z.string().max(0, 'Unable to accept this submission.').optional(),
 }).strict();
 
 export const messageStatusSchema = z.object({
   status: z.enum(['unread', 'read', 'archived']),
 }).strict();
+
+export const siteSettingsSchema = z.object({
+  siteTitle: text(2, 150),
+  seoDescription: text(10, 300),
+  canonicalUrl: safeUrl.optional(),
+  contactEmail: z.string().email().optional(),
+  publicVisibility: z.boolean(),
+});

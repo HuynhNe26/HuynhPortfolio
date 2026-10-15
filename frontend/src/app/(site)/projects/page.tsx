@@ -1,38 +1,37 @@
 import type { Metadata } from 'next';
 import { publicContent } from '@/lib/api';
-import { EmptyProjects, ProjectCard } from '@/components/project-card';
+import { EmptyProjects } from '@/components/project-card';
+import { ProjectFilter } from '@/components/project-filter';
 
 export const metadata: Metadata = {
-  title: 'Work'
+  title: 'All Projects — Nguyễn Hoàng Huynh',
+  description:
+    'Full-stack web applications, AI integrations, and commercial digital solutions engineered by Nguyễn Hoàng Huynh.',
 };
+
 export const dynamic = 'force-dynamic';
 
-export default async function Projects() {
+export default async function ProjectsPage() {
   const { projects, unavailable } = await publicContent();
 
   return (
     <main id="main-content" className="container section">
       <div className="page-intro">
-        <p className="eyebrow">
-          THE WORK / THE THINKING
-        </p>
+        <p className="eyebrow">PORTFOLIO / SELECTED CASE STUDIES</p>
         <h1>
-          Built with purpose
-          <span className="brand-dot">
-            .
-          </span>
+          Engineered for impact
+          <span className="brand-dot">.</span>
         </h1>
-        <p>
-          Projects, experiments, and the decisions that brought them to life.
+        <p className="lead-text">
+          Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms.
         </p>
       </div>
-      {projects.length ? (
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <ProjectCard project={project} index={index} key={project._id} />))}
-        </div>
+
+      {projects.length > 0 ? (
+        <ProjectFilter projects={projects} unavailable={unavailable} />
       ) : (
-        <EmptyProjects unavailable={unavailable} />)}
+        <EmptyProjects unavailable={unavailable} />
+      )}
     </main>
   );
 }

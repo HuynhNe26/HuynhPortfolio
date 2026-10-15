@@ -26,10 +26,25 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/admin/profile">
             Profile
           </Link>
+          <Link href="/admin/education">
+            Education
+          </Link>
+          <Link href="/admin/certificates">
+            Certificates
+          </Link>
+          <Link href="/admin/skills">
+            Skills
+          </Link>
+          <Link href="/admin/media">
+            Media Library
+          </Link>
           <Link href="/admin/messages">
             Inbox
           </Link>
-          <Link href="/">
+          <Link href="/admin/settings">
+            Settings
+          </Link>
+          <Link href="/" target="_blank" rel="noreferrer">
             View website ↗
           </Link>
         </nav>

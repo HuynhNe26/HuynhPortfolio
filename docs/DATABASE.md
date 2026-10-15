@@ -1,63 +1,131 @@
-# MongoDB setup
+# Database Architecture & Schemas — MongoDB
 
-MongoDB uses a **connection string**, not a MongoDB Atlas management API key.
+## 1. Connection & Index Strategy
 
-1. Create or select your MongoDB Atlas cluster.
-2. Create a database user with read/write access to the `nh_huynh` database.
-3. Allow your backend host's outbound IP in Atlas Network Access.
-4. In Atlas, choose **Connect → Drivers → Node.js** and copy the connection string.
-5. Paste it into `backend/.env`:
+The application interfaces with MongoDB through a cached `MongoClient` connection pool configured in `backend/src/database.ts`.
 
-```dotenv
-MONGODB_URI=mongodb+srv://USERNAME:URL_ENCODED_PASSWORD@YOUR_CLUSTER/nh_huynh?retryWrites=true&w=majority
-MONGODB_DB=nh_huynh
-APP_URL=http://localhost:3000
+### Collections and Indexes
+
+```javascript
+// projects
+db.projects.createIndex({ slug: 1 }, { unique: true });
+db.projects.createIndex({ published: 1, featured: -1, order: 1, createdAt: -1 });
+
+// profiles
+// Single document keyed by _id: 'owner'
+
+// admins
+// Single administrator document keyed by _id: 'owner'
+
+// sessions
+db.sessions.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
+
+// rateLimits
+db.rateLimits.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
+
+// messages
+db.messages.createIndex({ createdAt: -1 });
+db.messages.createIndex({ status: 1 });
+
+// mediaAssets
+db.mediaAssets.createIndex({ createdAt: -1 });
+
+// siteSettings
+// Keyed by _id: 'settings'
 ```
 
-Replace the uppercase values with your own values. URL-encode special characters in the password. Never paste database credentials into frontend files, `NEXT_PUBLIC_*` variables, or version control.
+---
 
-Run from the repository root:
+## 2. Document Models
 
-```sh
-npm run db:setup
+### `Project` Document
+```typescript
+interface ProjectChapter {
+  id: string; // 'chapter-01', 'chapter-02', etc.
+  number: string; // '01', '02', ...
+  title: string; // 'The Idea', 'The Experience', etc.
+  content: string; // Narrative text
+  screenshots?: {
+    url: string;
+    caption: string;
+    description?: string;
+    alt: string;
+  }[];
+  technicalNotes?: string[];
+}
+
+interface Project {
+  _id: ObjectId;
+  title: string;
+  slug: string;
+  summary: string;
+  category: string;
+  role: string;
+  teamSize?: number;
+  timeline: string;
+  status: 'Completed' | 'Ongoing';
+  year: number;
+  technologies: string[];
+  themeColor: string; // Hex color for project brand
+  themeBg: string; // Soft background tint
+  coverUrl: string;
+  liveUrl: string;
+  sourceUrl: string;
+  featured: boolean;
+  published: boolean;
+  order: number;
+  // Standard 3-part legacy + 7-part storytelling
+  problem: string;
+  approach: string;
+  outcome: string;
+  chapters?: ProjectChapter[];
+  createdAt: Date;
+  updatedAt: Date;
+}
 ```
 
-The database connection is implemented in `backend/src/database.ts`. It creates a reusable connection pool, retries after failed connections, and initializes indexes. MongoDB creates collections as data is first saved.
-
-## Collections
-
-| Collection | Purpose | Indexes |
-| --- | --- | --- |
-| projects | Draft and published project stories | Unique slug; publication/featured/date |
-| profiles | Single owner profile | `_id: owner` |
-| admins | Single admin and scrypt password hash | `_id: owner` |
-| sessions | Hashed random session tokens | Expiry TTL |
-| rateLimits | Shared request counters | Expiry TTL |
-| messages | Contact inbox and notification status | Creation date |
-
-Sessions are checked against their expiration on every request; TTL deletion is only cleanup. Login and contact limits use database-backed fixed windows shared across API processes. Global limits deliberately do not trust client-supplied IP headers.
-
-## Provision the administrator
-
-Set these temporarily in `backend/.env`:
-
-```dotenv
-ADMIN_EMAIL=your-address@example.com
-ADMIN_PASSWORD=YOUR_UNIQUE_PASSWORD_OF_AT_LEAST_14_CHARACTERS
+### `Profile` Document
+```typescript
+interface Profile {
+  _id: 'owner';
+  name: string; // 'Nguyễn Hoàng Huynh'
+  headline: string; // 'Full-Stack Web Developer'
+  introduction: string;
+  biography: string;
+  dateOfBirth: string; // 'August 26, 2005'
+  hometown: string; // 'Đồng Nai City, Vietnam'
+  email: string; // 'nguyenhoanghuynh.vn@gmail.com'
+  phone: string; // '+84 937 569 205'
+  avatarUrl?: string;
+  resumeUrl?: string;
+  githubUrl?: string;
+  linkedinUrl?: string;
+  education: {
+    institution: string; // 'Vietnam Aviation Academy'
+    degree: string; // 'Bachelor of Information Technology'
+    period: string; // '2023 – Present'
+    gpa: string; // '3.1/4.0'
+    status: string; // 'Third year university student'
+  }[];
+  certificates: {
+    name: string; // 'TOEIC Listening & Reading'
+    issuer: string; // 'ETS'
+    score: string; // '550'
+    issueDate: string; // 'October 2025'
+  }[];
+  skills: {
+    frontend: string[];
+    backend: string[];
+    databases: string[];
+    apis: string[];
+    tools: string[];
+  };
+  updatedAt: Date;
+}
 ```
 
-Run:
+---
 
-```sh
-npm run admin:create
-```
+## 3. Idempotent Seeding
 
-Remove `ADMIN_PASSWORD` afterward. Existing administrators are never overwritten. Open `/admin/login` to sign in. There is no public registration endpoint.
-
-## Email
-
-Set `RESEND_API_KEY`, `CONTACT_FROM` (a sender on your verified domain), and `CONTACT_TO` (your private inbox) in `backend/.env`. Contact messages are stored before notification delivery. A failed email notification remains visible in the admin inbox with `delivery: failed`; the visitor receives an explicit saved-but-delayed response. There is no automatic notification retry worker; the inbox remains the durable source of messages.
-
-## Before deployment
-
-Use HTTPS, set `NODE_ENV=production`, and set `APP_URL` to the exact public origin in both apps. Keep the API bound to loopback when running on the same host as Next.js. For separate hosts, configure `BACKEND_URL` to a private network endpoint and use transport security. Restrict database network access to the backend host. Apply your backup and retention policies to inbox data.
+The seed script (`backend/scripts/seed.ts`) populates the real verified data for Nguyễn Hoàng Huynh and the 5 projects. It uses `updateOne` with `upsert: true` and `$setOnInsert` for existing documents so it never overwrites production customizations.

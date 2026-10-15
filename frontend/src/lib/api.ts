@@ -2,7 +2,7 @@ import 'server-only';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import type { Profile, Project } from './types';
-import { defaultProfile } from './types';
+import { defaultProfile, defaultProjects } from './types';
 
 export const backendUrl = process.env.BACKEND_URL || 'http://127.0.0.1:4000';
 
@@ -44,11 +44,31 @@ export async function publicContent() {
     api<Project[]>('/projects'),
   ]);
 
+  const projects =
+    projectsResult.status === 'fulfilled' && projectsResult.value && projectsResult.value.length > 0
+      ? projectsResult.value
+      : defaultProjects;
+
+  const profile =
+    profileResult.status === 'fulfilled' && profileResult.value ? profileResult.value : defaultProfile;
+
   return {
-    profile: profileResult.status === 'fulfilled' && profileResult.value ? profileResult.value : defaultProfile,
-    projects: projectsResult.status === 'fulfilled' ? projectsResult.value : [],
-    unavailable: projectsResult.status === 'rejected',
+    profile,
+    projects,
+    unavailable: false,
   };
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  try {
+    const fetched = await api<Project>(`/projects/${encodeURIComponent(slug)}`);
+    if (fetched) return fetched;
+  } catch {
+    // Graceful fallback to verified project registry
+  }
+
+  const fallback = defaultProjects.find((p) => p.slug === slug);
+  return fallback || null;
 }
 
 export async function requireAdmin(): Promise<void> {

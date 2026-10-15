@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 const FieldErrors = createContext<Record<string, string[]>>({});
 
-export function Field({ label, name, multiline = false, ...props }: {
+export function Field({ label, name, multiline = false, hint, ...props }: {
   label: string;
   name: string;
   multiline?: boolean;
@@ -19,6 +19,7 @@ export function Field({ label, name, multiline = false, ...props }: {
   max?: number;
   autoComplete?: string;
   placeholder?: string;
+  hint?: string;
 }) {
   const errors = useContext(FieldErrors)[name];
 
@@ -27,6 +28,7 @@ export function Field({ label, name, multiline = false, ...props }: {
       <label htmlFor={name}>
         {label}{props.required ? ' *' : ''}
       </label>
+      {hint && <p className="field-hint">{hint}</p>}
       {multiline ? (
         <textarea id={name} name={name} rows={6} aria-invalid={Boolean(errors)} aria-describedby={errors ? `${name}-error` : undefined} {...props} />
       ) : (
@@ -41,6 +43,8 @@ export function Field({ label, name, multiline = false, ...props }: {
     </div>
   );
 }
+
+export const FormField = Field;
 
 export function ApiForm({ endpoint, method = 'POST', children, submitLabel, redirectTo, transform = 'plain' }: {
   endpoint: string;
@@ -144,12 +148,13 @@ export function ApiForm({ endpoint, method = 'POST', children, submitLabel, redi
   );
 }
 
-export function MutationButton({ endpoint, method, label, body, confirmMessage, redirectTo }: {
+export function MutationButton({ endpoint, method, label, body, confirmMessage, confirm, redirectTo }: {
   endpoint: string;
   method: string;
   label: string;
   body?: object;
   confirmMessage?: string;
+  confirm?: string;
   redirectTo?: string;
 }) {
   const router = useRouter();
@@ -157,7 +162,8 @@ export function MutationButton({ endpoint, method, label, body, confirmMessage, 
   const [error, setError] = useState('');
 
   async function run() {
-    if (confirmMessage && !window.confirm(confirmMessage)) {
+    const confirmation = confirm || confirmMessage;
+    if (confirmation && !window.confirm(confirmation)) {
       return;
     }
 

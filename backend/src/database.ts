@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import type { Db } from 'mongodb';
-import type { Admin, Message, Profile, Project, RateLimit, Session } from './models.js';
+import type { Admin, MediaAsset, Message, Profile, Project, RateLimit, Session, SiteSettings } from './models.js';
 
 let client: MongoClient | undefined;
 let connection: Promise<Db> | undefined;
@@ -33,15 +33,18 @@ export async function getDatabase(): Promise<Db> {
 
     const currentClient = client;
 
-    connection = currentClient.connect().then(async () => {
-      const database = currentClient.db(process.env.MONGODB_DB || 'nh_huynh');
-      await createIndexes(database);
-      return database;
-    }).catch(async (error: unknown) => {
-      connection = undefined;
-      await currentClient.close();
-      throw error;
-    });
+    connection = currentClient
+      .connect()
+      .then(async () => {
+        const database = currentClient.db(process.env.MONGODB_DB || 'nh_huynh');
+        await createIndexes(database);
+        return database;
+      })
+      .catch(async (error: unknown) => {
+        connection = undefined;
+        await currentClient.close();
+        throw error;
+      });
   }
 
   return connection;
@@ -49,29 +52,18 @@ export async function getDatabase(): Promise<Db> {
 
 export async function createIndexes(database: Db): Promise<void> {
   await Promise.all([
-    database.collection('projects').createIndex({
-      slug: 1
-    }, {
-      unique: true
-    }),
+    database.collection('projects').createIndex({ slug: 1 }, { unique: true }),
     database.collection('projects').createIndex({
       published: 1,
       featured: -1,
-      createdAt: -1
+      order: 1,
+      createdAt: -1,
     }),
-    database.collection('sessions').createIndex({
-      expiresAt: 1
-    }, {
-      expireAfterSeconds: 0
-    }),
-    database.collection('rateLimits').createIndex({
-      expiresAt: 1
-    }, {
-      expireAfterSeconds: 0
-    }),
-    database.collection('messages').createIndex({
-      createdAt: -1
-    }),
+    database.collection('sessions').createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
+    database.collection('rateLimits').createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
+    database.collection('messages').createIndex({ createdAt: -1 }),
+    database.collection('messages').createIndex({ status: 1 }),
+    database.collection('mediaAssets').createIndex({ createdAt: -1 }),
   ]);
 }
 
@@ -85,6 +77,8 @@ export async function collections() {
     sessions: database.collection<Session>('sessions'),
     rateLimits: database.collection<RateLimit>('rateLimits'),
     messages: database.collection<Message>('messages'),
+    mediaAssets: database.collection<MediaAsset>('mediaAssets'),
+    siteSettings: database.collection<SiteSettings>('siteSettings'),
   };
 }
 

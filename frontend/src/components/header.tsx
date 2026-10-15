@@ -29,7 +29,7 @@ export function Header() {
           <Link href="/projects" aria-current={pathname.startsWith('/projects') ? 'page' : undefined} onClick={() => setOpen(false)}>
             Work
           </Link>
-          <Link href="/#about" onClick={() => setOpen(false)}>
+          <Link href="/about" aria-current={pathname === '/about' ? 'page' : undefined} onClick={() => setOpen(false)}>
             About
           </Link>
           <Link className="nav-contact" href="/contact" aria-current={pathname === '/contact' ? 'page' : undefined} onClick={() => setOpen(false)}>

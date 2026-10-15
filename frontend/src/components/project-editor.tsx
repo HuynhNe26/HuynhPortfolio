@@ -17,11 +17,15 @@ export function ProjectEditor({ project }: { project?: Project; }) {
       <div className="form-panel">
         <ApiForm endpoint={project ? `/api/admin/projects/${project._id}` : '/api/admin/projects'} method={project ? 'PUT' : 'POST'} submitLabel="Save project" transform="project" redirectTo="/admin/projects">
           <div className="form-grid">
-            <Field name="title" label="Project title" defaultValue={project?.title} required minLength={2} maxLength={100} />
+            <Field name="title" label="Project title" defaultValue={project?.title} required minLength={2} maxLength={150} />
             <Field name="slug" label="URL slug" defaultValue={project?.slug} required minLength={2} maxLength={100} placeholder="my-project" />
-            <Field name="category" label="Category" defaultValue={project?.category} required minLength={2} maxLength={60} />
+            <Field name="category" label="Category" defaultValue={project?.category} required minLength={2} maxLength={80} />
             <Field name="role" label="Your role" defaultValue={project?.role} required minLength={2} maxLength={100} />
+            <Field name="timeline" label="Timeline (e.g. Aug 2025 – Apr 2026)" defaultValue={project?.timeline || ''} maxLength={100} />
+            <Field name="teamSize" label="Team size (optional)" type="number" defaultValue={project?.teamSize || ''} min={1} max={100} />
             <Field name="year" label="Year" type="number" defaultValue={project?.year || new Date().getFullYear()} min={2000} max={2100} required />
+            <Field name="themeColor" label="Brand Accent Color (Hex, e.g. #7C3AED)" defaultValue={project?.themeColor || '#3268D8'} maxLength={50} />
+            <Field name="themeBg" label="Brand Soft Bg (Hex, e.g. #F5F3FF)" defaultValue={project?.themeBg || '#EFF6FF'} maxLength={50} />
             <Field name="technologies" label="Technologies, comma separated" defaultValue={project?.technologies.join(', ')} required />
           </div>
           <Field name="summary" label="Short summary" multiline defaultValue={project?.summary} required minLength={10} maxLength={400} />

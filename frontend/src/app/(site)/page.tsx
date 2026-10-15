@@ -4,345 +4,359 @@ import { EmptyProjects, ProjectCard } from '@/components/project-card';
 
 export const dynamic = 'force-dynamic';
 
-const capabilities = [
-  {
-    number: '01',
-    title: 'Interfaces that feel right.',
-    text: 'Clear hierarchy, thoughtful interactions, and a consistent experience across every screen.',
-    label: 'Frontend development',
-    symbol: '⌘'
-  },
-  {
-    number: '02',
-    title: 'Built beneath the surface.',
-    text: 'Well-structured APIs, considered data models, and security woven into the foundation.',
-    label: 'Backend engineering',
-    symbol: '{ }'
-  },
-  {
-    number: '03',
-    title: 'The details make it.',
-    text: 'From an early wireframe to the last micro-interaction, design and code move together.',
-    label: 'UI / UX thinking',
-    symbol: '↗'
-  },
-];
-
 export default async function Home() {
   const { profile, projects, unavailable } = await publicContent();
-  const selected = projects.filter((project) => project.featured);
-  const displayed = (selected.length ? selected : projects).slice(0, 4);
+  const featuredProjects = projects.filter((project) => project.featured);
+  const displayedProjects = (featuredProjects.length ? featuredProjects : projects).slice(0, 4);
 
   return (
-    <main id="main-content">
+    <main id="main-content" className="homepage-wrapper">
+      {/* SECTION 1: HERO */}
       <section className="hero container">
         <div className="hero-copy">
           <p className="eyebrow hero-eyebrow">
             <span className="small-line" />
-            DEVELOPER & CREATIVE THINKER
+            {profile.title || 'FULL-STACK WEB DEVELOPER'}
           </p>
-          <h1>
-            Thoughtfully
-            <br />
-            designed.
-            <br />
-            <span>
-              Carefully built.
-            </span>
+          <h1 className="hero-name">
+            {profile.name}
           </h1>
+          <p className="hero-subtitle">
+            Building thoughtful digital experiences through design, code, and curiosity.
+          </p>
           <p className="hero-intro">
-            I’m {profile.name}. {profile.introduction}
+            {profile.introduction}
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/projects">
-              Explore my work
-              <span aria-hidden="true">
-                ↗
-              </span>
+              Explore My Work
+              <span aria-hidden="true">↗</span>
             </Link>
-            <Link className="text-link" href="/contact">
-              Let’s talk
-              <span aria-hidden="true">
-                ↗
-              </span>
+            <Link className="button button-light" href="/contact">
+              Get In Touch
+              <span aria-hidden="true">↗</span>
             </Link>
           </div>
           <div className="hero-caption">
-            <span className="status-dot" />
-            DESIGN MINDED. ENGINEERING DRIVEN.
+            <span className="status-dot live" />
+            <span>VIETNAM AVIATION ACADEMY • THIRD YEAR IT STUDENT</span>
           </div>
         </div>
-        <div className="hero-art" role="img" aria-label="An abstract browser window illustrating the connection between design and code">
+
+        <div className="hero-art" role="img" aria-label="Portrait & Code Craftsmanship visual for Nguyễn Hoàng Huynh">
           <div className="art-grid" />
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
-          <div className="floating-label label-top">
-            <span className="status-dot" />
-            made with intention
+
+          {/* Portrait Placeholder Card */}
+          <div className="hero-portrait-card">
+            <div className="hero-portrait-frame">
+              <span className="hero-avatar-monogram">NH</span>
+              <div className="hero-avatar-info">
+                <strong>Nguyễn Hoàng Huynh</strong>
+                <span>Full-Stack Web Developer</span>
+              </div>
+            </div>
+            <div className="hero-portrait-status">
+              <span className="status-dot live" />
+              <span>Available for Intern & Junior Roles</span>
+            </div>
           </div>
+
           <div className="code-window">
             <div className="window-bar">
               <span />
               <span />
               <span />
-              <span className="window-title">
-                a little about me.ts
-              </span>
+              <span className="window-title">developer.config.ts</span>
             </div>
             <div className="code-lines">
               <div>
-                <span className="line-no">
-                  01
-                </span>
-                <span className="code-purple">
-                  const
-                </span>
-                developer = {'{'}
+                <span className="line-no">01</span>
+                <span className="code-purple">export const</span> developer = {'{'}
               </div>
               <div>
-                <span className="line-no">
-                  02
-                </span>
-                name:
-                <span className="code-green">
-                  “{profile.name}”
-                </span>
-                ,
+                <span className="line-no">02</span>
+                &nbsp;&nbsp;name: <span className="code-green">"{profile.name}"</span>,
               </div>
               <div>
-                <span className="line-no">
-                  03
-                </span>
-                focus:
-                <span className="code-green">
-                  “the details”
-                </span>
-                ,
+                <span className="line-no">03</span>
+                &nbsp;&nbsp;education: <span className="code-green">"Vietnam Aviation Academy"</span>,
               </div>
               <div>
-                <span className="line-no">
-                  04
-                </span>
-                approach: [
+                <span className="line-no">04</span>
+                &nbsp;&nbsp;gpa: <span className="code-purple">3.1</span>,
               </div>
               <div>
-                <span className="line-no">
-                  05
-                </span>
-
-                <span className="code-green">
-                  “design thoughtfully”
-                </span>
-                ,
+                <span className="line-no">05</span>
+                &nbsp;&nbsp;stack: [<span className="code-green">"React"</span>, <span className="code-green">"Next.js"</span>, <span className="code-green">"Node.js"</span>, <span className="code-green">"PostgreSQL"</span>],
               </div>
               <div>
-                <span className="line-no">
-                  06
-                </span>
-
-                <span className="code-green">
-                  “build carefully”
-                </span>
+                <span className="line-no">06</span>
+                &nbsp;&nbsp;toeic: <span className="code-purple">550</span>,
               </div>
               <div>
-                <span className="line-no">
-                  07
-                </span>
-                ]
-              </div>
-              <div>
-                <span className="line-no">
-                  08
-                </span>
+                <span className="line-no">07</span>
                 {'};'}
               </div>
             </div>
             <div className="window-bottom">
-              <span>
-                TypeScript
-              </span>
-              <span>
-                less, but better.
-              </span>
+              <span>TypeScript strict</span>
+              <span>Less, but better.</span>
             </div>
           </div>
-          <div className="floating-label label-bottom">
-            <span className="bracket-icon">
-              &lt;/&gt;
-            </span>
-            <div>
-              Where design
-              <br />
-              <strong>
-                meets development.
-              </strong>
-            </div>
-          </div>
-          <div className="art-coordinate">
-            NH / STUDIO NOTES — 001
-          </div>
+
+          <div className="art-coordinate">NH / PORTFOLIO • 2026</div>
         </div>
+
         <div className="hero-bottom">
-          <span>
-            BUILDING FOR THE WEB
-          </span>
-          <a href="#work">
+          <span>CLEAN CODE • MEASURED ARCHITECTURE</span>
+          <a href="#about-preview">
             SCROLL TO EXPLORE
-            <span aria-hidden="true">
-              ↓
-            </span>
+            <span aria-hidden="true">↓</span>
           </a>
         </div>
       </section>
-      <div className="stack-strip">
-        <div className="container stack-inner">
-          <span className="eyebrow">
-            THE TOOLKIT
-          </span>
-          <div>
-            {profile.skills.map((skill) => (
-              <span key={skill}>
-                {skill}
-              </span>))}
-          </div>
-        </div>
-      </div>
-      <section id="work" className="section container">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">
-              01 / SELECTED WORK
-            </p>
-            <h2>
-              Ideas, brought to life
-              <span className="brand-dot">
-                .
-              </span>
-            </h2>
-          </div>
-          <Link className="text-link" href="/projects">
-            All projects
-            <span aria-hidden="true">
-              ↗
-            </span>
-          </Link>
-        </div>
-        {displayed.length ? (
-          <div className="project-grid">
-            {displayed.map((project, index) => (
-              <ProjectCard key={project._id} project={project} index={index} />))}
-          </div>
-        ) : (
-          <EmptyProjects unavailable={unavailable} />)}
-      </section>
-      <section className="capability-section">
+
+      {/* SECTION 2: ABOUT PREVIEW */}
+      <section id="about-preview" className="about-preview-section">
         <div className="container section">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">
-                02 / WHAT I BRING
-              </p>
+              <p className="eyebrow">01 / ABOUT</p>
               <h2>
-                The whole picture.
+                Turning Ideas Into
                 <br />
-                <span className="muted">
-                  And every small detail.
-                </span>
+                Real Products<span className="brand-dot">.</span>
               </h2>
             </div>
             <p className="section-aside">
-              A considered approach to building digital products, from the interface to the infrastructure.
+              Connecting academic theory with hands-on production code across modern web ecosystems.
             </p>
           </div>
-          <div className="capability-grid">
-            {capabilities.map((item) => (
-              <article className="capability-card" key={item.number}>
-                <div className="capability-top">
-                  <span className="capability-symbol" aria-hidden="true">
-                    {item.symbol}
-                  </span>
-                  <span className="eyebrow">
-                    {item.number}
-                  </span>
+
+          <div className="about-preview-grid">
+            <div className="about-preview-card highlight">
+              <span className="badge-pill">Academic Profile</span>
+              <h3>Vietnam Aviation Academy</h3>
+              <p className="academy-sub">Học viện Hàng không Việt Nam</p>
+              <div className="academic-meta">
+                <div>
+                  <span className="meta-label">Major</span>
+                  <span className="meta-val">Information Technology</span>
                 </div>
-                <p className="eyebrow">
-                  {item.label}
-                </p>
-                <h3>
-                  {item.title}
-                </h3>
-                <p>
-                  {item.text}
-                </p>
-              </article>
+                <div>
+                  <span className="meta-label">Current Stage</span>
+                  <span className="meta-val">Third Year (2023 – Present)</span>
+                </div>
+                <div>
+                  <span className="meta-label">Cumulative GPA</span>
+                  <span className="meta-val gpa-highlight">3.1 / 4.0</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="about-preview-card">
+              <span className="badge-pill">Engineering Mindset</span>
+              <h3>Architecture, Security & Pragmatism</h3>
+              <p>
+                {profile.biography.slice(0, 240)}...
+              </p>
+              <div className="card-footer-action">
+                <Link href="/about" className="text-link">
+                  Read full story & background ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: FEATURED PROJECTS */}
+      <section id="work" className="section container">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">02 / SELECTED WORK</p>
+            <h2>
+              Featured Case Studies
+              <span className="brand-dot">.</span>
+            </h2>
+          </div>
+          <Link className="text-link" href="/projects">
+            All 5 projects
+            <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+
+        {displayedProjects.length ? (
+          <div className="project-grid">
+            {displayedProjects.map((project, index) => (
+              <ProjectCard key={project._id} project={project} index={index} />
             ))}
           </div>
+        ) : (
+          <EmptyProjects unavailable={unavailable} />
+        )}
+      </section>
+
+      {/* SECTION 4: TECHNICAL EXPERTISE */}
+      <section className="technical-expertise-section">
+        <div className="container section">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">03 / TECHNICAL TOOLKIT</p>
+              <h2>
+                Modern Engineering Stack
+                <span className="brand-dot">.</span>
+              </h2>
+            </div>
+            <p className="section-aside">
+              Technologies genuinely applied in production projects, academic implementations, and active systems.
+            </p>
+          </div>
+
+          <div className="expertise-grid">
+            <div className="expertise-card">
+              <div className="expertise-icon">⚛</div>
+              <h3>Frontend Development</h3>
+              <p>Creating responsive, component-driven user interfaces with clean accessibility and micro-interactions.</p>
+              <div className="tags">
+                {profile.skillsCategorized.frontend.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="expertise-card">
+              <div className="expertise-icon">⚡</div>
+              <h3>Backend Development</h3>
+              <p>RESTful APIs, real-time WebSocket communication, session authentication, and defensive security.</p>
+              <div className="tags">
+                {profile.skillsCategorized.backend.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="expertise-card">
+              <div className="expertise-icon">🗄</div>
+              <h3>Databases</h3>
+              <p>Relational ACID guarantees and flexible document models with caching layers.</p>
+              <div className="tags">
+                {profile.skillsCategorized.databases.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="expertise-card">
+              <div className="expertise-icon">🔌</div>
+              <h3>APIs & Integrations</h3>
+              <p>Third-party service integrations, transactional email pipelines, payment webhooks, and AI APIs.</p>
+              <div className="tags">
+                {profile.skillsCategorized.apis.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="expertise-card full-width-card">
+              <div className="expertise-icon">🛠</div>
+              <h3>Tools, Deployment & Version Control</h3>
+              <p>Git collaboration, GitHub Actions, Vercel edge deployment, Docker containerization, and API testing.</p>
+              <div className="tags">
+                {profile.skillsCategorized.tools.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      <section id="about" className="about-section container section">
-        <div className="about-art" aria-hidden="true">
-          <div className="about-monogram">
-            nh
-            <span>
-              .
-            </span>
+
+      {/* SECTION 5 & 6: EDUCATION & CERTIFICATIONS */}
+      <section className="education-certs-section container section">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">04 / EDUCATION & CREDENTIALS</p>
+            <h2>
+              Academic Foundations
+              <span className="brand-dot">.</span>
+            </h2>
           </div>
-          <div className="about-art-footer">
-            <span>
-              CURIOUS BY NATURE.
-            </span>
-            <span>
-              ↗
-            </span>
-          </div>
+          <Link className="text-link" href="/about">
+            Learn more about my studies ↗
+          </Link>
         </div>
-        <div className="about-copy">
-          <p className="eyebrow">
-            03 / A LITTLE ABOUT ME
-          </p>
-          <h2>
-            {profile.headline}
-          </h2>
-          <p className="preserve-lines">
-            {profile.biography}
-          </p>
-          {profile.location && (
-            <p>
-              {profile.location}
-            </p>)}
-          <div className="social-links">
-            {profile.githubUrl && (
-              <a href={profile.githubUrl} target="_blank" rel="noreferrer">
-                GitHub ↗
-              </a>)}{profile.linkedinUrl && (
-                <a href={profile.linkedinUrl} target="_blank" rel="noreferrer">
-                  LinkedIn ↗
-                </a>)}
-            <Link href="/contact">
-              Say hello ↗
-            </Link>
+
+        <div className="dual-cards-grid">
+          {/* Education */}
+          <div className="edu-block-card">
+            <span className="badge-pill">University Education</span>
+            <h3>Vietnam Aviation Academy</h3>
+            <p className="edu-degree">Bachelor of Science in Information Technology</p>
+            <div className="edu-stats">
+              <div className="stat-unit">
+                <span className="stat-label">Timeline</span>
+                <span className="stat-val">2023 – Present (Third Year)</span>
+              </div>
+              <div className="stat-unit">
+                <span className="stat-label">Academic GPA</span>
+                <span className="stat-val gpa-badge">3.1 / 4.0</span>
+              </div>
+            </div>
+            <p className="edu-description">
+              Core studies in Data Structures, Algorithms, Database Management Systems, Software Engineering, Network
+              Architectures, and Web Technologies.
+            </p>
+          </div>
+
+          {/* Certifications */}
+          <div className="edu-block-card">
+            <span className="badge-pill">Language Certification</span>
+            <h3>TOEIC Listening & Reading</h3>
+            <p className="edu-degree">Educational Testing Service (ETS)</p>
+            <div className="edu-stats">
+              <div className="stat-unit">
+                <span className="stat-label">Verified Score</span>
+                <span className="stat-val gpa-badge">550 / 990</span>
+              </div>
+              <div className="stat-unit">
+                <span className="stat-label">Issue Date</span>
+                <span className="stat-val">October 2025</span>
+              </div>
+            </div>
+            <p className="edu-description">
+              Demonstrates proficiency in reading technical documentation, software engineering specifications, and
+              communicating in professional software development settings.
+            </p>
           </div>
         </div>
       </section>
+
+      {/* SECTION 7: CONTACT CTA */}
       <section className="contact-banner container">
-        <p className="eyebrow">
-          HAVE SOMETHING IN MIND?
-        </p>
+        <p className="eyebrow">READY TO COLLABORATE?</p>
         <h2>
-          Good things start
+          Let's Build Something
           <br />
-          with a conversation.
+          Meaningful<span className="brand-dot">.</span>
         </h2>
-        <Link className="button button-light" href="/contact">
-          Let’s build something
-          <span aria-hidden="true">
-            ↗
-          </span>
-        </Link>
+        <div className="contact-banner-actions">
+          <Link className="button button-light" href="/contact">
+            Get In Touch
+            <span aria-hidden="true">↗</span>
+          </Link>
+          <a href={`mailto:${profile.email}`} className="text-link light-link">
+            {profile.email}
+          </a>
+        </div>
         {profile.availability && (
           <p className="availability">
+            <span className="status-dot live" />
             {profile.availability}
-          </p>)}
+          </p>
+        )}
         <span className="banner-mark" aria-hidden="true">
           ↗
         </span>

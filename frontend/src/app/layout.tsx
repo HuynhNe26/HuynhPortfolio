@@ -4,15 +4,22 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.APP_URL || 'http://localhost:3000'),
   title: {
-    default: 'NH HUYNH — Design minded. Engineering driven.',
-    template: '%s — NH HUYNH',
+    default: 'Nguyễn Hoàng Huynh — Full-Stack Web Developer',
+    template: '%s — Nguyễn Hoàng Huynh',
   },
-  description: 'Thoughtful interfaces. Dependable engineering. Explore the work and thinking of NH HUYNH.',
+  description:
+    'Personal developer portfolio of Nguyễn Hoàng Huynh, Information Technology student at Vietnam Aviation Academy. Showcasing AI Agentic RAG systems, full-stack applications, and engineering case studies.',
+  authors: [{ name: 'Nguyễn Hoàng Huynh' }],
   openGraph: {
     type: 'website',
-    siteName: 'NH HUYNH',
-    title: 'NH HUYNH — Developer Portfolio',
-    description: 'Thoughtfully designed. Carefully built.',
+    siteName: 'Nguyễn Hoàng Huynh Portfolio',
+    title: 'Nguyễn Hoàng Huynh — Full-Stack Web Developer',
+    description: 'Building thoughtful digital experiences through design, code, and curiosity.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nguyễn Hoàng Huynh — Full-Stack Web Developer',
+    description: 'Building thoughtful digital experiences through design, code, and curiosity.',
   },
 };
 

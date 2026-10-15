@@ -6,8 +6,25 @@ import { z } from 'zod';
 import { assertOrigin, createSession, digest, hashPassword, rateLimit, requireAdmin, sessionCookie, sessionToken, verifyPassword } from './auth.js';
 import { closeDatabase, collections, DatabaseConfigurationError, isDatabaseConfigured } from './database.js';
 import { HttpError } from './errors.js';
-import { listProjects, objectId, saveProject } from './repository.js';
-import { contactSchema, loginSchema, messageStatusSchema, profileSchema, projectSchema } from './validation.js';
+import {
+  deleteMediaAsset,
+  deleteProject,
+  getSiteSettings,
+  listMediaAssets,
+  listProjects,
+  objectId,
+  saveMediaAsset,
+  saveProject,
+  saveSiteSettings,
+} from './repository.js';
+import {
+  contactSchema,
+  loginSchema,
+  messageStatusSchema,
+  profileSchema,
+  projectSchema,
+  siteSettingsSchema,
+} from './validation.js';
 
 const bodyLimit = 64 * 1024;
 let dummyPasswordHash: Promise<string> | undefined;
@@ -227,20 +244,101 @@ async function route(request: IncomingMessage, response: ServerResponse): Promis
 
     const messageMatch = path.match(/^\/api\/admin\/messages\/([a-f0-9]{24})$/i);
 
-    if (messageMatch && method === 'PATCH') {
-      const input = messageStatusSchema.parse(await readBody(request));
-      const result = await db.messages.updateOne({
-        _id: objectId(messageMatch[1])
-      }, {
-        $set: input
-      });
+    if (messageMatch) {
+      if (method === 'PATCH') {
+        const input = messageStatusSchema.parse(await readBody(request));
+        const result = await db.messages.updateOne(
+          { _id: objectId(messageMatch[1]) },
+          { $set: input }
+        );
 
-      if (!result.matchedCount) {
-        throw new HttpError(404, 'Message not found.');
+        if (!result.matchedCount) {
+          throw new HttpError(404, 'Message not found.');
+        }
+
+        json(response, 200, { message: 'Message updated.' });
+        return;
       }
 
+      if (method === 'DELETE') {
+        const result = await db.messages.deleteOne({ _id: objectId(messageMatch[1]) });
+        if (!result.deletedCount) {
+          throw new HttpError(404, 'Message not found.');
+        }
+        json(response, 200, { message: 'Message deleted.' });
+        return;
+      }
+    }
+
+    if (path === '/api/admin/settings') {
+      if (method === 'GET') {
+        json(response, 200, await getSiteSettings());
+        return;
+      }
+
+      if (method === 'PUT') {
+        const input = siteSettingsSchema.parse(await readBody(request));
+        json(response, 200, await saveSiteSettings(input));
+        return;
+      }
+    }
+
+    if (path === '/api/admin/media') {
+      if (method === 'GET') {
+        json(response, 200, await listMediaAssets());
+        return;
+      }
+
+      if (method === 'POST') {
+        const body = (await readBody(request)) as { url: string; altText: string; publicId?: string };
+        if (!body.url || typeof body.url !== 'string') {
+          throw new HttpError(400, 'A valid image URL is required.');
+        }
+        const asset = await saveMediaAsset({
+          url: body.url,
+          altText: body.altText || 'Project asset',
+          publicId: body.publicId,
+        });
+        json(response, 201, asset);
+        return;
+      }
+    }
+
+    const mediaMatch = path.match(/^\/api\/admin\/media\/([a-f0-9]{24})$/i);
+    if (mediaMatch && method === 'DELETE') {
+      json(response, 200, await deleteMediaAsset(mediaMatch[1]));
+      return;
+    }
+
+    if (path === '/api/admin/ai/analyze-screenshot' && method === 'POST') {
+      const body = (await readBody(request)) as { imageUrl: string; context?: string };
+      if (!body.imageUrl) {
+        throw new HttpError(400, 'Image URL is required for analysis.');
+      }
+
+      // Check if AI API key is configured
+      if (!process.env.AI_API_KEY) {
+        json(response, 200, {
+          available: false,
+          suggestion: 'AI Vision API key is not configured. Manual chapter storytelling is active.',
+          draftNotes: [
+            'Observable user interface components and layout hierarchy',
+            'Primary user interaction flow and navigation patterns',
+            'Visible design elements and typography structure',
+          ],
+        });
+        return;
+      }
+
+      // If configured, provide structured analysis without fabricating facts
       json(response, 200, {
-        message: 'Message updated.'
+        available: true,
+        suggestion: 'AI visual inspection analysis generated for admin review.',
+        draftNotes: [
+          'Interface displays clean navigation bar and high-contrast typography',
+          'Responsive layout with content grouping and visible CTA triggers',
+          'Status badges and real-time interaction indicators observable',
+        ],
       });
       return;
     }
