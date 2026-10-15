@@ -1,11 +1,9 @@
-import { closeDatabase, collections, getDatabase } from '../src/database.js';
+import { closeDatabase, query } from '../src/database.js';
 import type { ProjectInput } from '../src/models.js';
 
 async function seed() {
-  console.log('Seeding portfolio database with verified records...');
+  console.log('Seeding portfolio database with verified records (PostgreSQL Neon)...');
 
-  const db = await getDatabase();
-  const cols = await collections();
   const now = new Date();
 
   // 1. Seed Owner Profile
@@ -63,10 +61,49 @@ async function seed() {
     updatedAt: now,
   };
 
-  await cols.profiles.updateOne(
-    { _id: 'owner' },
-    { $set: profileData },
-    { upsert: true }
+  await query(
+    `INSERT INTO profiles (
+      id, name, title, headline, introduction, biography, date_of_birth, hometown,
+      email, phone, location, availability, skills, skills_categorized, education,
+      certificates, updated_at
+    ) VALUES (
+      'owner', $1, $2, $3, $4, $5, $6, $7,
+      $8, $9, $10, $11, $12::jsonb, $13::jsonb, $14::jsonb, $15::jsonb, $16
+    ) ON CONFLICT (id) DO UPDATE SET
+      name = EXCLUDED.name,
+      title = EXCLUDED.title,
+      headline = EXCLUDED.headline,
+      introduction = EXCLUDED.introduction,
+      biography = EXCLUDED.biography,
+      date_of_birth = EXCLUDED.date_of_birth,
+      hometown = EXCLUDED.hometown,
+      email = EXCLUDED.email,
+      phone = EXCLUDED.phone,
+      location = EXCLUDED.location,
+      availability = EXCLUDED.availability,
+      skills = EXCLUDED.skills,
+      skills_categorized = EXCLUDED.skills_categorized,
+      education = EXCLUDED.education,
+      certificates = EXCLUDED.certificates,
+      updated_at = EXCLUDED.updated_at`,
+    [
+      profileData.name,
+      profileData.title,
+      profileData.headline,
+      profileData.introduction,
+      profileData.biography,
+      profileData.dateOfBirth,
+      profileData.hometown,
+      profileData.email,
+      profileData.phone,
+      profileData.location,
+      profileData.availability,
+      JSON.stringify(profileData.skills),
+      JSON.stringify(profileData.skillsCategorized),
+      JSON.stringify(profileData.education),
+      JSON.stringify(profileData.certificates),
+      now,
+    ]
   );
   console.log('✓ Profile seeded.');
 
@@ -482,37 +519,89 @@ async function seed() {
   ];
 
   for (const proj of projectsData) {
-    await cols.projects.updateOne(
-      { slug: proj.slug },
-      {
-        $set: {
-          ...proj,
-          updatedAt: now,
-        },
-        $setOnInsert: {
-          createdAt: now,
-        },
-      },
-      { upsert: true }
+    await query(
+      `INSERT INTO projects (
+        title, slug, summary, category, role, team_size, timeline, status, year,
+        technologies, theme_color, theme_bg, problem, approach, outcome,
+        cover_url, live_url, source_url, featured, published, display_order, chapters,
+        created_at, updated_at
+      ) VALUES (
+        $1, $2, $3, $4, $5, $6, $7, $8, $9,
+        $10::jsonb, $11, $12, $13, $14, $15,
+        $16, $17, $18, $19, $20, $21, $22::jsonb,
+        $23, $24
+      ) ON CONFLICT (slug) DO UPDATE SET
+        title = EXCLUDED.title,
+        summary = EXCLUDED.summary,
+        category = EXCLUDED.category,
+        role = EXCLUDED.role,
+        team_size = EXCLUDED.team_size,
+        timeline = EXCLUDED.timeline,
+        status = EXCLUDED.status,
+        year = EXCLUDED.year,
+        technologies = EXCLUDED.technologies,
+        theme_color = EXCLUDED.theme_color,
+        theme_bg = EXCLUDED.theme_bg,
+        problem = EXCLUDED.problem,
+        approach = EXCLUDED.approach,
+        outcome = EXCLUDED.outcome,
+        cover_url = EXCLUDED.cover_url,
+        live_url = EXCLUDED.live_url,
+        source_url = EXCLUDED.source_url,
+        featured = EXCLUDED.featured,
+        published = EXCLUDED.published,
+        display_order = EXCLUDED.display_order,
+        chapters = EXCLUDED.chapters,
+        updated_at = EXCLUDED.updated_at`,
+      [
+        proj.title,
+        proj.slug,
+        proj.summary,
+        proj.category,
+        proj.role,
+        proj.teamSize ?? null,
+        proj.timeline ?? null,
+        proj.status ?? 'Completed',
+        proj.year,
+        JSON.stringify(proj.technologies || []),
+        proj.themeColor ?? null,
+        proj.themeBg ?? null,
+        proj.problem,
+        proj.approach,
+        proj.outcome,
+        proj.coverUrl ?? '',
+        proj.liveUrl ?? '',
+        proj.sourceUrl ?? '',
+        Boolean(proj.featured),
+        Boolean(proj.published),
+        proj.order ?? 0,
+        JSON.stringify(proj.chapters || []),
+        now,
+        now,
+      ]
     );
     console.log(`✓ Project [${proj.slug}] upserted.`);
   }
 
   // 3. Seed Site Settings
-  await cols.siteSettings.updateOne(
-    { _id: 'settings' },
-    {
-      $set: {
-        siteTitle: 'Nguyễn Hoàng Huynh — Full-Stack Developer Portfolio',
-        seoDescription:
-          'Personal developer portfolio, AI Agentic RAG case studies, and engineering showcase of Nguyễn Hoàng Huynh.',
-        canonicalUrl: 'https://huynhportfolio.com',
-        contactEmail: 'nguyenhoanghuynh.vn@gmail.com',
-        publicVisibility: true,
-        updatedAt: now,
-      },
-    },
-    { upsert: true }
+  await query(
+    `INSERT INTO site_settings (id, site_title, seo_description, canonical_url, contact_email, public_visibility, updated_at)
+     VALUES ('settings', $1, $2, $3, $4, $5, $6)
+     ON CONFLICT (id) DO UPDATE SET
+       site_title = EXCLUDED.site_title,
+       seo_description = EXCLUDED.seo_description,
+       canonical_url = EXCLUDED.canonical_url,
+       contact_email = EXCLUDED.contact_email,
+       public_visibility = EXCLUDED.public_visibility,
+       updated_at = EXCLUDED.updated_at`,
+    [
+      'Nguyễn Hoàng Huynh — Full-Stack Developer Portfolio',
+      'Personal developer portfolio, AI Agentic RAG case studies, and engineering showcase of Nguyễn Hoàng Huynh.',
+      'https://huynhportfolio.com',
+      'nguyenhoanghuynh.vn@gmail.com',
+      true,
+      now,
+    ]
   );
   console.log('✓ Site settings seeded.');
 

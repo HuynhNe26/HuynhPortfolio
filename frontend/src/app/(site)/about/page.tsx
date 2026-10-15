@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { publicContent } from '@/lib/api';
+import { TechBadge } from '@/components/tech-icon';
 
 export const metadata: Metadata = {
   title: 'About — Nguyễn Hoàng Huynh',
@@ -17,10 +18,10 @@ export default async function AboutPage() {
     <main id="main-content" className="container section">
       <div className="page-intro">
         <p className="eyebrow">
-          ABOUT / BACKGROUND & PHILOSOPHY
+          01 // ARCHITECTURAL DOSSIER &amp; BACKGROUND
         </p>
         <h1>
-          Engineering with curiosity
+          Engineering with precision &amp; curiosity
           <span className="brand-dot">
             .
           </span>
@@ -35,7 +36,7 @@ export default async function AboutPage() {
           <div className="portrait-container" role="img" aria-label="Portrait placeholder for Nguyễn Hoàng Huynh">
             <div className="portrait-backdrop" />
             <div className="portrait-inner">
-              <span className="portrait-monogram">NH</span>
+              <span className="portrait-monogram">&gt;_</span>
               <span className="portrait-label">Nguyễn Hoàng Huynh</span>
             </div>
             <div className="portrait-badge">
@@ -45,7 +46,7 @@ export default async function AboutPage() {
           </div>
 
           <div className="profile-quick-facts">
-            <h3>Quick Details</h3>
+            <h3>System Profile</h3>
             <ul className="fact-list">
               <li>
                 <span className="fact-label">Full Name</span>
@@ -82,13 +83,13 @@ export default async function AboutPage() {
             </ul>
 
             <div className="profile-actions">
-              <Link href="/contact" className="button button-dark full-width">
-                Get in touch
+              <Link href="/contact" className="button button-cyber-primary full-width">
+                Deploy Collaboration
                 <span aria-hidden="true">↗</span>
               </Link>
               {profile.resumeUrl && (
-                <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="button button-light full-width">
-                  Download Resume
+                <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="button button-cyber-ghost full-width">
+                  Download Technical Resume
                   <span aria-hidden="true">↓</span>
                 </a>
               )}
@@ -157,7 +158,7 @@ export default async function AboutPage() {
                 <h4>Frontend Development</h4>
                 <div className="tags">
                   {profile.skillsCategorized.frontend.map((s) => (
-                    <span key={s}>{s}</span>
+                    <TechBadge key={s} tech={s} />
                   ))}
                 </div>
               </div>
@@ -165,7 +166,7 @@ export default async function AboutPage() {
                 <h4>Backend Engineering</h4>
                 <div className="tags">
                   {profile.skillsCategorized.backend.map((s) => (
-                    <span key={s}>{s}</span>
+                    <TechBadge key={s} tech={s} />
                   ))}
                 </div>
               </div>
@@ -173,7 +174,7 @@ export default async function AboutPage() {
                 <h4>Databases</h4>
                 <div className="tags">
                   {profile.skillsCategorized.databases.map((s) => (
-                    <span key={s}>{s}</span>
+                    <TechBadge key={s} tech={s} />
                   ))}
                 </div>
               </div>
@@ -181,7 +182,7 @@ export default async function AboutPage() {
                 <h4>APIs & Integrations</h4>
                 <div className="tags">
                   {profile.skillsCategorized.apis.map((s) => (
-                    <span key={s}>{s}</span>
+                    <TechBadge key={s} tech={s} />
                   ))}
                 </div>
               </div>
@@ -189,7 +190,7 @@ export default async function AboutPage() {
                 <h4>Tools & Deployment</h4>
                 <div className="tags">
                   {profile.skillsCategorized.tools.map((s) => (
-                    <span key={s}>{s}</span>
+                    <TechBadge key={s} tech={s} />
                   ))}
                 </div>
               </div>

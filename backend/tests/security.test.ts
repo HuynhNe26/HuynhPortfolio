@@ -11,6 +11,8 @@ import { contactSchema, projectSchema } from '../src/validation.js';
 const base = 'http://localhost';
 
 before(() => {
+  delete process.env.DATABASE_URL;
+  delete process.env.POSTGRES_URL;
   delete process.env.MONGODB_URI;
   process.env.APP_URL = 'http://localhost:3000';
 });
@@ -134,7 +136,7 @@ test('project URLs reject scripts, insecure URLs and credentials', () => {
   }).success, false);
 });
 
-test('API remains available without MongoDB and clearly rejects data requests', async () => {
+test('API remains available without PostgreSQL and clearly rejects data requests', async () => {
   assert.equal((await request(`${base}/api/health`)).status, 200);
   const response = await request(`${base}/api/projects`);
   assert.equal(response.status, 503);

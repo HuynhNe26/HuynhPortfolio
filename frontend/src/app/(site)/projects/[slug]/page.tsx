@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import { getProjectBySlug, publicContent } from '@/lib/api';
 import type { Project } from '@/lib/types';
+import { TechIcon } from '@/components/tech-icon';
 
 const fetchProject = cache(async (slug: string) => {
   const project = await getProjectBySlug(slug);
@@ -130,7 +131,8 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
               <div className="tags">
                 {project.technologies.map((tech) => (
                   <span key={tech} className="tech-tag">
-                    {tech}
+                    <TechIcon name={tech} className="tech-tag-icon" />
+                    <span>{tech}</span>
                   </span>
                 ))}
               </div>

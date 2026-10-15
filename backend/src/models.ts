@@ -1,4 +1,3 @@
-import type { ObjectId } from 'mongodb';
 import type { z } from 'zod';
 import type {
   certificateItemSchema,
@@ -17,7 +16,7 @@ export type CertificateInput = z.infer<typeof certificateItemSchema>;
 export type SiteSettingsInput = z.infer<typeof siteSettingsSchema>;
 
 export interface Project extends ProjectInput {
-  _id: ObjectId;
+  _id: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -47,7 +46,7 @@ export interface RateLimit {
 }
 
 export interface Message {
-  _id: ObjectId;
+  _id: string;
   name: string;
   email: string;
   message: string;
@@ -57,8 +56,9 @@ export interface Message {
 }
 
 export interface MediaAsset {
-  _id: ObjectId;
+  _id: string;
   url: string;
+  filename: string;
   publicId?: string;
   altText: string;
   format?: string;

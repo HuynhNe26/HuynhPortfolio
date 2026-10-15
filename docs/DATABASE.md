@@ -1,131 +1,161 @@
-# Database Architecture & Schemas — MongoDB
+# Database Architecture & Schemas — PostgreSQL (Neon)
 
-## 1. Connection & Index Strategy
+## 1. Connection & Serverless Architecture
 
-The application interfaces with MongoDB through a cached `MongoClient` connection pool configured in `backend/src/database.ts`.
+The application interfaces with PostgreSQL via connection pooling with `pg.Pool` in `backend/src/database.ts`, fully optimized for **Neon Serverless PostgreSQL**.
 
-### Collections and Indexes
-
-```javascript
-// projects
-db.projects.createIndex({ slug: 1 }, { unique: true });
-db.projects.createIndex({ published: 1, featured: -1, order: 1, createdAt: -1 });
-
-// profiles
-// Single document keyed by _id: 'owner'
-
-// admins
-// Single administrator document keyed by _id: 'owner'
-
-// sessions
-db.sessions.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
-
-// rateLimits
-db.rateLimits.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
-
-// messages
-db.messages.createIndex({ createdAt: -1 });
-db.messages.createIndex({ status: 1 });
-
-// mediaAssets
-db.mediaAssets.createIndex({ createdAt: -1 });
-
-// siteSettings
-// Keyed by _id: 'settings'
-```
+### Schema DDL File
+- The complete production SQL schema is available at: [`database/schema.sql`](file:///Users/annie/Documents/HuynhPortfolio/database/schema.sql)
+- To initialize or verify tables on Neon, run:
+  ```bash
+  npm run db:setup
+  ```
+- To seed the 5 real projects and owner profile, run:
+  ```bash
+  npm run db:seed
+  ```
 
 ---
 
-## 2. Document Models
+## 2. Relational Tables & Performance Indexes
 
-### `Project` Document
-```typescript
-interface ProjectChapter {
-  id: string; // 'chapter-01', 'chapter-02', etc.
-  number: string; // '01', '02', ...
-  title: string; // 'The Idea', 'The Experience', etc.
-  content: string; // Narrative text
-  screenshots?: {
-    url: string;
-    caption: string;
-    description?: string;
-    alt: string;
-  }[];
-  technicalNotes?: string[];
-}
-
-interface Project {
-  _id: ObjectId;
-  title: string;
-  slug: string;
-  summary: string;
-  category: string;
-  role: string;
-  teamSize?: number;
-  timeline: string;
-  status: 'Completed' | 'Ongoing';
-  year: number;
-  technologies: string[];
-  themeColor: string; // Hex color for project brand
-  themeBg: string; // Soft background tint
-  coverUrl: string;
-  liveUrl: string;
-  sourceUrl: string;
-  featured: boolean;
-  published: boolean;
-  order: number;
-  // Standard 3-part legacy + 7-part storytelling
-  problem: string;
-  approach: string;
-  outcome: string;
-  chapters?: ProjectChapter[];
-  createdAt: Date;
-  updatedAt: Date;
-}
+### `admins` Table
+Stores administrative credentials with salted scrypt password hashing.
+```sql
+CREATE TABLE admins (
+    id VARCHAR(64) PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
 ```
 
-### `Profile` Document
-```typescript
-interface Profile {
-  _id: 'owner';
-  name: string; // 'Nguyễn Hoàng Huynh'
-  headline: string; // 'Full-Stack Web Developer'
-  introduction: string;
-  biography: string;
-  dateOfBirth: string; // 'August 26, 2005'
-  hometown: string; // 'Đồng Nai City, Vietnam'
-  email: string; // 'nguyenhoanghuynh.vn@gmail.com'
-  phone: string; // '+84 937 569 205'
-  avatarUrl?: string;
-  resumeUrl?: string;
-  githubUrl?: string;
-  linkedinUrl?: string;
-  education: {
-    institution: string; // 'Vietnam Aviation Academy'
-    degree: string; // 'Bachelor of Information Technology'
-    period: string; // '2023 – Present'
-    gpa: string; // '3.1/4.0'
-    status: string; // 'Third year university student'
-  }[];
-  certificates: {
-    name: string; // 'TOEIC Listening & Reading'
-    issuer: string; // 'ETS'
-    score: string; // '550'
-    issueDate: string; // 'October 2025'
-  }[];
-  skills: {
-    frontend: string[];
-    backend: string[];
-    databases: string[];
-    apis: string[];
-    tools: string[];
-  };
-  updatedAt: Date;
-}
+### `sessions` Table
+Cryptographically secure session tokens for HttpOnly cookie authentication.
+```sql
+CREATE TABLE sessions (
+    token_hash VARCHAR(64) PRIMARY KEY,
+    admin_id VARCHAR(64) NOT NULL REFERENCES admins(id) ON DELETE CASCADE,
+    expires_at TIMESTAMPTZ NOT NULL
+);
+CREATE INDEX idx_sessions_expires_at ON sessions(expires_at);
 ```
 
----
+### `profiles` Table
+Owner profile information, education, TOEIC certificates, and categorized skills stored with JSONB flexibility.
+```sql
+CREATE TABLE profiles (
+    id VARCHAR(64) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    title VARCHAR(255),
+    headline VARCHAR(500),
+    introduction TEXT,
+    biography TEXT,
+    date_of_birth VARCHAR(100),
+    hometown VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(100),
+    location VARCHAR(255),
+    availability VARCHAR(255),
+    skills JSONB NOT NULL DEFAULT '[]'::jsonb,
+    skills_categorized JSONB NOT NULL DEFAULT '{}'::jsonb,
+    education JSONB NOT NULL DEFAULT '[]'::jsonb,
+    certificates JSONB NOT NULL DEFAULT '[]'::jsonb,
+    avatar_url TEXT,
+    resume_url TEXT,
+    github_url TEXT,
+    linkedin_url TEXT,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+```
 
-## 3. Idempotent Seeding
+### `projects` Table
+Real projects with full 7-chapter storytelling case study data.
+```sql
+CREATE TABLE projects (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) UNIQUE NOT NULL,
+    summary TEXT NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    role VARCHAR(100) NOT NULL,
+    team_size INT,
+    timeline VARCHAR(100),
+    status VARCHAR(50) DEFAULT 'Completed',
+    year INT NOT NULL,
+    technologies JSONB NOT NULL DEFAULT '[]'::jsonb,
+    theme_color VARCHAR(50),
+    theme_bg VARCHAR(50),
+    problem TEXT NOT NULL,
+    approach TEXT NOT NULL,
+    outcome TEXT NOT NULL,
+    cover_url TEXT,
+    live_url TEXT,
+    source_url TEXT,
+    featured BOOLEAN NOT NULL DEFAULT false,
+    published BOOLEAN NOT NULL DEFAULT true,
+    display_order INT NOT NULL DEFAULT 0,
+    chapters JSONB NOT NULL DEFAULT '[]'::jsonb,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
 
-The seed script (`backend/scripts/seed.ts`) populates the real verified data for Nguyễn Hoàng Huynh and the 5 projects. It uses `updateOne` with `upsert: true` and `$setOnInsert` for existing documents so it never overwrites production customizations.
+CREATE INDEX idx_projects_slug ON projects(slug);
+CREATE INDEX idx_projects_published_featured ON projects(published, featured, display_order, created_at DESC);
+```
+
+### `rate_limits` Table
+Atomic distributed request throttling buckets across processes.
+```sql
+CREATE TABLE rate_limits (
+    id VARCHAR(128) PRIMARY KEY,
+    count INT NOT NULL DEFAULT 1,
+    expires_at TIMESTAMPTZ NOT NULL
+);
+CREATE INDEX idx_rate_limits_expires_at ON rate_limits(expires_at);
+```
+
+### `messages` Table
+Contact form submissions with delivery tracking.
+```sql
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'unread',
+    delivery VARCHAR(50) NOT NULL DEFAULT 'pending',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX idx_messages_created_at ON messages(created_at DESC);
+CREATE INDEX idx_messages_status ON messages(status);
+```
+
+### `media_assets` Table
+Cloudinary media assets metadata and dimensions.
+```sql
+CREATE TABLE media_assets (
+    id SERIAL PRIMARY KEY,
+    url TEXT NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    format VARCHAR(50),
+    bytes INT,
+    alt TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX idx_media_assets_created_at ON media_assets(created_at DESC);
+```
+
+### `site_settings` Table
+SEO metadata and site-wide configuration.
+```sql
+CREATE TABLE site_settings (
+    id VARCHAR(64) PRIMARY KEY,
+    site_title VARCHAR(255) NOT NULL,
+    seo_description TEXT NOT NULL,
+    canonical_url TEXT,
+    contact_email VARCHAR(255),
+    public_visibility BOOLEAN NOT NULL DEFAULT true,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+```

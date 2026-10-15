@@ -10,35 +10,35 @@ export default function Contact() {
     <main id="main-content" className="container section contact-page">
       <div className="page-intro">
         <p className="eyebrow">
-          LET’S MAKE SOMETHING GOOD
+          03 // DIRECT COMMUNICATION &amp; COLLABORATION
         </p>
         <h1>
-          A small hello.
+          Initiate contact.
           <br />
-          A new possibility.
+          Architect together<span className="brand-dot">.</span>
         </h1>
         <p>
-          Have a project in mind, a question, or an interesting idea? I’d love to hear it.
+          Have a software project, an internship opportunity, or an architecture consultation in mind? Let's connect.
         </p>
         <div className="contact-note">
           <span aria-hidden="true">
-            ↗
+            &gt;_
           </span>
           <p>
-            Tell me what you’re thinking.
+            Direct communication channel.
             <br />
-            We can figure out the details together.
+            Responses delivered within 24 business hours.
           </p>
         </div>
       </div>
       <div className="form-panel">
         <h2>
-          Start a conversation
+          Deploy Message
         </h2>
         <p className="muted">
-          Fields marked * are required.
+          Fields marked * are required. Secure transmission via Resend.
         </p>
-        <ApiForm endpoint="/api/contact" submitLabel="Send message">
+        <ApiForm endpoint="/api/contact" submitLabel="Transmit Message ↗">
           <Field label="Your name" name="name" required minLength={2} maxLength={100} autoComplete="name" />
           <Field label="Email address" name="email" type="email" required maxLength={254} autoComplete="email" />
           <Field label="What do you have in mind?" name="message" multiline required minLength={20} maxLength={5000} />

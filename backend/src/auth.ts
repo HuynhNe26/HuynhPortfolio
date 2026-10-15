@@ -1,7 +1,7 @@
 import { createHash, randomBytes, scrypt, timingSafeEqual } from 'node:crypto';
 import { promisify } from 'node:util';
 import type { IncomingMessage } from 'node:http';
-import { collections } from './database.js';
+import { query } from './database.js';
 import { HttpError } from './errors.js';
 
 const deriveKey = promisify(scrypt);
@@ -10,7 +10,7 @@ export const cookieName = 'nh_admin_session';
 
 export async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16).toString('hex');
-  const key = await deriveKey(password, salt, 64) as Buffer;
+  const key = (await deriveKey(password, salt, 64)) as Buffer;
   return `${salt}:${key.toString('hex')}`;
 }
 
@@ -22,7 +22,7 @@ export async function verifyPassword(password: string, stored: string): Promise<
   }
 
   const expected = Buffer.from(encoded, 'hex');
-  const actual = await deriveKey(password, salt, 64) as Buffer;
+  const actual = (await deriveKey(password, salt, 64)) as Buffer;
   return timingSafeEqual(expected, actual);
 }
 
@@ -42,22 +42,20 @@ export function sessionCookie(token: string, clear = false): string {
 }
 
 export async function createSession(request: IncomingMessage): Promise<string> {
-  const { sessions } = await collections();
   const previous = sessionToken(request);
 
   if (previous) {
-    await sessions.deleteOne({
-      _id: digest(previous)
-    });
+    await query('DELETE FROM sessions WHERE token_hash = $1', [digest(previous)]);
   }
 
   const token = randomBytes(32).toString('hex');
+  const tokenHash = digest(token);
+  const expiresAt = new Date(Date.now() + sessionLifetime * 1000);
 
-  await sessions.insertOne({
-    _id: digest(token),
-    adminId: 'owner',
-    expiresAt: new Date(Date.now() + sessionLifetime * 1000),
-  });
+  await query(
+    'INSERT INTO sessions (token_hash, admin_id, expires_at) VALUES ($1, $2, $3)',
+    [tokenHash, 'owner', expiresAt]
+  );
 
   return token;
 }
@@ -69,17 +67,15 @@ export async function requireAdmin(request: IncomingMessage): Promise<void> {
     throw new HttpError(401, 'Please sign in to continue.');
   }
 
-  const { sessions, admins } = await collections();
-  const session = await sessions.findOne({
-    _id: digest(token),
-    expiresAt: {
-      $gt: new Date()
-    },
-  });
+  const result = await query<{ token_hash: string }>(
+    `SELECT s.token_hash
+     FROM sessions s
+     JOIN admins a ON s.admin_id = a.id
+     WHERE s.token_hash = $1 AND s.expires_at > NOW()`,
+    [digest(token)]
+  );
 
-  if (!session || !await admins.findOne({
-    _id: session.adminId
-  })) {
+  if (result.rows.length === 0) {
     throw new HttpError(401, 'Your session has expired. Please sign in again.');
   }
 }
@@ -92,32 +88,22 @@ export function assertOrigin(origin: string | undefined): void {
   }
 }
 
-// Database-backed buckets are shared across processes. Global caps remain safe
-// behind proxies without trusting spoofable client IP headers.
 export async function rateLimit(scope: string, maximum: number, windowMs: number): Promise<void> {
-  const { rateLimits } = await collections();
   const window = Math.floor(Date.now() / windowMs);
   const id = digest(`${scope}:${window}`);
   const expiresAt = new Date((window + 2) * windowMs);
-  const record = await rateLimits.findOneAndUpdate(
-    {
-      _id: id
-    },
-    {
-      $inc: {
-        count: 1
-      },
-      $setOnInsert: {
-        expiresAt
-      }
-    },
-    {
-      upsert: true,
-      returnDocument: 'after'
-    },
+
+  const result = await query<{ count: number }>(
+    `INSERT INTO rate_limits (id, count, expires_at)
+     VALUES ($1, 1, $2)
+     ON CONFLICT (id) DO UPDATE SET count = rate_limits.count + 1
+     RETURNING count`,
+    [id, expiresAt]
   );
 
-  if (!record || record.count > maximum) {
+  const currentCount = result.rows[0]?.count ?? 1;
+
+  if (currentCount > maximum) {
     throw new HttpError(429, 'Too many attempts. Please try again later.');
   }
 }

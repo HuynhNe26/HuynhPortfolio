@@ -5,21 +5,25 @@ export function Footer() {
     <footer className="site-footer container">
       <div>
         <Link className="wordmark" href="/">
-          NH HUYNH.
+          <span className="brand-symbol" aria-hidden="true">&gt;_</span>
+          <span>NH HUYNH <span className="brand-dot">// SYSTEMS</span></span>
         </Link>
         <p>
-          Designed with intention. Built with care.
+          Engineered for performance, resilience, and visual craftsmanship.
         </p>
       </div>
       <div className="footer-meta">
         <span>
-          © {new Date().getFullYear()} NH HUYNH
+          CORE: NEXT.JS 16 • REACT 19 • NEON POSTGRESQL
+        </span>
+        <span>
+          © {new Date().getFullYear()} NGUYỄN HOÀNG HUYNH
         </span>
         <Link href="/admin">
-          Admin
+          Admin Console
         </Link>
-        <a href="#top">
-          Back to top ↑
+        <a href="#main-content">
+          Top ↑
         </a>
       </div>
     </footer>

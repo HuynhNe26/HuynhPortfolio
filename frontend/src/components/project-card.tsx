@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
+import { TechIcon } from './tech-icon';
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   return (
@@ -56,7 +57,8 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
         <div className="tags">
           {project.technologies.slice(0, 5).map((technology) => (
             <span key={technology} className="tech-tag">
-              {technology}
+              <TechIcon name={technology} className="tech-tag-icon" />
+              <span>{technology}</span>
             </span>
           ))}
           {project.technologies.length > 5 && (
@@ -64,7 +66,11 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           )}
         </div>
 
-        <span className="view-case-study">View Case Study ↗</span>
+        <div className="project-card-cta">
+          <span className="view-case-study-btn">
+            View Case Study <span className="btn-arrow" aria-hidden="true">→</span>
+          </span>
+        </div>
       </div>
     </Link>
   );

@@ -17,13 +17,13 @@ export default async function ProjectsPage() {
   return (
     <main id="main-content" className="container section">
       <div className="page-intro">
-        <p className="eyebrow">PORTFOLIO / SELECTED CASE STUDIES</p>
+        <p className="eyebrow">02 // SYSTEM MODULES &amp; PRODUCTION ARCHITECTURES</p>
         <h1>
-          Engineered for impact
+          Engineered for scale &amp; resilience
           <span className="brand-dot">.</span>
         </h1>
         <p className="lead-text">
-          Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms.
+          Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyễn Hoàng Huynh.
         </p>
       </div>
 
