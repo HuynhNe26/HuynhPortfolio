@@ -1,0 +1,33 @@
+{
+  "name": "nh-huynh-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "lint": "eslint frontend/src backend/src backend/scripts backend/tests",
+    "typecheck": "npm run typecheck --workspace backend && npm run typecheck --workspace frontend",
+    "test": "npm run test --workspace backend",
+    "db:setup": "npm run db:setup --workspace backend",
+    "admin:create": "npm run admin:create --workspace backend",
+    "test:e2e": "playwright test",
+    "format": "node scripts/format-code.mjs"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.0.0",
+    "tsx": "^4.0.0",
+    "@playwright/test": "^1.56.0"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}
