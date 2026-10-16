@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build --webpack",
-    "start": "next start",
+    "dev": "node ../scripts/serve.cjs",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
