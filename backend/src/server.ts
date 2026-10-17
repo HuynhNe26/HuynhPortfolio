@@ -27,7 +27,7 @@ import {
   siteSettingsSchema,
 } from './validation.js';
 
-const bodyLimit = 64 * 1024;
+const bodyLimit = 4 * 1024 * 1024; // 4MB to support unlimited chapters & rich media descriptions
 let dummyPasswordHash: Promise<string> | undefined;
 
 function mapProfileRow(row: any): Profile {

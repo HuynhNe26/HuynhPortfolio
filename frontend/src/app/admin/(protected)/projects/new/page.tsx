@@ -3,6 +3,5 @@ import { requireAdmin } from '@/lib/api';
 
 export default async function NewProject() {
   await requireAdmin();
-  return 
-  <ProjectEditor />;
+  return <ProjectEditor />;
 }

@@ -53,13 +53,13 @@ export function Storytelling3DFlow({ chapters, accentColor }: Storytelling3DFlow
         <div className="progress-indicator-pill">
           <span className="indicator-pulse" />
           <span className="indicator-text">
-            Chapter {chapters[activeChapterIndex]?.number || '01'} / 0{chapters.length}:{' '}
+            Chapter {chapters[activeChapterIndex]?.number || '01'} / {String(chapters.length).padStart(2, '0')}:{' '}
             <strong>{chapters[activeChapterIndex]?.title.split('&')[0].trim()}</strong>
           </span>
         </div>
       </div>
 
-      {/* 7-CHAPTER 3D STORYTELLING DECK */}
+      {/* DYNAMIC 3D STORYTELLING DECK */}
       <article className="story-body-3d container">
         {chapters.map((chapter, idx) => (
           <section
@@ -79,7 +79,7 @@ export function Storytelling3DFlow({ chapters, accentColor }: Storytelling3DFlow
             {/* Right Storytelling Card */}
             <div className="chapter-card-3d">
               <div className="chapter-header-row">
-                <span className="chapter-step-badge">Phase {chapter.number} of 0{chapters.length}</span>
+                <span className="chapter-step-badge">Phase {chapter.number} of {String(chapters.length).padStart(2, '0')}</span>
                 <h2 className="chapter-heading">{chapter.title}</h2>
               </div>
 

@@ -40,7 +40,7 @@ async function proxy(request: Request, context: { params: Promise<{ path: string
 
       size += result.value.byteLength;
 
-      if (size > 64 * 1024) {
+      if (size > 4 * 1024 * 1024) {
         await reader.cancel();
         return Response.json({
           error: 'The submitted content is too large.'

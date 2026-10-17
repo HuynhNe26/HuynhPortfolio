@@ -24,30 +24,39 @@ export const screenshotSchema = z.object({
 });
 
 export const chapterSchema = z.object({
-  id: text(1, 50),
-  number: text(1, 10),
-  title: text(1, 120),
-  content: text(1, 10000),
+  id: text(1, 100),
+  number: text(1, 20),
+  title: text(1, 200),
+  content: text(1, 100000),
   screenshots: z.array(screenshotSchema).optional(),
-  technicalNotes: z.array(text(1, 300)).optional(),
+  technicalNotes: z.array(text(1, 1000)).optional(),
+});
+
+export const featureSchema = z.object({
+  id: text(1, 100).optional(),
+  title: text(1, 200),
+  description: text(1, 10000),
+  category: text(0, 100).optional(),
+  screenshotUrl: safeUrl.optional(),
+  screenshotAlt: text(0, 200).optional(),
 });
 
 export const projectSchema = z.object({
-  title: text(2, 150),
-  slug: text(2, 100).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use lowercase letters, numbers and hyphens.'),
-  summary: text(10, 600),
-  category: text(2, 80),
-  role: text(2, 100),
-  teamSize: z.number().int().min(1).max(100).optional(),
-  timeline: text(0, 100).optional(),
+  title: text(2, 200),
+  slug: text(2, 120).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use lowercase letters, numbers and hyphens.'),
+  summary: text(10, 2000),
+  category: text(2, 100),
+  role: text(2, 150),
+  teamSize: z.number().int().min(1).max(500).optional(),
+  timeline: text(0, 150).optional(),
   status: z.enum(['Completed', 'Ongoing']).optional(),
-  year: z.number().int().min(2000).max(2100),
-  technologies: z.array(text(1, 50)).min(1).max(30),
+  year: z.number().int().min(1990).max(2100),
+  technologies: z.array(text(1, 100)).min(1).max(100),
   themeColor: text(0, 50).optional(),
   themeBg: text(0, 50).optional(),
-  problem: text(10, 10000),
-  approach: text(10, 10000),
-  outcome: text(10, 10000),
+  problem: text(10, 50000),
+  approach: text(10, 50000),
+  outcome: text(10, 50000),
   coverUrl: safeUrl.optional(),
   liveUrl: safeUrl.optional(),
   sourceUrl: safeUrl.optional(),
@@ -55,7 +64,9 @@ export const projectSchema = z.object({
   published: z.boolean(),
   order: z.number().int().optional(),
   chapters: z.array(chapterSchema).optional(),
-}).strict();
+  features: z.array(featureSchema).optional(),
+  gallery: z.array(screenshotSchema).optional(),
+}).passthrough();
 
 export const educationItemSchema = z.object({
   institution: text(2, 150),
