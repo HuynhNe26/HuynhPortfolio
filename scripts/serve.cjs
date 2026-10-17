@@ -19,8 +19,27 @@ try {
   }
 } catch (_) {}
 
+const { execSync } = require('node:child_process');
+
 const port = Number(process.env.PORT) || 3000;
 const hostname = '127.0.0.1';
+
+// Automatically free port if already in use by a stale process
+function freePort(p) {
+  try {
+    const pids = execSync(`lsof -ti :${p} -sTCP:LISTEN`, { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+    for (const pid of pids) {
+      if (Number(pid) !== process.pid) {
+        try {
+          process.kill(Number(pid), 'SIGKILL');
+          log(`✓ Freed occupied port ${p} (terminated stale PID ${pid})`);
+        } catch (_) {}
+      }
+    }
+  } catch (_) {}
+}
+
+freePort(port);
 
 log(`Initializing Next.js app in ${frontendDir} on ${hostname}:${port}...`);
 const app = next({ dev: true, hostname, port, dir: frontendDir });
@@ -31,6 +50,22 @@ app.prepare().then(() => {
   const server = http.createServer((req, res) => {
     handle(req, res);
   });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      log(`⚠️  Port ${port} was busy. Re-clearing and restarting...`);
+      freePort(port);
+      setTimeout(() => {
+        server.close();
+        server.listen(port, hostname, () => {
+          log(`\n🚀 Next.js Portfolio Ready! Serving at: http://${hostname}:${port}\n`);
+        });
+      }, 500);
+    } else {
+      console.error('Server error:', err);
+    }
+  });
+
   server.listen(port, hostname, () => {
     log(`\n🚀 Next.js Portfolio Ready! Serving at: http://${hostname}:${port}\n`);
   });
