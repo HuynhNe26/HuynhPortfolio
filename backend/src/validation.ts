@@ -63,6 +63,7 @@ export const projectSchema = z.object({
   featured: z.boolean(),
   published: z.boolean(),
   order: z.number().int().optional(),
+  storytellingStyle: text(0, 100).optional(),
   chapters: z.array(chapterSchema).optional(),
   features: z.array(featureSchema).optional(),
   gallery: z.array(screenshotSchema).optional(),

@@ -33,6 +33,9 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
   const [sourceUrl, setSourceUrl] = useState(project?.sourceUrl || '');
   const [featured, setFeatured] = useState(Boolean(project?.featured));
   const [published, setPublished] = useState(project ? Boolean(project.published) : true);
+  const [storytellingStyle, setStorytellingStyle] = useState<string>(
+    project?.storytellingStyle || 'agentic-radar'
+  );
 
   // UNLIMITED DETAILED DESCRIPTIONS & CHAPTER STORYTELLING
   const [chapters, setChapters] = useState<ProjectChapter[]>(
@@ -212,6 +215,7 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
       sourceUrl: sourceUrl.trim() || undefined,
       featured,
       published,
+      storytellingStyle,
       chapters,
       features: project?.features || [],
       gallery: project?.gallery || [],
@@ -528,6 +532,40 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
 
           <div className="chapters-counter-badge">
             Tổng cộng: <strong>{chapters.length} phần mô tả chi tiết</strong>
+          </div>
+
+          {/* CHỌN PHONG CÁCH STORYTELLING 3D ĐỘC BẢN */}
+          <div className="storytelling-style-selector-box">
+            <div className="field">
+              <label htmlFor="storytellingStyle" className="storytelling-style-label">
+                ✨ Phong cách Kể chuyện Storytelling 3D &amp; Diễn hoạt Animation Độc Bản *
+              </label>
+              <select
+                id="storytellingStyle"
+                value={storytellingStyle}
+                onChange={(e) => setStorytellingStyle(e.target.value)}
+                className="select-field storytelling-style-select"
+              >
+                <option value="agentic-radar">
+                  🌌 Cyber Holographic Neural Stream (Dành cho AI Agentic, Real-Time WebSocket, Neon Scanlines)
+                </option>
+                <option value="luxury-editorial">
+                  🌸 Haute Couture Editorial Lookbook (Dành cho Salon, Beauty, Luxury Parallax, Rèm lụa mềm &amp; Gold Foil)
+                </option>
+                <option value="edtech-terminal">
+                  🎯 Tactical Assessment Terminal (Dành cho EdTech, Hệ thống thi cử, Blueprint Matrix &amp; Telemetry Ping)
+                </option>
+                <option value="growth-pipeline">
+                  ⚡ Dynamic Growth Funnel &amp; Pipeline (Dành cho Marketing, Lead Webhook, Luồng hạt năng lượng)
+                </option>
+                <option value="apple-keynote">
+                  🍏 Apple Keynote Spatial Studio (Dành cho CMS, Product Portfolio, Zoom chiều sâu 3D &amp; Titanium Glass)
+                </option>
+              </select>
+              <p className="field-hint">
+                Mỗi dự án sử dụng một bộ diễn hoạt và bố cục 3D hoàn toàn độc nhất, không bị trùng lặp animation giữa các dự án.
+              </p>
+            </div>
           </div>
 
           {/* DANH SÁCH CÁC PHẦN MÔ TẢ */}

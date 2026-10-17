@@ -96,6 +96,7 @@ export interface Project {
   gallery?: ScreenshotItem[];
   features?: ProjectFeature[];
   chapters?: ProjectChapter[];
+  storytellingStyle?: 'agentic-radar' | 'luxury-editorial' | 'edtech-terminal' | 'growth-pipeline' | 'apple-keynote' | string;
   createdAt: string;
   updatedAt: string;
 }
@@ -196,6 +197,7 @@ export const defaultProjects: Project[] = [
     featured: true,
     published: true,
     order: 1,
+    storytellingStyle: 'agentic-radar',
     problem: 'Concert attendees frequently face delays obtaining event information, seating confirmation, and payment resolution during high-traffic ticket sales.',
     approach: 'Engineered an agentic retrieval-augmented generation (RAG) system with LangChain.js and Gemini API integrated with Node.js and real-time WebSocket communication.',
     outcome: 'Delivered an automated support workflow handling multi-turn ticketing inquiries with MoMo API payment verification and reliable transactional email notifications.',
@@ -367,6 +369,7 @@ export const defaultProjects: Project[] = [
     featured: true,
     published: true,
     order: 2,
+    storytellingStyle: 'luxury-editorial',
     problem: 'The salon needed an elegant, mobile-first web presence for Western Australian customers to view service menus, gallery work, and request appointments.',
     approach: 'Built a lightweight, high-performance React application powered by Vite, integrated with a Node.js backend and Resend API for immediate booking inquiry notifications.',
     outcome: 'Achieved sub-second page loads, accessible mobile navigation, and streamlined booking conversion without friction.',
@@ -500,6 +503,7 @@ export const defaultProjects: Project[] = [
     featured: true,
     published: true,
     order: 3,
+    storytellingStyle: 'edtech-terminal',
     problem: 'Traditional online examination systems lack personalization and struggle with high concurrency during simultaneous exam submissions.',
     approach: 'Architected a decoupled React and Node.js platform utilizing Redis caching for session tokens and question banks, with PostgreSQL for ACID compliance.',
     outcome: 'Currently active in ongoing development, providing reliable test sessions and automated scoring algorithms.',
@@ -633,6 +637,7 @@ export const defaultProjects: Project[] = [
     featured: true,
     published: true,
     order: 4,
+    storytellingStyle: 'growth-pipeline',
     problem: 'Agency needed a modern showcase for digital growth services with automated routing of prospective client inquiries directly to CRM and team inboxes.',
     approach: 'Developed a component-driven React interface with webhook integration to Make.com scenarios for zero-latency lead routing and email acknowledgment.',
     outcome: 'Seamlessly deployed on Netlify with automated email workflows handling marketing consultations.',
@@ -766,6 +771,7 @@ export const defaultProjects: Project[] = [
     featured: true,
     published: true,
     order: 5,
+    storytellingStyle: 'apple-keynote',
     problem: 'Standard static developer templates cannot securely manage live project storytelling, message auditing, or profile configuration dynamically.',
     approach: 'Engineered an App Router Next.js application with a dedicated Node.js backend, HttpOnly session authentication, and PostgreSQL Neon serverless database.',
     outcome: 'Delivered an Apple-inspired editorial design system with full CMS administration, contact rate-limiting, and 7-chapter storytelling.',

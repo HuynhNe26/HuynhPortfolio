@@ -34,6 +34,7 @@ function mapProjectRow(row: any): Project {
     featured: Boolean(row.featured),
     published: Boolean(row.published),
     order: row.display_order !== null && row.display_order !== undefined ? Number(row.display_order) : 0,
+    storytellingStyle: row.storytelling_style || undefined,
     chapters: Array.isArray(row.chapters) ? row.chapters : [],
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
@@ -98,8 +99,9 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
         published = $20,
         display_order = $21,
         chapters = $22::jsonb,
-        updated_at = $23
-       WHERE id = $24
+        storytelling_style = $23,
+        updated_at = $24
+       WHERE id = $25
        RETURNING *`,
       [
         input.title,
@@ -124,6 +126,7 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
         Boolean(input.published),
         input.order ?? 0,
         JSON.stringify(input.chapters || []),
+        input.storytellingStyle ?? null,
         now,
         numId,
       ]
@@ -141,12 +144,12 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
       title, slug, summary, category, role, team_size, timeline, status, year,
       technologies, theme_color, theme_bg, problem, approach, outcome,
       cover_url, live_url, source_url, featured, published, display_order, chapters,
-      created_at, updated_at
+      storytelling_style, created_at, updated_at
     ) VALUES (
       $1, $2, $3, $4, $5, $6, $7, $8, $9,
       $10::jsonb, $11, $12, $13, $14, $15,
       $16, $17, $18, $19, $20, $21, $22::jsonb,
-      $23, $24
+      $23, $24, $25
     ) RETURNING *`,
     [
       input.title,
@@ -171,6 +174,7 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
       Boolean(input.published),
       input.order ?? 0,
       JSON.stringify(input.chapters || []),
+      input.storytellingStyle ?? null,
       now,
       now,
     ]

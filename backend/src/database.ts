@@ -162,6 +162,7 @@ export async function initializeSchema(activePool: Pool): Promise<void> {
 
     CREATE INDEX IF NOT EXISTS idx_projects_slug ON projects(slug);
     CREATE INDEX IF NOT EXISTS idx_projects_published_featured ON projects(published, featured, display_order, created_at DESC);
+    ALTER TABLE projects ADD COLUMN IF NOT EXISTS storytelling_style VARCHAR(100);
 
     CREATE TABLE IF NOT EXISTS rate_limits (
       id VARCHAR(128) PRIMARY KEY,

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import { getProjectBySlug, publicContent } from '@/lib/api';
 import { TechIcon } from '@/components/tech-icon';
-import { Storytelling3DFlow } from '@/components/storytelling-3d-flow';
+import { StorytellingDispatcher } from '@/components/storytelling/storytelling-dispatcher';
 import { ProjectGalleryShowcase } from '@/components/project-gallery-showcase';
 
 const fetchProject = cache(async (slug: string) => {
@@ -274,10 +274,10 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
         </div>
       </nav>
 
-      {/* 5. 7-CHAPTER 3D STORYTELLING FLOW */}
-      <Storytelling3DFlow
+      {/* 5. BESPOKE 3D STORYTELLING FLOW (UNIQUE ENGINE PER PROJECT) */}
+      <StorytellingDispatcher
+        project={project}
         chapters={chapters}
-        accentColor={project.themeColor || '#2563EB'}
       />
 
       {/* 6. PROJECT PAGER (PREV / NEXT) */}
