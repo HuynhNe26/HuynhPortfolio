@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import { publicContent } from '@/lib/api';
-import { EmptyProjects, ProjectCard } from '@/components/project-card';
-import { TechIcon } from '@/components/tech-icon';
 import { HeroPortrait3D } from '@/components/hero-portrait-3d';
-import { ArchitectureFlow } from '@/components/architecture-flow';
+import { AboutMePreview } from '@/components/about-me-preview';
+import { ProjectStackShowcase } from '@/components/project-stack-showcase';
 import { TechStackMatrix } from '@/components/tech-stack-matrix';
+import { TechIcon } from '@/components/tech-icon';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const { profile, projects, unavailable } = await publicContent();
+  const { profile, projects } = await publicContent();
   const featuredProjects = projects.filter((project) => project.featured);
   const displayedProjects = (featuredProjects.length ? featuredProjects : projects).slice(0, 4);
 
@@ -89,28 +89,14 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* SECTION 2: INTERACTIVE ARCHITECTURE FLOW */}
-      <section className="architecture-section container section" id="architecture">
-        <div className="section-heading">
-          <div>
-            <div className="section-pill-tag">
-              <span className="pill-dot" />
-              <span>SYSTEMS &amp; INFRASTRUCTURE ARCHITECTURE</span>
-            </div>
-            <h2>
-              Production Architecture Flow
-              <span className="brand-dot">.</span>
-            </h2>
-          </div>
-          <p className="section-aside">
-            Interactive breakdown of modern distributed layers: edge streaming SSR, hardened Node.js runtime, serverless pooled PostgreSQL on Neon, and Agentic RAG inference.
-          </p>
-        </div>
+      {/* SECTION 2: CONCISE ABOUT ME (REPLACES PRODUCTION ARCHITECTURE) */}
+      <AboutMePreview
+        name={profile.name}
+        biography={profile.biography}
+        email={profile.email}
+      />
 
-        <ArchitectureFlow />
-      </section>
-
-      {/* SECTION 3: FEATURED PROJECTS SHOWCASE */}
+      {/* SECTION 3: FEATURED PROJECTS STACKED HORIZONTAL SHOWCASE */}
       <section id="work" className="section container">
         <div className="section-heading">
           <div>
@@ -131,15 +117,7 @@ export default async function Home() {
           </div>
         </div>
 
-        {displayedProjects.length ? (
-          <div className="project-grid">
-            {displayedProjects.map((project, index) => (
-              <ProjectCard key={project._id} project={project} index={index} />
-            ))}
-          </div>
-        ) : (
-          <EmptyProjects unavailable={unavailable} />
-        )}
+        <ProjectStackShowcase projects={displayedProjects} />
       </section>
 
       {/* SECTION 4: INTERACTIVE TECH MATRIX */}
@@ -163,68 +141,7 @@ export default async function Home() {
         <TechStackMatrix />
       </section>
 
-      {/* SECTION 5: ACADEMIC PROFILE & ENGINEERING PHILOSOPHY */}
-      <section id="about-preview" className="about-preview-section">
-        <div className="container section">
-          <div className="section-heading">
-            <div>
-              <div className="section-pill-tag">
-                <span className="pill-dot" />
-                <span>BACKGROUND &amp; PHILOSOPHY</span>
-              </div>
-              <h2>
-                Bridging Theory With
-                <br />
-                Production Engineering<span className="brand-dot">.</span>
-              </h2>
-            </div>
-            <p className="section-aside">
-              Connecting academic computer science with scalable production code, hardened architectures, and modern web engineering.
-            </p>
-          </div>
-
-          <div className="about-preview-grid">
-            <div className="about-preview-card highlight">
-              <span className="badge-pill">Academic Profile • IT Major</span>
-              <h3>Vietnam Aviation Academy</h3>
-              <p className="academy-sub">Học viện Hàng không Việt Nam • Khoa Công nghệ Thông tin</p>
-              <div className="academic-meta">
-                <div>
-                  <span className="meta-label">Discipline / Major</span>
-                  <span className="meta-val">Information Technology</span>
-                </div>
-                <div>
-                  <span className="meta-label">Academic Standing</span>
-                  <span className="meta-val">Third Year (2023 – Present)</span>
-                </div>
-                <div>
-                  <span className="meta-label">Cumulative GPA</span>
-                  <span className="meta-val gpa-highlight">3.1 / 4.0</span>
-                </div>
-                <div>
-                  <span className="meta-label">English Certification</span>
-                  <span className="meta-val">TOEIC 550 [ETS Verified]</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="about-preview-card">
-              <span className="badge-pill">Engineering Philosophy</span>
-              <h3>Architecture, Security &amp; Pragmatism</h3>
-              <p>
-                {profile.biography.slice(0, 260)}...
-              </p>
-              <div className="card-footer-action">
-                <Link href="/about" className="text-link">
-                  Read full engineering background &amp; coursework ↗
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 6: CONTACT BANNER */}
+      {/* SECTION 5: CONTACT BANNER */}
       <section className="contact-banner container" id="contact">
         <p className="eyebrow">READY TO COLLABORATE?</p>
         <h2>

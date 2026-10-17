@@ -10,35 +10,35 @@ export default function Contact() {
     <main id="main-content" className="container section contact-page">
       <div className="page-intro">
         <p className="eyebrow">
-          03 // DIRECT COMMUNICATION &amp; COLLABORATION
+          GET IN TOUCH
         </p>
         <h1>
-          Initiate contact.
+          Let’s build something
           <br />
-          Architect together<span className="brand-dot">.</span>
+          exceptional together<span className="brand-dot">.</span>
         </h1>
         <p>
-          Have a software project, an internship opportunity, or an architecture consultation in mind? Let's connect.
+          Have a software project, an internship opportunity, or a technical inquiry in mind? I’m always open to discussing new engineering challenges.
         </p>
         <div className="contact-note">
-          <span aria-hidden="true">
-            &gt;_
+          <span aria-hidden="true" style={{ fontSize: '32px' }}>
+            ✉️
           </span>
           <p>
             Direct communication channel.
             <br />
-            Responses delivered within 24 business hours.
+            Responses typically sent within 24 hours.
           </p>
         </div>
       </div>
       <div className="form-panel">
         <h2>
-          Deploy Message
+          Send a Message
         </h2>
         <p className="muted">
-          Fields marked * are required. Secure transmission via Resend.
+          Fill in your details below and I'll get back to you promptly.
         </p>
-        <ApiForm endpoint="/api/contact" submitLabel="Transmit Message ↗">
+        <ApiForm endpoint="/api/contact" submitLabel="Send Message →">
           <Field label="Your name" name="name" required minLength={2} maxLength={100} autoComplete="name" />
           <Field label="Email address" name="email" type="email" required maxLength={254} autoComplete="email" />
           <Field label="What do you have in mind?" name="message" multiline required minLength={20} maxLength={5000} />

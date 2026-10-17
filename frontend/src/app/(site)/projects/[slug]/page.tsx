@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import { getProjectBySlug, publicContent } from '@/lib/api';
-import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
+import { Storytelling3DFlow } from '@/components/storytelling-3d-flow';
 
 const fetchProject = cache(async (slug: string) => {
   const project = await getProjectBySlug(slug);
@@ -79,16 +79,18 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
         },
       ];
 
+  const features = project.features || [];
+
   return (
     <main
       id="main-content"
       className="project-story-page"
       style={{
-        '--project-accent': project.themeColor || '#3268D8',
+        '--project-accent': project.themeColor || '#2563EB',
         '--project-accent-bg': project.themeBg || '#EFF6FF',
       } as React.CSSProperties}
     >
-      {/* Hero Section */}
+      {/* 1. HERO SECTION WITH PROJECT THEME ACCENT */}
       <header className="story-hero-section">
         <div className="container">
           <div className="story-nav-back">
@@ -111,10 +113,14 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
             <p className="story-summary">{project.summary}</p>
           </div>
 
+          {/* HIGH-CONTRAST ENGINEERING SPECS BAR */}
           <div className="story-specs-bar">
             <div className="spec-item">
               <span className="spec-label">Role</span>
-              <span className="spec-value">{project.role}</span>
+              <span className="spec-value">
+                {project.role}
+                {project.teamSize ? ` (Team of ${project.teamSize})` : ' (Solo Developer)'}
+              </span>
             </div>
             <div className="spec-item">
               <span className="spec-label">Timeline</span>
@@ -123,12 +129,12 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
             {project.teamSize && (
               <div className="spec-item">
                 <span className="spec-label">Team Size</span>
-                <span className="spec-value">{project.teamSize} members</span>
+                <span className="spec-value">{project.teamSize} Members</span>
               </div>
             )}
             <div className="spec-item tech-spec">
-              <span className="spec-label">Stack</span>
-              <div className="tags">
+              <span className="spec-label">Core Stack</span>
+              <div className="story-tech-tags">
                 {project.technologies.map((tech) => (
                   <span key={tech} className="tech-tag">
                     <TechIcon name={tech} className="tech-tag-icon" />
@@ -138,11 +144,17 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
               </div>
             </div>
             <div className="spec-item links-spec">
-              <span className="spec-label">Links</span>
+              <span className="spec-label">Live Deployment</span>
               <div className="story-links">
                 {project.liveUrl && (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button button-dark small">
-                    Live Website ↗
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="button button-pro-primary small"
+                  >
+                    <span>Visit Live Website</span>
+                    <span aria-hidden="true">↗</span>
                   </a>
                 )}
                 {project.sourceUrl && (
@@ -156,35 +168,121 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
         </div>
       </header>
 
-      {/* Hero Media / Banner */}
+      {/* 2. MACOS BROWSER HERO SHOWCASE */}
       <section className="story-cover-section container">
-        {project.coverUrl ? (
-          <div className="story-cover-image">
-            <Image
-              src={project.coverUrl}
-              alt={`${project.title} showcase`}
-              fill
-              sizes="100vw"
-              unoptimized
-              priority
-            />
-          </div>
-        ) : (
-          <div className="story-cover-placeholder">
-            <div className="cover-art-grid" />
-            <div className="cover-monogram">{project.title.slice(0, 2).toUpperCase()}</div>
-            <div className="cover-caption">
-              <span>{project.category}</span>
-              <span>Case Study Storytelling</span>
+        <div className="story-browser-mockup">
+          <div className="story-browser-bar">
+            <div className="window-dots" aria-hidden="true">
+              <span className="dot dot-red" />
+              <span className="dot dot-yellow" />
+              <span className="dot dot-green" />
             </div>
+            <div className="story-browser-address">
+              <span className="address-lock" aria-hidden="true">🔒</span>
+              <span className="address-url">{project.liveUrl || `https://${project.slug}.dev`}</span>
+            </div>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="story-browser-action"
+                title="Open live website in new tab"
+              >
+                <span>Live Website</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
           </div>
-        )}
+
+          {project.coverUrl ? (
+            <div className="story-cover-image">
+              <Image
+                src={project.coverUrl}
+                alt={`${project.title} live interface showcase`}
+                fill
+                sizes="100vw"
+                unoptimized
+                priority
+              />
+            </div>
+          ) : (
+            <div className="story-cover-placeholder">
+              <div className="cover-monogram">{project.title.slice(0, 2).toUpperCase()}</div>
+              <div className="cover-caption">
+                <span>{project.category}</span>
+                <span>Case Study Storytelling</span>
+              </div>
+            </div>
+          )}
+        </div>
       </section>
 
-      {/* Sticky Chapter Navigation Bar */}
+      {/* 3. CORE PRODUCT FEATURES & FUNCTIONAL CAPABILITIES LIST */}
+      {features.length > 0 && (
+        <section className="story-features-section container" id="features">
+          <div className="features-section-heading">
+            <div className="section-pill-tag">
+              <span className="pill-dot" />
+              <span>CORE PRODUCT FEATURES &amp; CAPABILITIES</span>
+            </div>
+            <h2>
+              Key Product Functionality
+              <span className="brand-dot">.</span>
+            </h2>
+            <p className="features-aside">
+              Comprehensive breakdown of functional capabilities, user interactions, and production modules engineered into this system.
+            </p>
+          </div>
+
+          <div className="features-detailed-grid">
+            {features.map((feat, idx) => (
+              <article key={feat.id || idx} className="feature-detailed-card">
+                <div className="feature-card-header">
+                  <span className="feature-num-badge">0{idx + 1}</span>
+                  {feat.category && <span className="feature-cat-tag">{feat.category}</span>}
+                  <span className="feature-verified-tag">
+                    <span className="pro-status-dot" />
+                    Verified Feature
+                  </span>
+                </div>
+
+                <h3 className="feature-card-title">{feat.title}</h3>
+                <p className="feature-card-desc">{feat.description}</p>
+
+                {feat.screenshotUrl && (
+                  <div className="feature-screenshot-frame">
+                    <div className="feature-window-topbar">
+                      <div className="window-dots-mini" aria-hidden="true">
+                        <span className="dot dot-red" />
+                        <span className="dot dot-yellow" />
+                        <span className="dot dot-green" />
+                      </div>
+                      <span className="feature-window-title">{feat.title}</span>
+                    </div>
+
+                    <div className="feature-screenshot-img-wrap">
+                      <Image
+                        src={feat.screenshotUrl}
+                        alt={feat.screenshotAlt || feat.title}
+                        width={1200}
+                        height={750}
+                        className="feature-img"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 4. CHAPTER NAVIGATION STRIP */}
       <nav className="chapter-sticky-nav" aria-label="Case study chapters">
         <div className="container chapter-nav-inner">
-          <span className="chapter-nav-label">Chapters:</span>
+          <span className="chapter-nav-label">3D Story Chapters:</span>
           <div className="chapter-links-scroll">
             {chapters.map((ch) => (
               <a key={ch.id} href={`#${ch.id}`} className="chapter-nav-link">
@@ -195,62 +293,13 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
         </div>
       </nav>
 
-      {/* 7-Chapter Storytelling Flow */}
-      <article className="story-body container">
-        {chapters.map((chapter) => (
-          <section key={chapter.id} id={chapter.id} className="story-chapter-block">
-            <div className="chapter-marker">
-              <span className="chapter-number">Chapter {chapter.number}</span>
-              <span className="chapter-line" />
-            </div>
+      {/* 5. 7-CHAPTER 3D STORYTELLING FLOW */}
+      <Storytelling3DFlow
+        chapters={chapters}
+        accentColor={project.themeColor || '#2563EB'}
+      />
 
-            <div className="chapter-content-grid">
-              <div className="chapter-header">
-                <h2>{chapter.title}</h2>
-              </div>
-              <div className="chapter-narrative">
-                <p className="preserve-lines">{chapter.content}</p>
-
-                {chapter.technicalNotes && chapter.technicalNotes.length > 0 && (
-                  <div className="technical-notes-box">
-                    <h4>Key Engineering Decisions</h4>
-                    <ul>
-                      {chapter.technicalNotes.map((note, idx) => (
-                        <li key={idx}>{note}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {chapter.screenshots && chapter.screenshots.length > 0 && (
-                  <div className="chapter-screenshots-gallery">
-                    {chapter.screenshots.map((s, idx) => (
-                      <figure key={idx} className="screenshot-figure">
-                        <div className="screenshot-wrapper">
-                          <Image
-                            src={s.url}
-                            alt={s.alt || s.caption}
-                            width={1200}
-                            height={750}
-                            className="screenshot-img"
-                            unoptimized
-                          />
-                        </div>
-                        <figcaption>
-                          <strong>{s.caption}</strong>
-                          {s.description && <span> — {s.description}</span>}
-                        </figcaption>
-                      </figure>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
-        ))}
-      </article>
-
-      {/* Project Navigation (Prev / Next) */}
+      {/* 6. PROJECT PAGER (PREV / NEXT) */}
       <section className="project-pager container">
         <div className="pager-grid">
           {prevProject ? (
@@ -275,16 +324,16 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      {/* Contact CTA */}
+      {/* 7. CONTACT CTA */}
       <section className="story-contact-cta container">
         <div className="cta-inner">
           <p className="eyebrow">READY TO COLLABORATE?</p>
           <h2>Let’s discuss what we can build together.</h2>
           <div className="cta-buttons">
-            <Link href="/contact" className="button button-dark">
+            <Link href="/contact" className="button button-pro-primary">
               Start a Conversation ↗
             </Link>
-            <Link href="/projects" className="button button-light">
+            <Link href="/projects" className="button button-pro-secondary">
               Explore More Work
             </Link>
           </div>

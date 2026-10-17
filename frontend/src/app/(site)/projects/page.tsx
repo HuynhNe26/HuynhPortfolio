@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { publicContent } from '@/lib/api';
-import { EmptyProjects } from '@/components/project-card';
-import { ProjectFilter } from '@/components/project-filter';
+import { ProjectStackShowcase } from '@/components/project-stack-showcase';
 
 export const metadata: Metadata = {
   title: 'All Projects — Nguyễn Hoàng Huynh',
@@ -12,12 +11,12 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function ProjectsPage() {
-  const { projects, unavailable } = await publicContent();
+  const { projects } = await publicContent();
 
   return (
     <main id="main-content" className="container section">
       <div className="page-intro">
-        <p className="eyebrow">02 // SYSTEM MODULES &amp; PRODUCTION ARCHITECTURES</p>
+        <p className="eyebrow">PRODUCTION SYSTEMS &amp; CASE STUDIES</p>
         <h1>
           Engineered for scale &amp; resilience
           <span className="brand-dot">.</span>
@@ -27,11 +26,7 @@ export default async function ProjectsPage() {
         </p>
       </div>
 
-      {projects.length > 0 ? (
-        <ProjectFilter projects={projects} unavailable={unavailable} />
-      ) : (
-        <EmptyProjects unavailable={unavailable} />
-      )}
+      <ProjectStackShowcase projects={projects} />
     </main>
   );
 }

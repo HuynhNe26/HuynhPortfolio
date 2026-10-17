@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { LanguageProvider } from '@/context/language-context';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.APP_URL || 'http://localhost:3000'),
@@ -21,16 +22,21 @@ export const metadata: Metadata = {
     title: 'Nguyễn Hoàng Huynh — Full-Stack Web Developer',
     description: 'Building thoughtful digital experiences through design, code, and curiosity.',
   },
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en">
       <body id="top">
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        {children}
+        <LanguageProvider>
+          <a className="skip-link" href="#main-content">
+            Skip to content
+          </a>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

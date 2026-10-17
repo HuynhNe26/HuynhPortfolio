@@ -1,5 +1,11 @@
 import pg from 'pg';
 import type { Pool, PoolClient, QueryResult, QueryResultRow } from 'pg';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const { Pool: PgPool } = pg;
 
@@ -200,6 +206,26 @@ export async function initializeSchema(activePool: Pool): Promise<void> {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
   `);
+
+  try {
+    const profileCountResult = await activePool.query('SELECT COUNT(*) as count FROM profiles');
+    const profileCount = parseInt(profileCountResult.rows[0]?.count || '0', 10);
+    if (profileCount === 0) {
+      const candidates = [
+        join(__dirname, '../database/neon_init.sql'),
+        join(__dirname, '../../database/neon_init.sql'),
+        join(process.cwd(), 'database/neon_init.sql'),
+      ];
+      const sqlFile = candidates.find((p) => existsSync(p));
+      if (sqlFile) {
+        const initSql = readFileSync(sqlFile, 'utf8');
+        await activePool.query(initSql);
+        console.log('PostgreSQL (Neon): Initial portfolio profile, projects, and settings provisioned.');
+      }
+    }
+  } catch (seedErr) {
+    console.error('Auto-seed check notice:', seedErr instanceof Error ? seedErr.message : seedErr);
+  }
 }
 
 export async function closeDatabase(): Promise<void> {

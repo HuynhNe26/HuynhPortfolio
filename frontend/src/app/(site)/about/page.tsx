@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { publicContent } from '@/lib/api';
 import { TechBadge } from '@/components/tech-icon';
@@ -18,7 +19,7 @@ export default async function AboutPage() {
     <main id="main-content" className="container section">
       <div className="page-intro">
         <p className="eyebrow">
-          01 // ARCHITECTURAL DOSSIER &amp; BACKGROUND
+          PROFILE &amp; BACKGROUND
         </p>
         <h1>
           Engineering with precision &amp; curiosity
@@ -33,15 +34,21 @@ export default async function AboutPage() {
 
       <div className="about-grid">
         <div className="about-profile-card">
-          <div className="portrait-container" role="img" aria-label="Portrait placeholder for Nguyễn Hoàng Huynh">
-            <div className="portrait-backdrop" />
-            <div className="portrait-inner">
-              <span className="portrait-monogram">&gt;_</span>
-              <span className="portrait-label">Nguyễn Hoàng Huynh</span>
+          <div className="pro-portrait-container" role="img" aria-label={`Portrait of ${profile.name}`}>
+            <div className="pro-portrait-frame">
+              <Image
+                src={profile.avatarUrl || '/avatar.jpg'}
+                alt={profile.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 360px"
+                className="pro-portrait-img"
+                unoptimized
+                priority
+              />
             </div>
             <div className="portrait-badge">
               <span className="status-dot live" />
-              <span>Available for Intern & Junior Roles</span>
+              <span>Available for Roles</span>
             </div>
           </div>
 
@@ -83,13 +90,13 @@ export default async function AboutPage() {
             </ul>
 
             <div className="profile-actions">
-              <Link href="/contact" className="button button-cyber-primary full-width">
-                Deploy Collaboration
+              <Link href="/contact" className="button button-pro-primary full-width">
+                Get in Touch
                 <span aria-hidden="true">↗</span>
               </Link>
               {profile.resumeUrl && (
-                <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="button button-cyber-ghost full-width">
-                  Download Technical Resume
+                <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="button button-pro-secondary full-width">
+                  Download Resume
                   <span aria-hidden="true">↓</span>
                 </a>
               )}

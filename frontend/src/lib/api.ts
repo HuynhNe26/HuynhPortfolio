@@ -12,11 +12,18 @@ export class ApiError extends Error {
   }
 }
 
+let backendOfflineUntil = 0;
+
 export async function api<T>(path: string, authenticated = false): Promise<T> {
   const headers: Record<string, string> = {};
 
   if (authenticated) {
     headers.Cookie = (await cookies()).toString();
+  }
+
+  // Fast circuit breaker: if backend was recently confirmed unreachable, fail instantly for public SSR reads
+  if (!authenticated && Date.now() < backendOfflineUntil) {
+    throw new ApiError(503, 'The content service is temporarily offline.');
   }
 
   let response: Response;
@@ -25,9 +32,15 @@ export async function api<T>(path: string, authenticated = false): Promise<T> {
     response = await fetch(`${backendUrl}/api${path}`, {
       headers,
       cache: 'no-store',
-      signal: AbortSignal.timeout(7000),
+      signal: AbortSignal.timeout(authenticated ? 3000 : 350),
     });
+    // On success, reset offline circuit
+    backendOfflineUntil = 0;
   } catch {
+    if (!authenticated) {
+      // Mark offline for 10 seconds to protect SSR and link-prefetching from queuing
+      backendOfflineUntil = Date.now() + 10000;
+    }
     throw new ApiError(503, 'The content service is unavailable.');
   }
 
