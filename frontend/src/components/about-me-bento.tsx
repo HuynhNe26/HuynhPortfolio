@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TechIcon } from '@/components/tech-icon';
+import { useLanguage } from '@/context/language-context';
 
 interface AboutMeBentoProps {
   email?: string;
@@ -28,9 +29,8 @@ const SKILLS_LIST = [
   { name: 'Docker', cat: 'Tools & APIs' },
 ];
 
-const SKILL_CATS = ['All', 'Frontend', 'Backend', 'Database', 'Tools & APIs'];
-
 export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeBentoProps) {
+  const { t } = useLanguage();
   const [activeSkillCat, setActiveSkillCat] = useState('All');
   const [formName, setFormName] = useState('');
   const [formEmail, setFormEmail] = useState('');
@@ -38,6 +38,14 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
   const [formPending, setFormPending] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [formError, setFormError] = useState('');
+
+  const skillTabs = [
+    { id: 'All', label: t('bento.skills.all') },
+    { id: 'Frontend', label: t('bento.skills.frontend') },
+    { id: 'Backend', label: t('bento.skills.backend') },
+    { id: 'Database', label: t('bento.skills.database') },
+    { id: 'Tools & APIs', label: t('bento.skills.tools') },
+  ];
 
   const filteredSkills = SKILLS_LIST.filter((s) => {
     if (activeSkillCat === 'All') return true;
@@ -84,17 +92,17 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
           <div className="hh-about-left">
             <div className="hh-eyebrow-pill">
               <span className="hh-avatar-icon">👤</span>
-              <span>ABOUT ME</span>
+              <span>{t('bento.about.eyebrow')}</span>
             </div>
 
             <h2 className="hh-about-heading">
-              Turning Ideas
+              {t('bento.about.heading1')}
               <br />
-              Into Real Products
+              {t('bento.about.heading2')}
             </h2>
 
             <p className="hh-about-text">
-              I&apos;m <strong>Nguyễn Hoàng Huynh</strong>, a 3rd year Information Technology student at Vietnam Aviation Academy. I&apos;m passionate about web development and love building products that solve real-world problems.
+              {t('bento.about.bio')}
             </p>
 
             <ul className="hh-about-info-list">
@@ -121,7 +129,7 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
                 href={`mailto:${email}?subject=Request CV - Nguyễn Hoàng Huynh`}
                 className="hh-btn-download-cv"
               >
-                <span>Download CV</span>
+                <span>{t('bento.about.downloadCv')}</span>
                 <span aria-hidden="true">↓</span>
               </a>
             </div>
@@ -141,8 +149,8 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
               <div className="hh-floating-badge badge-top-right">
                 <span className="badge-icon">🎓</span>
                 <div className="badge-text">
-                  <strong>3rd year</strong>
-                  <span>IT Student</span>
+                  <strong>{t('bento.badge.student')}</strong>
+                  <span>{t('bento.badge.studentSub')}</span>
                 </div>
               </div>
 
@@ -150,8 +158,8 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
               <div className="hh-floating-badge badge-bottom-right">
                 <span className="badge-heart-icon">💖</span>
                 <div className="badge-text">
-                  <span>Passionate about</span>
-                  <strong>Web Development</strong>
+                  <span>{t('bento.badge.passionate')}</span>
+                  <strong>{t('bento.badge.passionateSub')}</strong>
                 </div>
               </div>
             </div>
@@ -163,9 +171,9 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
           {/* EDUCATION CARD */}
           <div className="hh-bento-card hh-edu-card">
             <div className="hh-card-top-row">
-              <h3>Education</h3>
+              <h3>{t('bento.edu.title')}</h3>
               <Link href="/about" className="hh-link-more">
-                More →
+                {t('bento.more')}
               </Link>
             </div>
 
@@ -177,12 +185,12 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
                 </svg>
               </div>
               <div className="hh-edu-details">
-                <h4>Vietnam Aviation Academy</h4>
-                <p className="edu-major">Information Technology</p>
+                <h4>{t('bento.edu.school')}</h4>
+                <p className="edu-major">{t('bento.edu.major')}</p>
                 <div className="edu-meta">
-                  <span>2023 – Present</span>
+                  <span>{t('bento.edu.period')}</span>
                   <span className="meta-dot">•</span>
-                  <span className="gpa-highlight">GPA: 3.1/4.0</span>
+                  <span className="gpa-highlight">{t('bento.edu.gpa')}</span>
                 </div>
               </div>
             </div>
@@ -191,9 +199,9 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
           {/* CERTIFICATES CARD */}
           <div className="hh-bento-card hh-cert-card">
             <div className="hh-card-top-row">
-              <h3>Certificates</h3>
+              <h3>{t('bento.cert.title')}</h3>
               <Link href="/about" className="hh-link-more">
-                More →
+                {t('bento.more')}
               </Link>
             </div>
 
@@ -202,12 +210,12 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
                 <span className="ets-logo-txt">ETS</span>
               </div>
               <div className="hh-edu-details">
-                <h4>TOEIC 550 - Listening &amp; Reading</h4>
-                <p className="edu-major">Educational Testing Service</p>
+                <h4>{t('bento.cert.name')}</h4>
+                <p className="edu-major">{t('bento.cert.issuer')}</p>
                 <div className="edu-meta">
-                  <span>October 2025</span>
+                  <span>{t('bento.cert.date')}</span>
                   <span className="meta-dot">•</span>
-                  <span className="score-highlight">Score: 550</span>
+                  <span className="score-highlight">{t('bento.cert.score')}</span>
                 </div>
               </div>
             </div>
@@ -218,19 +226,19 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
         <div id="skills" className="hh-bento-card hh-skills-card">
           <div className="hh-skills-header">
             <div>
-              <h3 className="hh-skills-title">My Skills</h3>
-              <p className="hh-skills-subtitle">Technologies I work with</p>
+              <h3 className="hh-skills-title">{t('bento.skills.title')}</h3>
+              <p className="hh-skills-subtitle">{t('bento.skills.subtitle')}</p>
             </div>
 
             <div className="hh-skills-filter-tabs" role="tablist">
-              {SKILL_CATS.map((cat) => (
+              {skillTabs.map((cat) => (
                 <button
-                  key={cat}
+                  key={cat.id}
                   type="button"
-                  className={`hh-skill-tab ${activeSkillCat === cat ? 'active' : ''}`}
-                  onClick={() => setActiveSkillCat(cat)}
+                  className={`hh-skill-tab ${activeSkillCat === cat.id ? 'active' : ''}`}
+                  onClick={() => setActiveSkillCat(cat.id)}
                 >
-                  {cat}
+                  {cat.label}
                 </button>
               ))}
             </div>
@@ -252,18 +260,18 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
         <div id="contact" className="hh-bento-card hh-contact-card">
           <div className="hh-contact-intro">
             <div className="hh-eyebrow-pill">
-              <span>GET IN TOUCH</span>
+              <span>{t('bento.contact.eyebrow')}</span>
             </div>
-            <h3 className="hh-contact-title">Let&apos;s Build Something Amazing</h3>
+            <h3 className="hh-contact-title">{t('bento.contact.title')}</h3>
             <p className="hh-contact-desc">
-              I&apos;m always open to discussing new opportunities, interesting projects or just having a chat about technology.
+              {t('bento.contact.desc')}
             </p>
           </div>
 
           <form onSubmit={handleSendMessage} className="hh-contact-form">
             {formSuccess && (
               <div className="hh-form-alert success">
-                ✓ Tin nhắn đã được gửi thành công! Cảm ơn bạn đã liên hệ.
+                {t('bento.contact.success')}
               </div>
             )}
             {formError && (
@@ -275,7 +283,7 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
             <div className="hh-form-field">
               <input
                 type="text"
-                placeholder="Your name"
+                placeholder={t('bento.contact.namePlaceholder')}
                 value={formName}
                 onChange={(e) => setFormName(e.target.value)}
                 required
@@ -285,7 +293,7 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
             <div className="hh-form-field">
               <input
                 type="email"
-                placeholder="Your email"
+                placeholder={t('bento.contact.emailPlaceholder')}
                 value={formEmail}
                 onChange={(e) => setFormEmail(e.target.value)}
                 required
@@ -295,7 +303,7 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
             <div className="hh-form-field">
               <textarea
                 rows={4}
-                placeholder="Your message"
+                placeholder={t('bento.contact.msgPlaceholder')}
                 value={formMessage}
                 onChange={(e) => setFormMessage(e.target.value)}
                 required
@@ -303,7 +311,7 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
             </div>
 
             <button type="submit" className="hh-btn-send-message" disabled={formPending}>
-              <span>{formPending ? 'Sending...' : 'Send Message'}</span>
+              <span>{formPending ? t('bento.contact.sending') : t('bento.contact.sendBtn')}</span>
               <span className="send-icon" aria-hidden="true">🚀</span>
             </button>
           </form>

@@ -54,42 +54,42 @@ export function Header() {
             className={`hh-nav-link ${pathname === '/' ? 'active' : ''}`}
             onClick={() => setOpen(false)}
           >
-            Home
+            {t('nav.home')}
           </Link>
           <Link
             href="/#about"
             className="hh-nav-link"
             onClick={() => setOpen(false)}
           >
-            About
+            {t('nav.about')}
           </Link>
           <Link
             href="/projects"
             className={`hh-nav-link ${pathname.startsWith('/projects') ? 'active' : ''}`}
             onClick={() => setOpen(false)}
           >
-            Projects
+            {t('nav.projects')}
           </Link>
           <Link
             href="/#skills"
             className="hh-nav-link"
             onClick={() => setOpen(false)}
           >
-            Experience
+            {t('nav.experience')}
           </Link>
           <Link
             href="/#education"
             className="hh-nav-link"
             onClick={() => setOpen(false)}
           >
-            Education
+            {t('nav.education')}
           </Link>
           <Link
             href="/contact"
             className={`hh-nav-link ${pathname === '/contact' ? 'active' : ''}`}
             onClick={() => setOpen(false)}
           >
-            Contact
+            {t('nav.contact')}
           </Link>
         </nav>
 
@@ -115,7 +115,7 @@ export function Header() {
           </div>
 
           <Link href="/contact" className="hh-btn-lets-talk">
-            Let&apos;s Talk
+            {t('nav.letsTalk')}
           </Link>
         </div>
       </div>

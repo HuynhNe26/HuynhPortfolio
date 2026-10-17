@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/context/language-context';
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <footer className="site-footer">
@@ -12,7 +12,7 @@ export function Footer() {
         <div className="footer-top-grid">
           <div className="footer-brand-col">
             <Link className="footer-brand" href="/">
-              <div className="footer-brand-badge">NH</div>
+              <div className="footer-brand-badge">HH</div>
               <span className="footer-brand-name">
                 Nguyễn Hoàng Huynh <span className="brand-dot">// SYSTEMS</span>
               </span>
@@ -27,15 +27,15 @@ export function Footer() {
           </div>
 
           <div className="footer-links-col">
-            <span className="footer-col-title">Navigation</span>
+            <span className="footer-col-title">{lang === 'vi' ? 'Điều hướng' : 'Navigation'}</span>
             <Link href="/projects">{t('nav.projects')}</Link>
             <Link href="/about">{t('nav.about')}</Link>
-            <Link href="/#stack">{t('nav.stack')}</Link>
+            <Link href="/#skills">{t('nav.experience')}</Link>
             <Link href="/contact">{t('nav.contact')}</Link>
           </div>
 
           <div className="footer-links-col">
-            <span className="footer-col-title">Connect &amp; Direct</span>
+            <span className="footer-col-title">{lang === 'vi' ? 'Kết nối & Trực tiếp' : 'Connect & Direct'}</span>
             <a href="tel:+84937569205">
               📞 +84 937 569 205
             </a>

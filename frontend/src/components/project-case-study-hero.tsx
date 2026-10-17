@@ -5,27 +5,40 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
+import { useLanguage } from '@/context/language-context';
 
 interface ProjectCaseStudyHeroProps {
   project: Project;
 }
 
 export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
+  const { t, lang } = useLanguage();
   const accentColor = project.themeColor || '#7C3AED';
   const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
-    ? 'Landing Page'
-    : 'Web Application';
+    ? t('filter.landing')
+    : t('filter.webApp');
 
-  const defaultKeyFeatures = [
-    'AI-powered support & contextual retrieval (Agentic RAG)',
-    'High-throughput interactive booking & seat holds',
-    'Real-time availability synchronization with WebSockets',
-    'Automated payment gateway verification & instant ticket dispatch',
-  ];
+  const defaultKeyFeatures = lang === 'vi'
+    ? [
+        'Hỗ trợ khách hàng thông minh & truy xuất ngữ cảnh (Agentic RAG)',
+        'Hệ thống giữ chỗ & đặt vé hiệu năng cao theo thời gian thực',
+        'Đồng bộ trạng thái ghế tức thì thông qua WebSockets',
+        'Tự động đối soát cổng thanh toán trực tuyến & phát hành vé điện tử',
+      ]
+    : [
+        'AI-powered support & contextual retrieval (Agentic RAG)',
+        'High-throughput interactive booking & seat holds',
+        'Real-time availability synchronization with WebSockets',
+        'Automated payment gateway verification & instant ticket dispatch',
+      ];
 
   const featuresList = project.features && project.features.length > 0
     ? project.features.map((f) => f.title)
     : defaultKeyFeatures;
+
+  const teamSizeLabel = project.teamSize
+    ? `${project.teamSize} ${t('case.members')}`
+    : t('case.solo');
 
   return (
     <header className="hh-case-hero-root">
@@ -33,7 +46,7 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
         {/* BACK LINK */}
         <div className="hh-case-back-row">
           <Link href="/projects" className="hh-case-back-link">
-            ← Back to projects
+            {t('case.back')}
           </Link>
         </div>
 
@@ -56,7 +69,7 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
                   rel="noreferrer"
                   className="hh-btn-primary"
                 >
-                  Visit Website
+                  {t('case.visitSite')}
                 </a>
               )}
               {project.sourceUrl ? (
@@ -66,11 +79,11 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
                   rel="noreferrer"
                   className="hh-btn-secondary"
                 >
-                  View on GitHub
+                  {t('case.viewGithub')}
                 </a>
               ) : (
                 <Link href="#overview" className="hh-btn-secondary">
-                  Explore Architecture
+                  {t('case.exploreArch')}
                 </Link>
               )}
             </div>
@@ -121,7 +134,7 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
           <div className="hh-spec-card">
             <div className="spec-icon" aria-hidden="true">👤</div>
             <div className="spec-text">
-              <span className="spec-label">My Role</span>
+              <span className="spec-label">{t('case.role')}</span>
               <strong className="spec-val">{project.role}</strong>
             </div>
           </div>
@@ -129,15 +142,15 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
           <div className="hh-spec-card">
             <div className="spec-icon" aria-hidden="true">👥</div>
             <div className="spec-text">
-              <span className="spec-label">Team Size</span>
-              <strong className="spec-val">{project.teamSize ? `${project.teamSize} members` : 'Solo Developer'}</strong>
+              <span className="spec-label">{t('case.teamSize')}</span>
+              <strong className="spec-val">{teamSizeLabel}</strong>
             </div>
           </div>
 
           <div className="hh-spec-card">
             <div className="spec-icon" aria-hidden="true">⏱</div>
             <div className="spec-text">
-              <span className="spec-label">Time</span>
+              <span className="spec-label">{t('case.time')}</span>
               <strong className="spec-val">{project.timeline || String(project.year)}</strong>
             </div>
           </div>
@@ -145,10 +158,10 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
           <div className="hh-spec-card">
             <div className="spec-icon" aria-hidden="true">⚡</div>
             <div className="spec-text">
-              <span className="spec-label">Status</span>
+              <span className="spec-label">{t('case.status')}</span>
               <strong className="spec-val status-green">
                 <span className="status-ping-dot" />
-                {project.status === 'Ongoing' ? 'In Development' : 'Completed'}
+                {project.status === 'Ongoing' ? t('case.inDev') : t('case.completed')}
               </strong>
             </div>
           </div>
@@ -156,7 +169,7 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
 
         {/* TECHNOLOGIES USED ICON BADGES ROW */}
         <div className="hh-techs-used-panel">
-          <span className="techs-panel-title">Technologies Used</span>
+          <span className="techs-panel-title">{t('case.techsUsed')}</span>
           <div className="techs-badges-row">
             {project.technologies.map((t) => (
               <div key={t} className="tech-badge-item">
@@ -172,14 +185,14 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
         {/* TWO-COLUMN OVERVIEW & KEY FEATURES */}
         <div id="overview" className="hh-overview-features-grid">
           <div className="hh-overview-col">
-            <h3 className="subheading-white">Project Overview</h3>
+            <h3 className="subheading-white">{t('case.overview')}</h3>
             <p className="overview-prose">
               {project.problem} {project.approach} {project.outcome}
             </p>
           </div>
 
           <div className="hh-features-col">
-            <h3 className="subheading-white">Key Features</h3>
+            <h3 className="subheading-white">{t('case.features')}</h3>
             <ul className="features-checklist">
               {featuresList.map((feat, idx) => (
                 <li key={idx}>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { publicContent } from '@/lib/api';
 import { ProjectStackShowcase } from '@/components/project-stack-showcase';
+import { ProjectsPageIntro } from '@/components/projects-page-intro';
 
 export const metadata: Metadata = {
   title: 'All Projects — Nguyễn Hoàng Huynh',
@@ -15,17 +16,7 @@ export default async function ProjectsPage() {
 
   return (
     <main id="main-content" className="container section">
-      <div className="page-intro">
-        <p className="eyebrow">PRODUCTION SYSTEMS &amp; CASE STUDIES</p>
-        <h1>
-          Engineered for scale &amp; resilience
-          <span className="brand-dot">.</span>
-        </h1>
-        <p className="lead-text">
-          Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyễn Hoàng Huynh.
-        </p>
-      </div>
-
+      <ProjectsPageIntro />
       <ProjectStackShowcase projects={projects} />
     </main>
   );

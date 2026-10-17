@@ -4,21 +4,23 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
+import { useLanguage } from '@/context/language-context';
 
 interface FeaturedProjectsGridProps {
   projects: Project[];
 }
 
-const CATEGORY_TABS = [
-  'All',
-  'Web Application',
-  'Landing Page',
-  'Academic',
-  'Ongoing',
-];
-
 export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('All');
+
+  const tabs = [
+    { id: 'All', label: t('filter.all') },
+    { id: 'Web Application', label: t('filter.webApp') },
+    { id: 'Landing Page', label: t('filter.landing') },
+    { id: 'Academic', label: t('filter.academic') },
+    { id: 'Ongoing', label: t('filter.ongoing') },
+  ];
 
   const filteredProjects = projects.filter((p) => {
     if (activeTab === 'All') return true;
@@ -60,25 +62,25 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
         <div className="hh-projects-header">
           <div className="hh-eyebrow-pill">
             <span className="hh-star-icon">★</span>
-            <span>MY WORK</span>
+            <span>{t('featured.eyebrow')}</span>
           </div>
 
-          <h2 className="hh-section-title">Featured Projects</h2>
+          <h2 className="hh-section-title">{t('featured.title')}</h2>
 
           <p className="hh-section-subtitle">
-            A collection of projects I&apos;ve built during my academic journey and personal learning, each with unique challenges and real-world impact.
+            {t('featured.subtitle')}
           </p>
 
           {/* FILTER PILLS */}
           <div className="hh-filter-pills-row" role="tablist">
-            {CATEGORY_TABS.map((tab) => (
+            {tabs.map((tab) => (
               <button
-                key={tab}
+                key={tab.id}
                 type="button"
-                className={`hh-filter-pill ${activeTab === tab ? 'active' : ''}`}
-                onClick={() => setActiveTab(tab)}
+                className={`hh-filter-pill ${activeTab === tab.id ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
               >
-                {tab}
+                {tab.label}
               </button>
             ))}
           </div>
@@ -89,8 +91,8 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
           {filteredProjects.map((project) => {
             const glowColor = project.themeColor || '#2563EB';
             const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
-              ? 'Landing Page'
-              : 'Web Application';
+              ? t('filter.landing')
+              : t('filter.webApp');
 
             return (
               <Link

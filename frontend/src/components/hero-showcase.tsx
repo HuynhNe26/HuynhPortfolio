@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/context/language-context';
 
 interface HeroShowcaseProps {
   name?: string;
@@ -19,6 +20,8 @@ export function HeroShowcase({
   githubUrl = 'https://github.com/HuynhNe26',
   linkedinUrl = '',
 }: HeroShowcaseProps) {
+  const { t } = useLanguage();
+
   const scrollToWork = (e: React.MouseEvent) => {
     e.preventDefault();
     const target = document.getElementById('work');
@@ -35,7 +38,7 @@ export function HeroShowcase({
           {/* LEFT COLUMN: HEADLINE, BIO, BUTTONS, SOCIALS */}
           <div className="hh-hero-left">
             <div className="hh-role-pill">
-              <span className="hh-role-pill-text">Web Developer</span>
+              <span className="hh-role-pill-text">{t('hero.role')}</span>
             </div>
 
             <h1 className="hh-hero-name">
@@ -45,15 +48,15 @@ export function HeroShowcase({
             </h1>
 
             <p className="hh-hero-bio">
-              A passionate full-stack developer and a 3rd year IT student at Vietnam Aviation Academy, building practical solutions with modern technologies.
+              {t('hero.bio')}
             </p>
 
             <div className="hh-hero-actions">
               <Link href="/projects" className="hh-btn-primary">
-                View My Projects
+                {t('hero.viewProjects')}
               </Link>
               <Link href="/contact" className="hh-btn-secondary">
-                Contact Me
+                {t('hero.contactMe')}
               </Link>
             </div>
 
@@ -128,19 +131,19 @@ export function HeroShowcase({
           <div className="hh-metrics-group">
             <div className="hh-metric-item">
               <strong className="hh-metric-number">3.1/4.0</strong>
-              <span className="hh-metric-name">GPA</span>
+              <span className="hh-metric-name">{t('hero.stats.gpa')}</span>
             </div>
             <div className="hh-metric-item">
               <strong className="hh-metric-number">3+</strong>
-              <span className="hh-metric-name">Projects</span>
+              <span className="hh-metric-name">{t('hero.stats.projects')}</span>
             </div>
             <div className="hh-metric-item">
               <strong className="hh-metric-number">2+</strong>
-              <span className="hh-metric-name">Years learning</span>
+              <span className="hh-metric-name">{t('hero.stats.learning')}</span>
             </div>
             <div className="hh-metric-item">
               <strong className="hh-metric-number">∞</strong>
-              <span className="hh-metric-name">Passion</span>
+              <span className="hh-metric-name">{t('hero.stats.passion')}</span>
             </div>
           </div>
 
@@ -150,7 +153,7 @@ export function HeroShowcase({
                 <path d="M12 5v14M19 12l-7 7-7-7"/>
               </svg>
             </span>
-            <span className="hh-scroll-text">Scroll to explore</span>
+            <span className="hh-scroll-text">{t('hero.scrollHint')}</span>
           </a>
         </div>
       </div>
