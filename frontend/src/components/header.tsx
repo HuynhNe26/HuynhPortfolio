@@ -22,88 +22,102 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`site-header ${isScrolled ? 'is-scrolled' : 'is-transparent'} ${open ? 'menu-open' : ''}`}>
-      <div className="nav-shell">
-        <Link className="pro-brand" href="/" aria-label="Nguyễn Hoàng Huynh, Home" onClick={() => setOpen(false)}>
-          <div className="pro-brand-avatar" aria-hidden="true">
-            <span>NH</span>
-          </div>
-          <div className="pro-brand-info">
-            <span className="pro-brand-name">Nguyễn Hoàng Huynh</span>
-            <span className="pro-brand-role">Software Engineer</span>
-          </div>
+    <header className={`hh-site-header ${isScrolled ? 'is-scrolled' : ''}`}>
+      <div className="container hh-header-inner">
+        {/* HH MONOGRAM LOGO */}
+        <Link className="hh-brand-logo" href="/" aria-label="Nguyễn Hoàng Huynh, Home" onClick={() => setOpen(false)}>
+          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="hh-logo-svg">
+            <path d="M6 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+            <path d="M6 16H16" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+            <path d="M16 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+            <path d="M16 16H26" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+            <path d="M26 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+          </svg>
         </Link>
 
-        <div className="pro-status-badge" aria-label="Availability Status">
-          <span className="pro-status-dot" />
-          <span>{t('nav.status')}</span>
-        </div>
-
-        {/* Language Switcher */}
-        <div className="lang-switcher" role="group" aria-label="Language Switcher">
-          <button
-            type="button"
-            className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-            onClick={() => setLang('en')}
-            aria-label="Switch to English"
-          >
-            EN
-          </button>
-          <span className="lang-divider">/</span>
-          <button
-            type="button"
-            className={`lang-btn ${lang === 'vi' ? 'active' : ''}`}
-            onClick={() => setLang('vi')}
-            aria-label="Chuyển sang Tiếng Việt"
-          >
-            VI
-          </button>
-        </div>
-
+        {/* MOBILE MENU TOGGLE */}
         <button
-          className="menu-toggle"
+          className="hh-menu-toggle"
           aria-expanded={open}
-          aria-controls="main-navigation"
+          aria-controls="hh-navigation"
           onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation"
         >
-          {open ? 'Close' : 'Menu'}
+          <span className={`hh-bar ${open ? 'open' : ''}`} />
+          <span className={`hh-bar ${open ? 'open' : ''}`} />
         </button>
 
-        <nav id="main-navigation" className={open ? 'main-nav is-open' : 'main-nav'} aria-label="Main navigation">
+        {/* CENTER NAVIGATION */}
+        <nav id="hh-navigation" className={`hh-nav-menu ${open ? 'is-open' : ''}`} aria-label="Main navigation">
+          <Link
+            href="/"
+            className={`hh-nav-link ${pathname === '/' ? 'active' : ''}`}
+            onClick={() => setOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href="/#about"
+            className="hh-nav-link"
+            onClick={() => setOpen(false)}
+          >
+            About
+          </Link>
           <Link
             href="/projects"
-            aria-current={pathname.startsWith('/projects') ? 'page' : undefined}
+            className={`hh-nav-link ${pathname.startsWith('/projects') ? 'active' : ''}`}
             onClick={() => setOpen(false)}
           >
-            {t('nav.projects')}
+            Projects
           </Link>
           <Link
-            href="/about"
-            aria-current={pathname === '/about' ? 'page' : undefined}
+            href="/#skills"
+            className="hh-nav-link"
             onClick={() => setOpen(false)}
           >
-            {t('nav.about')}
-          </Link>
-          <Link href="/#stack" onClick={() => setOpen(false)}>
-            {t('nav.stack')}
+            Experience
           </Link>
           <Link
-            href="/admin"
-            aria-current={pathname.startsWith('/admin') ? 'page' : undefined}
+            href="/#education"
+            className="hh-nav-link"
             onClick={() => setOpen(false)}
           >
-            {t('nav.cms')}
+            Education
           </Link>
           <Link
-            className="pro-nav-cta"
             href="/contact"
-            aria-current={pathname === '/contact' ? 'page' : undefined}
+            className={`hh-nav-link ${pathname === '/contact' ? 'active' : ''}`}
             onClick={() => setOpen(false)}
           >
-            <span>{t('nav.contact')}</span>
-            <span aria-hidden="true">↗</span>
+            Contact
           </Link>
         </nav>
+
+        {/* RIGHT ACTIONS: LANG & LET'S TALK */}
+        <div className="hh-header-right">
+          {/* Language Switcher */}
+          <div className="hh-lang-pill" role="group" aria-label="Language">
+            <button
+              type="button"
+              className={`hh-lang-btn ${lang === 'en' ? 'active' : ''}`}
+              onClick={() => setLang('en')}
+            >
+              EN
+            </button>
+            <span className="hh-lang-sep">/</span>
+            <button
+              type="button"
+              className={`hh-lang-btn ${lang === 'vi' ? 'active' : ''}`}
+              onClick={() => setLang('vi')}
+            >
+              VI
+            </button>
+          </div>
+
+          <Link href="/contact" className="hh-btn-lets-talk">
+            Let&apos;s Talk
+          </Link>
+        </div>
       </div>
     </header>
   );
