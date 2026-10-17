@@ -24,14 +24,14 @@ export function HeroShowcase({
 
   const scrollToWork = (e: React.MouseEvent) => {
     e.preventDefault();
-    const target = document.getElementById('work');
+    const target = document.getElementById('projects') || document.getElementById('work');
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="hh-hero-section">
+    <section id="home" className="hh-hero-section">
       <div className="container hh-hero-container">
         {/* HERO TOP: 2 COLUMNS (LEFT CONTENT, RIGHT PORTRAIT) */}
         <div className="hh-hero-grid">

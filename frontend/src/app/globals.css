@@ -9251,6 +9251,7 @@ body {
   text-decoration: none;
   transition: color 0.2s ease;
   position: relative;
+  cursor: pointer;
 }
 
 .hh-nav-link:hover,
@@ -9258,16 +9259,35 @@ body {
   color: #FFFFFF;
 }
 
-.hh-nav-link.active::after {
+.hh-nav-link::after {
   content: '';
   position: absolute;
   bottom: -6px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 2px;
+  transform: translateX(-50%) scaleX(0);
+  width: 16px;
+  height: 2.5px;
   background: #38BDF8;
   border-radius: 2px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  opacity: 0;
+}
+
+.hh-nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* Section scroll margins for fixed header navigation */
+#home,
+#about,
+#projects,
+#work,
+#skills,
+#experience,
+#education,
+#contact {
+  scroll-margin-top: 90px;
 }
 
 .hh-header-right {

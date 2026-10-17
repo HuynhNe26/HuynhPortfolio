@@ -1,0 +1,977 @@
+/* ==========================================================================
+   HH ADMIN — Light CMS design (matches mockup frames "Admin Login" & "Dashboard")
+   Scoped under .hh-admin / .hh-login so the dark public site is unaffected.
+   ========================================================================== */
+
+.hh-admin,
+.hh-login {
+  --a-bg: #F6F7F9;
+  --a-surface: #FFFFFF;
+  --a-ink: #0B0F17;
+  --a-ink-2: #334155;
+  --a-muted: #64748B;
+  --a-subtle: #94A3B8;
+  --a-border: #E6E8EC;
+  --a-border-strong: #D5D9E0;
+  --a-active: #0B0F17;
+  --a-radius: 14px;
+  --a-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+  color: var(--a-ink);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+}
+
+/* ---------- SHELL ---------- */
+.hh-admin {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  min-height: 100dvh;
+  background: var(--a-bg);
+}
+
+.hh-admin-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 14px 18px;
+  background: var(--a-surface);
+  border-right: 1px solid var(--a-border);
+  z-index: 40;
+}
+
+.hh-admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px 22px;
+  color: var(--a-ink);
+  text-decoration: none;
+}
+
+.hh-admin-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.hh-admin-logo-text strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.hh-admin-logo-text small {
+  font-size: 11px;
+  color: var(--a-muted);
+}
+
+.hh-admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.hh-admin-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 40px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--a-ink-2);
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.hh-admin-nav-link svg {
+  color: var(--a-subtle);
+  flex-shrink: 0;
+  transition: color 0.18s ease;
+}
+
+.hh-admin-nav-link:hover {
+  background: #F1F3F6;
+  color: var(--a-ink);
+}
+
+.hh-admin-nav-link:hover svg {
+  color: var(--a-ink);
+}
+
+.hh-admin-nav-link.active {
+  background: var(--a-active);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.hh-admin-nav-link.active svg {
+  color: #FFFFFF;
+}
+
+.hh-admin-nav-badge {
+  margin-left: auto;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #EF4444;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hh-admin-sidebar-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--a-border);
+}
+
+.hh-admin-signout .button {
+  width: 100%;
+  min-height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--a-border);
+  background: transparent;
+  color: var(--a-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.hh-admin-signout .button:hover {
+  border-color: #FCA5A5;
+  background: #FEF2F2;
+  color: #DC2626;
+}
+
+.hh-admin-burger,
+.hh-admin-scrim {
+  display: none;
+}
+
+/* ---------- MAIN + TOPBAR ---------- */
+.hh-admin-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hh-admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 32px;
+  background: rgba(246, 247, 249, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--a-border);
+}
+
+.hh-admin-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  min-width: 260px;
+  border-radius: 10px;
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  color: var(--a-subtle);
+  font-size: 13px;
+}
+
+.hh-admin-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+}
+
+.hh-admin-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hh-admin-user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.hh-admin-user-meta strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hh-admin-user-meta span {
+  font-size: 11px;
+  color: var(--a-muted);
+}
+
+/* Content area — also restyles legacy sub-pages (projects, profile, …) */
+.hh-admin .hh-admin-content {
+  width: 100%;
+  max-width: 1240px;
+  padding: 32px;
+  color: var(--a-ink);
+}
+
+.hh-admin .hh-admin-content h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--a-ink);
+  margin: 0 0 6px;
+}
+
+.hh-admin .hh-admin-content h2,
+.hh-admin .hh-admin-content h3 {
+  color: var(--a-ink);
+}
+
+.hh-admin .hh-admin-content .muted,
+.hh-admin .hh-admin-content p {
+  color: var(--a-ink-2);
+}
+
+.hh-admin .hh-admin-content .eyebrow {
+  color: var(--a-muted);
+  font-family: inherit;
+  letter-spacing: 0.08em;
+}
+
+.hh-admin .form-panel,
+.hh-admin .admin-card,
+.hh-admin .message-card {
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  border-radius: var(--a-radius);
+  box-shadow: var(--a-shadow);
+  color: var(--a-ink);
+}
+
+.hh-admin .field input,
+.hh-admin .field textarea,
+.hh-admin .field select {
+  background: #FFFFFF;
+  border: 1px solid var(--a-border-strong);
+  border-radius: 10px;
+  color: var(--a-ink);
+}
+
+.hh-admin .field input:focus,
+.hh-admin .field textarea:focus,
+.hh-admin .field select:focus {
+  outline: none;
+  border-color: var(--a-ink);
+  box-shadow: 0 0 0 3px rgba(11, 15, 23, 0.08);
+}
+
+.hh-admin .button-dark {
+  background: var(--a-ink);
+  color: #FFFFFF;
+  border-radius: 10px;
+}
+
+/* ---------- DASHBOARD ---------- */
+.hh-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: hh-dash-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes hh-dash-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hh-dash-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hh-dash-head p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--a-muted) !important;
+}
+
+.hh-dash-head-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.hh-dash-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.hh-dash-btn.solid {
+  background: var(--a-ink);
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(11, 15, 23, 0.18);
+}
+
+.hh-dash-btn.solid:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(11, 15, 23, 0.22);
+}
+
+.hh-dash-btn.ghost {
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  color: var(--a-ink);
+}
+
+.hh-dash-btn.ghost:hover {
+  background: #F1F3F6;
+}
+
+/* Stat cards */
+.hh-dash-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hh-stat-card {
+  --tone: #2563EB;
+  --tone-bg: #EFF6FF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 18px 20px 20px;
+  border-radius: var(--a-radius);
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  box-shadow: var(--a-shadow);
+  color: var(--a-ink);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.hh-stat-card::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--tone-bg) 0%, transparent 70%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.hh-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--a-border-strong);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.hh-stat-card.tone-blue { --tone: #2563EB; --tone-bg: #DBEAFE; }
+.hh-stat-card.tone-violet { --tone: #7C3AED; --tone-bg: #EDE9FE; }
+.hh-stat-card.tone-amber { --tone: #D97706; --tone-bg: #FEF3C7; }
+.hh-stat-card.tone-green { --tone: #059669; --tone-bg: #D1FAE5; }
+
+.hh-stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.hh-stat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tone-bg);
+  color: var(--tone);
+}
+
+.hh-stat-arrow {
+  color: var(--a-subtle);
+  font-size: 16px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.hh-stat-card:hover .hh-stat-arrow {
+  transform: translateX(3px);
+  color: var(--a-ink);
+}
+
+.hh-stat-value {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  position: relative;
+  z-index: 1;
+}
+
+.hh-stat-label {
+  font-size: 13px;
+  color: var(--a-muted);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.hh-stat-extra {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #FEE2E2;
+  color: #DC2626;
+  z-index: 1;
+}
+
+/* Two-column body */
+.hh-dash-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.hh-dash-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hh-dash-card {
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  border-radius: var(--a-radius);
+  box-shadow: var(--a-shadow);
+  padding: 20px;
+}
+
+.hh-dash-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.hh-admin .hh-dash-card-head h2 {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.hh-dash-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--a-muted);
+  text-decoration: none;
+}
+
+.hh-dash-link:hover {
+  color: var(--a-ink);
+}
+
+.hh-dash-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 36px 16px;
+  text-align: center;
+  color: var(--a-subtle);
+}
+
+.hh-dash-empty p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--a-muted) !important;
+  max-width: 320px;
+}
+
+/* Messages */
+.hh-msg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hh-msg-row {
+  display: grid;
+  grid-template-columns: 36px minmax(120px, 0.9fr) minmax(0, 1.4fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 8px;
+  border-radius: 10px;
+  border-bottom: 1px solid #F1F3F6;
+  transition: background 0.15s ease;
+}
+
+.hh-msg-row:last-child {
+  border-bottom: none;
+}
+
+.hh-msg-row:hover {
+  background: #F8F9FB;
+}
+
+.hh-msg-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hh-msg-who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.hh-msg-who strong {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hh-msg-who span {
+  font-size: 11.5px;
+  color: var(--a-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hh-admin .hh-msg-text {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--a-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hh-msg-time {
+  font-size: 11.5px;
+  color: var(--a-subtle);
+  white-space: nowrap;
+}
+
+.hh-msg-row.is-unread .hh-msg-who strong::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: #2563EB;
+  vertical-align: middle;
+}
+
+.hh-admin .hh-msg-row.is-unread .hh-msg-text {
+  color: var(--a-ink-2);
+  font-weight: 500;
+}
+
+/* Quick actions */
+.hh-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.hh-quick-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--a-border);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--a-ink);
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.hh-quick-item svg {
+  color: var(--a-muted);
+}
+
+.hh-quick-item:hover {
+  background: var(--a-ink);
+  border-color: var(--a-ink);
+  color: #FFFFFF;
+}
+
+.hh-quick-item:hover svg {
+  color: #FFFFFF;
+}
+
+/* Projects mini list */
+.hh-proj-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hh-proj-row {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 10px;
+  color: var(--a-ink);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.hh-proj-row:hover {
+  background: #F8F9FB;
+}
+
+.hh-proj-thumb {
+  width: 48px;
+  height: 34px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #EEF0F3;
+}
+
+.hh-proj-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hh-proj-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.hh-proj-meta strong {
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hh-proj-meta small {
+  font-size: 11px;
+  color: var(--a-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hh-proj-status {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.hh-proj-status.done { background: #D1FAE5; color: #047857; }
+.hh-proj-status.ongoing { background: #FEF3C7; color: #B45309; }
+
+/* ---------- LOGIN ---------- */
+.hh-login {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37, 99, 235, 0.06), transparent 70%),
+    var(--a-bg);
+}
+
+.hh-login-card {
+  width: min(100%, 400px);
+  padding: 36px 32px 30px;
+  border-radius: 20px;
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 24px 48px -12px rgba(15, 23, 42, 0.12);
+  text-align: center;
+  animation: hh-dash-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hh-login-logo {
+  display: inline-flex;
+  color: var(--a-ink);
+  margin-bottom: 14px;
+}
+
+.hh-login-card h1 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  color: var(--a-ink);
+}
+
+.hh-login-sub {
+  margin: 0 0 24px;
+  font-size: 13.5px;
+  color: var(--a-muted);
+}
+
+.hh-login .editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.hh-login .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+}
+
+.hh-login .field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--a-ink);
+}
+
+.hh-login .field input {
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--a-border-strong);
+  background: #FFFFFF;
+  color: var(--a-ink);
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hh-login .field input::placeholder {
+  color: var(--a-subtle);
+}
+
+.hh-login .field input:focus {
+  outline: none;
+  border-color: var(--a-ink);
+  box-shadow: 0 0 0 3px rgba(11, 15, 23, 0.08);
+}
+
+.hh-login-remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--a-ink-2);
+  cursor: pointer;
+}
+
+.hh-login-remember input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--a-ink);
+}
+
+.hh-login .button {
+  width: 100%;
+  height: 44px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 10px;
+  background: var(--a-ink);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.hh-login .button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(11, 15, 23, 0.2);
+}
+
+.hh-login .button:disabled {
+  opacity: 0.6;
+}
+
+.hh-login .form-feedback {
+  font-size: 13px;
+  border-radius: 10px;
+}
+
+.hh-login-back {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--a-muted);
+  text-decoration: none;
+}
+
+.hh-login-back:hover {
+  color: var(--a-ink);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1100px) {
+  .hh-dash-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hh-dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .hh-admin {
+    grid-template-columns: 1fr;
+  }
+
+  .hh-admin-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 20px 0 40px rgba(15, 23, 42, 0.12);
+  }
+
+  .hh-admin-sidebar.is-open {
+    transform: none;
+  }
+
+  .hh-admin-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 15, 23, 0.35);
+    z-index: 35;
+  }
+
+  .hh-admin-burger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    position: fixed;
+    top: 13px;
+    left: 14px;
+    z-index: 45;
+    width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid #E6E8EC;
+    background: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .hh-admin-burger span {
+    height: 2px;
+    border-radius: 2px;
+    background: #0B0F17;
+  }
+
+  .hh-admin-topbar {
+    padding: 0 16px 0 64px;
+  }
+
+  .hh-admin-search {
+    display: none;
+  }
+
+  .hh-admin .hh-admin-content {
+    padding: 20px 16px;
+  }
+
+  .hh-msg-row {
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+  }
+
+  .hh-msg-text {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .hh-dash-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .hh-admin-user-meta {
+    display: none;
+  }
+  .hh-admin-user {
+    padding: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-dash,
+  .hh-login-card {
+    animation: none;
+  }
+}

@@ -56,7 +56,8 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
   });
 
   return (
-    <section id="work" className="hh-featured-projects-section">
+    <section id="projects" data-section="projects" className="hh-featured-projects-section">
+      <span id="work" className="sr-only" aria-hidden="true" />
       <div className="container">
         {/* SECTION HEADER */}
         <div className="hh-projects-header">

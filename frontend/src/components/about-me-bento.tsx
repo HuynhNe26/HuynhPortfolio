@@ -85,10 +85,10 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
   };
 
   return (
-    <section id="about" className="hh-bento-section">
+    <section className="hh-bento-section">
       <div className="container hh-bento-grid-container">
         {/* ROW 1: ABOUT ME HERO CARD + PHOTO WITH FLOATING BADGES */}
-        <div className="hh-bento-card hh-about-card">
+        <div id="about" data-section="about" className="hh-bento-card hh-about-card">
           <div className="hh-about-left">
             <div className="hh-eyebrow-pill">
               <span className="hh-avatar-icon">👤</span>
@@ -223,7 +223,8 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
         </div>
 
         {/* ROW 3: MY SKILLS TECH MATRIX (DARK BENTO TILE) */}
-        <div id="skills" className="hh-bento-card hh-skills-card">
+        <div id="skills" data-section="skills" className="hh-bento-card hh-skills-card">
+          <span id="experience" className="sr-only" aria-hidden="true" />
           <div className="hh-skills-header">
             <div>
               <h3 className="hh-skills-title">{t('bento.skills.title')}</h3>
