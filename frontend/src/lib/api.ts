@@ -73,14 +73,22 @@ export async function publicContent() {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  const fallback = defaultProjects.find((p) => p.slug === slug);
   try {
     const fetched = await api<Project>(`/projects/${encodeURIComponent(slug)}`);
-    if (fetched) return fetched;
+    if (fetched) {
+      return {
+        ...fallback,
+        ...fetched,
+        gallery: fetched.gallery && fetched.gallery.length > 0 ? fetched.gallery : fallback?.gallery,
+        features: fetched.features && fetched.features.length > 0 ? fetched.features : fallback?.features,
+        chapters: fetched.chapters && fetched.chapters.length > 0 ? fetched.chapters : fallback?.chapters,
+      };
+    }
   } catch {
     // Graceful fallback to verified project registry
   }
 
-  const fallback = defaultProjects.find((p) => p.slug === slug);
   return fallback || null;
 }
 

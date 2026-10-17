@@ -93,6 +93,7 @@ export interface Project {
   problem: string;
   approach: string;
   outcome: string;
+  gallery?: ScreenshotItem[];
   features?: ProjectFeature[];
   chapters?: ProjectChapter[];
   createdAt: string;
@@ -198,6 +199,32 @@ export const defaultProjects: Project[] = [
     problem: 'Concert attendees frequently face delays obtaining event information, seating confirmation, and payment resolution during high-traffic ticket sales.',
     approach: 'Engineered an agentic retrieval-augmented generation (RAG) system with LangChain.js and Gemini API integrated with Node.js and real-time WebSocket communication.',
     outcome: 'Delivered an automated support workflow handling multi-turn ticketing inquiries with MoMo API payment verification and reliable transactional email notifications.',
+    gallery: [
+      {
+        url: '/projects/ticket-concert-hero.png',
+        caption: 'Live Concert Discovery & Event Schedule Portal',
+        alt: 'Ticket Concert Discovery Interface',
+        description: 'High-throughput event listing with live status badges, interactive schedules, and venue information.',
+      },
+      {
+        url: '/projects/ticket-concert-booking.png',
+        caption: 'Interactive Seating Map & Ticket Checkout Flow',
+        alt: 'Seat selection and ticket checkout workflow',
+        description: 'Real-time seat mapping, pricing tier calculations, and MoMo API checkout modal.',
+      },
+      {
+        url: '/projects/ticket-concert-full.png',
+        caption: 'Comprehensive System Architecture & Live Support Ecosystem',
+        alt: 'Full-page system architecture and live support integration',
+        description: 'End-to-end user journey supported by real-time WebSocket messaging and Gemini Agentic RAG assistant.',
+      },
+      {
+        url: '/projects/ticket-concert-home.png',
+        caption: 'Mobile-Optimized Event Booking Portal',
+        alt: 'Mobile responsive concert booking view',
+        description: 'Responsive mobile interface optimized for fast event search, booking, and ticket retrieval.',
+      },
+    ],
     features: [
       {
         id: 'feat-tc-01',
@@ -343,6 +370,20 @@ export const defaultProjects: Project[] = [
     problem: 'The salon needed an elegant, mobile-first web presence for Western Australian customers to view service menus, gallery work, and request appointments.',
     approach: 'Built a lightweight, high-performance React application powered by Vite, integrated with a Node.js backend and Resend API for immediate booking inquiry notifications.',
     outcome: 'Achieved sub-second page loads, accessible mobile navigation, and streamlined booking conversion without friction.',
+    gallery: [
+      {
+        url: '/projects/fashion-nail-hero.jpg',
+        caption: 'Luxury Salon Visual Identity & Digital Front Door',
+        alt: 'Fashion Nail Morley Storefront',
+        description: 'Western Australia beauty salon storefront with Champagne Rose aesthetics and mobile-first appointment booking.',
+      },
+      {
+        url: '/projects/fashion-nail-services.jpg',
+        caption: 'Interactive Treatment Menus & Instant Booking Workflow',
+        alt: 'Service Pricing & Booking Form',
+        description: 'Streamlined service categorization with one-tap inquiry dispatch to salon team via Resend API.',
+      },
+    ],
     features: [
       {
         id: 'feat-fn-01',
@@ -462,6 +503,20 @@ export const defaultProjects: Project[] = [
     problem: 'Traditional online examination systems lack personalization and struggle with high concurrency during simultaneous exam submissions.',
     approach: 'Architected a decoupled React and Node.js platform utilizing Redis caching for session tokens and question banks, with PostgreSQL for ACID compliance.',
     outcome: 'Currently active in ongoing development, providing reliable test sessions and automated scoring algorithms.',
+    gallery: [
+      {
+        url: '/projects/exam-platform-hero.png',
+        caption: 'Distraction-Free Exam Engine & Real-Time Autosave',
+        alt: 'ExamPlatform Assessment Room',
+        description: 'Fullscreen assessment room with live question countdown timers, question palette navigation, and sub-second auto-syncing of student selections to Redis cache.',
+      },
+      {
+        url: '/projects/exam-platform-overview.png',
+        caption: 'AI Evaluation Rubrics & Conceptual Performance Analytics',
+        alt: 'ExamPlatform AI Evaluation',
+        description: 'Automated post-exam rubric breakdown providing conceptual mastery scores, step-by-step reasoning explanations, and targeted revision roadmaps.',
+      },
+    ],
     features: [
       {
         id: 'feat-ep-01',
@@ -581,6 +636,20 @@ export const defaultProjects: Project[] = [
     problem: 'Agency needed a modern showcase for digital growth services with automated routing of prospective client inquiries directly to CRM and team inboxes.',
     approach: 'Developed a component-driven React interface with webhook integration to Make.com scenarios for zero-latency lead routing and email acknowledgment.',
     outcome: 'Seamlessly deployed on Netlify with automated email workflows handling marketing consultations.',
+    gallery: [
+      {
+        url: '/projects/vk-digital-hero.png',
+        caption: 'Digital Growth Agency Front Door & Client Showcase',
+        alt: 'VK Digital Hub Agency Landing',
+        description: 'High-conversion marketing landing page presenting core service offerings, client ROI metrics, and social proof.',
+      },
+      {
+        url: '/projects/vk-digital-services.png',
+        caption: 'Interactive Service Matrix & Make.com Lead Ingestion',
+        alt: 'VK Digital Hub Services & Automation',
+        description: 'Zero-latency webhook ingestion dispatching prospective customer data instantly into CRM, Slack channels, and spreadsheet trackers.',
+      },
+    ],
     features: [
       {
         id: 'feat-vk-01',
@@ -700,6 +769,20 @@ export const defaultProjects: Project[] = [
     problem: 'Standard static developer templates cannot securely manage live project storytelling, message auditing, or profile configuration dynamically.',
     approach: 'Engineered an App Router Next.js application with a dedicated Node.js backend, HttpOnly session authentication, and PostgreSQL Neon serverless database.',
     outcome: 'Delivered an Apple-inspired editorial design system with full CMS administration, contact rate-limiting, and 7-chapter storytelling.',
+    gallery: [
+      {
+        url: '/projects/portfolio-preview.jpg',
+        caption: 'Apple-Inspired Editorial Portfolio & 3D Interactive Showcase',
+        alt: 'NH Huynh Portfolio Preview',
+        description: 'Modern editorial portfolio featuring 7-chapter storytelling, verified credentials, and full-stack matrix.',
+      },
+      {
+        url: '/projects/portfolio-cms.jpg',
+        caption: 'Authenticated Headless CMS & Live Engineering Studio',
+        alt: 'Portfolio CMS Admin Portal',
+        description: 'Secure HttpOnly session authentication for real-time CRUD management across projects, biography, skills, and contact messages.',
+      },
+    ],
     features: [
       {
         id: 'feat-pf-01',

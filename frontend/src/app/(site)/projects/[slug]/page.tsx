@@ -6,6 +6,7 @@ import { cache } from 'react';
 import { getProjectBySlug, publicContent } from '@/lib/api';
 import { TechIcon } from '@/components/tech-icon';
 import { Storytelling3DFlow } from '@/components/storytelling-3d-flow';
+import { ProjectGalleryShowcase } from '@/components/project-gallery-showcase';
 
 const fetchProject = cache(async (slug: string) => {
   const project = await getProjectBySlug(slug);
@@ -90,7 +91,7 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
         '--project-accent-bg': project.themeBg || '#EFF6FF',
       } as React.CSSProperties}
     >
-      {/* 1. HERO SECTION WITH PROJECT THEME ACCENT */}
+      {/* 1. HERO SECTION WITH PROJECT TITLE & FIRST-VIEW MULTI-IMAGE GALLERY */}
       <header className="story-hero-section">
         <div className="container">
           <div className="story-nav-back">
@@ -110,113 +111,93 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
             </div>
 
             <h1 className="story-title">{project.title}</h1>
-            <p className="story-summary">{project.summary}</p>
           </div>
 
-          {/* HIGH-CONTRAST ENGINEERING SPECS BAR */}
-          <div className="story-specs-bar">
-            <div className="spec-item">
-              <span className="spec-label">Role</span>
-              <span className="spec-value">
-                {project.role}
-                {project.teamSize ? ` (Team of ${project.teamSize})` : ' (Solo Developer)'}
-              </span>
+          {/* 1ST THING VISIBLE: MULTI-IMAGE WEBSITE GALLERY SHOWCASE */}
+          <div className="story-gallery-showcase-wrap">
+            <ProjectGalleryShowcase
+              screenshots={
+                project.gallery && project.gallery.length > 0
+                  ? project.gallery
+                  : [
+                      {
+                        url: project.coverUrl || '/projects/ticket-concert-hero.png',
+                        caption: `${project.title} Interface`,
+                        alt: project.title,
+                      },
+                    ]
+              }
+              projectTitle={project.title}
+              liveUrl={project.liveUrl}
+              accentColor={project.themeColor || '#2563EB'}
+            />
+          </div>
+
+          {/* 2ND THING: DETAILED PROJECT INFORMATION & SPECS BELOW GALLERY */}
+          <div className="story-info-below-gallery">
+            <div className="story-summary-lead">
+              <div className="story-summary-pill">
+                <span className="pill-dot" style={{ backgroundColor: project.themeColor || '#2563EB' }} />
+                <span>Executive Overview</span>
+              </div>
+              <p className="story-summary">{project.summary}</p>
             </div>
-            <div className="spec-item">
-              <span className="spec-label">Timeline</span>
-              <span className="spec-value">{project.timeline || `${project.year}`}</span>
-            </div>
-            {project.teamSize && (
+
+            {/* HIGH-CONTRAST ENGINEERING SPECS BAR */}
+            <div className="story-specs-bar">
               <div className="spec-item">
-                <span className="spec-label">Team Size</span>
-                <span className="spec-value">{project.teamSize} Members</span>
+                <span className="spec-label">Role</span>
+                <span className="spec-value">
+                  {project.role}
+                  {project.teamSize ? ` (Team of ${project.teamSize})` : ' (Solo Developer)'}
+                </span>
               </div>
-            )}
-            <div className="spec-item tech-spec">
-              <span className="spec-label">Core Stack</span>
-              <div className="story-tech-tags">
-                {project.technologies.map((tech) => (
-                  <span key={tech} className="tech-tag">
-                    <TechIcon name={tech} className="tech-tag-icon" />
-                    <span>{tech}</span>
-                  </span>
-                ))}
+              <div className="spec-item">
+                <span className="spec-label">Timeline</span>
+                <span className="spec-value">{project.timeline || `${project.year}`}</span>
               </div>
-            </div>
-            <div className="spec-item links-spec">
-              <span className="spec-label">Live Deployment</span>
-              <div className="story-links">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="button button-pro-primary small"
-                  >
-                    <span>Visit Live Website</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                )}
-                {project.sourceUrl && (
-                  <a href={project.sourceUrl} target="_blank" rel="noreferrer" className="text-link">
-                    Source Code ↗
-                  </a>
-                )}
+              {project.teamSize && (
+                <div className="spec-item">
+                  <span className="spec-label">Team Size</span>
+                  <span className="spec-value">{project.teamSize} Members</span>
+                </div>
+              )}
+              <div className="spec-item tech-spec">
+                <span className="spec-label">Core Stack</span>
+                <div className="story-tech-tags">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="tech-tag">
+                      <TechIcon name={tech} className="tech-tag-icon" />
+                      <span>{tech}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="spec-item links-spec">
+                <span className="spec-label">Live Deployment</span>
+                <div className="story-links">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="button button-pro-primary small"
+                    >
+                      <span>Visit Live Website</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                  {project.sourceUrl && (
+                    <a href={project.sourceUrl} target="_blank" rel="noreferrer" className="text-link">
+                      Source Code ↗
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </header>
-
-      {/* 2. MACOS BROWSER HERO SHOWCASE */}
-      <section className="story-cover-section container">
-        <div className="story-browser-mockup">
-          <div className="story-browser-bar">
-            <div className="window-dots" aria-hidden="true">
-              <span className="dot dot-red" />
-              <span className="dot dot-yellow" />
-              <span className="dot dot-green" />
-            </div>
-            <div className="story-browser-address">
-              <span className="address-lock" aria-hidden="true">🔒</span>
-              <span className="address-url">{project.liveUrl || `https://${project.slug}.dev`}</span>
-            </div>
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="story-browser-action"
-                title="Open live website in new tab"
-              >
-                <span>Live Website</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            )}
-          </div>
-
-          {project.coverUrl ? (
-            <div className="story-cover-image">
-              <Image
-                src={project.coverUrl}
-                alt={`${project.title} live interface showcase`}
-                fill
-                sizes="100vw"
-                unoptimized
-                priority
-              />
-            </div>
-          ) : (
-            <div className="story-cover-placeholder">
-              <div className="cover-monogram">{project.title.slice(0, 2).toUpperCase()}</div>
-              <div className="cover-caption">
-                <span>{project.category}</span>
-                <span>Case Study Storytelling</span>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* 3. CORE PRODUCT FEATURES & FUNCTIONAL CAPABILITIES LIST */}
       {features.length > 0 && (

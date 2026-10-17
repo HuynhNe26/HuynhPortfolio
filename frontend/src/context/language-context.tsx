@@ -68,6 +68,17 @@ const translations: Record<Language, Record<string, string>> = {
     'study.live': 'Live Website',
     'study.verified': 'Verified Feature',
 
+    // Gallery Showcase
+    'gallery.title': 'Website Interface & Screens Showcase',
+    'gallery.viewGrid': 'View All Screens (Grid)',
+    'gallery.viewShowcase': 'Showcase View',
+    'gallery.fullscreen': 'Fullscreen Zoom',
+    'gallery.close': 'Close',
+    'gallery.prev': 'Previous Screen',
+    'gallery.next': 'Next Screen',
+    'gallery.screensCount': 'Screens',
+    'gallery.visit': 'Visit Live Website',
+
     // Footer
     'footer.tagline': 'Engineered for performance, resilience, and visual craftsmanship.',
     'footer.rights': 'All rights reserved.',
@@ -130,6 +141,17 @@ const translations: Record<Language, Record<string, string>> = {
     'study.sourceCode': 'Mã nguồn GitHub',
     'study.live': 'Trang Trực tiếp',
     'study.verified': 'Tính năng Đã Kiểm chứng',
+
+    // Gallery Showcase
+    'gallery.title': 'Hình ảnh Giao diện Website Trực tiếp',
+    'gallery.viewGrid': 'Xem tất cả ảnh (Lưới)',
+    'gallery.viewShowcase': 'Trình chiếu tập trung',
+    'gallery.fullscreen': 'Phóng to toàn màn hình',
+    'gallery.close': 'Đóng',
+    'gallery.prev': 'Ảnh trước',
+    'gallery.next': 'Ảnh tiếp theo',
+    'gallery.screensCount': 'Hình ảnh',
+    'gallery.visit': 'Truy cập Website Trực tiếp',
 
     // Footer
     'footer.tagline': 'Thiết kế tối ưu hiệu năng, độ tin cậy và trải nghiệm thị giác.',
