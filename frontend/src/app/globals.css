@@ -315,13 +315,13 @@ p {
 .pro-brand-name {
   font-size: 15px;
   font-weight: 700;
-  color: var(--ink);
+  color: #0F172A;
   letter-spacing: -0.01em;
 }
 
 .pro-brand-role {
   font-size: 11.5px;
-  color: var(--muted);
+  color: #64748B;
   font-weight: 500;
 }
 
@@ -364,14 +364,14 @@ p {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--muted);
+  color: #334155;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .main-nav a:hover,
 .main-nav a[aria-current] {
-  color: var(--ink);
+  color: #0F172A;
   font-weight: 600;
 }
 
@@ -2219,7 +2219,7 @@ p {
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  background: #090D16; /* Dark backdrop revealed as content scrolls past */
+  background: var(--background);
 }
 
 .site-content-layer {
