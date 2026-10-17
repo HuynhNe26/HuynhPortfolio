@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { TechIcon } from './tech-icon';
+import { useLanguage } from '@/context/language-context';
 
 interface HeroDossierProps {
   name: string;
@@ -11,6 +12,7 @@ interface HeroDossierProps {
 type TabKey = 'stack' | 'architecture' | 'credentials';
 
 export function HeroDossier({ name }: HeroDossierProps) {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabKey>('stack');
   const [copied, setCopied] = useState(false);
 
@@ -88,7 +90,7 @@ export function HeroDossier({ name }: HeroDossierProps) {
           className={`dossier-tab ${activeTab === 'stack' ? 'active' : ''}`}
           onClick={() => setActiveTab('stack')}
         >
-          Core Stack
+          {t('dossier.tabStack')}
         </button>
         <button
           type="button"
@@ -97,7 +99,7 @@ export function HeroDossier({ name }: HeroDossierProps) {
           className={`dossier-tab ${activeTab === 'architecture' ? 'active' : ''}`}
           onClick={() => setActiveTab('architecture')}
         >
-          Architecture Focus
+          {t('dossier.tabArchitecture')}
         </button>
         <button
           type="button"
@@ -106,7 +108,7 @@ export function HeroDossier({ name }: HeroDossierProps) {
           className={`dossier-tab ${activeTab === 'credentials' ? 'active' : ''}`}
           onClick={() => setActiveTab('credentials')}
         >
-          Credentials &amp; Education
+          {t('dossier.tabCredentials')}
         </button>
       </div>
 
@@ -195,24 +197,24 @@ export function HeroDossier({ name }: HeroDossierProps) {
         {activeTab === 'credentials' && (
           <div className="dossier-creds-panel">
             <div className="cred-card">
-              <span className="cred-tag">Degree Program</span>
-              <h4>Bachelor of Science in Information Technology</h4>
-              <p className="cred-org">Vietnam Aviation Academy (Học viện Hàng không Việt Nam)</p>
+              <span className="cred-tag">{t('dossier.degree')}</span>
+              <h4>{t('dossier.degreeName')}</h4>
+              <p className="cred-org">{t('dossier.institution')}</p>
               <div className="cred-meta">
-                <span>Timeline: 2023 – Present</span>
+                <span>{t('dossier.timelineLabel')}</span>
                 <span className="meta-divider">•</span>
-                <span className="cred-score">Cumulative GPA: 3.1 / 4.0</span>
+                <span className="cred-score">{t('dossier.gpaLabel')}</span>
               </div>
             </div>
 
             <div className="cred-card">
-              <span className="cred-tag">Language Certification</span>
-              <h4>TOEIC Listening &amp; Reading</h4>
+              <span className="cred-tag">{t('dossier.langCert')}</span>
+              <h4>{t('dossier.toeic')}</h4>
               <p className="cred-org">Educational Testing Service (ETS)</p>
               <div className="cred-meta">
-                <span>Issued: October 2025</span>
+                <span>{t('dossier.issuedLabel')}</span>
                 <span className="meta-divider">•</span>
-                <span className="cred-score">Verified Score: 550 / 990</span>
+                <span className="cred-score">{t('dossier.scoreLabel')}</span>
               </div>
             </div>
           </div>
@@ -228,15 +230,15 @@ export function HeroDossier({ name }: HeroDossierProps) {
           title="Copy email to clipboard"
         >
           <span className="btn-icon">✉</span>
-          <span>{copied ? 'Copied to Clipboard!' : email}</span>
+          <span>{copied ? t('dossier.copied') : email}</span>
         </button>
 
         <div className="dossier-quick-links">
           <Link href="/projects" className="dossier-link">
-            Projects ↗
+            {t('nav.projects')} ↗
           </Link>
           <Link href="/contact" className="dossier-link primary">
-            Get in Touch ↗
+            {t('nav.contact')} ↗
           </Link>
         </div>
       </div>

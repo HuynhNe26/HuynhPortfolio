@@ -47,29 +47,29 @@ export function AboutMePreview({ name, biography, email }: AboutMePreviewProps) 
             <div className="strength-item">
               <span className="strength-icon" aria-hidden="true">⚡</span>
               <div>
-                <strong>High Performance</strong>
-                <span>Sub-second page loads, edge rendering &amp; minimal bundles</span>
+                <strong>{t('aboutPreview.strengthPerf')}</strong>
+                <span>{t('aboutPreview.strengthPerfSub')}</span>
               </div>
             </div>
             <div className="strength-item">
               <span className="strength-icon" aria-hidden="true">🛡️</span>
               <div>
-                <strong>Security &amp; Resilience</strong>
-                <span>HttpOnly sessions, rate limiting &amp; signature validation</span>
+                <strong>{t('aboutPreview.strengthSecurity')}</strong>
+                <span>{t('aboutPreview.strengthSecuritySub')}</span>
               </div>
             </div>
             <div className="strength-item">
               <span className="strength-icon" aria-hidden="true">🤖</span>
               <div>
-                <strong>Agentic Intelligence</strong>
-                <span>LangChain.js, Gemini API &amp; context-grounded RAG</span>
+                <strong>{t('aboutPreview.strengthAgentic')}</strong>
+                <span>{t('aboutPreview.strengthAgenticSub')}</span>
               </div>
             </div>
             <div className="strength-item">
               <span className="strength-icon" aria-hidden="true">📐</span>
               <div>
-                <strong>Clean Codebase</strong>
-                <span>Strict TypeScript, modular components &amp; robust typing</span>
+                <strong>{t('aboutPreview.strengthCleanCode')}</strong>
+                <span>{t('aboutPreview.strengthCleanCodeSub')}</span>
               </div>
             </div>
           </div>
@@ -84,29 +84,29 @@ export function AboutMePreview({ name, biography, email }: AboutMePreviewProps) 
 
         {/* Right Column: Academic & Credentials Quick Matrix */}
         <div className="about-preview-card academic-card">
-          <div className="card-badge-pill">Academic Credentials</div>
-          <h3>Vietnam Aviation Academy</h3>
-          <p className="academy-sub">Học viện Hàng không Việt Nam • Khoa Công nghệ Thông tin</p>
+          <div className="card-badge-pill">{t('aboutPreview.credentialsBadge')}</div>
+          <h3>{t('aboutPreview.academy')}</h3>
+          <p className="academy-sub">{t('aboutPreview.academySub')}</p>
 
           <div className="academic-stats-list">
             <div className="academic-stat-row">
-              <span className="stat-label">Major / Discipline</span>
-              <span className="stat-val">Information Technology (CNTT)</span>
+              <span className="stat-label">{t('aboutPreview.majorLabel')}</span>
+              <span className="stat-val">{t('aboutPreview.majorVal')}</span>
             </div>
             <div className="academic-stat-row">
-              <span className="stat-label">Academic Standing</span>
-              <span className="stat-val">Third Year (Class of 2026)</span>
+              <span className="stat-label">{t('aboutPreview.standingLabel')}</span>
+              <span className="stat-val">{t('aboutPreview.standingVal')}</span>
             </div>
             <div className="academic-stat-row">
-              <span className="stat-label">Cumulative GPA</span>
+              <span className="stat-label">{t('aboutPreview.gpaLabel')}</span>
               <span className="stat-val gpa-pill">3.1 / 4.0</span>
             </div>
             <div className="academic-stat-row">
-              <span className="stat-label">English Proficiency</span>
-              <span className="stat-val">TOEIC 550 [ETS Verified]</span>
+              <span className="stat-label">{t('aboutPreview.englishLabel')}</span>
+              <span className="stat-val">{t('aboutPreview.englishVal')}</span>
             </div>
             <div className="academic-stat-row">
-              <span className="stat-label">Phone / WhatsApp</span>
+              <span className="stat-label">{t('aboutPreview.phoneLabel')}</span>
               <span className="stat-val">
                 <a href="tel:+84937569205" className="text-link">
                   +84 937 569 205
@@ -114,16 +114,16 @@ export function AboutMePreview({ name, biography, email }: AboutMePreviewProps) 
               </span>
             </div>
             <div className="academic-stat-row">
-              <span className="stat-label">Primary Stack</span>
+              <span className="stat-label">{t('aboutPreview.stackLabel')}</span>
               <span className="stat-val">TypeScript • Next.js 16 • Node.js • Neon</span>
             </div>
           </div>
 
           <div className="about-contact-snippet">
-            <span className="contact-prompt">Interested in working together?</span>
+            <span className="contact-prompt">{t('aboutPreview.contactPrompt')}</span>
             <div className="contact-buttons-mini">
               <Link href="/contact" className="button button-pro-secondary small">
-                Send Message ↗
+                {t('aboutPreview.sendMessage')} ↗
               </Link>
               <a href="tel:+84937569205" className="button button-pro-ghost small">
                 📞 +84 937 569 205
