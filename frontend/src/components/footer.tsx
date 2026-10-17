@@ -35,12 +35,15 @@ export function Footer() {
           </div>
 
           <div className="footer-links-col">
-            <span className="footer-col-title">Connect &amp; Social</span>
-            <a href="https://github.com/HuynhNe26" target="_blank" rel="noopener noreferrer">
-              GitHub ↗
+            <span className="footer-col-title">Connect &amp; Direct</span>
+            <a href="tel:+84937569205">
+              📞 +84 937 569 205
             </a>
             <a href="mailto:nguyenhoanghuynh.vn@gmail.com">
               Email ↗
+            </a>
+            <a href="https://github.com/HuynhNe26" target="_blank" rel="noopener noreferrer">
+              GitHub ↗
             </a>
             <Link href="/admin">
               {t('footer.admin')} ↗

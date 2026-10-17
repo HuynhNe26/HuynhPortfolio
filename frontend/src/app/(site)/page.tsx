@@ -156,6 +156,10 @@ export default async function Home() {
             Start a Conversation
             <span aria-hidden="true">↗</span>
           </Link>
+          <a href="tel:+84937569205" className="button button-pro-secondary">
+            <span aria-hidden="true">📞</span>
+            +84 937 569 205
+          </a>
           <a href={`mailto:${profile.email}`} className="button button-pro-secondary">
             {profile.email}
           </a>

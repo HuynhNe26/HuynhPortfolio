@@ -106,6 +106,14 @@ export function AboutMePreview({ name, biography, email }: AboutMePreviewProps) 
               <span className="stat-val">TOEIC 550 [ETS Verified]</span>
             </div>
             <div className="academic-stat-row">
+              <span className="stat-label">Phone / WhatsApp</span>
+              <span className="stat-val">
+                <a href="tel:+84937569205" className="text-link">
+                  +84 937 569 205
+                </a>
+              </span>
+            </div>
+            <div className="academic-stat-row">
               <span className="stat-label">Primary Stack</span>
               <span className="stat-val">TypeScript • Next.js 16 • Node.js • Neon</span>
             </div>
@@ -117,6 +125,9 @@ export function AboutMePreview({ name, biography, email }: AboutMePreviewProps) 
               <Link href="/contact" className="button button-pro-secondary small">
                 Send Message ↗
               </Link>
+              <a href="tel:+84937569205" className="button button-pro-ghost small">
+                📞 +84 937 569 205
+              </a>
               <a href={`mailto:${email}`} className="text-link">
                 {email}
               </a>

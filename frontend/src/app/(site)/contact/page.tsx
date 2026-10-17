@@ -21,13 +21,26 @@ export default function Contact() {
           Have a software project, an internship opportunity, or a technical inquiry in mind? I’m always open to discussing new engineering challenges.
         </p>
         <div className="contact-note">
-          <span aria-hidden="true" style={{ fontSize: '32px' }}>
+          <span aria-hidden="true" style={{ fontSize: '28px' }}>
             ✉️
           </span>
           <p>
             Direct communication channel.
             <br />
             Responses typically sent within 24 hours.
+          </p>
+        </div>
+
+        <div className="contact-note" style={{ marginTop: '16px' }}>
+          <span aria-hidden="true" style={{ fontSize: '28px' }}>
+            📞
+          </span>
+          <p>
+            Direct Phone &amp; WhatsApp:
+            <br />
+            <a href="tel:+84937569205" className="text-link" style={{ fontSize: '16px', fontWeight: 700 }}>
+              +84 937 569 205
+            </a>
           </p>
         </div>
       </div>
