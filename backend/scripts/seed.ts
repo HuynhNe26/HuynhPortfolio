@@ -378,7 +378,7 @@ async function seed() {
       coverUrl: '',
       liveUrl: 'https://vkdigitalhub.netlify.app',
       sourceUrl: '',
-      featured: false,
+      featured: true,
       published: true,
       order: 4,
       problem:

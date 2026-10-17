@@ -10,8 +10,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   const { profile, projects } = await publicContent();
-  const featuredProjects = projects.filter((project) => project.featured);
-  const displayedProjects = (featuredProjects.length ? featuredProjects : projects).slice(0, 4);
+  const displayedProjects = projects;
 
   return (
     <main id="main-content" className="homepage-wrapper">

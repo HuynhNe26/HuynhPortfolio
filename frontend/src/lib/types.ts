@@ -575,7 +575,7 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/vk-digital-hero.png',
     liveUrl: 'https://vkdigitalhub.netlify.app',
     sourceUrl: '',
-    featured: false,
+    featured: true,
     published: true,
     order: 4,
     problem: 'Agency needed a modern showcase for digital growth services with automated routing of prospective client inquiries directly to CRM and team inboxes.',
