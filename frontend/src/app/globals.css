@@ -13754,6 +13754,771 @@ body {
   }
 }
 
+/* ==========================================================================
+   MASTER INTERACTIVE SCROLLYTELLING: LIVING PROTOTYPE VIEWPORT
+   ========================================================================== */
 
+.stage-mode-switch {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.06);
+  padding: 3px;
+  border-radius: 9999px;
+  gap: 2px;
+  margin-left: auto;
+}
 
+.mode-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
 
+.mode-toggle-btn.active {
+  background: #FFFFFF;
+  color: #0F172A;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.live-ping-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: liveDotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* SUB TABS BAR (DIRECTLY UNDER BROWSER TOPBAR) */
+.stage-feature-subbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.stage-feature-subbar::-webkit-scrollbar {
+  display: none;
+}
+
+.stage-feature-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.stage-feature-tab:hover {
+  border-color: var(--project-accent, #2563EB);
+  color: var(--project-accent, #2563EB);
+}
+
+.stage-feature-tab.active {
+  background: var(--project-accent, #2563EB);
+  border-color: var(--project-accent, #2563EB);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px -1px rgba(37, 99, 235, 0.35);
+}
+
+/* LIVING INTERACTIVE SCREEN CONTAINER */
+.stage-interactive-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  overflow-y: auto;
+  background: #0B1315;
+  color: #F8FAFC;
+  font-family: inherit;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.stage-interactive-screen::-webkit-scrollbar {
+  width: 6px;
+}
+.stage-interactive-screen::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+/* TICKET CONCERT INTERACTIVE DISCOVERY APP */
+.tc-mini-app {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  background: linear-gradient(180deg, #091A18 0%, #061110 100%);
+  min-height: 100%;
+}
+
+.tc-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tc-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  font-size: 13px;
+  color: #10B981;
+  letter-spacing: 0.5px;
+}
+
+.tc-search-form {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  padding: 2px 4px 2px 14px;
+  flex: 1;
+  max-width: 320px;
+  transition: all 0.2s ease;
+}
+
+.tc-search-form:focus-within {
+  border-color: #10B981;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+.tc-search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 11px;
+  color: #FFFFFF;
+}
+
+.tc-search-input::placeholder {
+  color: #94A3B8;
+}
+
+.tc-search-btn {
+  background: #10B981;
+  color: #061110;
+  border: none;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tc-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.tc-action-link {
+  color: #94A3B8;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.tc-action-link:hover {
+  color: #FFFFFF;
+}
+
+.tc-auth-btn {
+  background: #FFFFFF;
+  color: #061110;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Category Filters */
+.tc-cat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tc-cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #E2E8F0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tc-cat-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #10B981;
+}
+
+.tc-cat-btn.active {
+  background: #10B981;
+  border-color: #10B981;
+  color: #061110;
+  font-weight: 800;
+}
+
+/* Featured Event Banners */
+.tc-hero-banners-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tc-banner-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #132724;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tc-banner-card:hover {
+  border-color: #10B981;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+}
+
+.tc-banner-tag {
+  align-self: flex-start;
+  background: #10B981;
+  color: #061110;
+  font-weight: 800;
+  font-size: 8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.tc-banner-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 6px 0 4px;
+  line-height: 1.35;
+}
+
+.tc-banner-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.tc-banner-date {
+  font-size: 9px;
+  color: #94A3B8;
+}
+
+.tc-banner-cta {
+  background: #FFFFFF;
+  color: #061110;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Trending Events Grid */
+.tc-trending-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.tc-trending-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #F8FAFC;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tc-trending-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.tc-event-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tc-event-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #10B981;
+  transform: translateY(-2px);
+}
+
+.tc-card-rank-badge {
+  display: inline-block;
+  background: #F59E0B;
+  color: #000000;
+  font-weight: 800;
+  font-size: 8px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.tc-card-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.3;
+  min-height: 26px;
+}
+
+.tc-card-price {
+  font-size: 10px;
+  color: #34D399;
+  font-weight: 700;
+}
+
+.tc-card-date {
+  font-size: 8px;
+  color: #94A3B8;
+}
+
+/* CONCERT EVENT DETAIL MODAL */
+.tc-detail-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.tc-detail-modal-box {
+  background: #0F2420;
+  border: 1px solid #10B981;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tc-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.tc-modal-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.35;
+}
+
+.tc-modal-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #E2E8F0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+}
+
+.tc-modal-info-list {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  color: #CBD5E1;
+}
+
+.tc-modal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tc-btn-choose-seats {
+  flex: 1;
+  background: #10B981;
+  color: #061110;
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tc-btn-choose-seats:hover {
+  background: #34D399;
+}
+
+.tc-btn-ask-ai {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 11px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* FLOATING AI CHAT BUTTON & DRAWER */
+.tc-floating-ai-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 30;
+  transition: all 0.2s ease;
+}
+
+.tc-floating-ai-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+}
+
+.tc-ai-chat-drawer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100%;
+  height: 92%;
+  background: #0B192C;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.5);
+  animation: drawerSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes drawerSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.tc-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tc-drawer-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #38BDF8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tc-drawer-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.tc-msg-bubble {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  line-height: 1.45;
+}
+
+.tc-msg-bubble.ai {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #F1F5F9;
+}
+
+.tc-msg-bubble.user {
+  align-self: flex-end;
+  background: #2563EB;
+  color: #FFFFFF;
+}
+
+.tc-drawer-chips {
+  padding: 6px 12px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tc-chip-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 4px 10px;
+  font-size: 10px;
+  color: #CBD5E1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tc-chip-item:hover {
+  background: #2563EB;
+  color: #FFFFFF;
+  border-color: #2563EB;
+}
+
+.tc-drawer-input-row {
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.tc-input-text {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #FFFFFF;
+  outline: none;
+}
+
+.tc-input-send-btn {
+  background: #2563EB;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* E-TICKET QR PASS */
+.tc-ticket-pass {
+  background: #FFFFFF;
+  color: #0F172A;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 420px;
+  margin: 12px auto;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 2px dashed #CBD5E1;
+}
+
+.tc-pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 10px;
+}
+
+.tc-pass-qr-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tc-pass-qr-visual {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #0F172A;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #F8FAFC;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.tc-pass-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+}
+
+/* STAGE VIEWPORT IN INTERACTIVE MODE */
+.stage-viewport.is-interactive-mode {
+  aspect-ratio: auto;
+  min-height: 520px;
+  height: 520px;
+}
+
+/* TELEMETRY CONSOLE (UNDER VIEWPORT IN INTERACTIVE MODE) */
+.stage-telemetry-console {
+  background: #090E17;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 18px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.telemetry-console-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.telemetry-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  color: #38BDF8;
+  letter-spacing: 0.5px;
+  font-size: 10px;
+}
+
+.telemetry-ping {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: liveDotPulse 1.8s infinite ease-in-out;
+}
+
+.telemetry-status-pill {
+  font-size: 10px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+.telemetry-body-log {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  line-height: 1.5;
+  color: #CBD5E1;
+  overflow-x: auto;
+  font-size: 10.5px;
+}
+
+.telemetry-body-log code {
+  color: #38BDF8;
+}
