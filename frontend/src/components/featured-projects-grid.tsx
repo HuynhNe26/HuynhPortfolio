@@ -77,6 +77,8 @@ export function formatTimelineMonthYear(rawTimeline?: string, lang: 'en' | 'vi' 
 function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
   const { t, lang } = useLanguage();
   const cardRef = useRef<HTMLDivElement>(null);
+  const backlightRef = useRef<HTMLDivElement>(null);
+  const ambientRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const rafIdRef = useRef<number | null>(null);
 
@@ -104,12 +106,28 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     }
 
     rafIdRef.current = requestAnimationFrame(() => {
+      // 1. Tilt card in 3D
       if (card) {
         card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.012, 1.012, 1.012)`;
       }
+
+      // 2. Light BEHIND the card follows cursor position in real-time
+      if (backlightRef.current) {
+        backlightRef.current.style.opacity = '0.75';
+        backlightRef.current.style.background = `radial-gradient(circle 280px at ${x}px ${y}px, var(--card-glow, #38BDF8) 0%, transparent 75%)`;
+        backlightRef.current.style.transform = `translate3d(${percentX * 16}px, ${percentY * 16}px, -25px)`;
+      }
+
+      // 3. Ambient glow on card surface follows cursor
+      if (ambientRef.current) {
+        ambientRef.current.style.opacity = '0.2';
+        ambientRef.current.style.background = `radial-gradient(circle 340px at ${x}px ${y}px, var(--card-glow, #38BDF8) 0%, transparent 65%)`;
+      }
+
+      // 4. Specular glare highlight on card surface follows cursor
       if (glareRef.current) {
-        glareRef.current.style.opacity = '0.5';
-        glareRef.current.style.background = `radial-gradient(circle 320px at ${x}px ${y}px, rgba(37, 99, 235, 0.08), transparent 75%)`;
+        glareRef.current.style.opacity = '0.55';
+        glareRef.current.style.background = `radial-gradient(circle 300px at ${x}px ${y}px, rgba(255, 255, 255, 0.5) 0%, transparent 65%)`;
       }
     });
   };
@@ -118,6 +136,15 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     const card = cardRef.current;
     if (card) {
       card.style.transition = 'transform 0.15s ease-out, border-color 0.35s ease, box-shadow 0.35s ease';
+    }
+    if (backlightRef.current) {
+      backlightRef.current.style.transition = 'opacity 0.25s ease';
+    }
+    if (ambientRef.current) {
+      ambientRef.current.style.transition = 'opacity 0.25s ease';
+    }
+    if (glareRef.current) {
+      glareRef.current.style.transition = 'opacity 0.25s ease';
     }
   };
 
@@ -130,7 +157,17 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease';
       card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     }
+    if (backlightRef.current) {
+      backlightRef.current.style.transition = 'opacity 0.4s ease, transform 0.5s ease';
+      backlightRef.current.style.opacity = '0';
+      backlightRef.current.style.transform = 'translate3d(0, 0, -25px)';
+    }
+    if (ambientRef.current) {
+      ambientRef.current.style.transition = 'opacity 0.4s ease';
+      ambientRef.current.style.opacity = '0.06';
+    }
     if (glareRef.current) {
+      glareRef.current.style.transition = 'opacity 0.4s ease';
       glareRef.current.style.opacity = '0';
     }
   };
@@ -149,10 +186,13 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* AMBIENT GLOW BACKLIGHT */}
-      <div className="hh-project-card-ambient" aria-hidden="true" />
+      {/* 1. DYNAMIC AMBIENT BACKLIGHT BEHIND THE CARD (FLOATS OUTSIDE BEHIND CARD, TRACKS MOUSE) */}
+      <div ref={backlightRef} className="hh-card-backlight-glow" aria-hidden="true" />
 
-      {/* DYNAMIC SPECULAR GLARE SPOTLIGHT */}
+      {/* 2. AMBIENT GLOW ON CARD SURFACE (TRACKS MOUSE) */}
+      <div ref={ambientRef} className="hh-project-card-ambient" aria-hidden="true" />
+
+      {/* 3. DYNAMIC SPECULAR GLARE SPOTLIGHT (TRACKS MOUSE) */}
       <div ref={glareRef} className="hh-project-card-glare" aria-hidden="true" />
 
       {/* IMAGE PREVIEW FRAME (CLICKABLE TO CASE STUDY) */}
