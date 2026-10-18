@@ -34,8 +34,8 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     const percentX = (x - centerX) / centerX;
     const percentY = (y - centerY) / centerY;
 
-    // Dynamic 3D tilt angles (max 10 degrees)
-    const maxTilt = 10;
+    // Gentle, subtle 3D tilt (reduced from 10deg to 3.8deg for natural elegance)
+    const maxTilt = 3.8;
     const rotateX = (-percentY * maxTilt).toFixed(2);
     const rotateY = (percentX * maxTilt).toFixed(2);
 
@@ -45,11 +45,11 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
 
     rafIdRef.current = requestAnimationFrame(() => {
       if (card) {
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.025, 1.025, 1.025)`;
+        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.012, 1.012, 1.012)`;
       }
       if (glareRef.current) {
-        glareRef.current.style.opacity = '1';
-        glareRef.current.style.background = `radial-gradient(circle 380px at ${x}px ${y}px, rgba(255, 255, 255, 0.22), transparent 75%)`;
+        glareRef.current.style.opacity = '0.6';
+        glareRef.current.style.background = `radial-gradient(circle 320px at ${x}px ${y}px, rgba(255, 255, 255, 0.12), transparent 75%)`;
       }
     });
   };
@@ -57,7 +57,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
   const handleMouseEnter = () => {
     const card = cardRef.current;
     if (card) {
-      card.style.transition = 'transform 0.1s ease-out, border-color 0.35s ease, box-shadow 0.35s ease';
+      card.style.transition = 'transform 0.15s ease-out, border-color 0.35s ease, box-shadow 0.35s ease';
     }
   };
 
@@ -67,8 +67,8 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     }
     const card = cardRef.current;
     if (card) {
-      card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease';
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease';
+      card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     }
     if (glareRef.current) {
       glareRef.current.style.opacity = '0';
