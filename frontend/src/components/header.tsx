@@ -166,7 +166,7 @@ export function Header() {
   };
 
   return (
-    <header className={`hh-site-header ${isScrolled ? 'is-scrolled' : ''}`}>
+    <header className={`hh-site-header ${isScrolled || open ? 'is-scrolled' : ''}`}>
       <div className="container hh-header-inner">
         {/* HH MONOGRAM LOGO */}
         <Link
