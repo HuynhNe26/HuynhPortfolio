@@ -9523,16 +9523,17 @@ body {
 .hh-hero-name-wrap {
   position: relative;
   display: inline-block;
+  cursor: default;
 }
 
 .hh-name-glow-aura {
   position: absolute;
-  top: 50%;
-  left: 35%;
+  top: 52%;
+  left: 40%;
   transform: translate(-50%, -50%);
   width: 140%;
-  height: 110%;
-  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.22) 0%, rgba(37, 99, 235, 0.12) 45%, transparent 72%);
+  height: 120%;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.25) 0%, rgba(37, 99, 235, 0.14) 45%, transparent 72%);
   filter: blur(36px);
   pointer-events: none;
   z-index: 0;
@@ -9542,7 +9543,7 @@ body {
 .hh-hero-name {
   font-size: clamp(44px, 5.2vw, 68px);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.22;
   letter-spacing: -0.03em;
   color: #0F172A;
   margin: 0 0 20px;
@@ -9553,28 +9554,31 @@ body {
 .hh-name-first {
   display: inline-block;
   color: #0F172A;
-  transition: transform 0.25s ease;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+  vertical-align: bottom;
 }
 
 .hh-name-highlight {
   display: inline-block;
-  background: linear-gradient(115deg, #0F172A 0%, #1E3A8A 24%, #2563EB 46%, #38BDF8 54%, #1D4ED8 72%, #0F172A 100%);
-  background-size: 240% 100%;
+  padding-top: 0.04em;
+  padding-bottom: 0.22em;
+  padding-right: 0.08em;
+  margin-bottom: -0.22em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background: linear-gradient(110deg, #0F172A 0%, #1E3A8A 20%, #2563EB 40%, #60A5FA 48%, #E0F2FE 52%, #60A5FA 56%, #2563EB 64%, #1D4ED8 80%, #0F172A 100%);
+  background-size: 260% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: nameLuminousFlow 7s ease-in-out infinite;
-  filter: drop-shadow(0 2px 14px rgba(37, 99, 235, 0.2));
-  transition: filter 0.3s ease;
+  animation: nameLuminousFlow 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 14px rgba(37, 99, 235, 0.25));
 }
 
-.hh-hero-name-wrap:hover .hh-name-highlight {
-  animation-duration: 3.5s;
-  filter: drop-shadow(0 4px 22px rgba(37, 99, 235, 0.4));
-}
-
+/* No hover overrides: the light effect runs continuously on its own */
+.hh-hero-name-wrap:hover .hh-name-highlight,
 .hh-hero-name-wrap:hover .hh-name-glow-aura {
-  opacity: 1;
-  filter: blur(42px);
+  /* Keep animation and aura running unaffected */
 }
 
 @keyframes nameLuminousFlow {
@@ -9591,7 +9595,7 @@ body {
 
 @keyframes nameAuraPulse {
   0% {
-    opacity: 0.55;
+    opacity: 0.6;
     transform: translate(-50%, -50%) scale(0.96);
   }
   100% {
