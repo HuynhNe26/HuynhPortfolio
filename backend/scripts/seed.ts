@@ -440,79 +440,79 @@ async function seed() {
       ],
     },
     {
-      title: 'NH HUYNH — Developer Portfolio & Content Management System',
+      title: 'NH HUYNH — Developer Portfolio & Interactive Scrollytelling Platform',
       slug: 'nh-huynh-portfolio',
       summary:
-        'A personal portfolio platform designed to showcase projects, technical skills, education, and engineering experience through interactive case studies and a custom-built content management system.',
+        'Nền tảng portfolio kỹ thuật Full-Stack của Nguyễn Hoàng Huynh, kết hợp ngôn ngữ thiết kế Light Theme cao cấp, hiệu ứng thẻ 3D Tilt tương tác, động cơ Scrollytelling chia đôi màn hình và hệ quản trị nội dung CMS bảo mật.',
       category: 'Full-Stack Web Product & CMS',
-      role: 'Full-Stack Developer',
-      timeline: 'October 2026 – Present',
+      role: 'Full-Stack Developer & UI/UX Architect',
+      timeline: 'Tháng 10/2026 – Hiện tại',
       status: 'Ongoing',
       year: 2026,
-      technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Tailwind CSS', 'Resend API'],
-      themeColor: '#4B5563',
-      themeBg: '#F3F4F6',
-      coverUrl: '',
-      liveUrl: 'https://huynhportfolio.com',
-      sourceUrl: '',
+      technologies: ['Next.js 16', 'TypeScript', 'Node.js', 'PostgreSQL (Neon)', 'Tailwind CSS', 'LangChain.js', 'Gemini API', 'Resend API'],
+      themeColor: '#2563EB',
+      themeBg: '#EFF6FF',
+      coverUrl: '/projects/portfolio-hero.png',
+      liveUrl: 'http://localhost:3000',
+      sourceUrl: 'https://github.com/HuynhNe26/HuynhPortfolio',
       featured: true,
       published: true,
       order: 5,
       problem:
-        'Standard static developer templates cannot securely manage live project storytelling, message auditing, or profile configuration dynamically.',
+        'Các website portfolio truyền thống thường nhàm chán, hiển thị danh sách tĩnh và không thể hiện được chiều sâu kỹ thuật, khả năng xử lý tương tác thời gian thực cũng như câu chuyện đằng sau mỗi sản phẩm công nghệ.',
       approach:
-        'Engineered an App Router Next.js application with a dedicated Node.js backend, HttpOnly session authentication, and MongoDB Atlas database.',
+        'Kiến trúc nền tảng với Next.js 16 App Router & Node.js backend. Ứng dụng ngôn ngữ thiết kế Light Theme tối giản sang trọng với thẻ 3D tilt kèm hào quang theo chuột, chuyển đổi ngôn ngữ 1 chạm EN/VI, động cơ Scrollytelling chia đôi màn hình đồng bộ hình ảnh và radar hotspot trực quan, cùng bộ giả lập tương tác thực tế.',
       outcome:
-        'Delivered an Apple-inspired editorial design system with full CMS administration, contact rate-limiting, and 7-chapter storytelling.',
+        'Một nền tảng cá nhân chuẩn mực, tải trang nhanh dưới 1 giây, mang lại trải nghiệm xem dự án sống động như một câu chuyện thực thụ, tích hợp hệ thống CMS quản trị backend bảo mật.',
       chapters: [
         {
           id: 'chapter-01',
           number: '01',
-          title: 'Introduction & Project Overview',
+          title: 'Tổng quan & Triết lý Thiết kế Light Theme Hiện đại',
           content:
-            'NH HUYNH Developer Portfolio is a full-featured digital product combining an Apple-inspired editorial public showcase with an authenticated content management system for projects, storytelling, profile, education, certificates, and inbox management.',
+            'Portfolio cá nhân được thiết kế như một sản phẩm số hoàn chỉnh, tôn vinh các dự án kỹ thuật thực tế với ngôn ngữ thiết kế Light Theme tinh tế, typography hiện đại và bố cục phân tầng sắc sảo.',
         },
         {
           id: 'chapter-02',
           number: '02',
-          title: 'The Idea & Philosophy',
+          title: 'Thẻ Dự án 3D Tilt & Vầng Hào quang Ambient Tương tác',
           content:
-            'Built to demonstrate real-world software engineering: clean separation of concerns, defense-in-depth security, strict TypeScript typings, and zero reliance on mock data.',
+            'Thay vì các thẻ dự án phẳng thông thường, các card dự án nổi bật sở hữu cơ chế tính toán góc nghiêng 3D theo con trỏ chuột, kết hợp vầng hào quang backlight phát sáng theo hướng di chuyển của chuột.',
         },
         {
           id: 'chapter-03',
           number: '03',
-          title: 'The Challenge & Security Posture',
+          title: 'Thách thức Kỹ thuật: Trải nghiệm Scrollytelling Thực thụ',
           content:
-            'Protecting admin operations without exposing credentials, preventing CSRF and NoSQL injection, enforcing rate limits, and ensuring resilient rendering even when external services are pending configuration.',
+            'Làm thế nào để người xem khi cuộn đến đâu thì hình ảnh thực tế sẽ giải thích ngay cho những gì đang nói, đồng thời cho người xem biết vị trí thành phần và hành động tương tác diễn ra ra sao mà không làm gián đoạn dòng đọc?',
         },
         {
           id: 'chapter-04',
           number: '04',
-          title: 'The Experience',
+          title: 'Sân khấu Trực quan Ghim Cố định & Radar Hotspot Định vị',
           content:
-            'Features a bespoke 7-chapter storytelling case study layout, interactive filterable project index, responsive navigation across 320px–1920px displays, and a streamlined admin suite.',
+            'Giải pháp là phân tách bố cục 2 cột: cột trái là dòng chảy câu chuyện, cột phải là thiết bị mockup được ghim cố định (sticky). Điểm radar phát sóng chỉ rõ thành phần UI kèm con trỏ chuột mô phỏng hành động.',
         },
         {
           id: 'chapter-05',
           number: '05',
-          title: 'Engineering Architecture',
+          title: 'Bộ Giả lập Hành động Thực tế (Live Action Simulator)',
           content:
-            'Next.js App Router with server-side API proxying, cached MongoClient connection pooling, scrypt password hashing, and durable Resend email dispatch.',
+            'Ngay dưới thiết bị, người xem có thể trực tiếp click thử nghiệm: chọn ghế WebSocket với đồng hồ đếm ngược, gửi câu hỏi cho AI RAG, quét mã MoMo, tính ROI marketing hay nộp bài thi lưu vào Redis cache.',
         },
         {
           id: 'chapter-06',
           number: '06',
-          title: 'My Contribution',
+          title: 'Đóng góp của Tôi: Kiến trúc Full-Stack & Cổng CMS Quản trị',
           content:
-            'Solo architect and engineer: visual design system, frontend component architecture, backend API and database schemas, authentication, security controls, and documentation.',
+            'Một mình đảm nhiệm toàn bộ vòng đời phát triển: thiết kế UI/UX, lập trình component React/Next.js, xây dựng REST API backend Node.js, thiết kế CSDL PostgreSQL Neon và cổng đăng nhập quản trị CMS bảo mật.',
         },
         {
           id: 'chapter-07',
           number: '07',
-          title: 'Outcome & Ongoing Development',
+          title: 'Kết quả Triển khai, Tối ưu Hiệu năng & Tương lai',
           content:
-            'An extensible, production-ready portfolio establishing a strong professional foundation for Full-Stack Developer opportunities.',
+            'Website đạt tốc độ tải trang cực nhanh, tối ưu hóa toàn diện cho thiết bị di động, chứng minh năng lực kỹ thuật vững chắc và sẵn sàng cho các cơ hội Full-Stack Developer chuyên nghiệp.',
         },
       ],
     },

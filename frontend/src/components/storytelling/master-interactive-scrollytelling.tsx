@@ -573,6 +573,141 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       actionCue: 'Khám phá website thực tế đang hoạt động',
     },
   ],
+  'nh-huynh-portfolio': [
+    {
+      imageUrl: '/projects/portfolio-hero.png',
+      imageCaption: 'Giao diện Trang chủ & Hero Section Chân dung 3D Light Theme',
+      imageAlt: 'Nguyễn Hoàng Huynh Portfolio Hero View',
+      hotspot: {
+        x: 26,
+        y: 34,
+        label: 'Tiêu đề Tên Phát quang & Light Theme Header',
+        action: 'Hiệu ứng ánh sáng chuyển màu động trên tên Nguyễn Hoàng Huynh',
+        description: 'Bố cục Light Theme tinh tế (#F8FAFC, #FFFFFF), viền thanh thoát và điểm nhấn typography sắc sảo.',
+      },
+      cursor: {
+        x: 28,
+        y: 37,
+        actionText: 'Chiêm ngưỡng hiệu ứng phát sáng tiêu đề',
+      },
+      suggestedTab: 'tilt',
+      actionCue: 'Khám phá ngôn ngữ thiết kế Light Theme và chân dung 3D',
+    },
+    {
+      imageUrl: '/projects/portfolio-projects.png',
+      imageCaption: 'Bộ sưu tập Dự án Nổi bật với Hiệu ứng 3D Tilt & Hào quang Động',
+      imageAlt: 'Featured Projects 3D Tilt Cards',
+      hotspot: {
+        x: 32,
+        y: 54,
+        label: 'Thẻ Dự án 3D Tilt & Backlight Glow theo Chuột',
+        action: 'Tính toán góc xoay 3D và di chuyển vầng hào quang theo tọa độ con trỏ',
+        description: 'Góc nghiêng được kiểm soát vừa phải, tự nhiên, hiển thị vai trò và thời gian làm dự án theo tháng/năm.',
+      },
+      cursor: {
+        x: 34,
+        y: 56,
+        actionText: 'Rê chuột kiểm tra góc nghiêng 3D của Card',
+      },
+      suggestedTab: 'tilt',
+      actionCue: 'Rê chuột tương tác với hiệu ứng 3D tilt và hào quang',
+    },
+    {
+      imageUrl: '/projects/portfolio-scrollytelling.png',
+      imageCaption: 'Động cơ Scrollytelling Đồng bộ Chia đôi Màn hình',
+      imageAlt: 'Interactive Scrollytelling Stage',
+      hotspot: {
+        x: 70,
+        y: 38,
+        label: 'Sân khấu Trực quan Ghim Cố định (Sticky Stage)',
+        action: 'Giữ cố định thiết bị bên phải khi người xem cuộn qua các chương câu chuyện',
+        description: 'Tối ưu hóa IntersectionObserver để chuyển đổi trạng thái mượt mà không giật khung hình.',
+      },
+      cursor: {
+        x: 68,
+        y: 40,
+        actionText: 'Ghim cố định thiết bị hiển thị khi cuộn',
+      },
+      suggestedTab: 'tilt',
+      actionCue: 'Trải nghiệm bố cục chia đôi màn hình chuẩn mực',
+    },
+    {
+      imageUrl: '/projects/portfolio-scrollytelling.png',
+      imageCaption: 'Điểm nhấn Radar Hotspot & Con trỏ Thao tác Mô phỏng',
+      imageAlt: 'Radar Hotspot Pin & Cursor',
+      hotspot: {
+        x: 50,
+        y: 48,
+        label: 'Điểm Radar Hotspot Xung nhịp & Thẻ Hành động',
+        action: 'Định vị chính xác thành phần UI đang được đề cập trong nội dung',
+        description: 'Hiển thị giải thích chi tiết khi hover và con trỏ chuột mô phỏng thao tác người dùng.',
+      },
+      cursor: {
+        x: 52,
+        y: 50,
+        actionText: 'Chỉ rõ vị trí nút bấm & hành động',
+      },
+      suggestedTab: 'lang',
+      actionCue: 'Quan sát điểm radar phát sóng định vị thành phần UI',
+    },
+    {
+      imageUrl: '/projects/portfolio-scrollytelling.png',
+      imageCaption: 'Bộ Giả lập Hành động Trực tiếp (Live Action Simulator)',
+      imageAlt: 'Live Action Simulators Preview',
+      hotspot: {
+        x: 50,
+        y: 78,
+        label: 'Khung Thử nghiệm Tương tác Trực tiếp (Interactive Sandbox)',
+        action: 'Cho phép người xem trực tiếp bấm thử các tính năng thực tế của website',
+        description: 'Thử chọn ghế WebSocket, hỏi AI RAG, quét MoMo QR, tính ROI và nộp bài thi autosave.',
+      },
+      cursor: {
+        x: 50,
+        y: 80,
+        actionText: 'Bấm thử các tab tương tác mô phỏng',
+      },
+      suggestedTab: 'tilt',
+      actionCue: 'Trực tiếp bấm và thao tác trên bộ giả lập tính năng',
+    },
+    {
+      imageUrl: '/projects/portfolio-admin.png',
+      imageCaption: 'Cổng Đăng nhập Quản trị Nội dung CMS Bảo mật Session HttpOnly',
+      imageAlt: 'CMS Administration Portal',
+      hotspot: {
+        x: 50,
+        y: 50,
+        label: 'Cổng Xác thực Admin & CRUD API Layer',
+        action: 'Bảo mật tài khoản với scrypt password hash và HttpOnly session cookie',
+        description: 'Cho phép quản trị viên thêm/sửa/xóa dự án, điều chỉnh nội dung các chương và xem tin nhắn.',
+      },
+      cursor: {
+        x: 50,
+        y: 54,
+        actionText: 'Đăng nhập vào bảng điều khiển quản trị CMS',
+      },
+      suggestedTab: 'cms',
+      actionCue: 'Khám phá kiến trúc bảo mật và cổng quản trị CMS',
+    },
+    {
+      imageUrl: '/projects/portfolio-about.png',
+      imageCaption: 'Hồ sơ Năng lực Kỹ thuật & Bảng Kỹ năng Phân tầng',
+      imageAlt: 'About Technical Profile',
+      hotspot: {
+        x: 45,
+        y: 40,
+        label: 'Hồ sơ Xác thực & Ma trận Kỹ năng Chuyên sâu',
+        action: 'Minh bạch năng lực, thông tin học vấn GPA 3.1 và chứng chỉ TOEIC 550',
+        description: 'Trình độ sẵn sàng cho các vị trí Full-Stack Developer Intern, Fresher & Junior.',
+      },
+      cursor: {
+        x: 45,
+        y: 42,
+        actionText: 'Xem chứng chỉ và kỹ năng chuyên môn',
+      },
+      suggestedTab: 'lang',
+      actionCue: 'Xem tổng quan năng lực kỹ thuật và thông tin liên hệ',
+    },
+  ],
 };
 
 export function MasterInteractiveScrollytelling({
@@ -609,6 +744,13 @@ export function MasterInteractiveScrollytelling({
   // 4. VK Digital States
   const [marketingBudget, setMarketingBudget] = useState<number>(2500);
   const [webhookTriggered, setWebhookTriggered] = useState<boolean>(false);
+
+  // 5. NH Huynh Portfolio States
+  const [portfolioSimLang, setPortfolioSimLang] = useState<'vi' | 'en'>('vi');
+  const [portfolioTiltX, setPortfolioTiltX] = useState<number>(6);
+  const [portfolioTiltY, setPortfolioTiltY] = useState<number>(-8);
+  const [portfolioAuraColor, setPortfolioAuraColor] = useState<string>('#2563EB');
+  const [cmsVerified, setCmsVerified] = useState<boolean>(false);
 
   // Build or fallback visual list for chapters
   const visualMetaList = useMemo(() => {
@@ -1097,8 +1239,35 @@ export function MasterInteractiveScrollytelling({
                     </div>
                   )}
 
+                  {/* Project: NH Huynh Portfolio Tabs */}
+                  {project.slug === 'nh-huynh-portfolio' && (
+                    <div className="sim-tab-list">
+                      <button
+                        type="button"
+                        className={`sim-tab-btn ${activeTab === 'tilt' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('tilt')}
+                      >
+                        01. Thẻ 3D Tilt &amp; Hào quang
+                      </button>
+                      <button
+                        type="button"
+                        className={`sim-tab-btn ${activeTab === 'lang' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('lang')}
+                      >
+                        02. Toggle Ngôn ngữ 1 Chạm
+                      </button>
+                      <button
+                        type="button"
+                        className={`sim-tab-btn ${activeTab === 'cms' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('cms')}
+                      >
+                        03. Bảo mật Session CMS
+                      </button>
+                    </div>
+                  )}
+
                   {/* Fallback generic tabs */}
-                  {!['ticket-concert-agentic-rag', 'fashion-nail-morley', 'examplatform-ai', 'vk-digital-hub'].includes(
+                  {!['ticket-concert-agentic-rag', 'fashion-nail-morley', 'examplatform-ai', 'vk-digital-hub', 'nh-huynh-portfolio'].includes(
                     project.slug
                   ) && (
                     <div className="sim-tab-list">
@@ -1648,8 +1817,173 @@ export function MasterInteractiveScrollytelling({
                     </>
                   )}
 
+                  {/* --- PROJECT 5: NH HUYNH PORTFOLIO --- */}
+                  {project.slug === 'nh-huynh-portfolio' && (
+                    <>
+                      {activeTab === 'tilt' && (
+                        <div className="sim-interactive-grid">
+                          <div className="sim-row-header">
+                            <div>
+                              <strong className="sim-subheading">Thử nghiệm 3D Tilt Card &amp; Hào quang Ambient Backlight</strong>
+                              <p className="sim-subdesc">Điều chỉnh thanh trượt hoặc chọn màu ánh sáng hào quang:</p>
+                            </div>
+                            <div className="aura-color-pills">
+                              {[
+                                { color: '#2563EB', name: 'Blue' },
+                                { color: '#7C3AED', name: 'Purple' },
+                                { color: '#059669', name: 'Emerald' },
+                                { color: '#D9777F', name: 'Rose' },
+                              ].map((c) => (
+                                <button
+                                  key={c.color}
+                                  type="button"
+                                  onClick={() => setPortfolioAuraColor(c.color)}
+                                  className={`aura-btn ${portfolioAuraColor === c.color ? 'active' : ''}`}
+                                  style={{ backgroundColor: c.color }}
+                                  title={c.name}
+                                />
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Live 3D Tilt Card Sandbox */}
+                          <div className="portfolio-tilt-sandbox">
+                            <div
+                              className="portfolio-mini-tilt-card"
+                              style={{
+                                transform: `perspective(600px) rotateX(${portfolioTiltX}deg) rotateY(${portfolioTiltY}deg)`,
+                                boxShadow: `0 16px 36px -8px ${portfolioAuraColor}40, 0 0 0 1px #E2E8F0`,
+                              }}
+                            >
+                              <div
+                                className="portfolio-mini-card-aura"
+                                style={{
+                                  background: `radial-gradient(circle at 60% 40%, ${portfolioAuraColor}55, transparent 70%)`,
+                                }}
+                              />
+                              <div className="mini-card-header">
+                                <span className="mini-card-badge">Full-Stack Project</span>
+                                <span className="mini-card-year">10/2026</span>
+                              </div>
+                              <strong className="mini-card-title">Nguyễn Hoàng Huynh Portfolio</strong>
+                              <p className="mini-card-desc">Giao diện Light Theme tinh tế với hiệu ứng 3D tilt và vầng hào quang theo chuột.</p>
+                              <div className="mini-card-tags">
+                                <span>Next.js 16</span>
+                                <span>TypeScript</span>
+                                <span>PostgreSQL</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="tilt-sliders-row">
+                            <div className="slider-group">
+                              <label>Góc xoay dọc (Rotate X): {portfolioTiltX}°</label>
+                              <input
+                                type="range"
+                                min="-15"
+                                max="15"
+                                value={portfolioTiltX}
+                                onChange={(e) => setPortfolioTiltX(Number(e.target.value))}
+                                className="roi-range-input"
+                              />
+                            </div>
+                            <div className="slider-group">
+                              <label>Góc xoay ngang (Rotate Y): {portfolioTiltY}°</label>
+                              <input
+                                type="range"
+                                min="-15"
+                                max="15"
+                                value={portfolioTiltY}
+                                onChange={(e) => setPortfolioTiltY(Number(e.target.value))}
+                                className="roi-range-input"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTab === 'lang' && (
+                        <div className="sim-interactive-grid">
+                          <div className="sim-row-header">
+                            <div>
+                              <strong className="sim-subheading">Thử nghiệm Chuyển đổi Ngôn ngữ 1 Chạm (Bilingual EN/VI)</strong>
+                              <p className="sim-subdesc">Bấm công tắc để thấy văn bản được chuyển đổi tức thời không cần tải lại trang:</p>
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() => setPortfolioSimLang(portfolioSimLang === 'vi' ? 'en' : 'vi')}
+                              className="lang-toggle-sim-btn"
+                            >
+                              <span className={`sim-lang-option ${portfolioSimLang === 'vi' ? 'active' : ''}`}>VI</span>
+                              <span className={`sim-lang-option ${portfolioSimLang === 'en' ? 'active' : ''}`}>EN</span>
+                            </button>
+                          </div>
+
+                          <div className="lang-preview-card">
+                            <div className="lang-preview-header">
+                              <span className="lang-current-flag">
+                                {portfolioSimLang === 'vi' ? '🇻🇳 Tiếng Việt (Mặc định)' : '🇬🇧 English (Global)'}
+                              </span>
+                              <span className="lang-storage-badge">LocalStorage Sync: OK</span>
+                            </div>
+                            <h4 className="lang-preview-title">
+                              {portfolioSimLang === 'vi'
+                                ? 'Nguyễn Hoàng Huynh — Lập trình viên Web Full-Stack'
+                                : 'Nguyen Hoang Huynh — Full-Stack Web Developer'}
+                            </h4>
+                            <p className="lang-preview-body">
+                              {portfolioSimLang === 'vi'
+                                ? 'Chuyên phát triển các ứng dụng web tối ưu quy mô, trải nghiệm mượt mà và câu chuyện kỹ thuật trực quan.'
+                                : 'Specializing in scalable web architectures, responsive craft, and authentic engineering storytelling.'}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeTab === 'cms' && (
+                        <div className="sim-interactive-grid">
+                          <strong className="sim-subheading">Kiểm tra Xác thực Phiên CMS &amp; Database Pooling</strong>
+                          <p className="sim-subdesc">Mô phỏng xác thực cookie HttpOnly bảo mật và kết nối PostgreSQL Neon:</p>
+
+                          <div className="cms-audit-card">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setCmsVerified(true);
+                                setTimeout(() => setCmsVerified(false), 5000);
+                              }}
+                              className="btn-verify-cms"
+                            >
+                              ⚡ Mô phỏng kiểm tra phiên Admin (nh_admin_session)
+                            </button>
+
+                            {cmsVerified ? (
+                              <div className="cms-verified-status animate-fade-in">
+                                <div className="audit-metric-row">
+                                  <span>HttpOnly Cookie:</span>
+                                  <strong className="text-emerald">✓ Verified (Token HMAC-SHA256)</strong>
+                                </div>
+                                <div className="audit-metric-row">
+                                  <span>Database Connection:</span>
+                                  <strong className="text-blue">PostgreSQL Neon (14 active pools, 12ms)</strong>
+                                </div>
+                                <div className="audit-metric-row">
+                                  <span>CRUD Operations:</span>
+                                  <strong>Projects, Storytelling Chapters, Inbox Messages (Ready)</strong>
+                                </div>
+                              </div>
+                            ) : (
+                              <span className="cms-await-text">Nhấp vào nút trên để thực hiện kiểm tra bảo mật API.</span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+
                   {/* Fallback generic simulator */}
-                  {!['ticket-concert-agentic-rag', 'fashion-nail-morley', 'examplatform-ai', 'vk-digital-hub'].includes(
+                  {!['ticket-concert-agentic-rag', 'fashion-nail-morley', 'examplatform-ai', 'vk-digital-hub', 'nh-huynh-portfolio'].includes(
                     project.slug
                   ) && (
                     <div className="sim-interactive-grid">

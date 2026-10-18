@@ -12867,5 +12867,251 @@ body {
   }
 }
 
+/* PORTFOLIO TILT & AURA SANDBOX STYLES */
+.aura-color-pills {
+  display: flex;
+  gap: 8px;
+}
+
+.aura-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #CBD5E1;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aura-btn:hover {
+  transform: scale(1.15);
+}
+
+.aura-btn.active {
+  box-shadow: 0 0 0 2px #0F172A, 0 0 8px currentColor;
+  transform: scale(1.2);
+}
+
+.portfolio-tilt-sandbox {
+  perspective: 700px;
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.portfolio-mini-tilt-card {
+  width: 100%;
+  max-width: 340px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px 18px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.portfolio-mini-card-aura {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.mini-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.mini-card-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--project-accent, #2563EB);
+  background: rgba(37, 99, 235, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.mini-card-year {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #64748B;
+}
+
+.mini-card-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+
+.mini-card-desc {
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0 0 10px;
+}
+
+.mini-card-tags {
+  display: flex;
+  gap: 6px;
+}
+
+.mini-card-tags span {
+  font-size: 10px;
+  font-weight: 600;
+  color: #334155;
+  background: #F1F5F9;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.tilt-sliders-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.slider-group label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+/* BILINGUAL SIMULATOR */
+.lang-toggle-sim-btn {
+  display: inline-flex;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 999px;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sim-lang-option {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748B;
+  transition: all 0.2s ease;
+}
+
+.sim-lang-option.active {
+  background: #0F172A;
+  color: #FFFFFF;
+}
+
+.lang-preview-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lang-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.lang-current-flag {
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.lang-storage-badge {
+  color: #059669;
+}
+
+.lang-preview-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+}
+
+.lang-preview-body {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0;
+}
+
+/* CMS AUDIT SIMULATOR */
+.cms-audit-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-verify-cms {
+  background: #0F172A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-verify-cms:hover {
+  background: #1E293B;
+}
+
+.cms-verified-status {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.audit-metric-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #475569;
+}
+
+.audit-metric-row strong {
+  font-size: 11px;
+}
+
+.audit-metric-row .text-emerald {
+  color: #059669;
+}
+
+.audit-metric-row .text-blue {
+  color: #2563EB;
+}
+
+.cms-await-text {
+  font-size: 11px;
+  color: #94A3B8;
+  text-align: center;
+}
+
+
 
 
