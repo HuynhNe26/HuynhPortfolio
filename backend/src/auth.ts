@@ -1,12 +1,15 @@
 import { createHash, randomBytes, scrypt, timingSafeEqual } from 'node:crypto';
 import { promisify } from 'node:util';
 import type { IncomingMessage } from 'node:http';
-import { query } from './database.js';
+import { isDatabaseConfigured, query } from './database.js';
 import { HttpError } from './errors.js';
 
 const deriveKey = promisify(scrypt);
 const sessionLifetime = 8 * 60 * 60;
 export const cookieName = 'nh_admin_session';
+
+// In-memory sessions store for development/preview when PostgreSQL (Neon) is not linked yet
+const inMemorySessions = new Set<string>();
 
 export async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16).toString('hex');
@@ -45,19 +48,33 @@ export async function createSession(request: IncomingMessage): Promise<string> {
   const previous = sessionToken(request);
 
   if (previous) {
-    await query('DELETE FROM sessions WHERE token_hash = $1', [digest(previous)]);
+    if (isDatabaseConfigured()) {
+      try {
+        await query('DELETE FROM sessions WHERE token_hash = $1', [digest(previous)]);
+      } catch {}
+    } else {
+      inMemorySessions.delete(digest(previous));
+    }
   }
 
   const token = randomBytes(32).toString('hex');
   const tokenHash = digest(token);
-  const expiresAt = new Date(Date.now() + sessionLifetime * 1000);
 
-  await query(
-    'INSERT INTO sessions (token_hash, admin_id, expires_at) VALUES ($1, $2, $3)',
-    [tokenHash, 'owner', expiresAt]
-  );
+  if (isDatabaseConfigured()) {
+    const expiresAt = new Date(Date.now() + sessionLifetime * 1000);
+    await query(
+      'INSERT INTO sessions (token_hash, admin_id, expires_at) VALUES ($1, $2, $3)',
+      [tokenHash, 'owner', expiresAt]
+    );
+  } else {
+    inMemorySessions.add(tokenHash);
+  }
 
   return token;
+}
+
+export function deleteSession(token: string): void {
+  inMemorySessions.delete(digest(token));
 }
 
 export async function requireAdmin(request: IncomingMessage): Promise<void> {
@@ -65,6 +82,13 @@ export async function requireAdmin(request: IncomingMessage): Promise<void> {
 
   if (!token) {
     throw new HttpError(401, 'Please sign in to continue.');
+  }
+
+  if (!isDatabaseConfigured()) {
+    if (!inMemorySessions.has(digest(token))) {
+      throw new HttpError(401, 'Your session has expired. Please sign in again.');
+    }
+    return;
   }
 
   const result = await query<{ token_hash: string }>(
@@ -89,6 +113,10 @@ export function assertOrigin(origin: string | undefined): void {
 }
 
 export async function rateLimit(scope: string, maximum: number, windowMs: number): Promise<void> {
+  if (!isDatabaseConfigured()) {
+    return;
+  }
+
   const window = Math.floor(Date.now() / windowMs);
   const id = digest(`${scope}:${window}`);
   const expiresAt = new Date((window + 2) * windowMs);

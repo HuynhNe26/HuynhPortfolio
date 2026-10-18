@@ -95,11 +95,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 export async function requireAdmin(): Promise<void> {
   try {
     await api('/auth/session', true);
-  } catch (error) {
-    if (error instanceof ApiError && error.status === 401) {
-      redirect('/admin/login');
-    }
-
-    throw error;
+  } catch {
+    redirect('/admin/login');
   }
 }

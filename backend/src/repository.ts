@@ -1,4 +1,4 @@
-import { query } from './database.js';
+import { isDatabaseConfigured, query } from './database.js';
 import { HttpError } from './errors.js';
 import type { MediaAsset, Project, ProjectInput, SiteSettings, SiteSettingsInput } from './models.js';
 
@@ -42,6 +42,10 @@ function mapProjectRow(row: any): Project {
 }
 
 export async function listProjects(includeDrafts = false): Promise<Project[]> {
+  if (!isDatabaseConfigured()) {
+    return [];
+  }
+
   const sql = includeDrafts
     ? `SELECT * FROM projects ORDER BY featured DESC, display_order ASC, created_at DESC LIMIT 200`
     : `SELECT * FROM projects WHERE published = true ORDER BY featured DESC, display_order ASC, created_at DESC LIMIT 200`;
@@ -193,6 +197,18 @@ export async function deleteProject(id: string): Promise<{ message: string }> {
 }
 
 export async function getSiteSettings(): Promise<SiteSettings> {
+  if (!isDatabaseConfigured()) {
+    return {
+      _id: 'settings',
+      siteTitle: 'Nguyễn Hoàng Huynh — Full-Stack Developer Portfolio',
+      seoDescription: 'Personal developer portfolio and interactive project case studies of Nguyễn Hoàng Huynh.',
+      canonicalUrl: 'https://huynhportfolio.com',
+      contactEmail: 'nguyenhoanghuynh.vn@gmail.com',
+      publicVisibility: true,
+      updatedAt: new Date(),
+    };
+  }
+
   const result = await query('SELECT * FROM site_settings WHERE id = $1', ['settings']);
   if (result.rows.length === 0) {
     return {
@@ -243,6 +259,10 @@ export async function saveSiteSettings(input: SiteSettingsInput): Promise<{ mess
 }
 
 export async function listMediaAssets(): Promise<MediaAsset[]> {
+  if (!isDatabaseConfigured()) {
+    return [];
+  }
+
   const result = await query('SELECT * FROM media_assets ORDER BY created_at DESC LIMIT 100');
   return result.rows.map((row) => ({
     _id: String(row.id),
