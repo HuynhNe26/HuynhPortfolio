@@ -8,6 +8,7 @@ export function Footer() {
 
   return (
     <footer className="site-footer">
+      <div className="footer-top-accent-line" aria-hidden="true" />
       <div className="container footer-content">
         <div className="footer-top-grid">
           <div className="footer-brand-col">
@@ -58,7 +59,15 @@ export function Footer() {
           <div className="footer-copyright">
             © {new Date().getFullYear()} Nguyễn Hoàng Huynh. {t('footer.rights')}
           </div>
-          <a href="#top" className="footer-top-link" aria-label="Back to top">
+          <a
+            href="#top"
+            className="footer-top-link"
+            aria-label="Back to top"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             {t('footer.top')}
           </a>
         </div>
