@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
 
-interface AboutMeBentoProps {
+interface AboutMeProps {
   email?: string;
 }
 
@@ -29,66 +29,18 @@ const SKILLS_LIST = [
   { name: 'Docker', cat: 'Tools & APIs' },
 ];
 
-export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeBentoProps) {
+/**
+ * 1. ABOUT ME HERO SECTION
+ * Placed directly above Featured Projects
+ */
+export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeProps) {
   const { t } = useLanguage();
-  const [activeSkillCat, setActiveSkillCat] = useState('All');
-  const [formName, setFormName] = useState('');
-  const [formEmail, setFormEmail] = useState('');
-  const [formMessage, setFormMessage] = useState('');
-  const [formPending, setFormPending] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
-  const [formError, setFormError] = useState('');
-
-  const skillTabs = [
-    { id: 'All', label: t('bento.skills.all') },
-    { id: 'Frontend', label: t('bento.skills.frontend') },
-    { id: 'Backend', label: t('bento.skills.backend') },
-    { id: 'Database', label: t('bento.skills.database') },
-    { id: 'Tools & APIs', label: t('bento.skills.tools') },
-  ];
-
-  const filteredSkills = SKILLS_LIST.filter((s) => {
-    if (activeSkillCat === 'All') return true;
-    return s.cat === activeSkillCat;
-  });
-
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormPending(true);
-    setFormError('');
-    setFormSuccess(false);
-
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formName,
-          email: formEmail,
-          message: formMessage,
-        }),
-      });
-
-      if (!res.ok) {
-        throw new Error('Không thể gửi tin nhắn. Vui lòng thử lại sau.');
-      }
-
-      setFormSuccess(true);
-      setFormName('');
-      setFormEmail('');
-      setFormMessage('');
-    } catch (err: any) {
-      setFormError(err.message || 'Lỗi gửi tin nhắn.');
-    } finally {
-      setFormPending(false);
-    }
-  };
 
   return (
-    <section className="hh-bento-section">
-      <div className="container hh-bento-grid-container">
-        {/* ROW 1: ABOUT ME HERO CARD + PHOTO WITH FLOATING BADGES */}
-        <div id="about" data-section="about" className="hh-bento-card hh-about-card">
+    <section id="about" data-section="about" className="hh-about-section">
+      <div className="container">
+        {/* ABOUT ME HERO CARD + PHOTO WITH FLOATING BADGES */}
+        <div className="hh-bento-card hh-about-card">
           <div className="hh-about-left">
             <div className="hh-eyebrow-pill">
               <span className="hh-avatar-icon">👤</span>
@@ -165,6 +117,107 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * 2. SKILLS, EDUCATION & CONTACT BENTO
+ * Placed below Featured Projects
+ */
+export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeProps) {
+  const { t } = useLanguage();
+  const [activeSkillCat, setActiveSkillCat] = useState('All');
+  const [formName, setFormName] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [formMessage, setFormMessage] = useState('');
+  const [formPending, setFormPending] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const [formError, setFormError] = useState('');
+
+  const skillTabs = [
+    { id: 'All', label: t('bento.skills.all') },
+    { id: 'Frontend', label: t('bento.skills.frontend') },
+    { id: 'Backend', label: t('bento.skills.backend') },
+    { id: 'Database', label: t('bento.skills.database') },
+    { id: 'Tools & APIs', label: t('bento.skills.tools') },
+  ];
+
+  const filteredSkills = SKILLS_LIST.filter((s) => {
+    if (activeSkillCat === 'All') return true;
+    return s.cat === activeSkillCat;
+  });
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormPending(true);
+    setFormError('');
+    setFormSuccess(false);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formName,
+          email: formEmail,
+          message: formMessage,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Không thể gửi tin nhắn. Vui lòng thử lại sau.');
+      }
+
+      setFormSuccess(true);
+      setFormName('');
+      setFormEmail('');
+      setFormMessage('');
+    } catch (err: any) {
+      setFormError(err.message || 'Lỗi gửi tin nhắn.');
+    } finally {
+      setFormPending(false);
+    }
+  };
+
+  return (
+    <section className="hh-bento-section">
+      <div className="container hh-bento-grid-container">
+        {/* ROW 1: MY SKILLS TECH MATRIX (DARK BENTO TILE) */}
+        <div id="skills" data-section="skills" className="hh-bento-card hh-skills-card">
+          <span id="experience" className="sr-only" aria-hidden="true" />
+          <div className="hh-skills-header">
+            <div>
+              <h3 className="hh-skills-title">{t('bento.skills.title')}</h3>
+              <p className="hh-skills-subtitle">{t('bento.skills.subtitle')}</p>
+            </div>
+
+            <div className="hh-skills-filter-tabs" role="tablist">
+              {skillTabs.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  className={`hh-skill-tab ${activeSkillCat === cat.id ? 'active' : ''}`}
+                  onClick={() => setActiveSkillCat(cat.id)}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="hh-skills-icons-grid">
+            {filteredSkills.map((s) => (
+              <div key={s.name} className="hh-skill-icon-tile">
+                <div className="skill-icon-box">
+                  <TechIcon name={s.name} className="skill-svg-icon" />
+                </div>
+                <span className="skill-tile-name">{s.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* ROW 2: EDUCATION & CERTIFICATES */}
         <div id="education" className="hh-bento-subgrid-2">
@@ -222,42 +275,7 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
           </div>
         </div>
 
-        {/* ROW 3: MY SKILLS TECH MATRIX (DARK BENTO TILE) */}
-        <div id="skills" data-section="skills" className="hh-bento-card hh-skills-card">
-          <span id="experience" className="sr-only" aria-hidden="true" />
-          <div className="hh-skills-header">
-            <div>
-              <h3 className="hh-skills-title">{t('bento.skills.title')}</h3>
-              <p className="hh-skills-subtitle">{t('bento.skills.subtitle')}</p>
-            </div>
-
-            <div className="hh-skills-filter-tabs" role="tablist">
-              {skillTabs.map((cat) => (
-                <button
-                  key={cat.id}
-                  type="button"
-                  className={`hh-skill-tab ${activeSkillCat === cat.id ? 'active' : ''}`}
-                  onClick={() => setActiveSkillCat(cat.id)}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="hh-skills-icons-grid">
-            {filteredSkills.map((s) => (
-              <div key={s.name} className="hh-skill-icon-tile">
-                <div className="skill-icon-box">
-                  <TechIcon name={s.name} className="skill-svg-icon" />
-                </div>
-                <span className="skill-tile-name">{s.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ROW 4: GET IN TOUCH CONTACT CARD */}
+        {/* ROW 3: GET IN TOUCH CONTACT CARD */}
         <div id="contact" className="hh-bento-card hh-contact-card">
           <div className="hh-contact-intro">
             <div className="hh-eyebrow-pill">
@@ -319,5 +337,17 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
         </div>
       </div>
     </section>
+  );
+}
+
+/**
+ * Backwards compatibility export
+ */
+export function AboutMeBento({ email }: AboutMeProps) {
+  return (
+    <>
+      <AboutMeSection email={email} />
+      <SkillsEducationContact email={email} />
+    </>
   );
 }

@@ -24,10 +24,10 @@ const NAV_ITEMS: NavItem[] = [
 // Sections in their exact vertical order on the homepage
 const HOMEPAGE_SECTIONS = [
   'home',
-  'projects',
   'about',
-  'education',
+  'projects',
   'skills',
+  'education',
   'contact',
 ];
 
