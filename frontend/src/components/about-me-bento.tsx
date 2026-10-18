@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
+import { CertificateModal } from '@/components/certificate-modal';
 
 interface AboutMeProps {
   email?: string;
@@ -127,8 +128,9 @@ export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: Abou
  * Placed below Featured Projects
  */
 export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [activeSkillCat, setActiveSkillCat] = useState('All');
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false);
   const [formName, setFormName] = useState('');
   const [formEmail, setFormEmail] = useState('');
   const [formMessage, setFormMessage] = useState('');
@@ -249,20 +251,58 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
             </div>
           </div>
 
-          {/* CERTIFICATES CARD */}
+          {/* CERTIFICATES CARD WITH THUMBNAIL PREVIEW & LIGHTBOX */}
           <div className="hh-bento-card hh-cert-card">
             <div className="hh-card-top-row">
               <h3>{t('bento.cert.title')}</h3>
-              <Link href="/about" className="hh-link-more">
-                {t('bento.more')}
-              </Link>
+              <button
+                type="button"
+                className="hh-link-more hh-btn-cert-preview"
+                onClick={() => setIsCertModalOpen(true)}
+                title={lang === 'vi' ? 'Xem chứng chỉ' : 'View Certificate'}
+              >
+                <span>{lang === 'vi' ? 'Xem chứng chỉ' : 'View Certificate'}</span>
+                <span aria-hidden="true">↗</span>
+              </button>
             </div>
 
-            <div className="hh-edu-item">
-              <div className="hh-cert-badge-logo" aria-hidden="true">
-                <span className="ets-logo-txt">ETS</span>
+            <div
+              className="hh-cert-interactive-box"
+              onClick={() => setIsCertModalOpen(true)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setIsCertModalOpen(true);
+                }
+              }}
+              title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : 'Click to view official certificate'}
+            >
+              <div className="hh-cert-thumb-preview">
+                <Image
+                  src="/certificates/toeic-550.jpg"
+                  alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
+                  width={140}
+                  height={100}
+                  className="hh-cert-thumb-img"
+                  loading="eager"
+                />
+                <div className="hh-cert-thumb-overlay" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <line x1="11" y1="8" x2="11" y2="14" />
+                    <line x1="8" y1="11" x2="14" y2="11" />
+                  </svg>
+                </div>
               </div>
+
               <div className="hh-edu-details">
+                <div className="hh-cert-badge-row">
+                  <span className="ets-logo-txt-pill">ETS</span>
+                  <span className="cert-status-tag">{lang === 'vi' ? 'Đã xác thực' : 'Verified'}</span>
+                </div>
                 <h4>{t('bento.cert.name')}</h4>
                 <p className="edu-major">{t('bento.cert.issuer')}</p>
                 <div className="edu-meta">
@@ -336,6 +376,19 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
           </form>
         </div>
       </div>
+
+      {/* OFFICIAL CERTIFICATE LIGHTBOX MODAL */}
+      <CertificateModal
+        isOpen={isCertModalOpen}
+        onClose={() => setIsCertModalOpen(false)}
+        certificate={{
+          name: lang === 'vi' ? 'Chứng chỉ TOEIC Nghe & Đọc (550 / 990)' : 'TOEIC Listening & Reading Certificate (550 / 990)',
+          issuer: 'ETS (Educational Testing Service)',
+          score: '550 / 990',
+          issueDate: lang === 'vi' ? 'Tháng 10, 2025' : 'October 2025',
+          imageUrl: '/certificates/toeic-550.jpg',
+        }}
+      />
     </section>
   );
 }

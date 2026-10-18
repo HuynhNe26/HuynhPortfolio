@@ -56,6 +56,8 @@ async function seed() {
         issuer: 'ETS',
         score: '550',
         issueDate: 'October 2025',
+        verificationUrl: '',
+        imageUrl: '/certificates/toeic-550.jpg',
       },
     ],
     updatedAt: now,

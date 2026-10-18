@@ -13,6 +13,7 @@ export interface CertificateItem {
   score: string;
   issueDate: string;
   verificationUrl?: string;
+  imageUrl?: string;
 }
 
 export interface CategorizedSkills {
@@ -158,6 +159,8 @@ export const defaultProfile: Profile = {
       issuer: 'ETS',
       score: '550',
       issueDate: 'October 2025',
+      verificationUrl: '',
+      imageUrl: '/certificates/toeic-550.jpg',
     },
   ],
   avatarUrl: '/avatar.jpg',

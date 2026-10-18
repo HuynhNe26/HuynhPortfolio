@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Profile } from '@/lib/types';
 import { TechBadge } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
+import { CertificateModal } from '@/components/certificate-modal';
 
 interface AboutPageClientProps {
   profile: Profile;
@@ -13,6 +14,7 @@ interface AboutPageClientProps {
 
 export function AboutPageClient({ profile }: AboutPageClientProps) {
   const { t, lang } = useLanguage();
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false);
 
   return (
     <main id="main-content" className="container section">
@@ -146,17 +148,67 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
             <p className="eyebrow">{lang === 'vi' ? '03 / CHỨNG CHỈ XÁC THỰC' : '03 / CERTIFICATIONS'}</p>
             <h2>{lang === 'vi' ? 'Chứng chỉ & Văn bằng Quốc tế' : 'Verified Credentials'}</h2>
             <div className="certificate-cards">
-              <div className="certificate-card">
-                <div className="cert-icon">TOEIC</div>
+              <div
+                className="certificate-card certificate-card-interactive"
+                onClick={() => setIsCertModalOpen(true)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setIsCertModalOpen(true);
+                  }
+                }}
+                title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : 'Click to view official certificate'}
+              >
+                <div className="hh-cert-thumb-preview">
+                  <Image
+                    src="/certificates/toeic-550.jpg"
+                    alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
+                    width={160}
+                    height={115}
+                    className="hh-cert-thumb-img"
+                  />
+                  <div className="hh-cert-thumb-overlay" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      <line x1="11" y1="8" x2="11" y2="14" />
+                      <line x1="8" y1="11" x2="14" y2="11" />
+                    </svg>
+                  </div>
+                </div>
+
                 <div className="cert-body">
+                  <div className="hh-cert-badge-row">
+                    <span className="ets-logo-txt-pill">ETS</span>
+                    <span className="cert-status-tag">{lang === 'vi' ? 'Chứng nhận chính thức' : 'Official Verified'}</span>
+                  </div>
                   <h3>{lang === 'vi' ? 'TOEIC 550 - Kỹ năng Nghe & Đọc' : 'TOEIC Listening & Reading'}</h3>
                   <p className="cert-meta">
                     {lang === 'vi' ? 'Cấp bởi Tổ chức Khảo thí ETS Hoa Kỳ • Tháng 10, 2025' : 'Issued by ETS • October 2025'}
                   </p>
-                  <div className="cert-badge">{lang === 'vi' ? 'Điểm đạt: 550 / 990' : 'Score: 550 / 990'}</div>
+                  <div className="cert-bottom-actions">
+                    <div className="cert-badge">{lang === 'vi' ? 'Điểm đạt: 550 / 990' : 'Score: 550 / 990'}</div>
+                    <span className="cert-view-cta">
+                      {lang === 'vi' ? 'Xem ảnh chứng chỉ ↗' : 'View Certificate ↗'}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <CertificateModal
+              isOpen={isCertModalOpen}
+              onClose={() => setIsCertModalOpen(false)}
+              certificate={{
+                name: lang === 'vi' ? 'Chứng chỉ TOEIC Nghe & Đọc (550 / 990)' : 'TOEIC Listening & Reading Certificate (550 / 990)',
+                issuer: 'ETS (Educational Testing Service)',
+                score: '550 / 990',
+                issueDate: lang === 'vi' ? 'Tháng 10, 2025' : 'October 2025',
+                imageUrl: '/certificates/toeic-550.jpg',
+              }}
+            />
           </section>
 
           <section className="about-section-block">
