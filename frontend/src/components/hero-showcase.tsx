@@ -32,6 +32,7 @@ export function HeroShowcase({
 
   return (
     <section id="home" className="hh-hero-section">
+      <div className="hh-hero-ambient-spotlight" aria-hidden="true" />
       <div className="container hh-hero-container">
         {/* HERO TOP: 2 COLUMNS (LEFT CONTENT, RIGHT PORTRAIT) */}
         <div className="hh-hero-grid">

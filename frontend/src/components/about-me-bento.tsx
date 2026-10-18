@@ -96,6 +96,8 @@ export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: Abou
                 width={480}
                 height={520}
                 className="hh-about-photo"
+                loading="lazy"
+                decoding="async"
               />
 
               {/* FLOATING BADGE 1: 3rd year IT Student */}
@@ -286,7 +288,8 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                   width={140}
                   height={100}
                   className="hh-cert-thumb-img"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="hh-cert-thumb-overlay" aria-hidden="true">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

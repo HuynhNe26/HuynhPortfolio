@@ -203,6 +203,8 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
           width={720}
           height={460}
           className="hh-card-img"
+          loading="lazy"
+          decoding="async"
           unoptimized
         />
         {/* CATEGORY PILL ON IMAGE */}

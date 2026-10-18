@@ -90,7 +90,8 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
             width={1200}
             height={900}
             className="cert-modal-image"
-            priority
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

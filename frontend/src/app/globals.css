@@ -204,10 +204,22 @@ p {
   background: transparent;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
+  animation: headerSlideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes headerSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .site-header.is-scrolled,
@@ -9524,6 +9536,20 @@ body {
   z-index: 0;
 }
 
+.hh-hero-ambient-spotlight {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(ellipse 60% 50% at 50% 20%, rgba(56, 189, 248, 0.18) 0%, rgba(37, 99, 235, 0.08) 50%, transparent 80%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: heroAmbientPulse 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .hh-hero-container {
   position: relative;
   z-index: 1;
@@ -9551,6 +9577,7 @@ body {
   border: 1px solid #BFDBFE;
   border-radius: 9999px;
   margin-bottom: 24px;
+  animation: heroPillIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
 }
 
 .hh-role-pill-text {
@@ -9597,6 +9624,7 @@ body {
   padding-bottom: 0.12em;
   margin-bottom: -0.12em;
   vertical-align: bottom;
+  animation: heroTextReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
 }
 
 .hh-name-highlight {
@@ -9611,7 +9639,7 @@ body {
   background-size: 260% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: nameLuminousFlow 4.5s ease-in-out infinite;
+  animation: heroTextReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both, nameLuminousFlow 4.5s ease-in-out infinite 0.28s;
   filter: drop-shadow(0 2px 14px rgba(37, 99, 235, 0.25));
 }
 
@@ -9619,6 +9647,97 @@ body {
 .hh-hero-name-wrap:hover .hh-name-highlight,
 .hh-hero-name-wrap:hover .hh-name-glow-aura {
   /* Keep animation and aura running unaffected */
+}
+
+@keyframes heroAmbientPulse {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.65);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes heroPillIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.86) translateY(14px);
+    filter: blur(4px);
+  }
+  70% {
+    transform: scale(1.04) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroActionsIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes heroPortraitIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(28px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes mottoPopIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-14deg) scale(0.8);
+    filter: blur(4px);
+  }
+  70% {
+    transform: rotate(-4deg) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-6deg) scale(1);
+    filter: blur(0);
+  }
 }
 
 @keyframes nameLuminousFlow {
@@ -9650,6 +9769,7 @@ body {
   color: #475569;
   max-width: 490px;
   margin: 0 0 32px;
+  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
 }
 
 .hh-hero-actions {
@@ -9658,6 +9778,7 @@ body {
   gap: 16px;
   margin-bottom: 36px;
   flex-wrap: wrap;
+  animation: heroActionsIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
 }
 
 .hh-btn-primary {
@@ -9721,6 +9842,16 @@ body {
   transform: translateY(-2px);
 }
 
+.hh-hero-socials .hh-social-icon-btn:nth-child(1) {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.58s both;
+}
+.hh-hero-socials .hh-social-icon-btn:nth-child(2) {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+}
+.hh-hero-socials .hh-social-icon-btn:nth-child(3) {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.70s both;
+}
+
 /* RIGHT PORTRAIT & HANDWRITING */
 .hh-hero-right {
   display: flex;
@@ -9736,6 +9867,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  animation: heroPortraitIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
 .hh-portrait-ambient-glow {
@@ -9782,6 +9914,7 @@ body {
     0 1px 3px rgba(3, 27, 78, 0.4);
   pointer-events: none;
   user-select: none;
+  animation: mottoPopIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.62s both;
 }
 
 .hh-handwritten-motto .motto-line {
@@ -9804,6 +9937,7 @@ body {
   margin-top: 60px;
   padding-top: 32px;
   border-top: 1px solid #E2E8F0;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
 }
 
 .hh-metrics-group {
@@ -9818,6 +9952,12 @@ body {
   flex-direction: column;
   gap: 4px;
 }
+
+.hh-metric-item:nth-child(1) { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.76s both; }
+.hh-metric-item:nth-child(2) { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.82s both; }
+.hh-metric-item:nth-child(3) { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.88s both; }
+.hh-metric-item:nth-child(4) { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.94s both; }
+.hh-scroll-hint { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.98s both; }
 
 .hh-metric-number {
   font-size: 22px;
@@ -9863,6 +10003,67 @@ body {
   transform: translateY(3px);
   border-color: #0F172A;
   color: #0F172A;
+}
+
+/* ==============================================================================
+   PROGRESSIVE SCROLL REVEAL & LAZY LAYOUT SYSTEM
+   ============================================================================== */
+.hh-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(6px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s ease;
+  will-change: opacity, transform, filter;
+}
+
+.hh-reveal.hh-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Stagger for project cards inside the 2x2 grid */
+.hh-featured-grid .hh-project-card:nth-child(1) { transition-delay: 0.04s; }
+.hh-featured-grid .hh-project-card:nth-child(2) { transition-delay: 0.16s; }
+.hh-featured-grid .hh-project-card:nth-child(3) { transition-delay: 0.10s; }
+.hh-featured-grid .hh-project-card:nth-child(4) { transition-delay: 0.22s; }
+
+/* Stagger for bento cards */
+.hh-bento-grid-container .hh-skills-card { transition-delay: 0.05s; }
+.hh-bento-grid-container .hh-edu-card { transition-delay: 0.14s; }
+.hh-bento-grid-container .hh-cert-card { transition-delay: 0.22s; }
+.hh-bento-grid-container .hh-contact-card { transition-delay: 0.10s; }
+
+/* Section layout optimization with content-visibility for lazy rendering */
+.hh-about-section,
+.hh-projects-section,
+.hh-bento-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .hh-role-pill,
+  .hh-name-first,
+  .hh-name-highlight,
+  .hh-hero-bio,
+  .hh-hero-actions,
+  .hh-hero-socials .hh-social-icon-btn,
+  .hh-portrait-frame,
+  .hh-handwritten-motto,
+  .hh-hero-bottom-bar,
+  .hh-metric-item,
+  .hh-scroll-hint,
+  .hh-reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 @media (max-width: 960px) {
