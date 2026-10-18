@@ -37,7 +37,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('home');
   const isClickScrollingRef = useRef(false);
-  const { lang, setLang, t } = useLanguage();
+  const { lang, toggleLang, t } = useLanguage();
 
   // ScrollSpy listener for homepage
   useEffect(() => {
@@ -225,24 +225,18 @@ export function Header() {
 
         {/* RIGHT ACTIONS: LANG & LET'S TALK */}
         <div className="hh-header-right">
-          {/* Language Switcher */}
-          <div className="hh-lang-pill" role="group" aria-label="Language">
-            <button
-              type="button"
-              className={`hh-lang-btn ${lang === 'en' ? 'active' : ''}`}
-              onClick={() => setLang('en')}
-            >
-              EN
-            </button>
-            <span className="hh-lang-sep">/</span>
-            <button
-              type="button"
-              className={`hh-lang-btn ${lang === 'vi' ? 'active' : ''}`}
-              onClick={() => setLang('vi')}
-            >
-              VI
-            </button>
-          </div>
+          {/* Language Toggle Switch (1 click to toggle) */}
+          <button
+            type="button"
+            className={`hh-lang-toggle ${lang}`}
+            onClick={toggleLang}
+            aria-label={`Đổi ngôn ngữ (Hiện tại: ${lang === 'vi' ? 'Tiếng Việt' : 'English'})`}
+            title={lang === 'vi' ? 'Bấm để chuyển sang English' : 'Click to switch to Tiếng Việt'}
+          >
+            <span className="hh-lang-toggle-thumb" aria-hidden="true" />
+            <span className={`hh-lang-toggle-label ${lang === 'en' ? 'active' : ''}`}>EN</span>
+            <span className={`hh-lang-toggle-label ${lang === 'vi' ? 'active' : ''}`}>VI</span>
+          </button>
 
           <Link
             href="/#contact"
