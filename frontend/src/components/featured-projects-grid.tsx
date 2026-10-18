@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
@@ -8,6 +8,118 @@ import { useLanguage } from '@/context/language-context';
 
 interface FeaturedProjectsGridProps {
   projects: Project[];
+}
+
+interface ProjectTiltCardProps {
+  project: Project;
+  categoryTag: string;
+}
+
+function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const glareRef = useRef<HTMLDivElement>(null);
+  const rafIdRef = useRef<number | null>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Relative mouse offset from center (-1 to 1)
+    const percentX = (x - centerX) / centerX;
+    const percentY = (y - centerY) / centerY;
+
+    // Dynamic 3D tilt angles (max 10 degrees)
+    const maxTilt = 10;
+    const rotateX = (-percentY * maxTilt).toFixed(2);
+    const rotateY = (percentX * maxTilt).toFixed(2);
+
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+    }
+
+    rafIdRef.current = requestAnimationFrame(() => {
+      if (card) {
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.025, 1.025, 1.025)`;
+      }
+      if (glareRef.current) {
+        glareRef.current.style.opacity = '1';
+        glareRef.current.style.background = `radial-gradient(circle 380px at ${x}px ${y}px, rgba(255, 255, 255, 0.22), transparent 75%)`;
+      }
+    });
+  };
+
+  const handleMouseEnter = () => {
+    const card = cardRef.current;
+    if (card) {
+      card.style.transition = 'transform 0.1s ease-out, border-color 0.35s ease, box-shadow 0.35s ease';
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+    }
+    const card = cardRef.current;
+    if (card) {
+      card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    }
+    if (glareRef.current) {
+      glareRef.current.style.opacity = '0';
+    }
+  };
+
+  const glowColor = project.themeColor || '#2563EB';
+
+  return (
+    <Link
+      ref={cardRef}
+      href={`/projects/${project.slug}`}
+      className="hh-project-card"
+      style={{ '--card-glow': glowColor } as React.CSSProperties}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* AMBIENT GLOW BACKLIGHT */}
+      <div className="hh-project-card-ambient" aria-hidden="true" />
+
+      {/* DYNAMIC SPECULAR GLARE SPOTLIGHT */}
+      <div ref={glareRef} className="hh-project-card-glare" aria-hidden="true" />
+
+      {/* IMAGE PREVIEW FRAME (WITH 3D PARALLAX DEPTH) */}
+      <div className="hh-card-image-box">
+        <Image
+          src={project.coverUrl || '/projects/ticket-concert-hero.png'}
+          alt={project.title}
+          width={720}
+          height={460}
+          className="hh-card-img"
+          unoptimized
+        />
+        {/* CATEGORY PILL ON IMAGE */}
+        <span className="hh-card-cat-badge">
+          {categoryTag}
+        </span>
+      </div>
+
+      {/* BOTTOM TITLE & ARROW */}
+      <div className="hh-card-bottom-row">
+        <h3 className="hh-card-title">{project.title.toUpperCase()}</h3>
+        <div className="hh-card-arrow-btn" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+      </div>
+    </Link>
+  );
 }
 
 export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
@@ -87,49 +199,19 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
           </div>
         </div>
 
-        {/* 2X2 COLORFUL GLOWING PROJECTS GRID */}
+        {/* 2X2 COLORFUL GLOWING PROJECTS GRID WITH 3D MOUSE TILT */}
         <div className="hh-projects-grid">
           {filteredProjects.map((project) => {
-            const glowColor = project.themeColor || '#2563EB';
             const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
               ? t('filter.landing')
               : t('filter.webApp');
 
             return (
-              <Link
+              <ProjectTiltCard
                 key={project._id || project.slug}
-                href={`/projects/${project.slug}`}
-                className="hh-project-card"
-                style={{ '--card-glow': glowColor } as React.CSSProperties}
-              >
-                <div className="hh-project-card-ambient" aria-hidden="true" />
-
-                {/* IMAGE PREVIEW FRAME */}
-                <div className="hh-card-image-box">
-                  <Image
-                    src={project.coverUrl || '/projects/ticket-concert-hero.png'}
-                    alt={project.title}
-                    width={720}
-                    height={460}
-                    className="hh-card-img"
-                    unoptimized
-                  />
-                  {/* CATEGORY PILL ON IMAGE */}
-                  <span className="hh-card-cat-badge">
-                    {categoryTag}
-                  </span>
-                </div>
-
-                {/* BOTTOM TITLE & ARROW */}
-                <div className="hh-card-bottom-info">
-                  <h3 className="hh-card-title">{project.title.toUpperCase()}</h3>
-                  <div className="hh-card-arrow-circle" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
+                project={project}
+                categoryTag={categoryTag}
+              />
             );
           })}
         </div>
