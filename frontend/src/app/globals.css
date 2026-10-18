@@ -9465,6 +9465,25 @@ body {
   letter-spacing: 0.02em;
 }
 
+.hh-hero-name-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.hh-name-glow-aura {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 110%;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.22) 0%, rgba(37, 99, 235, 0.12) 45%, transparent 72%);
+  filter: blur(36px);
+  pointer-events: none;
+  z-index: 0;
+  animation: nameAuraPulse 4.5s ease-in-out infinite alternate;
+}
+
 .hh-hero-name {
   font-size: clamp(44px, 5.2vw, 68px);
   font-weight: 800;
@@ -9472,6 +9491,58 @@ body {
   letter-spacing: -0.03em;
   color: #0F172A;
   margin: 0 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.hh-name-first {
+  display: inline-block;
+  color: #0F172A;
+  transition: transform 0.25s ease;
+}
+
+.hh-name-highlight {
+  display: inline-block;
+  background: linear-gradient(115deg, #0F172A 0%, #1E3A8A 24%, #2563EB 46%, #38BDF8 54%, #1D4ED8 72%, #0F172A 100%);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nameLuminousFlow 7s ease-in-out infinite;
+  filter: drop-shadow(0 2px 14px rgba(37, 99, 235, 0.2));
+  transition: filter 0.3s ease;
+}
+
+.hh-hero-name-wrap:hover .hh-name-highlight {
+  animation-duration: 3.5s;
+  filter: drop-shadow(0 4px 22px rgba(37, 99, 235, 0.4));
+}
+
+.hh-hero-name-wrap:hover .hh-name-glow-aura {
+  opacity: 1;
+  filter: blur(42px);
+}
+
+@keyframes nameLuminousFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes nameAuraPulse {
+  0% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
 }
 
 .hh-hero-bio {

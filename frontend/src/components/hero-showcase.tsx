@@ -41,11 +41,14 @@ export function HeroShowcase({
               <span className="hh-role-pill-text">{t('hero.role')}</span>
             </div>
 
-            <h1 className="hh-hero-name">
-              <span>Nguyễn</span>
-              <br />
-              <span>Hoàng Huynh</span>
-            </h1>
+            <div className="hh-hero-name-wrap">
+              <div className="hh-name-glow-aura" aria-hidden="true" />
+              <h1 className="hh-hero-name">
+                <span className="hh-name-first">Nguyễn</span>
+                <br />
+                <span className="hh-name-highlight">Hoàng Huynh</span>
+              </h1>
+            </div>
 
             <p className="hh-hero-bio">
               {t('hero.bio')}
