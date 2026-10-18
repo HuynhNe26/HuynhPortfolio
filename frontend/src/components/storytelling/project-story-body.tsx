@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import type { Project, ProjectChapter } from '@/lib/types';
 import { useLanguage } from '@/context/language-context';
-import { StorytellingDispatcher } from '@/components/storytelling/storytelling-dispatcher';
+import { MasterInteractiveScrollytelling } from './master-interactive-scrollytelling';
 
 interface ProjectStoryBodyProps {
   project: Project;
@@ -131,8 +131,8 @@ export function ProjectStoryBody({
         </div>
       </nav>
 
-      {/* BESPOKE 3D STORYTELLING FLOW (UNIQUE ENGINE PER PROJECT) */}
-      <StorytellingDispatcher
+      {/* MASTER SYNCHRONIZED INTERACTIVE SCROLLYTELLING ENGINE */}
+      <MasterInteractiveScrollytelling
         project={project}
         chapters={chapters}
       />
