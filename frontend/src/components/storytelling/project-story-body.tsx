@@ -5,7 +5,7 @@ import Link from 'next/link';
 import type { Project, ProjectChapter } from '@/lib/types';
 import { STORYTELLING_MODES_CATALOG } from '@/lib/types';
 import { useLanguage } from '@/context/language-context';
-import { MasterInteractiveScrollytelling } from './master-interactive-scrollytelling';
+import { StorytellingEngine } from './storytelling-engine';
 
 interface ProjectStoryBodyProps {
   project: Project;
@@ -497,8 +497,8 @@ export function ProjectStoryBody({
         </div>
       </nav>
 
-      {/* MASTER SYNCHRONIZED SCROLLYTELLING ENGINE */}
-      <MasterInteractiveScrollytelling
+      {/* DYNAMIC BESPOKE STORYTELLING ENGINE (10 DISTINCT MODES) */}
+      <StorytellingEngine
         project={project}
         chapters={chapters}
       />
