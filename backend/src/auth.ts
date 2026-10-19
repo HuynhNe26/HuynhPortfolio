@@ -104,10 +104,60 @@ export async function requireAdmin(request: IncomingMessage): Promise<void> {
   }
 }
 
-export function assertOrigin(origin: string | undefined): void {
-  const configured = process.env.APP_URL || (process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : '');
+export function assertOrigin(origin: string | undefined, referer?: string): void {
+  // Extract candidate origin from origin header or fallback to referer
+  let candidate = origin;
+  if (!candidate && referer) {
+    try {
+      candidate = new URL(referer).origin;
+    } catch {
+      // ignore invalid referer URL
+    }
+  }
 
-  if (!configured || origin !== new URL(configured).origin) {
+  if (!candidate) {
+    throw new HttpError(403, 'This request origin is not allowed.');
+  }
+
+  const isDev = process.env.NODE_ENV !== 'production';
+
+  // In development, permit all loopback and local development hosts
+  if (isDev) {
+    try {
+      const parsed = new URL(candidate);
+      if (
+        parsed.hostname === 'localhost' ||
+        parsed.hostname === '127.0.0.1' ||
+        parsed.hostname === '0.0.0.0' ||
+        parsed.hostname.endsWith('.localhost')
+      ) {
+        return;
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  // Parse allowed origins from configured APP_URL (supports comma-separated list)
+  const configuredRaw = process.env.APP_URL || (isDev ? 'http://localhost:3000' : '');
+  const allowedOrigins = configuredRaw
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => {
+      try {
+        return new URL(item).origin;
+      } catch {
+        return '';
+      }
+    })
+    .filter(Boolean);
+
+  if (isDev) {
+    allowedOrigins.push('http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001');
+  }
+
+  if (!allowedOrigins.includes(candidate)) {
     throw new HttpError(403, 'This request origin is not allowed.');
   }
 }

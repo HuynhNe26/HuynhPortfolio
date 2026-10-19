@@ -107,7 +107,9 @@ async function route(request: IncomingMessage, response: ServerResponse): Promis
   const path = url.pathname;
 
   if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(method)) {
-    assertOrigin(request.headers.origin);
+    const rawOrigin = typeof request.headers.origin === 'string' ? request.headers.origin : undefined;
+    const rawReferer = typeof request.headers.referer === 'string' ? request.headers.referer : undefined;
+    assertOrigin(rawOrigin, rawReferer);
   }
 
   if (path === '/api/health' && method === 'GET') {
