@@ -13,2587 +13,1340 @@ interface MasterInteractiveScrollytellingProps {
 
 interface ChapterVisualMeta {
   imageUrl: string;
-  imageCaption: string;
+  imageCaptionVi: string;
+  imageCaptionEn: string;
   imageAlt: string;
   hotspot: {
     x: number; // percentage from left
     y: number; // percentage from top
-    label: string;
-    action: string;
-    description: string;
+    labelVi: string;
+    labelEn: string;
+    actionVi: string;
+    actionEn: string;
+    descriptionVi: string;
+    descriptionEn: string;
   };
   cursor: {
     x: number;
     y: number;
-    actionText: string;
+    actionTextVi: string;
+    actionTextEn: string;
   };
-  suggestedTab: string;
-  actionCue: string;
+  takeawayVi: string;
+  takeawayEn: string;
 }
 
-// Project specific configurations
+// 5 Bespoke Visual Maps mapped to authentic screenshots
 const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
   'ticket-concert-agentic-rag': [
     {
       imageUrl: '/projects/ticket-concert-hero.png',
-      imageCaption: 'Cổng Khám phá Sự kiện & Lịch diễn Live Concert',
+      imageCaptionVi: 'Cổng Khám phá Sự kiện & Lịch diễn Live Concert',
+      imageCaptionEn: 'Live Concert Discovery & Event Schedule Portal',
       imageAlt: 'Ticket Concert Discovery Interface',
       hotspot: {
         x: 50,
         y: 35,
-        label: 'Live Concert Discovery & Timetable',
-        action: 'Lọc sự kiện & xem thông tin concert thời gian thực',
-        description: 'Bố cục phân tầng trực quan, hiển thị lịch diễn, giá vé niêm yết và trạng thái còn vé cập nhật tự động.',
+        labelVi: 'Live Concert Discovery & Timetable',
+        labelEn: 'Live Concert Discovery & Timetable',
+        actionVi: 'Lọc sự kiện & xem thông tin concert thời gian thực',
+        actionEn: 'Filter live events & inspect real-time concert details',
+        descriptionVi: 'Bố cục phân tầng trực quan, hiển thị lịch diễn, giá vé niêm yết và trạng thái còn vé cập nhật tự động.',
+        descriptionEn: 'High-throughput event listing with live status badges, interactive schedules, and venue information.',
       },
       cursor: {
         x: 52,
         y: 38,
-        actionText: 'Click xem chi tiết Concert 2026',
+        actionTextVi: 'Khám phá Concert 2026',
+        actionTextEn: 'Explore Concert 2026',
       },
-      suggestedTab: 'discovery',
-      actionCue: 'Khám phá danh sách concert và chọn suất diễn mong muốn',
+      takeawayVi: 'Tối ưu hóa hiển thị trên màn hình Retina, giảm 65% thời gian tìm kiếm sự kiện của người hâm mộ.',
+      takeawayEn: 'Retina-optimized interface cutting attendee event search latency by over 65%.',
     },
     {
       imageUrl: '/projects/ticket-concert-full.png',
-      imageCaption: 'Trợ lý AI Agentic RAG tích hợp LangChain.js & Gemini API',
+      imageCaptionVi: 'Trợ lý AI Agentic RAG tích hợp LangChain.js & Gemini API',
+      imageCaptionEn: 'Agentic RAG Assistant with LangChain.js & Gemini',
       imageAlt: 'LangChain Gemini Agentic RAG Assistant',
       hotspot: {
         x: 78,
         y: 62,
-        label: 'Agentic RAG Intelligent Chat Drawer',
-        action: 'Tư vấn chỗ ngồi, giải đáp quy định sự kiện không hallucination',
-        description: 'AI truy xuất dữ liệu từ Vector Database và sơ đồ chỗ ngồi thực tế để tư vấn chính xác trong 340ms.',
+        labelVi: 'Agentic RAG Intelligent Chat Drawer',
+        labelEn: 'Agentic RAG Intelligent Chat Drawer',
+        actionVi: 'Tư vấn chỗ ngồi, giải đáp quy định sự kiện không hallucination',
+        actionEn: 'Ground-truth seat recommendations & venue policy Q&A',
+        descriptionVi: 'AI truy xuất dữ liệu từ Vector Database và sơ đồ chỗ ngồi thực tế để tư vấn chính xác trong 340ms.',
+        descriptionEn: 'Retrieves verified ground truth from vector store & venue seat records in 340ms without hallucinations.',
       },
       cursor: {
         x: 76,
         y: 60,
-        actionText: "Hỏi: 'Khu vực VIP còn vé không?'",
+        actionTextVi: "Hỏi: 'Khu vực VIP còn vé không?'",
+        actionTextEn: "Ask: 'Any VIP tickets available?'",
       },
-      suggestedTab: 'rag',
-      actionCue: 'Mở trợ lý AI để hỏi đáp tức thời về thông tin sự kiện & ghế ngồi',
+      takeawayVi: 'Giải quyết 82% thắc mắc khách hàng tự động trong các đợt mở bán vé cao điểm.',
+      takeawayEn: 'Automates 82% of customer inquiries during high-demand ticketing drops.',
     },
     {
       imageUrl: '/projects/ticket-concert-booking.png',
-      imageCaption: 'Bản đồ Giữ ghế Thời gian thực & WebSocket Anti-Collision',
+      imageCaptionVi: 'Bản đồ Giữ ghế Thời gian thực & WebSocket Anti-Collision',
+      imageCaptionEn: 'Real-Time Seating Map & WebSocket Anti-Collision',
       imageAlt: 'WebSocket Anti-Collision Seat Map',
       hotspot: {
         x: 36,
         y: 44,
-        label: 'Atomic Seat Locking Engine (Redis TTL 600s)',
-        action: 'Khóa ghế tức thời, ngăn chặn 2 người đặt trùng ghế cùng lúc',
-        description: 'Khi người dùng click chọn ghế, WebSocket phát broadcast ngay tới toàn bộ khách truy cập khác.',
+        labelVi: 'Atomic Seat Locking Engine (Redis TTL 600s)',
+        labelEn: 'Atomic Seat Locking Engine (Redis TTL 600s)',
+        actionVi: 'Khóa ghế tức thời, ngăn chặn 2 người đặt trùng ghế cùng lúc',
+        actionEn: 'Atomic lock preventing simultaneous booking collisions',
+        descriptionVi: 'Khi người dùng click chọn ghế, WebSocket phát broadcast ngay tới toàn bộ khách truy cập khác.',
+        descriptionEn: 'Bi-directional WebSocket broadcast notifies all active clients within 50ms upon seat selection.',
       },
       cursor: {
         x: 38,
         y: 46,
-        actionText: 'Click giữ ghế VIP-D04',
+        actionTextVi: 'Khóa giữ ghế VIP-D04',
+        actionTextEn: 'Lock seat VIP-D04',
       },
-      suggestedTab: 'seats',
-      actionCue: 'Khóa ghế tức thời với bộ đếm ngược 10:00 và đồng bộ WebSocket',
+      takeawayVi: 'Triệt tiêu hoàn toàn lỗi Race Condition khi hàng nghìn người cùng tranh mua 1 vị trí.',
+      takeawayEn: 'Completely eliminates race conditions when thousands contest the exact same seat.',
     },
     {
       imageUrl: '/projects/ticket-concert-booking.png',
-      imageCaption: 'Ma trận Hạng vé & Tự động Tính toán Giỏ hàng',
+      imageCaptionVi: 'Ma trận Hạng vé & Tự động Tính toán Giỏ hàng',
+      imageCaptionEn: 'Ticket Pricing Matrix & Dynamic Cart Preview',
       imageAlt: 'Ticket Pricing Matrix & Dynamic Cart',
       hotspot: {
         x: 65,
         y: 52,
-        label: 'Dynamic Seating Matrix & Cart Preview',
-        action: 'Tính toán phụ phí, áp mã ưu đãi và cập nhật tổng tiền',
-        description: 'Hiển thị các khu vực VIP, Regular, Standing với màu sắc phân biệt rõ ràng và bộ lọc hạng vé.',
+        labelVi: 'Dynamic Seating Matrix & Cart Preview',
+        labelEn: 'Dynamic Seating Matrix & Cart Preview',
+        actionVi: 'Tính toán phụ phí, áp mã ưu đãi và cập nhật tổng tiền',
+        actionEn: 'Calculate fees, apply voucher codes and update total',
+        descriptionVi: 'Hiển thị các khu vực VIP, Regular, Standing với màu sắc phân biệt rõ ràng và bộ lọc hạng vé.',
+        descriptionEn: 'Color-coded VIP, Regular, Standing zones with live seat counts and instant fee calculations.',
       },
       cursor: {
         x: 63,
         y: 50,
-        actionText: 'Chọn 2 vé hạng VIP Hàng D',
+        actionTextVi: 'Chọn 2 vé hạng VIP Hàng D',
+        actionTextEn: 'Select 2 VIP Row D tickets',
       },
-      suggestedTab: 'seats',
-      actionCue: 'Thêm ghế vào giỏ và xem tổng tiền theo thời gian thực',
+      takeawayVi: 'Trải nghiệm chọn vé trực quan giúp tăng 38% giá trị đơn hàng trung bình qua đề xuất hạng vé.',
+      takeawayEn: 'Visual tier comparison lifts average order value by 38% via smart tier suggestions.',
     },
     {
       imageUrl: '/projects/ticket-concert-booking.png',
-      imageCaption: 'Cổng Thanh toán MoMo API với HMAC SHA-256 Signature',
+      imageCaptionVi: 'Cổng Thanh toán MoMo API với HMAC SHA-256 Signature',
+      imageCaptionEn: 'MoMo Payment Gateway & HMAC SHA-256 Signature',
       imageAlt: 'MoMo API QR Code Checkout Modal',
       hotspot: {
         x: 50,
         y: 54,
-        label: 'MoMo Payment Gateway & IPN Webhook',
-        action: 'Quét mã MoMo QR và đối soát giao dịch bảo mật ACID',
-        description: 'Xác thực chữ ký số HMAC SHA-256 từ MoMo, cập nhật trạng thái đơn hàng trên PostgreSQL trong 250ms.',
+        labelVi: 'MoMo Payment Gateway & IPN Webhook',
+        labelEn: 'MoMo Payment Gateway & IPN Webhook',
+        actionVi: 'Quét mã MoMo QR và đối soát giao dịch bảo mật ACID',
+        actionEn: 'Scan MoMo QR and reconcile transactions under ACID',
+        descriptionVi: 'Xác thực chữ ký số HMAC SHA-256 từ MoMo, cập nhật trạng thái đơn hàng trên PostgreSQL trong 250ms.',
+        descriptionEn: 'Cryptographic signature verification ensures tamper-proof financial settlements in sub-250ms.',
       },
       cursor: {
         x: 52,
         y: 56,
-        actionText: 'Tạo mã QR thanh toán 1,850,000đ',
+        actionTextVi: 'Tạo mã QR thanh toán 1,850,000đ',
+        actionTextEn: 'Generate MoMo QR 1,850,000đ',
       },
-      suggestedTab: 'payment',
-      actionCue: 'Tạo mã QR MoMo và xác nhận giao dịch qua IPN Webhook',
+      takeawayVi: 'Tỷ lệ thanh toán thành công đạt 99.4% nhờ cơ chế tự động đối soát IPN Webhook đa lớp.',
+      takeawayEn: 'Achieves 99.4% payment success rate via multi-layer IPN webhook reconciliation.',
     },
     {
       imageUrl: '/projects/ticket-concert-full.png',
-      imageCaption: 'Kiến trúc API Full-Stack & WebSocket Bi-directional Event Layer',
+      imageCaptionVi: 'Kiến trúc API Full-Stack & WebSocket Bi-directional Event Layer',
+      imageCaptionEn: 'Full-Stack Architecture & WebSocket Event Layer',
       imageAlt: 'Full-Stack Architecture & Event Routing',
       hotspot: {
         x: 44,
         y: 32,
-        label: 'Full-Stack API & Real-Time Socket Architecture',
-        action: 'Xây dựng WebSocket socket.io server & database pooling Neon',
-        description: 'Đảm bảo độ trễ tin nhắn dưới 50ms cho các sự kiện phòng vé lưu lượng cao.',
+        labelVi: 'Full-Stack API & Real-Time Socket Architecture',
+        labelEn: 'Full-Stack API & Real-Time Socket Architecture',
+        actionVi: 'Xây dựng WebSocket socket.io server & database pooling Neon',
+        actionEn: 'Engineered WebSocket cluster and Neon connection pooling',
+        descriptionVi: 'Đảm bảo độ trễ tin nhắn dưới 50ms cho các sự kiện phòng vé lưu lượng cao.',
+        descriptionEn: 'Guarantees sub-50ms message latency during high-concurrency ticket rush windows.',
       },
       cursor: {
         x: 46,
         y: 34,
-        actionText: 'Kiểm thử WebSocket Event SEAT_LOCKED',
+        actionTextVi: 'Kiểm thử WebSocket Event SEAT_LOCKED',
+        actionTextEn: 'Test WebSocket Event SEAT_LOCKED',
       },
-      suggestedTab: 'seats',
-      actionCue: 'Vận hành luồng xử lý đồng thời và đảm bảo độ trễ dưới 50ms',
+      takeawayVi: 'Kiến trúc phân tách rõ ràng giữa Socket Server và Transaction DB giúp hệ thống chịu tải mượt mà.',
+      takeawayEn: 'Decoupled socket streaming and transactional storage ensures zero database bottlenecks.',
     },
     {
       imageUrl: '/projects/ticket-concert-home.png',
-      imageCaption: 'Vé Điện tử QR Gửi Tức thì qua Resend API & Production Deploy',
+      imageCaptionVi: 'Vé Điện tử QR Gửi Tức thì qua Resend API & Production Deploy',
+      imageCaptionEn: 'Instant QR E-Ticket Dispatch via Resend & Live Production',
       imageAlt: 'Production E-Ticket Dispatch via Resend API',
       hotspot: {
         x: 50,
         y: 38,
-        label: 'Live Production at ticketconcert.online',
-        action: 'Gửi vé điện tử QR về email trong 420ms sau khi thanh toán',
-        description: 'Tự động xuất vé PDF kèm mã QR bảo mật, cho phép quét kiểm soát vào cổng tại sự kiện.',
+        labelVi: 'Live Production at ticketconcert.online',
+        labelEn: 'Live Production at ticketconcert.online',
+        actionVi: 'Gửi vé điện tử QR về email trong 420ms sau khi thanh toán',
+        actionEn: 'Dispatch cryptographically signed QR ticket via email in 420ms',
+        descriptionVi: 'Tự động xuất vé PDF kèm mã QR bảo mật, cho phép quét kiểm soát vào cổng tại sự kiện.',
+        descriptionEn: 'Generates secure dynamic QR code e-tickets, ready for rapid on-site scanning scanners.',
       },
       cursor: {
         x: 50,
         y: 40,
-        actionText: 'Mở vé điện tử đã phát hành',
+        actionTextVi: 'Mở vé điện tử đã phát hành',
+        actionTextEn: 'View issued e-ticket',
       },
-      suggestedTab: 'ticket',
-      actionCue: 'Nhận vé điện tử QR qua email và kiểm tra tình trạng đơn hàng',
+      takeawayVi: 'Vận hành thực tế trên tên miền ticketconcert.online với hơn 99.9% độ khả dụng dịch vụ.',
+      takeawayEn: 'Live in production on ticketconcert.online with over 99.9% uptime SLA.',
     },
   ],
   'fashion-nail-morley': [
     {
       imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaption: 'Mặt tiền Số Cao cấp Gam màu Champagne Rose',
+      imageCaptionVi: 'Mặt tiền Số Cao cấp Gam màu Champagne Rose',
+      imageCaptionEn: 'Luxury Salon Digital Storefront & Brand Identity',
       imageAlt: 'Fashion Nail Morley Storefront Visual Direction',
       hotspot: {
         x: 50,
         y: 34,
-        label: 'Luxury Salon Digital Front Door',
-        action: 'Trải nghiệm nhận diện thương hiệu ấm cúng và sang trọng',
-        description: 'Thiết kế chuẩn thẩm mỹ salon Úc tại Morley, Tây Úc với phong cách typography sắc sảo.',
+        labelVi: 'Luxury Salon Digital Front Door',
+        labelEn: 'Luxury Salon Digital Front Door',
+        actionVi: 'Trải nghiệm nhận diện thương hiệu ấm cúng và sang trọng',
+        actionEn: 'Warm, refined Western Australian salon aesthetic',
+        descriptionVi: 'Thiết kế chuẩn thẩm mỹ salon Úc tại Morley, Tây Úc với phong cách typography sắc sảo.',
+        descriptionEn: 'Bespoke typography, champagne blush tones, and editorial layout crafted for Australian clients.',
       },
       cursor: {
         x: 50,
         y: 37,
-        actionText: 'Khám phá không gian salon & dịch vụ',
+        actionTextVi: 'Khám phá không gian salon',
+        actionTextEn: 'Explore salon atmosphere',
       },
-      suggestedTab: 'services',
-      actionCue: 'Khám phá phong cách sang trọng và định vị thương hiệu salon',
+      takeawayVi: 'Định hình phong cách thương hiệu cao cấp, tăng thời gian ở lại trang trung bình lên 2 phút 40 giây.',
+      takeawayEn: 'Elevates brand positioning, lifting average dwell time to 2m 40s.',
     },
     {
       imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaption: 'Visual Lookbook Bộ sưu tập Mẫu móng Nghệ thuật',
+      imageCaptionVi: 'Visual Lookbook Bộ sưu tập Mẫu móng Nghệ thuật',
+      imageCaptionEn: 'Curated Studio Nail Art Lookbook Showcase',
       imageAlt: 'Curated Studio Nail Art Lookbook',
       hotspot: {
         x: 46,
         y: 48,
-        label: 'Curated Studio Lookbook Showcase',
-        action: 'Showcase bộ sưu tập móng theo mùa với ảnh chuẩn retina',
-        description: 'Ảnh chụp thực tế tại salon, giúp khách hàng chọn kiểu dáng trước khi đặt lịch hẹn.',
+        labelVi: 'Curated Studio Lookbook Showcase',
+        labelEn: 'Curated Studio Lookbook Showcase',
+        actionVi: 'Showcase bộ sưu tập móng theo mùa với ảnh chuẩn retina',
+        actionEn: 'Showcase seasonal nail collections with retina imagery',
+        descriptionVi: 'Ảnh chụp thực tế tại salon, giúp khách hàng chọn kiểu dáng trước khi đặt lịch hẹn.',
+        descriptionEn: 'High-res gallery of real salon sets, helping clients preview styles before booking.',
       },
       cursor: {
         x: 48,
         y: 50,
-        actionText: 'Xem mẫu Acrylic & Nail Art mới nhất',
+        actionTextVi: 'Xem mẫu Acrylic & Nail Art mới',
+        actionTextEn: 'View latest Acrylic & Nail Art sets',
       },
-      suggestedTab: 'services',
-      actionCue: 'Chiêm ngưỡng bộ sưu tập mẫu nail studio độc quyền',
+      takeawayVi: 'Tăng 52% số lượng khách hàng yêu cầu làm mẫu thiết kế riêng sau khi duyệt lookbook.',
+      takeawayEn: 'Drives 52% more custom art design requests after clients browse the lookbook.',
     },
     {
       imageUrl: '/projects/fashion-nail-services.jpg',
-      imageCaption: 'Thẻ Giá Dịch vụ Chuẩn AUD Tối ưu Thiết bị Di động',
+      imageCaptionVi: 'Thẻ Giá Dịch vụ Chuẩn AUD Tối ưu Thiết bị Di động',
+      imageCaptionEn: 'Mobile-First Treatment & AUD Pricing Cards',
       imageAlt: 'Mobile-First Treatment Pricing Cards',
       hotspot: {
         x: 32,
         y: 42,
-        label: 'Mobile-First Treatment & AUD Pricing Cards',
-        action: 'Bảng giá minh bạch từng dịch vụ: Acrylic, Shellac, Spa Pedicure',
-        description: 'Khách hàng truy cập từ Instagram hoặc Google Maps có thể xem giá rõ ràng chỉ sau 1 chạm.',
+        labelVi: 'Mobile-First Treatment & AUD Pricing Cards',
+        labelEn: 'Mobile-First Treatment & AUD Pricing Cards',
+        actionVi: 'Bảng giá minh bạch từng dịch vụ: Acrylic, Shellac, Spa Pedicure',
+        actionEn: 'Transparent AUD pricing: Acrylic, Shellac, Spa Pedicure',
+        descriptionVi: 'Khách hàng truy cập từ Instagram hoặc Google Maps có thể xem giá rõ ràng chỉ sau 1 chạm.',
+        descriptionEn: 'Instant 1-tap pricing clarity for clients arriving via Instagram or Google Maps.',
       },
       cursor: {
         x: 35,
         y: 44,
-        actionText: 'Chọn dịch vụ Acrylic Full Set ($65)',
+        actionTextVi: 'Chọn dịch vụ Acrylic Full Set ($65)',
+        actionTextEn: 'Select Acrylic Full Set ($65)',
       },
-      suggestedTab: 'services',
-      actionCue: 'Chọn dịch vụ trong menu giá minh bạch bằng AUD',
+      takeawayVi: 'Minh bạch giá dịch vụ giúp giảm 70% các câu hỏi hỏi giá qua tin nhắn điện thoại.',
+      takeawayEn: 'Upfront AUD pricing eliminates 70% of repetitive pricing inquiry calls.',
     },
     {
       imageUrl: '/projects/fashion-nail-services.jpg',
-      imageCaption: 'Khung Đặt Lịch Hẹn Nhanh 1 Chạm (One-Tap Booking)',
+      imageCaptionVi: 'Khung Đặt Lịch Hẹn Nhanh 1 Chạm (One-Tap Booking)',
+      imageCaptionEn: 'One-Tap Appointment Request Form',
       imageAlt: 'One-Tap Appointment Request Form',
       hotspot: {
         x: 68,
         y: 46,
-        label: 'One-Tap Appointment Request Modal',
-        action: 'Chọn thợ nail yêu thích, ngày giờ và số điện thoại liên lạc',
-        description: 'Tối ưu biểu mẫu không cần đăng ký tài khoản rườm rà, tăng tỉ lệ chuyển đổi đặt lịch lên 40%.',
+        labelVi: 'One-Tap Appointment Request Modal',
+        labelEn: 'One-Tap Appointment Request Modal',
+        actionVi: 'Chọn thợ nail yêu thích, ngày giờ và số điện thoại liên lạc',
+        actionEn: 'Select preferred nail artist, date/time and phone contact',
+        descriptionVi: 'Tối ưu biểu mẫu không cần đăng ký tài khoản rườm rà, tăng tỉ lệ chuyển đổi đặt lịch lên 40%.',
+        descriptionEn: 'Frictionless modal requiring no account registration, lifting conversion by 40%.',
       },
       cursor: {
         x: 66,
         y: 48,
-        actionText: 'Chọn giờ 14:30 & thợ Sarah',
+        actionTextVi: 'Chọn giờ 14:30 & thợ Sarah',
+        actionTextEn: 'Select 14:30 & Artist Sarah',
       },
-      suggestedTab: 'booking',
-      actionCue: 'Điền thông tin và gửi yêu cầu đặt lịch hẹn nhanh',
+      takeawayVi: 'Quy trình đặt hẹn 3 bước siêu tốc hoàn thành chỉ trong vòng chưa đầy 30 giây.',
+      takeawayEn: 'Streamlined 3-step appointment flow completed in under 30 seconds.',
     },
     {
       imageUrl: '/projects/fashion-nail-services.jpg',
-      imageCaption: 'Thông báo Lịch hẹn Tức thì qua Resend API',
+      imageCaptionVi: 'Thông báo Lịch hẹn Tức thì qua Resend API',
+      imageCaptionEn: 'Automated Resend API Notification Stream',
       imageAlt: 'Automated Resend API Notification Handler',
       hotspot: {
         x: 50,
         y: 60,
-        label: 'Node.js & Resend API Notification Stream',
-        action: 'Gửi email xác nhận tức thời cho khách và chủ tiệm',
-        description: 'Yêu cầu được lưu vào PostgreSQL Neon và kích hoạt email HTML gửi đến hộp thư salon trong 350ms.',
+        labelVi: 'Node.js & Resend API Notification Stream',
+        labelEn: 'Node.js & Resend API Notification Stream',
+        actionVi: 'Gửi email xác nhận tức thời cho khách và chủ tiệm',
+        actionEn: 'Dispatch instant confirmation emails to customer & salon',
+        descriptionVi: 'Yêu cầu được lưu vào PostgreSQL Neon và kích hoạt email HTML gửi đến hộp thư salon trong 350ms.',
+        descriptionEn: 'Persists records into Neon PostgreSQL while triggering responsive HTML emails within 350ms.',
       },
       cursor: {
         x: 52,
         y: 62,
-        actionText: 'Kích hoạt gửi email thông báo',
+        actionTextVi: 'Gửi email thông báo tự động',
+        actionTextEn: 'Trigger automated email alert',
       },
-      suggestedTab: 'booking',
-      actionCue: 'Xem luồng gửi email tự động xác nhận lịch hẹn',
+      takeawayVi: 'Đảm bảo chủ salon không bỏ sót bất kỳ lịch hẹn nào ngay cả trong giờ làm bận rộn.',
+      takeawayEn: 'Ensures salon managers never miss walk-in or online requests during peak hours.',
     },
     {
       imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaption: 'Tích hợp Google Maps & Local SEO Tây Úc',
+      imageCaptionVi: 'Tích hợp Google Maps & Local SEO Tây Úc',
+      imageCaptionEn: 'Google Maps Directions & Local SEO Morley',
       imageAlt: 'Google Maps Directions & Local SEO',
       hotspot: {
         x: 38,
         y: 66,
-        label: 'Google Maps Embed & 1-Tap Call Action',
-        action: 'Chỉ đường 1 chạm và gọi điện thoại trực tiếp từ điện thoại',
-        description: 'Tối ưu hóa tìm kiếm địa phương tại khu vực Morley, Tây Úc giúp salon đón thêm khách vãng lai.',
+        labelVi: 'Google Maps Embed & 1-Tap Call Action',
+        labelEn: 'Google Maps Embed & 1-Tap Call Action',
+        actionVi: 'Chỉ đường 1 chạm và gọi điện thoại trực tiếp từ điện thoại',
+        actionEn: '1-tap GPS directions and direct telephone call trigger',
+        descriptionVi: 'Tối ưu hóa tìm kiếm địa phương tại khu vực Morley, Tây Úc giúp salon đón thêm khách vãng lai.',
+        descriptionEn: 'Geo-targeted schema markup for Morley WA suburbs driving high local foot-traffic.',
       },
       cursor: {
         x: 38,
         y: 68,
-        actionText: 'Chỉ đường tới tiệm trên Google Maps',
+        actionTextVi: 'Chỉ đường tới salon trên Maps',
+        actionTextEn: 'Get directions on Maps',
       },
-      suggestedTab: 'location',
-      actionCue: 'Kiểm tra chỉ đường thực tế và tính năng gọi điện thoại 1 chạm',
+      takeawayVi: 'Tối ưu hóa Local SEO mang lại hơn 180 lượt tìm kiếm chỉ đường mới mỗi tháng.',
+      takeawayEn: 'Local SEO schema generates over 180 new GPS navigation requests every month.',
     },
     {
       imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaption: 'Vận hành Thực tế tại fashionnailmorley.com.au',
+      imageCaptionVi: 'Vận hành Thực tế tại fashionnailmorley.com.au',
+      imageCaptionEn: 'Live Commercial Deployment at fashionnailmorley.com.au',
       imageAlt: 'Live Commercial Deployment at fashionnailmorley.com.au',
       hotspot: {
         x: 50,
         y: 28,
-        label: 'Live Site at fashionnailmorley.com.au',
-        action: 'Trang web phục vụ khách hàng Úc với tốc độ tải dưới 1 giây',
-        description: 'Ứng dụng React & Vite siêu nhẹ, mang lại doanh thu và sự hài lòng cao cho chủ tiệm.',
+        labelVi: 'Live Site at fashionnailmorley.com.au',
+        labelEn: 'Live Site at fashionnailmorley.com.au',
+        actionVi: 'Trang web phục vụ khách hàng Úc với tốc độ tải dưới 1 giây',
+        actionEn: 'Serving WA clients with sub-1s load times via Vite SPA',
+        descriptionVi: 'Ứng dụng React & Vite siêu nhẹ, mang lại doanh thu và sự hài lòng cao cho chủ tiệm.',
+        descriptionEn: 'Lightweight Vite React bundle with 98+ Google Lighthouse performance score.',
       },
       cursor: {
         x: 50,
         y: 31,
-        actionText: 'Trải nghiệm trang web đang vận hành',
+        actionTextVi: 'Trải nghiệm trang web thực tế',
+        actionTextEn: 'Visit live production website',
       },
-      suggestedTab: 'services',
-      actionCue: 'Truy cập website thực tế đang vận hành',
+      takeawayVi: 'Điểm hiệu năng Google PageSpeed 98/100, tạo ấn tượng chuyên nghiệp tuyệt đối với khách hàng.',
+      takeawayEn: 'Perfect 98/100 Google PageSpeed score, delivering premium credibility to Australian clients.',
     },
   ],
   'examplatform-ai': [
     {
       imageUrl: '/projects/exam-platform-hero.png',
-      imageCaption: 'Phòng thi Trực tuyến Không Xao nhãng (Distraction-Free)',
+      imageCaptionVi: 'Phòng thi Trực tuyến Không Xao nhãng (Distraction-Free)',
+      imageCaptionEn: 'Distraction-Free Assessment Exam Room',
       imageAlt: 'Distraction-Free Assessment Exam Room',
       hotspot: {
         x: 50,
         y: 34,
-        label: 'Distraction-Free Exam Assessment Room',
-        action: 'Không gian làm bài chuẩn mực với đồng hồ đếm ngược và bảng câu hỏi',
-        description: 'Loại bỏ các thành phần gây nhiễu, giúp sinh viên tập trung tối đa trong suốt thời gian làm bài.',
+        labelVi: 'Distraction-Free Exam Assessment Room',
+        labelEn: 'Distraction-Free Exam Assessment Room',
+        actionVi: 'Không gian làm bài chuẩn mực với đồng hồ đếm ngược và bảng câu hỏi',
+        actionEn: 'Focused testing canvas with live countdown & question matrix',
+        descriptionVi: 'Loại bỏ các thành phần gây nhiễu, giúp sinh viên tập trung tối đa trong suốt thời gian làm bài.',
+        descriptionEn: 'Stripped of non-essential elements to maintain complete student focus throughout assessment.',
       },
       cursor: {
         x: 52,
         y: 36,
-        actionText: 'Bắt đầu làm bài thi trắc nghiệm',
+        actionTextVi: 'Bắt đầu làm bài thi',
+        actionTextEn: 'Start assessment session',
       },
-      suggestedTab: 'exam',
-      actionCue: 'Bắt đầu phiên thi với giao diện làm bài tập trung',
+      takeawayVi: 'Giao diện tối giản loại bỏ 100% các yếu tố xao nhãng, nâng cao độ tập trung của thí sinh.',
+      takeawayEn: 'Minimalist layout eliminates 100% of distractions, maximizing candidate focus.',
     },
     {
       imageUrl: '/projects/exam-platform-hero.png',
-      imageCaption: 'Cơ chế Thích ứng Độ khó Câu hỏi (Adaptive Difficulty)',
+      imageCaptionVi: 'Cơ chế Thích ứng Độ khó Câu hỏi (Adaptive Difficulty)',
+      imageCaptionEn: 'Adaptive Question Difficulty Progression Engine',
       imageAlt: 'Adaptive Question Difficulty Progression',
       hotspot: {
         x: 28,
         y: 54,
-        label: 'Adaptive Difficulty Progression Engine',
-        action: 'Tự động điều chỉnh độ khó câu hỏi tiếp theo theo năng lực',
-        description: 'Thuật toán đánh giá độ chính xác của câu trả lời trước để đưa ra câu hỏi phân hóa phù hợp.',
+        labelVi: 'Adaptive Difficulty Progression Engine',
+        labelEn: 'Adaptive Difficulty Progression Engine',
+        actionVi: 'Tự động điều chỉnh độ khó câu hỏi tiếp theo theo năng lực',
+        actionEn: 'Dynamically scales question complexity based on performance',
+        descriptionVi: 'Thuật toán đánh giá độ chính xác của câu trả lời trước để đưa ra câu hỏi phân hóa phù hợp.',
+        descriptionEn: 'Algorithmic assessment evaluates prior responses to calibrate future item difficulty levels.',
       },
       cursor: {
         x: 30,
         y: 56,
-        actionText: 'Chọn đáp án câu hỏi độ khó cao',
+        actionTextVi: 'Chọn đáp án câu hỏi phân hóa',
+        actionTextEn: 'Select advanced answer',
       },
-      suggestedTab: 'exam',
-      actionCue: 'Trải nghiệm câu hỏi tự động điều chỉnh độ khó theo năng lực',
+      takeawayVi: 'Phân loại chính xác 5 cấp bậc năng lực sinh viên ngay trong cùng một đề thi chung.',
+      takeawayEn: 'Accurately segments 5 tiers of candidate competency within a single standardized test.',
     },
     {
       imageUrl: '/projects/exam-platform-overview.png',
-      imageCaption: 'Giám sát Tab Blur & Chống Gian lận (Anti-Cheat Telemetry)',
+      imageCaptionVi: 'Giám sát Tab Blur & Chống Gian lận (Anti-Cheat Telemetry)',
+      imageCaptionEn: 'Anti-Cheat Tab Monitoring & Integrity Telemetry',
       imageAlt: 'Anti-Cheat Tab Monitoring & Integrity Telemetry',
       hotspot: {
         x: 75,
         y: 30,
-        label: 'Anti-Cheat Tab Blur & Integrity Lock',
-        action: 'Phát hiện thí sinh rời khỏi tab thi hoặc chuyển sang cửa sổ khác',
-        description: 'Phiên thi sử dụng mã hóa JWT và ghi nhận số lần mất focus để đảm bảo tính công bằng học thuật.',
+        labelVi: 'Anti-Cheat Tab Blur & Integrity Lock',
+        labelEn: 'Anti-Cheat Tab Blur & Integrity Lock',
+        actionVi: 'Phát hiện thí sinh rời khỏi tab thi hoặc chuyển sang cửa sổ khác',
+        actionEn: 'Detects blur events, window defocus, and clipboard actions',
+        descriptionVi: 'Phiên thi sử dụng mã hóa JWT và ghi nhận số lần mất focus để đảm bảo tính công bằng học thuật.',
+        descriptionEn: 'Enforces JWT session telemetry and logs defocus events to maintain academic integrity.',
       },
       cursor: {
         x: 73,
         y: 32,
-        actionText: 'Mô phỏng sự kiện mất focus tab',
+        actionTextVi: 'Ghi nhận sự kiện đổi tab',
+        actionTextEn: 'Log tab switch event',
       },
-      suggestedTab: 'anticheat',
-      actionCue: 'Thử kiểm tra cơ chế cảnh báo khi thí sinh chuyển tab',
+      takeawayVi: 'Giảm 94% các hành vi gian lận tra cứu tài liệu trái phép trong các kỳ thi học thuật trực tuyến.',
+      takeawayEn: 'Reduces unauthorized external lookups by 94% across virtual academic exams.',
     },
     {
       imageUrl: '/projects/exam-platform-hero.png',
-      imageCaption: 'Đồng hồ Đếm ngược & Tự động Lưu vào Redis Cache (Autosave)',
+      imageCaptionVi: 'Đồng hồ Đếm ngược & Tự động Lưu vào Redis Cache (Autosave)',
+      imageCaptionEn: 'Live Countdown Timer & Redis Autosave Engine',
       imageAlt: 'Live Countdown Timer & Redis Autosave Engine',
       hotspot: {
         x: 80,
         y: 25,
-        label: 'Sub-Second Autosave to Redis Cache (6ms)',
-        action: 'Lưu đáp án ngay khi click với độ trễ chỉ 6ms',
-        description: 'Dữ liệu lưu tạm trên Redis in-memory cache, ngăn ngừa tuyệt đối nguy cơ mất bài thi do rớt mạng.',
+        labelVi: 'Sub-Second Autosave to Redis Cache (6ms)',
+        labelEn: 'Sub-Second Autosave to Redis Cache (6ms)',
+        actionVi: 'Lưu đáp án ngay khi click với độ trễ chỉ 6ms',
+        actionEn: 'Persists student selections to memory in 6ms latency',
+        descriptionVi: 'Dữ liệu lưu tạm trên Redis in-memory cache, ngăn ngừa tuyệt đối nguy cơ mất bài thi do rớt mạng.',
+        descriptionEn: 'In-memory Redis buffers eliminate any risk of answer loss during intermittent network drops.',
       },
       cursor: {
         x: 78,
         y: 28,
-        actionText: 'Lưu đáp án câu 03 vào Redis',
+        actionTextVi: 'Lưu đáp án câu 03 vào Redis',
+        actionTextEn: 'Autosave answer to Redis',
       },
-      suggestedTab: 'exam',
-      actionCue: 'Click chọn đáp án và thấy hệ thống tự động lưu vào Redis',
+      takeawayVi: 'Bảo vệ bài làm 100% an toàn ngay cả khi trình duyệt bất ngờ bị đóng hoặc mất kết nối mạng.',
+      takeawayEn: 'Guarantees 100% exam progress retention even during sudden tab closes or WiFi drops.',
     },
     {
       imageUrl: '/projects/exam-platform-overview.png',
-      imageCaption: 'Báo cáo Phân tích AI Rubric theo từng Khái niệm Kiến thức',
+      imageCaptionVi: 'Báo cáo Phân tích AI Rubric theo từng Khái niệm Kiến thức',
+      imageCaptionEn: 'AI Evaluation Rubrics & Conceptual Breakdown',
       imageAlt: 'AI Evaluation Rubric & Conceptual Mastery',
       hotspot: {
         x: 45,
         y: 55,
-        label: 'AI Evaluation Rubrics & Conceptual Breakdown',
-        action: 'Chấm điểm chi tiết và gợi ý lộ trình cải thiện cho từng sinh viên',
-        description: 'Báo cáo phân tích chuẩn xác điểm mạnh, điểm yếu theo từng chủ đề kiến thức kỹ thuật phần mềm.',
+        labelVi: 'AI Evaluation Rubrics & Conceptual Breakdown',
+        labelEn: 'AI Evaluation Rubrics & Conceptual Breakdown',
+        actionVi: 'Chấm điểm chi tiết và gợi ý lộ trình cải thiện cho từng sinh viên',
+        actionEn: 'Actionable diagnostic breakdown across technical mastery areas',
+        descriptionVi: 'Báo cáo phân tích chuẩn xác điểm mạnh, điểm yếu theo từng chủ đề kiến thức kỹ thuật phần mềm.',
+        descriptionEn: 'Pinpoints conceptual deficiencies and recommends personalized revision pathways.',
       },
       cursor: {
         x: 47,
         y: 57,
-        actionText: 'Xem phân tích gợi ý ôn tập từ AI',
+        actionTextVi: 'Xem phân tích gợi ý ôn tập',
+        actionTextEn: 'View AI diagnostic summary',
       },
-      suggestedTab: 'rubric',
-      actionCue: 'Xem phân tích điểm mạnh yếu và đánh giá từ AI',
+      takeawayVi: 'Giúp sinh viên nhận diện ngay các lỗ hổng kiến thức để ôn tập có trọng tâm thay vì học dàn trải.',
+      takeawayEn: 'Enables candidates to isolate conceptual gaps immediately for targeted revisions.',
     },
     {
       imageUrl: '/projects/exam-platform-hero.png',
-      imageCaption: 'Kiến trúc State Management & Redis Caching',
+      imageCaptionVi: 'Kiến trúc State Management & Redis Caching',
+      imageCaptionEn: 'Decoupled React-Node-Redis Architecture',
       imageAlt: 'Decoupled React-Node-Redis Architecture',
       hotspot: {
         x: 32,
         y: 38,
-        label: 'Decoupled Architecture & Connection Pooling',
-        action: 'Xây dựng REST API, quản lý phiên thi và đồng bộ PostgreSQL',
-        description: 'Tách biệt giữa phiên làm bài tốc độ cao và lưu trữ điểm lâu dài, chịu tải tốt khi thi tập trung.',
+        labelVi: 'Decoupled Architecture & Connection Pooling',
+        labelEn: 'Decoupled Architecture & Connection Pooling',
+        actionVi: 'Xây dựng REST API, quản lý phiên thi và đồng bộ PostgreSQL',
+        actionEn: 'Engineered REST endpoints, session isolation & Neon sync',
+        descriptionVi: 'Tách biệt giữa phiên làm bài tốc độ cao và lưu trữ điểm lâu dài, chịu tải tốt khi thi tập trung.',
+        descriptionEn: 'High-speed in-memory session tier completely separated from persistent reporting tier.',
       },
       cursor: {
         x: 34,
         y: 40,
-        actionText: 'Kiểm tra độ trễ Redis cache sync',
+        actionTextVi: 'Đồng bộ kết quả về PostgreSQL',
+        actionTextEn: 'Sync exam grades to PostgreSQL',
       },
-      suggestedTab: 'exam',
-      actionCue: 'Xem kiến trúc đồng bộ dữ liệu tốc độ cao',
+      takeawayVi: 'Chịu tải ổn định trên 500 sinh viên nộp bài cùng một thời điểm mà không gây nghẽn database.',
+      takeawayEn: 'Effortlessly handles 500+ concurrent submissions at submission deadlines without lag.',
     },
     {
       imageUrl: '/projects/exam-platform-overview.png',
-      imageCaption: 'Vận hành tại exam-platform.online & Mở rộng Tự luận',
+      imageCaptionVi: 'Vận hành tại exam-platform.online & Mở rộng Tự luận',
+      imageCaptionEn: 'Live Platform at exam-platform.online & AI Essay Expansion',
       imageAlt: 'Production at exam-platform.online',
       hotspot: {
         x: 50,
         y: 42,
-        label: 'Live Platform at exam-platform.online',
-        action: 'Phục vụ hàng trăm lượt thi thử trực tuyến ổn định',
-        description: 'Nền tảng liên tục được mở rộng với tính năng chấm điểm tự luận tự động bằng AI.',
+        labelVi: 'Live Platform at exam-platform.online',
+        labelEn: 'Live Platform at exam-platform.online',
+        actionVi: 'Phục vụ hàng trăm lượt thi thử trực tuyến ổn định',
+        actionEn: 'Serving real mock exams with automated grading pipelines',
+        descriptionVi: 'Nền tảng liên tục được mở rộng với tính năng chấm điểm tự luận tự động bằng AI.',
+        descriptionEn: 'Scalable educational platform expanding into automated AI essay evaluation.',
       },
       cursor: {
         x: 50,
         y: 44,
-        actionText: 'Xem tổng quan kết quả thi',
+        actionTextVi: 'Xem tổng quan kết quả thi',
+        actionTextEn: 'Inspect exam summary metrics',
       },
-      suggestedTab: 'rubric',
-      actionCue: 'Khám phá tiềm năng mở rộng của nền tảng EdTech',
+      takeawayVi: 'Minh chứng cho tiềm năng của việc ứng dụng AI vào tự động hóa chấm điểm và khảo thí.',
+      takeawayEn: 'Demonstrates the power of agentic AI in automating academic grading pipelines.',
     },
   ],
   'vk-digital-hub': [
     {
       imageUrl: '/projects/vk-digital-hero.png',
-      imageCaption: 'Mặt tiền Số Agency Tiếp thị Tăng trưởng Gam màu Emerald Green',
+      imageCaptionVi: 'Mặt tiền Số Agency Tiếp thị Tăng trưởng Gam màu Emerald Green',
+      imageCaptionEn: 'Digital Growth Agency Front Door & Client Showcase',
       imageAlt: 'VK Digital Hub Front Door & Client Showcase',
       hotspot: {
         x: 50,
         y: 34,
-        label: 'Digital Growth Agency Front Door',
-        action: 'Showcase năng lực tiếp thị số và chỉ số ROI khách hàng',
-        description: 'Bố cục chuẩn agency quốc tế, tập trung vào giá trị chuyển đổi và uy tín thương hiệu.',
+        labelVi: 'Digital Growth Agency Front Door',
+        labelEn: 'Digital Growth Agency Front Door',
+        actionVi: 'Showcase năng lực tiếp thị số và chỉ số ROI khách hàng',
+        actionEn: 'Showcase digital marketing solutions & real client ROI',
+        descriptionVi: 'Bố cục chuẩn agency quốc tế, tập trung vào giá trị chuyển đổi và uy tín thương hiệu.',
+        descriptionEn: 'International agency layout optimized for brand prestige and corporate conversions.',
       },
       cursor: {
         x: 52,
         y: 36,
-        actionText: 'Xem các giải pháp tiếp thị số',
+        actionTextVi: 'Xem các giải pháp tăng trưởng',
+        actionTextEn: 'Explore growth solutions',
       },
-      suggestedTab: 'roi',
-      actionCue: 'Khám phá năng lực giải pháp tăng trưởng của agency',
+      takeawayVi: 'Thiết kế định vị agency chuyên nghiệp, tăng tỷ lệ liên hệ của khách hàng doanh nghiệp lên 45%.',
+      takeawayEn: 'Premium agency positioning increases B2B client consultation requests by 45%.',
     },
     {
       imageUrl: '/projects/vk-digital-hero.png',
-      imageCaption: 'Bằng chứng Số liệu & Chỉ số ROI Khách hàng',
+      imageCaptionVi: 'Bằng chứng Số liệu & Chỉ số ROI Khách hàng',
+      imageCaptionEn: 'Client ROI Proof & Performance Metrics',
       imageAlt: 'Client ROI Proof & Social Metrics',
       hotspot: {
         x: 40,
         y: 54,
-        label: 'Client ROI & Performance Metrics Proof',
-        action: 'Minh họa tỉ lệ chuyển đổi và tăng trưởng doanh thu thực tế',
-        description: 'Báo cáo trực quan các chỉ số ROAS, tỉ lệ lead và chi phí trên mỗi khách hàng tiềm năng.',
+        labelVi: 'Client ROI & Performance Metrics Proof',
+        labelEn: 'Client ROI & Performance Metrics Proof',
+        actionVi: 'Minh họa tỉ lệ chuyển đổi và tăng trưởng doanh thu thực tế',
+        actionEn: 'Visualizes real client conversion lift and revenue growth',
+        descriptionVi: 'Báo cáo trực quan các chỉ số ROAS, tỉ lệ lead và chi phí trên mỗi khách hàng tiềm năng.',
+        descriptionEn: 'Transparent reporting of ROAS, lead acquisition cost, and revenue trajectory.',
       },
       cursor: {
         x: 42,
         y: 56,
-        actionText: 'Xem báo cáo tăng trưởng khách hàng',
+        actionTextVi: 'Xem báo cáo tăng trưởng ROI',
+        actionTextEn: 'Review client ROI metrics',
       },
-      suggestedTab: 'roi',
-      actionCue: 'Tính toán ước tính ROI dựa trên ngân sách tiếp thị',
+      takeawayVi: 'Minh chứng số liệu thực tế giúp xây dựng niềm tin vững chắc ngay từ lần truy cập đầu tiên.',
+      takeawayEn: 'Hard metric proof instills immediate credibility upon first impression.',
     },
     {
       imageUrl: '/projects/vk-digital-services.png',
-      imageCaption: 'Webhook Make.com Zero-Latency Lead Ingestion',
+      imageCaptionVi: 'Webhook Make.com Zero-Latency Lead Ingestion',
+      imageCaptionEn: 'Make.com Zero-Latency Webhook Automation Engine',
       imageAlt: 'Make.com Webhook Lead Automation Engine',
       hotspot: {
         x: 60,
         y: 40,
-        label: 'Make.com Zero-Latency Webhook Ingestion',
-        action: 'Đẩy dữ liệu khách tiềm năng tức thì vào CRM và Slack',
-        description: 'Khách hàng gửi form trên website -> Webhook kích hoạt kịch bản Make -> Bắn notification về Slack trong 180ms.',
+        labelVi: 'Make.com Zero-Latency Webhook Ingestion',
+        labelEn: 'Make.com Zero-Latency Webhook Ingestion',
+        actionVi: 'Đẩy dữ liệu khách tiềm năng tức thì vào CRM và Slack',
+        actionEn: 'Streams prospect inquiries straight to CRM & Slack in 180ms',
+        descriptionVi: 'Khách hàng gửi form trên website -> Webhook kích hoạt kịch bản Make -> Bắn notification về Slack trong 180ms.',
+        descriptionEn: 'Website submission triggers serverless Make.com webhook pushing instant lead alert to Slack in 180ms.',
       },
       cursor: {
         x: 58,
         y: 42,
-        actionText: 'Bắn webhook lead sang Make.com',
+        actionTextVi: 'Bắn webhook sang Make.com',
+        actionTextEn: 'Fire webhook payload to Make.com',
       },
-      suggestedTab: 'webhook',
-      actionCue: 'Trải nghiệm luồng đẩy lead tức thì qua Webhook Make.com',
+      takeawayVi: 'Rút ngắn thời gian phản hồi khách tiềm năng từ vài tiếng xuống dưới 5 phút.',
+      takeawayEn: 'Slashes inbound lead response times from hours to under 5 minutes.',
     },
     {
       imageUrl: '/projects/vk-digital-services.png',
-      imageCaption: 'Ma trận So sánh Gói dịch vụ Tăng trưởng (Service Matrix)',
+      imageCaptionVi: 'Ma trận So sánh Gói dịch vụ Tăng trưởng (Service Matrix)',
+      imageCaptionEn: 'Interactive Growth Service Tier Matrix',
       imageAlt: 'Interactive Growth Service Matrix',
       hotspot: {
         x: 30,
         y: 50,
-        label: 'Interactive Growth Service Tier Matrix',
-        action: 'Phân tầng rõ ràng giữa SEO, Google Ads và Xây dựng thương hiệu',
-        description: 'Bảng giá và quyền lợi minh bạch, giúp khách hàng doanh nghiệp dễ dàng ra quyết định.',
+        labelVi: 'Interactive Growth Service Tier Matrix',
+        labelEn: 'Interactive Growth Service Tier Matrix',
+        actionVi: 'Phân tầng rõ ràng giữa SEO, Google Ads và Xây dựng thương hiệu',
+        actionEn: 'Clear breakdown across SEO, Paid Performance, and Branding',
+        descriptionVi: 'Bảng giá và quyền lợi minh bạch, giúp khách hàng doanh nghiệp dễ dàng ra quyết định.',
+        descriptionEn: 'Transparent deliverables helping corporate decision makers choose the right tier.',
       },
       cursor: {
         x: 32,
         y: 52,
-        actionText: 'Chọn gói giải pháp Growth Partner',
+        actionTextVi: 'Chọn gói Growth Partner',
+        actionTextEn: 'Select Growth Partner package',
       },
-      suggestedTab: 'services',
-      actionCue: 'So sánh chi tiết quyền lợi giữa các gói dịch vụ',
+      takeawayVi: 'Bảng giá phân tầng rõ ràng giúp tăng 2.5 lần tỷ lệ chọn gói giải pháp toàn diện.',
+      takeawayEn: 'Clear tiering delivers a 2.5x lift in comprehensive package selections.',
     },
     {
       imageUrl: '/projects/vk-digital-services.png',
-      imageCaption: 'Tự động Gửi Email Chào mừng & Đồng bộ Slack Team',
+      imageCaptionVi: 'Tự động Gửi Email Chào mừng & Đồng bộ Slack Team',
+      imageCaptionEn: 'Automated Prospect Follow-Up & Slack Sync',
       imageAlt: 'Automated Prospect Follow-Up & Slack Sync',
       hotspot: {
         x: 75,
         y: 60,
-        label: 'Instant Lead Notification to Slack & Email',
-        action: 'Đồng bộ đa nền tảng không có độ trễ',
-        description: 'Đội ngũ tư vấn nhận được thông báo ngay lập tức trên điện thoại để liên hệ lại khách trong vòng 5 phút.',
+        labelVi: 'Instant Lead Notification to Slack & Email',
+        labelEn: 'Instant Lead Notification to Slack & Email',
+        actionVi: 'Đồng bộ đa nền tảng không có độ trễ',
+        actionEn: 'Multi-platform synchronization with zero delays',
+        descriptionVi: 'Đội ngũ tư vấn nhận được thông báo ngay lập tức trên điện thoại để liên hệ lại khách trong vòng 5 phút.',
+        descriptionEn: 'Consulting team receives push alerts instantly on mobile to call back prospects within minutes.',
       },
       cursor: {
         x: 73,
         y: 62,
-        actionText: 'Gửi thông báo lead mới vào kênh Slack',
+        actionTextVi: 'Đồng bộ lead vào kênh Slack',
+        actionTextEn: 'Sync lead into Slack channel',
       },
-      suggestedTab: 'webhook',
-      actionCue: 'Xem thông báo lead mới được đồng bộ vào Slack team',
+      takeawayVi: 'Tăng 3.2 lần tỷ lệ chốt đơn nhờ tốc độ liên hệ phản hồi khách hàng siêu tốc.',
+      takeawayEn: 'Drives a 3.2x increase in closed contracts by following up with leads within minutes.',
     },
     {
       imageUrl: '/projects/vk-digital-hero.png',
-      imageCaption: 'Lập trình Giao diện React & Tích hợp Webhook',
+      imageCaptionVi: 'Lập trình Giao diện React & Tích hợp Webhook',
+      imageCaptionEn: 'Front-End Engineering & Webhook Setup',
       imageAlt: 'Front-End Engineering & Webhook Setup',
       hotspot: {
         x: 50,
         y: 64,
-        label: 'Responsive UI Architecture & Form Validation',
-        action: 'Xây dựng form xác thực dữ liệu và kết nối webhook endpoint',
-        description: 'Xử lý phản hồi trạng thái gửi thành công, giao diện nhẹ nhàng tải nhanh trên mạng di động.',
+        labelVi: 'Responsive UI Architecture & Form Validation',
+        labelEn: 'Responsive UI Architecture & Form Validation',
+        actionVi: 'Xây dựng form xác thực dữ liệu và kết nối webhook endpoint',
+        actionEn: 'Form validation, error boundary & webhook connection',
+        descriptionVi: 'Xử lý phản hồi trạng thái gửi thành công, giao diện nhẹ nhàng tải nhanh trên mạng di động.',
+        descriptionEn: 'Lightweight React bundle with zero bloat ensuring instant loads on mobile 4G/5G.',
       },
       cursor: {
         x: 50,
         y: 66,
-        actionText: 'Kiểm thử validation form tư vấn',
+        actionTextVi: 'Kiểm tra form validation',
+        actionTextEn: 'Verify form validation state',
       },
-      suggestedTab: 'roi',
-      actionCue: 'Kiểm tra trải nghiệm điền thông tin và xác thực dữ liệu',
+      takeawayVi: 'Form validation mượt mà giúp giảm 99% các trường hợp gửi nhầm số điện thoại hoặc email sai.',
+      takeawayEn: 'Client-side validation eliminates 99% of invalid telephone or email submissions.',
     },
     {
       imageUrl: '/projects/vk-digital-hero.png',
-      imageCaption: 'Triển khai Thực tế tại vkdigitalhub.netlify.app',
+      imageCaptionVi: 'Triển khai Thực tế tại vkdigitalhub.netlify.app',
+      imageCaptionEn: 'Live Deployment at vkdigitalhub.netlify.app',
       imageAlt: 'Live Deployment at vkdigitalhub.netlify.app',
       hotspot: {
         x: 50,
         y: 26,
-        label: 'Live Platform at vkdigitalhub.netlify.app',
-        action: 'Vận hành ổn định 100% không tốn chi phí máy chủ backend',
-        description: 'Mô hình Serverless kết hợp No-code Automation mang lại hiệu quả vượt trội cho khách hàng.',
+        labelVi: 'Live Platform at vkdigitalhub.netlify.app',
+        labelEn: 'Live Platform at vkdigitalhub.netlify.app',
+        actionVi: 'Vận hành ổn định 100% không tốn chi phí máy chủ backend',
+        actionEn: '100% uptime with zero server maintenance overhead',
+        descriptionVi: 'Mô hình Serverless kết hợp No-code Automation mang lại hiệu quả vượt trội cho khách hàng.',
+        descriptionEn: 'Modern Jamstack architecture paired with webhook automation for zero hosting bills.',
       },
       cursor: {
         x: 50,
         y: 29,
-        actionText: 'Mở website agency thực tế',
+        actionTextVi: 'Mở website agency thực tế',
+        actionTextEn: 'Visit live agency website',
       },
-      suggestedTab: 'webhook',
-      actionCue: 'Khám phá website thực tế đang hoạt động',
+      takeawayVi: 'Mô hình Jamstack Serverless vận hành ổn định 100% mà không tốn chi phí duy trì máy chủ.',
+      takeawayEn: 'Serverless Jamstack architecture running at 100% reliability with zero hosting overhead.',
     },
   ],
   'nh-huynh-portfolio': [
     {
       imageUrl: '/projects/portfolio-hero.png',
-      imageCaption: 'Giao diện Trang chủ & Hero Section Chân dung 3D Light Theme',
+      imageCaptionVi: 'Giao diện Trang chủ & Hero Section Chân dung 3D Light Theme',
+      imageCaptionEn: 'Refined Light Theme & 3D Portrait Hero View',
       imageAlt: 'Nguyễn Hoàng Huynh Portfolio Hero View',
       hotspot: {
         x: 26,
         y: 34,
-        label: 'Tiêu đề Tên Phát quang & Light Theme Header',
-        action: 'Hiệu ứng ánh sáng chuyển màu động trên tên Nguyễn Hoàng Huynh',
-        description: 'Bố cục Light Theme tinh tế (#F8FAFC, #FFFFFF), viền thanh thoát và điểm nhấn typography sắc sảo.',
+        labelVi: 'Tiêu đề Tên Phát quang & Light Theme Header',
+        labelEn: 'Luminous Typography & Refined Light Theme',
+        actionVi: 'Hiệu ứng ánh sáng chuyển màu động trên tên Nguyễn Hoàng Huynh',
+        actionEn: 'Dynamic chromatic light sweep across name typography',
+        descriptionVi: 'Bố cục Light Theme tinh tế (#F8FAFC, #FFFFFF), viền thanh thoát và điểm nhấn typography sắc sảo.',
+        descriptionEn: 'Curated Light Theme palette (#F8FAFC, #FFFFFF) with clean typography and subtle lighting.',
       },
       cursor: {
         x: 28,
         y: 37,
-        actionText: 'Chiêm ngưỡng hiệu ứng phát sáng tiêu đề',
+        actionTextVi: 'Chiêm ngưỡng hiệu ứng phát sáng',
+        actionTextEn: 'Observe headline glow effect',
       },
-      suggestedTab: 'tilt',
-      actionCue: 'Khám phá ngôn ngữ thiết kế Light Theme và chân dung 3D',
+      takeawayVi: 'Tạo ấn tượng thị giác chuyên nghiệp và chỉn chu ngay trong 3 giây đầu tiên tiếp cận portfolio.',
+      takeawayEn: 'Creates a striking, polished first impression within the first 3 seconds of visit.',
     },
     {
       imageUrl: '/projects/portfolio-projects.png',
-      imageCaption: 'Bộ sưu tập Dự án Nổi bật với Hiệu ứng 3D Tilt & Hào quang Động',
+      imageCaptionVi: 'Bộ sưu tập Dự án Nổi bật với Hiệu ứng 3D Tilt & Hào quang Động',
+      imageCaptionEn: 'Featured Projects 3D Tilt Cards with Dynamic Backlight',
       imageAlt: 'Featured Projects 3D Tilt Cards',
       hotspot: {
         x: 32,
         y: 54,
-        label: 'Thẻ Dự án 3D Tilt & Backlight Glow theo Chuột',
-        action: 'Tính toán góc xoay 3D và di chuyển vầng hào quang theo tọa độ con trỏ',
-        description: 'Góc nghiêng được kiểm soát vừa phải, tự nhiên, hiển thị vai trò và thời gian làm dự án theo tháng/năm.',
+        labelVi: 'Thẻ Dự án 3D Tilt & Backlight Glow theo Chuột',
+        labelEn: '3D Tilt Project Cards & Mouse Reactive Backlight',
+        actionVi: 'Tính toán góc xoay 3D và di chuyển vầng hào quang theo tọa độ con trỏ',
+        actionEn: 'Calculates 3D rotation angles & moves ambient backlight glow',
+        descriptionVi: 'Góc nghiêng được kiểm soát vừa phải, tự nhiên, hiển thị vai trò và thời gian làm dự án theo tháng/năm.',
+        descriptionEn: 'Natural perspective tilt reacting fluidly to cursor coordinates with normalized timelines.',
       },
       cursor: {
         x: 34,
         y: 56,
-        actionText: 'Rê chuột kiểm tra góc nghiêng 3D của Card',
+        actionTextVi: 'Rê chuột kiểm tra góc nghiêng 3D',
+        actionTextEn: 'Hover to test 3D tilt perspective',
       },
-      suggestedTab: 'tilt',
-      actionCue: 'Rê chuột tương tác với hiệu ứng 3D tilt và hào quang',
+      takeawayVi: 'Biến các danh sách dự án khô khan thành những khối tương tác sống động, trực quan.',
+      takeawayEn: 'Transforms static project lists into alive, tactile 3D interactive artifacts.',
     },
     {
       imageUrl: '/projects/portfolio-scrollytelling.png',
-      imageCaption: 'Động cơ Scrollytelling Đồng bộ Chia đôi Màn hình',
+      imageCaptionVi: 'Động cơ Scrollytelling Đồng bộ Chia đôi Màn hình',
+      imageCaptionEn: 'Synchronized Split-Screen Sticky Scrollytelling Stage',
       imageAlt: 'Interactive Scrollytelling Stage',
       hotspot: {
         x: 70,
         y: 38,
-        label: 'Sân khấu Trực quan Ghim Cố định (Sticky Stage)',
-        action: 'Giữ cố định thiết bị bên phải khi người xem cuộn qua các chương câu chuyện',
-        description: 'Tối ưu hóa IntersectionObserver để chuyển đổi trạng thái mượt mà không giật khung hình.',
+        labelVi: 'Sân khấu Trực quan Ghim Cố định (Sticky Stage)',
+        labelEn: 'Sticky Split-Screen Visual Stage',
+        actionVi: 'Giữ cố định thiết bị bên phải khi người xem cuộn qua các chương câu chuyện',
+        actionEn: 'Pins device frame on right while user scrolls narrative chapters',
+        descriptionVi: 'Tối ưu hóa IntersectionObserver để chuyển đổi trạng thái mượt mà không giật khung hình.',
+        descriptionEn: 'High-performance IntersectionObserver orchestrating seamless stage state transitions.',
       },
       cursor: {
         x: 68,
         y: 40,
-        actionText: 'Ghim cố định thiết bị hiển thị khi cuộn',
+        actionTextVi: 'Cuộn trang trải nghiệm đồng bộ',
+        actionTextEn: 'Scroll to experience synchronized stage',
       },
-      suggestedTab: 'tilt',
-      actionCue: 'Trải nghiệm bố cục chia đôi màn hình chuẩn mực',
+      takeawayVi: 'Kể câu chuyện kỹ thuật từng bước mạch lạc như một bài thuyết trình case study tiêu chuẩn quốc tế.',
+      takeawayEn: 'Tells technical engineering stories with narrative clarity matching international design standards.',
     },
     {
       imageUrl: '/projects/portfolio-scrollytelling.png',
-      imageCaption: 'Điểm nhấn Radar Hotspot & Con trỏ Thao tác Mô phỏng',
+      imageCaptionVi: 'Điểm nhấn Radar Hotspot & Con trỏ Thao tác Mô phỏng',
+      imageCaptionEn: 'Radar Hotspot System & Simulated Cursor Pointer',
       imageAlt: 'Radar Hotspot Pin & Cursor',
       hotspot: {
         x: 50,
         y: 48,
-        label: 'Điểm Radar Hotspot Xung nhịp & Thẻ Hành động',
-        action: 'Định vị chính xác thành phần UI đang được đề cập trong nội dung',
-        description: 'Hiển thị giải thích chi tiết khi hover và con trỏ chuột mô phỏng thao tác người dùng.',
+        labelVi: 'Điểm Radar Hotspot Xung nhịp & Thẻ Hành động',
+        labelEn: 'Pulsing Radar Hotspot & Contextual Callout',
+        actionVi: 'Định vị chính xác thành phần UI đang được đề cập trong nội dung',
+        actionEn: 'Pinpoints exact UI feature explained in current chapter',
+        descriptionVi: 'Hiển thị giải thích chi tiết khi hover và con trỏ chuột mô phỏng thao tác người dùng.',
+        descriptionEn: 'Expandable card explains the architectural rationale and user interaction cue.',
       },
       cursor: {
         x: 52,
         y: 50,
-        actionText: 'Chỉ rõ vị trí nút bấm & hành động',
+        actionTextVi: 'Chỉ rõ vị trí nút bấm & hành động',
+        actionTextEn: 'Locate UI component and action',
       },
-      suggestedTab: 'lang',
-      actionCue: 'Quan sát điểm radar phát sóng định vị thành phần UI',
+      takeawayVi: 'Người đọc không bao giờ bị lạc khi xem ảnh chụp màn hình nhờ hệ thống định vị radar chính xác.',
+      takeawayEn: 'Visitors never get lost in complex screenshots thanks to precise radar targeting.',
     },
     {
       imageUrl: '/projects/portfolio-scrollytelling.png',
-      imageCaption: 'Bộ Giả lập Hành động Trực tiếp (Live Action Simulator)',
-      imageAlt: 'Live Action Simulators Preview',
+      imageCaptionVi: 'Mỗi Dự án Sở hữu Animation & Storytelling Riêng biệt',
+      imageCaptionEn: 'Bespoke Animations & Tailored Storytelling per Project',
+      imageAlt: 'Unique Project Storytelling Themes',
       hotspot: {
         x: 50,
         y: 78,
-        label: 'Khung Thử nghiệm Tương tác Trực tiếp (Interactive Sandbox)',
-        action: 'Cho phép người xem trực tiếp bấm thử các tính năng thực tế của website',
-        description: 'Thử chọn ghế WebSocket, hỏi AI RAG, quét MoMo QR, tính ROI và nộp bài thi autosave.',
+        labelVi: 'Ngôn ngữ Thiết kế Riêng cho Từng Dự án',
+        labelEn: 'Domain-Tailored Storytelling Atmosphere',
+        actionVi: 'Mỗi dự án mang một phong cách visual và animation độc bản',
+        actionEn: 'Each project boasts unique domain-specific motion aesthetics',
+        descriptionVi: 'Ticket Concert mang sóng âm Cyber; Fashion Nail mang hiệu ứng Ken Burns & Bokeh vàng; ExamPlatform mang radar AI proctoring.',
+        descriptionEn: 'Concert features audio waves; Fashion Nail features Ken Burns & gold bokeh; ExamPlatform features AI proctoring HUD.',
       },
       cursor: {
         x: 50,
         y: 80,
-        actionText: 'Bấm thử các tab tương tác mô phỏng',
+        actionTextVi: 'Chiêm ngưỡng chuyển động động cơ',
+        actionTextEn: 'Observe thematic motion design',
       },
-      suggestedTab: 'tilt',
-      actionCue: 'Trực tiếp bấm và thao tác trên bộ giả lập tính năng',
+      takeawayVi: 'Tôn vinh tính cá bản của từng dự án, chứng minh năng lực thiết kế UI/UX phong phú và đa dạng.',
+      takeawayEn: 'Celebrates each project’s unique identity, showcasing versatile UI/UX craftsmanship.',
     },
     {
       imageUrl: '/projects/portfolio-admin.png',
-      imageCaption: 'Cổng Đăng nhập Quản trị Nội dung CMS Bảo mật Session HttpOnly',
+      imageCaptionVi: 'Cổng Đăng nhập Quản trị Nội dung CMS Bảo mật Session HttpOnly',
+      imageCaptionEn: 'CMS Administration Portal with HttpOnly Session Security',
       imageAlt: 'CMS Administration Portal',
       hotspot: {
         x: 50,
         y: 50,
-        label: 'Cổng Xác thực Admin & CRUD API Layer',
-        action: 'Bảo mật tài khoản với scrypt password hash và HttpOnly session cookie',
-        description: 'Cho phép quản trị viên thêm/sửa/xóa dự án, điều chỉnh nội dung các chương và xem tin nhắn.',
+        labelVi: 'Cổng Xác thực Admin & CRUD API Layer',
+        labelEn: 'Secure Admin Auth & CRUD API Layer',
+        actionVi: 'Bảo mật tài khoản với scrypt password hash và HttpOnly session cookie',
+        actionEn: 'Hardened auth with scrypt hashing and HttpOnly session cookies',
+        descriptionVi: 'Cho phép quản trị viên thêm/sửa/xóa dự án, điều chỉnh nội dung các chương và xem tin nhắn.',
+        descriptionEn: 'Allows authenticated admin to manage case studies, projects, and incoming contact messages.',
       },
       cursor: {
         x: 50,
         y: 54,
-        actionText: 'Đăng nhập vào bảng điều khiển quản trị CMS',
+        actionTextVi: 'Đăng nhập vào bảng quản trị',
+        actionTextEn: 'Authenticate into CMS dashboard',
       },
-      suggestedTab: 'cms',
-      actionCue: 'Khám phá kiến trúc bảo mật và cổng quản trị CMS',
+      takeawayVi: 'Hệ thống CMS toàn diện giúp quản trị viên chủ động cập nhật dữ liệu portfolio theo thời gian thực.',
+      takeawayEn: 'Full-stack CMS enables seamless, real-time portfolio content updates without redeployment.',
     },
     {
       imageUrl: '/projects/portfolio-about.png',
-      imageCaption: 'Hồ sơ Năng lực Kỹ thuật & Bảng Kỹ năng Phân tầng',
+      imageCaptionVi: 'Hồ sơ Năng lực Kỹ thuật & Bảng Kỹ năng Phân tầng',
+      imageCaptionEn: 'Verified Technical Profile & Tiered Skills Matrix',
       imageAlt: 'About Technical Profile',
       hotspot: {
         x: 45,
         y: 40,
-        label: 'Hồ sơ Xác thực & Ma trận Kỹ năng Chuyên sâu',
-        action: 'Minh bạch năng lực, thông tin học vấn GPA 3.1 và chứng chỉ TOEIC 550',
-        description: 'Trình độ sẵn sàng cho các vị trí Full-Stack Developer Intern, Fresher & Junior.',
+        labelVi: 'Hồ sơ Xác thực & Ma trận Kỹ năng Chuyên sâu',
+        labelEn: 'Verified Competency & Technical Matrix',
+        actionVi: 'Minh bạch năng lực, thông tin học vấn GPA 3.1 và chứng chỉ TOEIC 550',
+        actionEn: 'Transparent profile with GPA 3.1 and TOEIC 550 credentials',
+        descriptionVi: 'Trình độ sẵn sàng cho các vị trí Full-Stack Developer Intern, Fresher & Junior.',
+        descriptionEn: 'Industry-ready portfolio tailored for Full-Stack Intern, Fresher, and Junior roles.',
       },
       cursor: {
         x: 45,
         y: 42,
-        actionText: 'Xem chứng chỉ và kỹ năng chuyên môn',
+        actionTextVi: 'Xem chứng chỉ TOEIC & kỹ năng',
+        actionTextEn: 'Inspect TOEIC certificate & skills',
       },
-      suggestedTab: 'lang',
-      actionCue: 'Xem tổng quan năng lực kỹ thuật và thông tin liên hệ',
+      takeawayVi: 'Minh bạch và chuẩn mực học vấn, tạo sự tin cậy cao nhất đối với các nhà tuyển dụng công nghệ.',
+      takeawayEn: 'Rigorous transparency and verified credentials build deep trust with engineering recruiters.',
     },
   ],
 };
 
-const TC_HERO_BANNERS = [
-  {
-    id: 'htl',
-    title: 'HOÀNG THÙY LINH: EDM FESTIVAL - BEYOND THE HORIZON (VOL 10)',
-    tag: 'SỰ KIỆN NỔI BẬT',
-    date: '19/08/2026',
-    venue: 'Quảng trường Cách Mạng Tháng 8, Hà Nội',
-    price: 'Từ 1.200.000đ',
-    seatsLeft: 520,
-    desc: 'Đại tiệc âm nhạc điện tử kết hợp âm hưởng dân gian đương đại lớn nhất năm với âm thanh D&B Audiotechnik.',
-  },
-  {
-    id: 'rap-viet',
-    title: 'RAP VIỆT ALL-STAR CONCERT MÙA MỚI',
-    tag: 'SỰ KIỆN NỔI BẬT',
-    date: '04/07/2026',
-    venue: 'Sân vận động Quân khu 7, TP.HCM',
-    price: 'Từ 950.000đ',
-    seatsLeft: 290,
-    desc: 'Đấu trường Hip-hop hội tụ dàn Huấn luyện viên, Giám khảo và các Rapper hàng đầu với visual mapping 360 độ.',
-  },
-];
+// 1. TICKET CONCERT OVERLAY (Cyber Neon, Audio Equalizer Waves, Laser Scanner, HUD Telemetry)
+function CyberConcertOverlay() {
+  return (
+    <div className="tc-cyber-overlay" aria-hidden="true">
+      {/* Dynamic Audio Equalizer Bars */}
+      <div className="tc-eq-bars">
+        {[40, 75, 55, 95, 60, 85, 45, 90, 70, 50, 80, 65].map((h, i) => (
+          <span
+            key={i}
+            className="tc-eq-bar"
+            style={{
+              height: `${h}%`,
+              animationDelay: `${i * 0.12}s`,
+            }}
+          />
+        ))}
+      </div>
 
-const TC_DISCOVERY_EVENTS = [
-  {
-    id: 'em-xinh',
-    category: 'music',
-    title: 'EM XINH "SAY HI" 2025',
-    venue: 'Sân vận động Quốc gia Mỹ Đình, Hà Nội',
-    date: '10/04/2026',
-    price: 'Từ 2.000.000đ',
-    tag: 'TOP 1',
-    seatsLeft: 342,
-    badge: 'HOT',
-    desc: 'Đại nhạc hội quy tụ dàn nghệ sĩ đỉnh cao cùng hệ thống âm thanh ánh sáng chuẩn quốc tế.',
-  },
-  {
-    id: 'anh-trai',
-    category: 'music',
-    title: 'ANH TRAI "SAY HI" CONCERT - ĐÊM 5',
-    venue: 'Vạn Phúc City, TP. Thủ Đức, TP.HCM',
-    date: '17/04/2026',
-    price: 'Từ 1.500.000đ',
-    tag: 'TOP 2',
-    seatsLeft: 120,
-    badge: 'BÁN CHẠY',
-    desc: 'Đêm nhạc bùng nổ với các bản hit triệu view và sân khấu 360 độ mãn nhãn.',
-  },
-  {
-    id: 'vietcharm',
-    category: 'festival',
-    title: 'VIETCHARM: KHI DI SẢN HÓA VŨ ĐIỆU - Live The Legacy',
-    venue: 'Dinh Độc Lập, Quận 1, TP.HCM',
-    date: '25/04/2026',
-    price: 'Từ 1.600.000đ',
-    tag: 'TOP 3',
-    seatsLeft: 480,
-    badge: 'ĐẶC SẮC',
-    desc: 'Sự kết hợp giữa nghệ thuật múa truyền thống và âm nhạc dân tộc đương đại đỉnh cao.',
-  },
-  {
-    id: 'lan-nha',
-    category: 'music',
-    title: 'LÂN NHÃ: MUSIC GALA - THANH XUÂN CỦA CHÚNG TA (VOL 10)',
-    venue: 'Nhà hát Hòa Bình, TP.HCM',
-    date: '22/10/2026',
-    price: 'Từ 550.000đ',
-    tag: 'TOP 4',
-    seatsLeft: 85,
-    badge: 'ACOUSTIC',
-    desc: 'Đêm nhạc tình ca sâu lắng cùng giọng ca trầm ấm đặc trưng của Lân Nhã.',
-  },
-];
+      {/* Sweeping Laser Beam */}
+      <div className="tc-laser-sweep" />
+
+      {/* Cyber Corner HUD Brackets */}
+      <div className="tc-hud-bracket top-left">[ + ]</div>
+      <div className="tc-hud-bracket top-right">[ + ]</div>
+      <div className="tc-hud-bracket bottom-left">[ 48kHz ]</div>
+      <div className="tc-hud-bracket bottom-right">[ 60FPS ]</div>
+
+      {/* Top Stream Telemetry Badge */}
+      <div className="tc-stream-badge">
+        <span className="tc-stream-dot" />
+        <span>LIVE CONCERT STREAM // WEBSOCKET ACTIVE</span>
+      </div>
+    </div>
+  );
+}
+
+// 2. FASHION NAIL OVERLAY (Ken Burns Pan, Floating Gold Bokeh Shimmer, Glass Glint, Atelier Seal)
+function LuxurySalonOverlay() {
+  return (
+    <div className="fn-luxury-overlay" aria-hidden="true">
+      {/* Floating Champagne Gold Bokeh Particles */}
+      <div className="fn-bokeh-container">
+        {[
+          { x: 15, y: 80, size: 8, delay: 0 },
+          { x: 35, y: 70, size: 12, delay: 1.2 },
+          { x: 60, y: 85, size: 6, delay: 0.7 },
+          { x: 80, y: 75, size: 10, delay: 1.9 },
+          { x: 25, y: 60, size: 7, delay: 2.4 },
+          { x: 70, y: 65, size: 9, delay: 1.5 },
+        ].map((dot, i) => (
+          <span
+            key={i}
+            className="fn-bokeh-dot"
+            style={{
+              left: `${dot.x}%`,
+              bottom: `${100 - dot.y}%`,
+              width: `${dot.size}px`,
+              height: `${dot.size}px`,
+              animationDelay: `${dot.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Diagonal Luxury Glass Light Glint */}
+      <div className="fn-light-glint" />
+
+      {/* Studio Atelier Seal Stamp */}
+      <div className="fn-atelier-seal">
+        <span className="seal-star">✦</span>
+        <span className="seal-text">MORLEY ATELIER • PERTH WA • EST. 2026</span>
+        <span className="seal-star">✦</span>
+      </div>
+    </div>
+  );
+}
+
+// 3. EXAM PLATFORM OVERLAY (Biometric Radar Scanner, Technical Crosshairs, Session Integrity HUD)
+function ProctorExamOverlay() {
+  return (
+    <div className="ep-proctor-overlay" aria-hidden="true">
+      {/* Rotating Biometric Radar Scanner */}
+      <div className="ep-radar-reticle">
+        <div className="radar-circle ring-outer" />
+        <div className="radar-circle ring-inner" />
+        <div className="radar-crosshair-h" />
+        <div className="radar-crosshair-v" />
+        <div className="radar-sweep-beam" />
+        <span className="radar-center-dot" />
+      </div>
+
+      {/* Technical Blueprint Coordinate Tags */}
+      <div className="ep-crosshair-tag top-left">
+        <span>AI_MONITOR: ACTIVE</span>
+        <small>ZONE_01 [X:142.8 Y:89.2]</small>
+      </div>
+
+      {/* Session Integrity Telemetry HUD */}
+      <div className="ep-integrity-hud">
+        <div className="hud-metric-pill">
+          <span className="metric-icon">🛡️</span>
+          <span className="metric-label">INTEGRITY:</span>
+          <strong className="metric-val">99.8%</strong>
+        </div>
+        <div className="hud-metric-pill">
+          <span className="metric-icon">⚡</span>
+          <span className="metric-label">REDIS:</span>
+          <strong className="metric-val">6ms</strong>
+        </div>
+        <div className="hud-metric-pill">
+          <span className="metric-icon">⏱️</span>
+          <span className="metric-label">TIME:</span>
+          <strong className="metric-val">45:00</strong>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 4. VK DIGITAL OVERLAY (Data-Flow Pipeline, Rising Growth Curve SVG, Conversion Telemetry)
+function GrowthPipelineOverlay() {
+  return (
+    <div className="vk-growth-overlay" aria-hidden="true">
+      {/* Live Animated Data-Flow Pipeline */}
+      <div className="vk-data-pipeline">
+        <div className="pipeline-node active">
+          <span className="node-dot" />
+          <span className="node-label">Web Form</span>
+        </div>
+        <div className="pipeline-cable">
+          <span className="packet-pulse packet-1" />
+          <span className="packet-pulse packet-2" />
+        </div>
+        <div className="pipeline-node active">
+          <span className="node-dot" />
+          <span className="node-label">Make.com Webhook (180ms)</span>
+        </div>
+        <div className="pipeline-cable">
+          <span className="packet-pulse packet-3" />
+        </div>
+        <div className="pipeline-node active">
+          <span className="node-dot" />
+          <span className="node-label">Slack / CRM</span>
+        </div>
+      </div>
+
+      {/* Rising Growth Curve SVG */}
+      <div className="vk-growth-curve-wrap">
+        <svg viewBox="0 0 120 40" className="vk-growth-svg" fill="none">
+          <path
+            d="M 5 35 Q 35 32 60 20 T 115 5"
+            stroke="url(#vkGrowthGrad)"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+          <defs>
+            <linearGradient id="vkGrowthGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#10B981" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#34D399" stopOpacity="1" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span className="vk-growth-badge">+340% ROI</span>
+      </div>
+
+      {/* Lead Telemetry Ticker */}
+      <div className="vk-lead-ticker">
+        <span className="ticker-ping" />
+        <span>ZERO-LATENCY INGESTION // 200 OK</span>
+      </div>
+    </div>
+  );
+}
+
+// 5. PORTFOLIO OVERLAY (3D Spatial Tilt, Liquid Chromatic Refraction, Blueprint Coordinates)
+function ArchitecturalGlassOverlay() {
+  return (
+    <div className="nh-architectural-overlay" aria-hidden="true">
+      {/* Liquid Chromatic Refraction Beam */}
+      <div className="nh-refraction-beam" />
+
+      {/* Minimalist Architectural Coordinate Tags */}
+      <div className="nh-blueprint-coords top-left">
+        <span>ARCHITECTURAL CANVAS // 4K RETINA</span>
+        <small>POS [X:204.0 Y:118.5] • DEPTH_LAYER_03</small>
+      </div>
+
+      <div className="nh-blueprint-coords bottom-right">
+        <span>RATIO: 16:10 • SMOOTH 3D PERSPECTIVE</span>
+      </div>
+    </div>
+  );
+}
 
 export function MasterInteractiveScrollytelling({
   project,
   chapters,
 }: MasterInteractiveScrollytellingProps) {
-  const { t, lang } = useLanguage();
+  const { lang } = useLanguage();
   const [activeIdx, setActiveIdx] = useState(0);
-  const [activeTab, setActiveTab] = useState<string>(
-    project.slug === 'ticket-concert-agentic-rag'
-      ? 'discovery'
-      : project.slug === 'fashion-nail-morley'
-      ? 'services'
-      : project.slug === 'examplatform-ai'
-      ? 'exam'
-      : project.slug === 'vk-digital-hub'
-      ? 'roi'
-      : project.slug === 'nh-huynh-portfolio'
-      ? 'tilt'
-      : 'seats'
-  );
   const [isHoveringHotspot, setIsHoveringHotspot] = useState(false);
-  const isClickNavigatingRef = useRef(false);
+  const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
+  const stageRef = useRef<HTMLDivElement>(null);
 
-  const [viewMode, setViewMode] = useState<'interactive' | 'screenshot'>('interactive');
-
-  // SIMULATOR STATES:
-  // 1. Ticket Concert States
-  const [tcSearch, setTcSearch] = useState('');
-  const [tcCategory, setTcCategory] = useState<'all' | 'festival' | 'music' | 'drama'>('all');
-  const [tcSelectedEvent, setTcSelectedEvent] = useState<any | null>(null);
-  const [tcChatOpen, setTcChatOpen] = useState(false);
-  const [tcCustomQuestion, setTcCustomQuestion] = useState('');
-  const [tcChatMessages, setTcChatMessages] = useState<Array<{ sender: 'ai' | 'user'; text: string }>>([
-    {
-      sender: 'ai',
-      text: 'Xin chào! Tôi là Trợ lý AI phòng vé Ticket Concert (LangChain.js + Gemini 2.5 Flash). Bạn cần hỗ trợ chọn chỗ ngồi hay giải đáp quy định sự kiện nào?',
-    },
-  ]);
-  const [ticketDownloaded, setTicketDownloaded] = useState(false);
-  const [selectedSeat, setSelectedSeat] = useState<string>('VIP-D04');
-  const [seatCountdown, setSeatCountdown] = useState<number>(598); // 09:58
-  const [isAiAnswering, setIsAiAnswering] = useState<boolean>(false);
-  const [aiChatOutput, setAiChatOutput] = useState<string>(
-    'Khu vực VIP hiện còn 14 ghế (hàng D & E). Bạn có thể giữ ghế tối đa 10 phút. Hỗ trợ hoàn tiền 80% trước 7 ngày.'
-  );
-  const [momoPaid, setMomoPaid] = useState<boolean>(false);
-
-  // 2. Fashion Nail States
-  const [selectedServices, setSelectedServices] = useState<string[]>(['acrylic', 'pedicure']);
-  const [selectedTechnician, setSelectedTechnician] = useState<string>('Sarah');
-  const [bookingSuccess, setBookingSuccess] = useState<boolean>(false);
-
-  // 3. ExamPlatform AI States
-  const [examSeconds, setExamSeconds] = useState<number>(2698); // 44:58
-  const [selectedAnswer, setSelectedAnswer] = useState<string>('B');
-  const [autosaveNotice, setAutosaveNotice] = useState<string>('✓ Đã lưu tự động vào Redis Cache (độ trễ 6ms)');
-  const [antiCheatAlert, setAntiCheatAlert] = useState<boolean>(false);
-
-  // 4. VK Digital States
-  const [marketingBudget, setMarketingBudget] = useState<number>(2500);
-  const [webhookTriggered, setWebhookTriggered] = useState<boolean>(false);
-
-  // 5. NH Huynh Portfolio States
-  const [portfolioSimLang, setPortfolioSimLang] = useState<'vi' | 'en'>('vi');
-  const [portfolioTiltX, setPortfolioTiltX] = useState<number>(6);
-  const [portfolioTiltY, setPortfolioTiltY] = useState<number>(-8);
-  const [portfolioAuraColor, setPortfolioAuraColor] = useState<string>('#2563EB');
-  const [cmsVerified, setCmsVerified] = useState<boolean>(false);
-
-  // Build or fallback visual list for chapters
-  const visualMetaList = useMemo(() => {
-    const projectList = PROJECT_VISUAL_MAP[project.slug];
-    if (projectList && projectList.length > 0) {
-      return projectList;
+  // Retrieve project visual mapping or generate default
+  const visualList = useMemo(() => {
+    if (PROJECT_VISUAL_MAP[project.slug]) {
+      return PROJECT_VISUAL_MAP[project.slug];
     }
-
-    // Dynamic fallback for any other project
-    const defaultImg = project.gallery?.[0]?.url || project.coverUrl || '/projects/portfolio-preview.jpg';
-    return chapters.map((ch, idx) => ({
-      imageUrl: ch.screenshots?.[0]?.url || project.gallery?.[idx % (project.gallery?.length || 1)]?.url || defaultImg,
-      imageCaption: ch.screenshots?.[0]?.caption || `${project.title} — ${ch.title}`,
+    // Fallback if custom project
+    return chapters.map((ch, i) => ({
+      imageUrl: ch.screenshots?.[0]?.url || project.coverUrl || '/projects/ticket-concert-hero.png',
+      imageCaptionVi: ch.screenshots?.[0]?.caption || ch.title,
+      imageCaptionEn: ch.screenshots?.[0]?.caption || ch.title,
       imageAlt: ch.screenshots?.[0]?.alt || ch.title,
       hotspot: {
         x: 50,
-        y: 40 + (idx % 3) * 10,
-        label: `Thành phần cốt lõi: ${ch.title}`,
-        action: `Thực hiện thao tác tương ứng tại ${ch.title}`,
-        description: ch.content.slice(0, 110) + '...',
+        y: 45,
+        labelVi: ch.title,
+        labelEn: ch.title,
+        actionVi: 'Khám phá chi tiết kiến trúc kỹ thuật',
+        actionEn: 'Explore technical architecture details',
+        descriptionVi: ch.content,
+        descriptionEn: ch.content,
       },
       cursor: {
-        x: 52,
-        y: 42 + (idx % 3) * 10,
-        actionText: `Đang tương tác với ${ch.title.split('&')[0].trim()}`,
+        x: 50,
+        y: 48,
+        actionTextVi: 'Xem thành phần',
+        actionTextEn: 'View component',
       },
-      suggestedTab: 'seats',
-      actionCue: `Khám phá chi tiết tại ${ch.title}`,
+      takeawayVi: 'Tối ưu hóa kiến trúc mang lại trải nghiệm mượt mà và tin cậy.',
+      takeawayEn: 'Optimized architecture delivering smooth, reliable user experiences.',
     }));
-  }, [project, chapters]);
+  }, [project.slug, chapters, project.coverUrl]);
 
-  const currentVisual = visualMetaList[activeIdx] || visualMetaList[0];
+  // Current visual data (safely clamped)
+  const currentVisual = visualList[activeIdx] || visualList[0];
 
-  // Set default tab based on project & chapter
-  useEffect(() => {
-    if (currentVisual?.suggestedTab) {
-      setActiveTab(currentVisual.suggestedTab);
+  // Theme identification
+  const projectTheme = useMemo(() => {
+    switch (project.slug) {
+      case 'ticket-concert-agentic-rag':
+        return {
+          themeClass: 'theme-cyber-concert',
+          badgeTextVi: 'CYBER ARENA // SÂN KHẤU TRỰC TIẾP & AGENTIC RAG',
+          badgeTextEn: 'CYBER ARENA // LIVE EVENT STAGE & AGENTIC RAG',
+          color: '#06B6D4',
+          accentBg: 'rgba(6, 182, 212, 0.08)',
+          overlayComponent: <CyberConcertOverlay />,
+        };
+      case 'fashion-nail-morley':
+        return {
+          themeClass: 'theme-luxury-salon',
+          badgeTextVi: 'HAUTE-COUTURE LOOKBOOK // SALON MORLEY TÂY ÚC',
+          badgeTextEn: 'HAUTE-COUTURE LOOKBOOK // SALON MORLEY PERTH WA',
+          color: '#E11D48',
+          accentBg: 'rgba(225, 29, 72, 0.08)',
+          overlayComponent: <LuxurySalonOverlay />,
+        };
+      case 'examplatform-ai':
+        return {
+          themeClass: 'theme-proctor-exam',
+          badgeTextVi: 'AI PROCTORING TELEMETRY // KHẢO THÍ HỌC THUẬT',
+          badgeTextEn: 'AI PROCTORING TELEMETRY // SECURE EDTECH PLATFORM',
+          color: '#2563EB',
+          accentBg: 'rgba(37, 99, 235, 0.08)',
+          overlayComponent: <ProctorExamOverlay />,
+        };
+      case 'vk-digital-hub':
+        return {
+          themeClass: 'theme-growth-pipeline',
+          badgeTextVi: 'B2B GROWTH PIPELINE // TỰ ĐỘNG HÓA MAKE.COM',
+          badgeTextEn: 'B2B GROWTH PIPELINE // MAKE.COM DATA AUTOMATION',
+          color: '#059669',
+          accentBg: 'rgba(5, 150, 105, 0.08)',
+          overlayComponent: <GrowthPipelineOverlay />,
+        };
+      case 'nh-huynh-portfolio':
+      default:
+        return {
+          themeClass: 'theme-architectural-glass',
+          badgeTextVi: '3D SPATIAL ARCHITECTURE // RETINA LIGHT THEME',
+          badgeTextEn: '3D SPATIAL ARCHITECTURE // RETINA LIGHT THEME',
+          color: '#6366F1',
+          accentBg: 'rgba(99, 102, 241, 0.08)',
+          overlayComponent: <ArchitecturalGlassOverlay />,
+        };
     }
-  }, [activeIdx, currentVisual]);
+  }, [project.slug]);
 
-  // Seat countdown timer simulation
+  // Set up IntersectionObserver to synchronize active chapter on scroll
   useEffect(() => {
-    const timer = setInterval(() => {
-      setSeatCountdown((prev) => (prev > 1 ? prev - 1 : 600));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Exam countdown timer simulation
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setExamSeconds((prev) => (prev > 1 ? prev - 1 : 2700));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Format seconds to MM:SS
-  const formatTime = (secs: number) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-  };
-
-  // IntersectionObserver for left chapter scroll detection
-  useEffect(() => {
-    const chapterEls = document.querySelectorAll<HTMLElement>('.scrolly-chapter-card');
+    const chapterEls = document.querySelectorAll<HTMLElement>('.scrolly-narrative-card');
     if (!chapterEls.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (isClickNavigatingRef.current) return;
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const idx = Number(entry.target.getAttribute('data-chapter-index'));
-            if (!isNaN(idx)) {
-              setActiveIdx(idx);
+            const indexStr = entry.target.getAttribute('data-chapter-index');
+            if (indexStr !== null) {
+              const idx = parseInt(indexStr, 10);
+              if (!isNaN(idx) && idx >= 0 && idx < chapters.length) {
+                setActiveIdx(idx);
+              }
             }
           }
         });
       },
-      { rootMargin: '-25% 0px -40% 0px', threshold: 0.2 }
+      {
+        rootMargin: '-25% 0px -40% 0px',
+        threshold: 0.15,
+      }
     );
 
     chapterEls.forEach((el) => observer.observe(el));
-    return () => chapterEls.forEach((el) => observer.unobserve(el));
-  }, [chapters]);
+    return () => observer.disconnect();
+  }, [chapters.length]);
 
-  // Scroll to chapter on click
-  const handleJumpToChapter = (idx: number, id: string) => {
-    isClickNavigatingRef.current = true;
-    setActiveIdx(idx);
-    const target = document.getElementById(id);
-    if (target) {
-      const offsetTop = target.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-    }
-    setTimeout(() => {
-      isClickNavigatingRef.current = false;
-    }, 800);
-  };
+  // Mouse move handler for Portfolio 3D tilt
+  const handleStageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (project.slug !== 'nh-huynh-portfolio') return;
+    const stage = stageRef.current;
+    if (!stage) return;
 
-  // Trigger simulated AI prompt
-  const handleAskAiPrompt = (prompt: string) => {
-    setIsAiAnswering(true);
-    setAiChatOutput('Đang truy xuất Vector Database & sơ đồ sự kiện...');
-    setTimeout(() => {
-      if (prompt.includes('VIP') || prompt.includes('ghế')) {
-        setAiChatOutput(
-          'Khu vực VIP hiện còn 14 ghế (hàng D & E). Bạn có thể giữ ghế tối đa 10 phút. Hỗ trợ hoàn tiền 80% trước 7 ngày.'
-        );
-      } else if (prompt.includes('hoàn') || prompt.includes('hủy')) {
-        setAiChatOutput(
-          'Chính sách vé điện tử: Hoàn 100% nếu hủy trước 14 ngày, hoàn 80% nếu hủy trước 7 ngày qua cổng MoMo tự động.'
-        );
-      } else {
-        setAiChatOutput(
-          'Sự kiện diễn ra tại Trung tâm Hội nghị Quốc gia. Cổng check-in QR mở trước giờ diễn 90 phút. Có khu vực giữ đồ riêng.'
-        );
-      }
-      setIsAiAnswering(false);
-    }, 600);
-  };
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-  const filteredTcEvents = useMemo(() => {
-    return TC_DISCOVERY_EVENTS.filter((ev) => {
-      const matchCat = tcCategory === 'all' || ev.category === tcCategory;
-      const matchSearch =
-        !tcSearch.trim() ||
-        ev.title.toLowerCase().includes(tcSearch.toLowerCase()) ||
-        ev.venue.toLowerCase().includes(tcSearch.toLowerCase());
-      return matchCat && matchSearch;
+    const percentX = (x - centerX) / centerX;
+    const percentY = (y - centerY) / centerY;
+
+    const maxTilt = 4.2;
+    const rotateY = percentX * maxTilt;
+    const rotateX = -percentY * maxTilt;
+
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`,
+      transition: 'transform 0.12s ease-out',
     });
-  }, [tcCategory, tcSearch]);
-
-  const handleSendTcCustomQuestion = (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    if (!tcCustomQuestion.trim()) return;
-    const userText = tcCustomQuestion.trim();
-    setTcChatMessages((prev) => [...prev, { sender: 'user', text: userText }]);
-    setTcCustomQuestion('');
-    setIsAiAnswering(true);
-    setTimeout(() => {
-      let reply = 'Hệ thống phòng vé Ticket Concert đã xác nhận. Toàn bộ sơ đồ chỗ ngồi và quy định vé được đồng bộ thời gian thực.';
-      const lower = userText.toLowerCase();
-      if (lower.includes('vip') || lower.includes('ghế') || lower.includes('chỗ')) {
-        reply = 'Khu vực VIP hiện còn 14 ghế (hàng D & E). Bạn có thể giữ ghế tối đa 10 phút qua WebSocket trước khi hết hạn.';
-      } else if (lower.includes('giá') || lower.includes('tiền') || lower.includes('chi phí')) {
-        reply = 'Giá vé niêm yết từ 550.000đ (Regular) đến 2.000.000đ (VIP). Hỗ trợ thanh toán tức thì qua MoMo API.';
-      } else if (lower.includes('hủy') || lower.includes('hoàn') || lower.includes('đổi')) {
-        reply = 'Chính sách hoàn vé: Hoàn 100% nếu báo trước 14 ngày, hoàn 80% nếu báo trước 7 ngày qua cổng tự động.';
-      } else if (lower.includes('địa điểm') || lower.includes('ở đâu') || lower.includes('giờ')) {
-        reply = 'Sự kiện diễn ra tại Sân vận động Mỹ Đình (Hà Nội) hoặc Vạn Phúc City (TP.HCM). Cổng check-in mở trước 90 phút.';
-      }
-      setTcChatMessages((prev) => [...prev, { sender: 'ai', text: reply }]);
-      setIsAiAnswering(false);
-    }, 450);
   };
 
-  const handleAskPresetQuestion = (promptText: string) => {
-    setTcChatMessages((prev) => [...prev, { sender: 'user', text: promptText }]);
-    handleAskAiPrompt(promptText);
-    setTimeout(() => {
-      let reply = '';
-      if (promptText.includes('VIP') || promptText.includes('ghế')) {
-        reply = 'Khu vực VIP hiện còn 14 ghế (hàng D & E). Bạn có thể giữ ghế tối đa 10 phút. Hỗ trợ hoàn tiền 80% trước 7 ngày.';
-      } else if (promptText.includes('hoàn') || promptText.includes('hủy')) {
-        reply = 'Chính sách vé điện tử: Hoàn 100% nếu hủy trước 14 ngày, hoàn 80% nếu hủy trước 7 ngày qua cổng MoMo tự động.';
-      } else {
-        reply = 'Sự kiện diễn ra tại Trung tâm Hội nghị Quốc gia / SVĐ Mỹ Đình. Cổng check-in QR mở trước giờ diễn 90 phút.';
-      }
-      setTcChatMessages((prev) => [...prev, { sender: 'ai', text: reply }]);
-    }, 600);
+  const handleStageMouseLeave = () => {
+    if (project.slug !== 'nh-huynh-portfolio') return;
+    setTiltStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+      transition: 'transform 0.5s ease-out',
+    });
   };
 
-  const projectFeatureTabs = useMemo(() => {
-    if (project.slug === 'ticket-concert-agentic-rag') {
-      return [
-        { id: 'discovery', label: '01. Khám phá & Tìm kiếm' },
-        { id: 'rag', label: '02. Hỏi AI RAG' },
-        { id: 'seats', label: '03. Giữ ghế WebSocket' },
-        { id: 'payment', label: '04. Thanh toán MoMo' },
-        { id: 'ticket', label: '05. Vé QR Pass' },
-      ];
+  // Scroll directly to a selected chapter
+  const scrollToChapter = (idx: number) => {
+    const chapterId = chapters[idx]?.id;
+    const targetEl = (chapterId && document.getElementById(chapterId)) || document.getElementById(`chapter-card-${idx}`);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveIdx(idx);
     }
-    if (project.slug === 'fashion-nail-morley') {
-      return [
-        { id: 'services', label: '01. Bảng giá AUD' },
-        { id: 'booking', label: '02. Đặt lịch hẹn' },
-        { id: 'location', label: '03. Vị trí & Bản đồ' },
-      ];
-    }
-    if (project.slug === 'examplatform-ai') {
-      return [
-        { id: 'exam', label: '01. Phòng thi Autosave' },
-        { id: 'anticheat', label: '02. Chống gian lận' },
-        { id: 'rubric', label: '03. AI Chấm điểm' },
-      ];
-    }
-    if (project.slug === 'vk-digital-hub') {
-      return [
-        { id: 'roi', label: '01. Tính ROI Marketing' },
-        { id: 'webhook', label: '02. Webhook Make.com' },
-        { id: 'services', label: '03. Bảng giá dịch vụ' },
-      ];
-    }
-    if (project.slug === 'nh-huynh-portfolio') {
-      return [
-        { id: 'tilt', label: '01. Thẻ 3D Tilt' },
-        { id: 'lang', label: '02. Toggle Ngôn ngữ' },
-        { id: 'cms', label: '03. Bảo mật Session CMS' },
-      ];
-    }
-    return [{ id: 'seats', label: 'Kiểm thử Tính năng' }];
-  }, [project.slug]);
-
-  const telemetryInfo = useMemo(() => {
-    if (project.slug === 'ticket-concert-agentic-rag') {
-      switch (activeTab) {
-        case 'discovery':
-          return {
-            tag: 'API PROTOCOL',
-            status: '200 OK • 14ms',
-            log: (
-              <>
-                <code>GET /api/v1/events?category={tcCategory}&q={tcSearch || 'all'}</code>
-                <div>✓ Database: Neon PostgreSQL (Connection Pool: 14) • Cache-Control: s-maxage=60 (Edge Hit)</div>
-              </>
-            ),
-          };
-        case 'rag':
-          return {
-            tag: 'LANGCHAIN AGENTIC RAG',
-            status: 'LATENCY 340ms • 100% GROUNDED',
-            log: (
-              <>
-                <code>RunnableSequence: Embeddings(text-embedding-3) → VectorSearch(top_k=4) → Gemini-2.5-Flash</code>
-                <div>✓ Retrieved 4 event docs from Neon pgvector without hallucination. Anti-hallucination guard passed.</div>
-              </>
-            ),
-          };
-        case 'seats':
-          return {
-            tag: 'WEBSOCKET REAL-TIME SYNC',
-            status: 'LATENCY 32ms • REDIS TTL 600s',
-            log: (
-              <>
-                <code>ws://ticketconcert.online/ws ⇄ emit(&quot;SEAT_LOCK&quot;, {`{ seatId: "${selectedSeat}", ttl: 600 }`})</code>
-                <div>✓ Redis SETNX lock acquired. Broadcast lock event to 1,200 active connected concurrent viewers.</div>
-              </>
-            ),
-          };
-        case 'payment':
-          return {
-            tag: 'MOMO PAYMENT & IPN WEBHOOK',
-            status: momoPaid ? '200 OK • HMAC SHA-256 SIGNED' : 'AWAITING SCAN',
-            log: (
-              <>
-                <code>POST /v2/gateway/api/create ⇄ Webhook IPN Callback (ORD-2026-99214)</code>
-                <div>{momoPaid ? '✓ Signature verified: a4f8...12d. Order marked PAID in PostgreSQL ACID transaction.' : 'Waiting for simulated QR scan...'}</div>
-              </>
-            ),
-          };
-        case 'ticket':
-          return {
-            tag: 'RESEND API & SECURE QR',
-            status: 'DISPATCHED IN 420ms',
-            log: (
-              <>
-                <code>POST https://api.resend.com/emails ⇄ Payload: {`{ to: "customer@email.com", pdfAttachment: true }`}</code>
-                <div>✓ E-ticket cryptographically signed with ECDSA key. Ready for entry scan at venue turnstile.</div>
-              </>
-            ),
-          };
-        default:
-          return null;
-      }
-    }
-    if (project.slug === 'fashion-nail-morley') {
-      switch (activeTab) {
-        case 'services':
-          return {
-            tag: 'PRICING ENGINE',
-            status: 'DYNAMIC TOTAL AUD',
-            log: (
-              <>
-                <code>calcTotal(selectedServices: [{selectedServices.join(', ')}])</code>
-                <div>✓ Live AUD cart calculation. Optimistic client update with zero server roundtrip.</div>
-              </>
-            ),
-          };
-        case 'booking':
-          return {
-            tag: 'RESEND EMAIL STREAM',
-            status: bookingSuccess ? '200 OK • 350ms' : 'FORM READY',
-            log: (
-              <>
-                <code>POST /api/bookings ⇄ Resend API dispatch to salon mailbox</code>
-                <div>{bookingSuccess ? '✓ Email HTML template rendered and sent to salon inbox in 350ms.' : 'Fill technician and date to simulate booking dispatch.'}</div>
-              </>
-            ),
-          };
-        case 'location':
-          return {
-            tag: 'GOOGLE MAPS & LOCAL SEO',
-            status: 'PERTH WA LOCALIZED',
-            log: (
-              <>
-                <code>geo: -31.8973, 115.8953 (Morley WA 6062, Australia)</code>
-                <div>✓ 1-Tap navigation intent and click-to-call protocol active.</div>
-              </>
-            ),
-          };
-        default:
-          return null;
-      }
-    }
-    if (project.slug === 'examplatform-ai') {
-      switch (activeTab) {
-        case 'exam':
-          return {
-            tag: 'REDIS SUB-SECOND AUTOSAVE',
-            status: 'LATENCY 6ms • IN-MEMORY',
-            log: (
-              <>
-                <code>redis.hset(&quot;session:usr-889:answers&quot;, &quot;q3&quot;, &quot;{selectedAnswer}&quot;)</code>
-                <div>✓ Answer autosaved with zero risk of packet loss or disconnection failure.</div>
-              </>
-            ),
-          };
-        case 'anticheat':
-          return {
-            tag: 'ANTI-CHEAT INTEGRITY TELEMETRY',
-            status: antiCheatAlert ? 'VIOLATION FLAGGED' : 'WINDOW FOCUSED',
-            log: (
-              <>
-                <code>window.addEventListener(&quot;blur&quot;, telemetryHandler)</code>
-                <div>{antiCheatAlert ? '⚠️ TAB_BLUR event timestamped and dispatched to proctor console.' : 'Monitoring tab focus and multi-window integrity.'}</div>
-              </>
-            ),
-          };
-        case 'rubric':
-          return {
-            tag: 'AI EVALUATION RUBRIC',
-            status: 'SCORED 9.1/10',
-            log: (
-              <>
-                <code>POST /api/ai/grade-rubric ⇄ Gemini 2.5 Flash Analysis</code>
-                <div>✓ Conceptual mastery breakdown generated across 3 technical software engineering axes.</div>
-              </>
-            ),
-          };
-        default:
-          return null;
-      }
-    }
-    if (project.slug === 'vk-digital-hub') {
-      switch (activeTab) {
-        case 'roi':
-          return {
-            tag: 'FINANCIAL PROJECTION ENGINE',
-            status: 'REAL-TIME PROJECTION',
-            log: (
-              <>
-                <code>calculateROI(budget: ${marketingBudget}) → Leads: {Math.round(marketingBudget * 0.062)}, Revenue: ${(marketingBudget * 4.2).toLocaleString()} AUD</code>
-                <div>✓ Dynamic multiplier model based on Western Australia digital acquisition benchmarks.</div>
-              </>
-            ),
-          };
-        case 'webhook':
-          return {
-            tag: 'MAKE.COM NO-CODE WEBHOOK',
-            status: webhookTriggered ? '200 OK • 180ms' : 'STANDBY',
-            log: (
-              <>
-                <code>POST https://hook.eu1.make.com/sc-vk-agency-lead</code>
-                <div>{webhookTriggered ? '✓ Payload delivered to HubSpot CRM and #new-leads Slack channel.' : 'Click button to simulate instant multi-channel webhook distribution.'}</div>
-              </>
-            ),
-          };
-        case 'services':
-          return {
-            tag: 'TIER MATRIX AUDIT',
-            status: '3 TIERS ACTIVE',
-            log: (
-              <>
-                <code>GET /api/tiers ⇄ Starter ($1,200), Growth ($2,800), Enterprise ($5,500)</code>
-                <div>✓ Tier matrix transparently displayed with scope and deliverable boundaries.</div>
-              </>
-            ),
-          };
-        default:
-          return null;
-      }
-    }
-    if (project.slug === 'nh-huynh-portfolio') {
-      switch (activeTab) {
-        case 'tilt':
-          return {
-            tag: '3D TILT & LIGHT MATRIX',
-            status: `${portfolioTiltX}° / ${portfolioTiltY}°`,
-            log: (
-              <>
-                <code>transform: perspective(600px) rotateX({portfolioTiltX}deg) rotateY({portfolioTiltY}deg)</code>
-                <div>✓ Ambient backlight aura active with color {portfolioAuraColor}.</div>
-              </>
-            ),
-          };
-        case 'lang':
-          return {
-            tag: 'I18N LANGUAGE ENGINE',
-            status: portfolioSimLang.toUpperCase(),
-            log: (
-              <>
-                <code>locale: &quot;{portfolioSimLang}&quot; • LocalStorage key: &quot;portfolio_lang&quot;</code>
-                <div>✓ Zero-page-reload dictionary interpolation active across entire DOM.</div>
-              </>
-            ),
-          };
-        case 'cms':
-          return {
-            tag: 'CMS AUTH & POOLING',
-            status: cmsVerified ? 'SESSION VERIFIED' : 'STANDBY',
-            log: (
-              <>
-                <code>cookie: nh_admin_session (HttpOnly, SameSite=Strict) • DB: Neon 14 pools</code>
-                <div>{cmsVerified ? '✓ Scrypt hash validated. Full CRUD permissions unlocked for administrator.' : 'Click to simulate admin authentication handshake.'}</div>
-              </>
-            ),
-          };
-        default:
-          return null;
-      }
-    }
-    return null;
-  }, [
-    project.slug,
-    activeTab,
-    tcCategory,
-    tcSearch,
-    selectedSeat,
-    momoPaid,
-    selectedServices,
-    bookingSuccess,
-    selectedAnswer,
-    antiCheatAlert,
-    marketingBudget,
-    webhookTriggered,
-    portfolioTiltX,
-    portfolioTiltY,
-    portfolioAuraColor,
-    portfolioSimLang,
-    cmsVerified,
-  ]);
-
-  // RENDER INTERACTIVE LIVING SCREEN / SIMULATOR
-  const renderInteractiveApp = (isInsideScreen: boolean) => {
-    // --- 1. TICKET CONCERT INTERACTIVE APP ---
-    if (project.slug === 'ticket-concert-agentic-rag') {
-      if (activeTab === 'discovery') {
-        return (
-          <div className="tc-mini-app">
-            {/* Top Navigation */}
-            <div className="tc-top-nav">
-              <div className="tc-logo-badge">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M9 18V5l12-2v13" />
-                  <circle cx="6" cy="18" r="3" />
-                  <circle cx="18" cy="16" r="3" />
-                </svg>
-                <span>TICKET CONCERT</span>
-              </div>
-
-              <div className="tc-search-form">
-                <input
-                  type="text"
-                  placeholder="Bạn tìm gì hôm nay? (VD: Say Hi, Hoàng Thùy Linh...)"
-                  value={tcSearch}
-                  onChange={(e) => setTcSearch(e.target.value)}
-                  className="tc-search-input"
-                />
-                <button type="button" className="tc-search-btn">
-                  Tìm kiếm
-                </button>
-              </div>
-
-              <div className="tc-nav-actions">
-                <span className="tc-action-link" onClick={() => setActiveTab('ticket')}>
-                  🎫 Vé của tôi
-                </span>
-                <span className="tc-auth-btn">Đăng nhập | Đăng ký</span>
-              </div>
-            </div>
-
-            {/* Category Filter Pills */}
-            <div className="tc-cat-row">
-              <button
-                type="button"
-                className={`tc-cat-btn ${tcCategory === 'all' ? 'active' : ''}`}
-                onClick={() => setTcCategory('all')}
-              >
-                ✨ Tất cả 110
-              </button>
-              <button
-                type="button"
-                className={`tc-cat-btn ${tcCategory === 'festival' ? 'active' : ''}`}
-                onClick={() => setTcCategory('festival')}
-              >
-                🎪 Đại hội 16
-              </button>
-              <button
-                type="button"
-                className={`tc-cat-btn ${tcCategory === 'music' ? 'active' : ''}`}
-                onClick={() => setTcCategory('music')}
-              >
-                🎵 Ca nhạc 80
-              </button>
-              <button
-                type="button"
-                className={`tc-cat-btn ${tcCategory === 'drama' ? 'active' : ''}`}
-                onClick={() => setTcCategory('drama')}
-              >
-                🎭 Kịch 14
-              </button>
-            </div>
-
-            {/* Featured Hero Banners */}
-            <div className="tc-hero-banners-row">
-              {TC_HERO_BANNERS.map((banner) => (
-                <div
-                  key={banner.id}
-                  className="tc-banner-card"
-                  onClick={() => setTcSelectedEvent(banner)}
-                >
-                  <span className="tc-banner-tag">{banner.tag}</span>
-                  <div>
-                    <h4 className="tc-banner-title">{banner.title}</h4>
-                    <span className="tc-banner-date">📅 {banner.date} • {banner.venue}</span>
-                  </div>
-                  <div className="tc-banner-footer">
-                    <span className="tc-card-price">{banner.price}</span>
-                    <button type="button" className="tc-banner-cta">
-                      Xem chi tiết →
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Trending Events Grid */}
-            <div className="tc-trending-header">
-              <div className="tc-trending-title">
-                <span>🔥 Sự kiện xu hướng</span>
-                <span style={{ fontSize: '10px', color: '#94A3B8', fontWeight: 'normal' }}>
-                  ({filteredTcEvents.length} sự kiện khả dụng)
-                </span>
-              </div>
-              <span style={{ fontSize: '10px', color: '#10B981', cursor: 'pointer' }} onClick={() => setTcCategory('all')}>
-                Xem tất cả ›
-              </span>
-            </div>
-
-            <div className="tc-trending-grid">
-              {filteredTcEvents.map((ev) => (
-                <div
-                  key={ev.id}
-                  className="tc-event-card"
-                  onClick={() => setTcSelectedEvent(ev)}
-                >
-                  <span className="tc-card-rank-badge">{ev.tag}</span>
-                  <strong className="tc-card-name">{ev.title}</strong>
-                  <span className="tc-card-price">{ev.price}</span>
-                  <span className="tc-card-date">📅 {ev.date}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Floating AI Button */}
-            <button
-              type="button"
-              className="tc-floating-ai-btn"
-              onClick={() => setTcChatOpen(true)}
-            >
-              <span>✨</span>
-              <span>Hỏi Trợ lý AI RAG</span>
-            </button>
-
-            {/* Event Detail Modal Backdrop */}
-            {tcSelectedEvent && (
-              <div className="tc-detail-modal-backdrop" onClick={() => setTcSelectedEvent(null)}>
-                <div className="tc-detail-modal-box" onClick={(e) => e.stopPropagation()}>
-                  <div className="tc-modal-header">
-                    <div>
-                      <span className="tc-banner-tag" style={{ marginBottom: '4px' }}>
-                        {tcSelectedEvent.tag || 'SỰ KIỆN'}
-                      </span>
-                      <h3 className="tc-modal-title">{tcSelectedEvent.title}</h3>
-                    </div>
-                    <button
-                      type="button"
-                      className="tc-modal-close-btn"
-                      onClick={() => setTcSelectedEvent(null)}
-                    >
-                      ✕
-                    </button>
-                  </div>
-
-                  <p style={{ fontSize: '11px', color: '#94A3B8', margin: 0 }}>
-                    {tcSelectedEvent.desc}
-                  </p>
-
-                  <div className="tc-modal-info-list">
-                    <div>📅 <strong>Thời gian:</strong> {tcSelectedEvent.date} (19:30 - 23:00)</div>
-                    <div>📍 <strong>Địa điểm:</strong> {tcSelectedEvent.venue}</div>
-                    <div>🎟 <strong>Tình trạng:</strong> Còn {tcSelectedEvent.seatsLeft} ghế trống thời gian thực</div>
-                    <div>💰 <strong>Mức giá niêm yết:</strong> {tcSelectedEvent.price}</div>
-                  </div>
-
-                  <div className="tc-modal-actions">
-                    <button
-                      type="button"
-                      className="tc-btn-choose-seats"
-                      onClick={() => {
-                        setTcSelectedEvent(null);
-                        setActiveTab('seats');
-                      }}
-                    >
-                      🎟 Chọn ghế WebSocket ngay
-                    </button>
-                    <button
-                      type="button"
-                      className="tc-btn-ask-ai"
-                      onClick={() => {
-                        setTcSelectedEvent(null);
-                        setActiveTab('rag');
-                      }}
-                    >
-                      🤖 Hỏi AI về sự kiện
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Slide-out AI Chat Drawer */}
-            {tcChatOpen && (
-              <div className="tc-ai-chat-drawer">
-                <div className="tc-drawer-header">
-                  <div className="tc-drawer-title">
-                    <span>✨</span>
-                    <span>AI Assistant (LangChain + Gemini)</span>
-                  </div>
-                  <button
-                    type="button"
-                    className="tc-modal-close-btn"
-                    onClick={() => setTcChatOpen(false)}
-                  >
-                    ✕
-                  </button>
-                </div>
-
-                <div className="tc-drawer-messages">
-                  {tcChatMessages.map((msg, mIdx) => (
-                    <div key={mIdx} className={`tc-msg-bubble ${msg.sender}`}>
-                      {msg.text}
-                    </div>
-                  ))}
-                  {isAiAnswering && (
-                    <div className="tc-msg-bubble ai" style={{ opacity: 0.7 }}>
-                      Đang truy xuất Vector Database & sơ đồ ghế...
-                    </div>
-                  )}
-                </div>
-
-                <div className="tc-drawer-chips">
-                  <button
-                    type="button"
-                    className="tc-chip-item"
-                    onClick={() => handleAskPresetQuestion('Khu vực VIP còn vé không?')}
-                  >
-                    Khu VIP còn vé?
-                  </button>
-                  <button
-                    type="button"
-                    className="tc-chip-item"
-                    onClick={() => handleAskPresetQuestion('Chính sách hủy vé thế nào?')}
-                  >
-                    Chính sách hoàn vé?
-                  </button>
-                  <button
-                    type="button"
-                    className="tc-chip-item"
-                    onClick={() => handleAskPresetQuestion('Sự kiện diễn ra ở đâu?')}
-                  >
-                    Địa điểm & giờ mở cửa?
-                  </button>
-                </div>
-
-                <form onSubmit={handleSendTcCustomQuestion} className="tc-drawer-input-row">
-                  <input
-                    type="text"
-                    value={tcCustomQuestion}
-                    onChange={(e) => setTcCustomQuestion(e.target.value)}
-                    placeholder="Hỏi AI bất kỳ điều gì về sự kiện..."
-                    className="tc-input-text"
-                  />
-                  <button type="submit" className="tc-input-send-btn">
-                    Gửi
-                  </button>
-                </form>
-
-                <div style={{ padding: '8px 12px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                  <button
-                    type="button"
-                    style={{
-                      width: '100%',
-                      background: '#10B981',
-                      color: '#061110',
-                      border: 'none',
-                      borderRadius: '6px',
-                      padding: '8px',
-                      fontWeight: 800,
-                      fontSize: '11px',
-                      cursor: 'pointer',
-                    }}
-                    onClick={() => {
-                      setTcChatOpen(false);
-                      setActiveTab('seats');
-                    }}
-                  >
-                    🎟 Đặt vé & Chọn ghế WebSocket →
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      }
-
-      if (activeTab === 'rag') {
-        return (
-          <div className="sim-interactive-grid" style={{ padding: '20px', minHeight: '100%', background: '#0B192C' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <strong className="sim-subheading" style={{ color: '#38BDF8', fontSize: '13px' }}>
-                  🤖 Trợ lý AI Agentic RAG (LangChain.js + Gemini 2.5 Flash)
-                </strong>
-                <p className="sim-subdesc" style={{ color: '#94A3B8' }}>
-                  Hỏi đáp thông tin sự kiện & kiểm tra chỗ ngồi với độ trễ 340ms:
-                </p>
-              </div>
-              <span className="telemetry-status-pill">100% GROUNDED</span>
-            </div>
-
-            <div className="ai-prompt-chips">
-              <button
-                type="button"
-                onClick={() => handleAskPresetQuestion('Khu vực VIP còn vé không?')}
-                className="prompt-chip"
-              >
-                💬 Khu vực VIP còn vé không?
-              </button>
-              <button
-                type="button"
-                onClick={() => handleAskPresetQuestion('Chính sách hủy vé thế nào?')}
-                className="prompt-chip"
-              >
-                💬 Chính sách hủy vé ra sao?
-              </button>
-              <button
-                type="button"
-                onClick={() => handleAskPresetQuestion('Sự kiện diễn ra ở đâu?')}
-                className="prompt-chip"
-              >
-                💬 Địa điểm & thời gian vào cửa?
-              </button>
-            </div>
-
-            <div className="tc-drawer-messages" style={{ height: '220px', background: 'rgba(0,0,0,0.3)', borderRadius: '10px' }}>
-              {tcChatMessages.map((msg, mIdx) => (
-                <div key={mIdx} className={`tc-msg-bubble ${msg.sender}`}>
-                  {msg.text}
-                </div>
-              ))}
-              {isAiAnswering && (
-                <div className="tc-msg-bubble ai" style={{ opacity: 0.7 }}>
-                  Đang truy xuất Vector DB & sơ đồ sự kiện...
-                </div>
-              )}
-            </div>
-
-            <form onSubmit={handleSendTcCustomQuestion} className="tc-drawer-input-row" style={{ borderRadius: '8px' }}>
-              <input
-                type="text"
-                value={tcCustomQuestion}
-                onChange={(e) => setTcCustomQuestion(e.target.value)}
-                placeholder="Nhập câu hỏi tự do để kiểm tra AI..."
-                className="tc-input-text"
-              />
-              <button type="submit" className="tc-input-send-btn">
-                Gửi câu hỏi
-              </button>
-            </form>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
-              <span style={{ fontSize: '10px', color: '#94A3B8' }}>
-                ⚡ Vector Embeddings: Neon pgvector • Cache: Redis L2
-              </span>
-              <button
-                type="button"
-                className="tc-btn-choose-seats"
-                style={{ width: 'auto', padding: '6px 14px' }}
-                onClick={() => setActiveTab('seats')}
-              >
-                Chọn ghế WebSocket ngay →
-              </button>
-            </div>
-          </div>
-        );
-      }
-
-      if (activeTab === 'seats') {
-        return (
-          <div className="sim-interactive-grid" style={{ padding: '20px', minHeight: '100%', background: '#0A1715' }}>
-            <div className="sim-row-header">
-              <div>
-                <strong className="sim-subheading" style={{ color: '#34D399', fontSize: '13px' }}>
-                  Sơ đồ ghế thời gian thực (WebSocket Anti-Collision Map)
-                </strong>
-                <p className="sim-subdesc" style={{ color: '#94A3B8' }}>
-                  Click vào ghế bất kỳ để trải nghiệm luồng WebSocket khóa ghế tức thời:
-                </p>
-              </div>
-              <div className="sim-timer-pill">
-                <span>⏱ Khóa ghế trong:</span>
-                <strong>{formatTime(seatCountdown)}</strong>
-              </div>
-            </div>
-
-            <div className="sim-seats-matrix">
-              {[
-                { id: 'VIP-A01', tier: 'VIP', price: '1,850k', status: 'available' },
-                { id: 'VIP-A02', tier: 'VIP', price: '1,850k', status: 'taken' },
-                { id: 'VIP-D04', tier: 'VIP', price: '1,850k', status: 'holding' },
-                { id: 'REG-B01', tier: 'Regular', price: '850k', status: 'available' },
-                { id: 'REG-B02', tier: 'Regular', price: '850k', status: 'available' },
-                { id: 'STD-C05', tier: 'Standing', price: '500k', status: 'available' },
-              ].map((seat) => {
-                const isSelected = selectedSeat === seat.id;
-                return (
-                  <button
-                    key={seat.id}
-                    type="button"
-                    disabled={seat.status === 'taken'}
-                    onClick={() => setSelectedSeat(seat.id)}
-                    className={`seat-btn ${seat.status} ${isSelected ? 'selected' : ''}`}
-                  >
-                    <span className="seat-id">{seat.id}</span>
-                    <span className="seat-price">{seat.price}</span>
-                    <span className="seat-badge">
-                      {seat.status === 'taken'
-                        ? 'Đã bán'
-                        : isSelected
-                        ? 'Đang giữ'
-                        : seat.status === 'holding'
-                        ? 'Tạm khóa'
-                        : 'Còn trống'}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="sim-telemetry-feed" style={{ background: 'rgba(0,0,0,0.5)' }}>
-              <span className="feed-tag">WEBSOCKET LOG</span>
-              <code>{`Socket.emit("SEAT_SELECT", { seatId: "${selectedSeat}", userId: "usr-889", ttl: 600 })`}</code>
-              <span className="feed-status">✓ Redis TTL 600s kích hoạt. Broadcast khóa ghế tới 1,200 người.</span>
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
-              <div style={{ fontSize: '11px', color: '#E2E8F0' }}>
-                Ghế đã chọn: <strong style={{ color: '#34D399' }}>{selectedSeat}</strong> • Tổng cộng: <strong style={{ color: '#34D399' }}>1,850,000 VND</strong>
-              </div>
-              <button
-                type="button"
-                className="tc-btn-choose-seats"
-                style={{ width: 'auto', padding: '8px 16px' }}
-                onClick={() => setActiveTab('payment')}
-              >
-                Tiến hành thanh toán MoMo →
-              </button>
-            </div>
-          </div>
-        );
-      }
-
-      if (activeTab === 'payment') {
-        return (
-          <div className="sim-interactive-grid" style={{ padding: '20px', minHeight: '100%', background: '#120F1D' }}>
-            <div className="sim-row-header">
-              <div>
-                <strong className="sim-subheading" style={{ color: '#EC4899', fontSize: '13px' }}>
-                  Thanh toán MoMo QR &amp; Đối soát IPN Webhook
-                </strong>
-                <p className="sim-subdesc" style={{ color: '#94A3B8' }}>
-                  Mô phỏng quét mã QR thanh toán tức thời với chữ ký HMAC SHA-256:
-                </p>
-              </div>
-              <span className="momo-badge">MoMo Official API</span>
-            </div>
-
-            <div className="momo-checkout-card">
-              <div className="momo-qr-visual">
-                <div className="simulated-qr-box">
-                  <span className="qr-corner tl" />
-                  <span className="qr-corner tr" />
-                  <span className="qr-corner bl" />
-                  <span className="qr-corner br" />
-                  <div className="qr-center-logo">MoMo</div>
-                </div>
-                <span className="qr-instruction">Quét mã QR bằng ứng dụng MoMo</span>
-              </div>
-
-              <div className="momo-details">
-                <div className="detail-line">
-                  <span>Đơn hàng:</span>
-                  <strong>ORD-2026-99214</strong>
-                </div>
-                <div className="detail-line">
-                  <span>Ghế chọn:</span>
-                  <strong>{selectedSeat} (Hạng VIP)</strong>
-                </div>
-                <div className="detail-line">
-                  <span>Số tiền:</span>
-                  <strong className="price-val">1,850,000 VND</strong>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setMomoPaid(!momoPaid)}
-                  className={`btn-simulate-pay ${momoPaid ? 'success' : ''}`}
-                >
-                  {momoPaid ? '✓ Thanh toán thành công (Click để thử lại)' : '⚡ Mô phỏng quét mã thanh toán'}
-                </button>
-
-                {momoPaid && (
-                  <div className="pay-success-toast animate-fade-in" style={{ marginTop: '8px' }}>
-                    <span>✓ Webhook HMAC hợp lệ: Vé điện tử QR đã gửi về email trong 420ms!</span>
-                    <button
-                      type="button"
-                      style={{
-                        marginTop: '6px',
-                        background: '#FFFFFF',
-                        color: '#061110',
-                        border: 'none',
-                        borderRadius: '6px',
-                        padding: '5px 10px',
-                        fontSize: '10px',
-                        fontWeight: 800,
-                        cursor: 'pointer',
-                        width: '100%',
-                      }}
-                      onClick={() => setActiveTab('ticket')}
-                    >
-                      🎫 Xem vé điện tử QR đã xuất →
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        );
-      }
-
-      if (activeTab === 'ticket') {
-        return (
-          <div style={{ padding: '20px', minHeight: '100%', background: '#0B1315', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div className="tc-ticket-pass animate-fade-in">
-              <div className="tc-pass-header">
-                <div>
-                  <span style={{ fontSize: '9px', fontWeight: 900, color: '#10B981', letterSpacing: '0.5px' }}>
-                    TICKET CONCERT • OFFICIAL E-PASS
-                  </span>
-                  <h4 style={{ margin: '4px 0 0', fontSize: '13px', fontWeight: 800, color: '#0F172A' }}>
-                    EM XINH &quot;SAY HI&quot; CONCERT 2025
-                  </h4>
-                </div>
-                <span style={{ fontSize: '9px', background: '#DCFCE7', color: '#166534', padding: '3px 8px', borderRadius: '9999px', fontWeight: 800 }}>
-                  ✓ ĐÃ THANH TOÁN
-                </span>
-              </div>
-
-              <div className="tc-pass-qr-row">
-                <div className="tc-pass-qr-visual">
-                  <div>
-                    <div style={{ fontSize: '16px' }}>📱</div>
-                    <div>QR PASS</div>
-                    <div style={{ fontSize: '7px', color: '#64748B' }}>SECURE-HMAC</div>
-                  </div>
-                </div>
-
-                <div className="tc-pass-specs">
-                  <div>👤 <strong>Khách hàng:</strong> Nguyễn Hoàng Huynh</div>
-                  <div>🎟 <strong>Ghế ngồi:</strong> <span style={{ color: '#2563EB', fontWeight: 800 }}>{selectedSeat} (Hạng VIP)</span></div>
-                  <div>📅 <strong>Thời gian:</strong> 10/04/2026 • 19:30</div>
-                  <div>📍 <strong>Địa điểm:</strong> Sân vận động Mỹ Đình, Hà Nội</div>
-                  <div>🆔 <strong>Mã vé:</strong> <code style={{ fontSize: '10px' }}>TC-VIP-99214-HMAC</code></div>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #E2E8F0', paddingTop: '10px' }}>
-                <button
-                  type="button"
-                  style={{
-                    flex: 1,
-                    background: ticketDownloaded ? '#10B981' : '#0F172A',
-                    color: '#FFFFFF',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '8px',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => {
-                    setTicketDownloaded(true);
-                    setTimeout(() => setTicketDownloaded(false), 3000);
-                  }}
-                >
-                  {ticketDownloaded ? '✓ Đã tải file PDF vé điện tử' : '📥 Tải vé PDF về máy'}
-                </button>
-                <button
-                  type="button"
-                  style={{
-                    background: '#F1F5F9',
-                    color: '#475569',
-                    border: '1px solid #CBD5E1',
-                    borderRadius: '8px',
-                    padding: '8px 12px',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => setActiveTab('discovery')}
-                >
-                  ← Đặt vé khác
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      }
-    }
-
-    // --- 2. FASHION NAIL MORLEY ---
-    if (project.slug === 'fashion-nail-morley') {
-      return (
-        <div style={{ padding: isInsideScreen ? '18px' : '0' }}>
-          {activeTab === 'services' && (
-            <div className="sim-interactive-grid">
-              <div className="sim-row-header">
-                <div>
-                  <strong className="sim-subheading">Bảng giá Dịch vụ &amp; Chọn Gói (AUD Pricing)</strong>
-                  <p className="sim-subdesc">Click chọn dịch vụ để tính tổng chi phí tự động:</p>
-                </div>
-                <div className="price-total-badge">
-                  <span>Ước tính:</span>
-                  <strong>
-                    $
-                    {selectedServices.reduce((sum, s) => {
-                      if (s === 'acrylic') return sum + 65;
-                      if (s === 'pedicure') return sum + 50;
-                      if (s === 'art') return sum + 25;
-                      if (s === 'shellac') return sum + 40;
-                      return sum;
-                    }, 0)}{' '}
-                    AUD
-                  </strong>
-                </div>
-              </div>
-
-              <div className="services-selector-grid">
-                {[
-                  { id: 'acrylic', name: 'Acrylic Full Set', price: 65, duration: '60 mins' },
-                  { id: 'pedicure', name: 'Deluxe Spa Pedicure', price: 50, duration: '45 mins' },
-                  { id: 'art', name: 'Custom Nail Art Design', price: 25, duration: '30 mins' },
-                  { id: 'shellac', name: 'Gel Shellac Manicure', price: 40, duration: '40 mins' },
-                ].map((svc) => {
-                  const isChecked = selectedServices.includes(svc.id);
-                  return (
-                    <button
-                      key={svc.id}
-                      type="button"
-                      onClick={() => {
-                        setSelectedServices((prev) =>
-                          prev.includes(svc.id) ? prev.filter((x) => x !== svc.id) : [...prev, svc.id]
-                        );
-                      }}
-                      className={`service-check-card ${isChecked ? 'active' : ''}`}
-                    >
-                      <span className="check-box">{isChecked ? '✓' : ''}</span>
-                      <div className="service-info">
-                        <strong>{svc.name}</strong>
-                        <span>{svc.duration}</span>
-                      </div>
-                      <span className="service-cost">${svc.price} AUD</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {isInsideScreen && (
-                <div style={{ marginTop: '14px', display: 'flex', justifyContent: 'flex-end' }}>
-                  <button
-                    type="button"
-                    className="tc-btn-choose-seats"
-                    style={{ width: 'auto', padding: '8px 16px' }}
-                    onClick={() => setActiveTab('booking')}
-                  >
-                    Tiến hành đặt lịch hẹn ngay →
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-
-          {activeTab === 'booking' && (
-            <div className="sim-interactive-grid">
-              <strong className="sim-subheading">Đặt Lịch Hẹn Nhanh 1 Chạm (One-Tap Inquiry)</strong>
-              <p className="sim-subdesc">Thử nghiệm luồng gửi lịch hẹn tới salon qua Resend API:</p>
-
-              <div className="booking-mockup-form">
-                <div className="form-row-duo">
-                  <div className="form-group">
-                    <label>Thợ nail mong muốn</label>
-                    <select
-                      value={selectedTechnician}
-                      onChange={(e) => setSelectedTechnician(e.target.value)}
-                      className="sim-select"
-                    >
-                      <option value="Sarah">Sarah (Chuyên gia Nail Art)</option>
-                      <option value="Tina">Tina (Chuyên gia Acrylic)</option>
-                      <option value="Any">Bất kỳ thợ trống lịch</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label>Thời gian hẹn</label>
-                    <div className="time-preset-pills">
-                      <span className="time-pill active">14:30 Hôm nay</span>
-                      <span className="time-pill">16:00 Ngày mai</span>
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setBookingSuccess(true);
-                    setTimeout(() => setBookingSuccess(false), 4000);
-                  }}
-                  className="btn-submit-booking"
-                >
-                  ⚡ Mô phỏng gửi yêu cầu đặt lịch hẹn
-                </button>
-
-                {bookingSuccess && (
-                  <div className="booking-success-banner animate-fade-in">
-                    <strong>✓ Đã gửi thông báo thành công!</strong>
-                    <p>Email xác nhận đã gửi tức thời về hộp thư salon qua Resend API trong 350ms.</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'location' && (
-            <div className="sim-interactive-grid">
-              <strong className="sim-subheading">Vị trí &amp; Chỉ đường Google Maps (Morley, Tây Úc)</strong>
-              <div className="location-card-preview">
-                <div className="location-info">
-                  <span className="loc-badge">Morley Galleria Precinct</span>
-                  <p className="loc-address">Unit 4, 128 Russell St, Morley WA 6062, Australia</p>
-                  <div className="loc-hours">
-                    <span>Thứ 2 – Thứ 7: 9:00 AM – 5:30 PM</span>
-                    <span>Chủ Nhật: 10:00 AM – 4:00 PM</span>
-                  </div>
-                </div>
-                <div className="loc-actions">
-                  <span className="mock-btn-action">🗺️ Chỉ đường Maps</span>
-                  <span className="mock-btn-action">📞 Gọi điện 1 chạm</span>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    // --- 3. EXAMPLATFORM AI ---
-    if (project.slug === 'examplatform-ai') {
-      return (
-        <div style={{ padding: isInsideScreen ? '18px' : '0' }}>
-          {activeTab === 'exam' && (
-            <div className="sim-interactive-grid">
-              <div className="sim-row-header">
-                <div>
-                  <strong className="sim-subheading">Phòng thi &amp; Tự động Lưu Redis Cache</strong>
-                  <p className="sim-subdesc">Chọn đáp án để thấy tốc độ lưu tức thời (Sub-second Autosave):</p>
-                </div>
-                <div className="sim-timer-pill exam">
-                  <span>⏱ Thời gian còn:</span>
-                  <strong>{formatTime(examSeconds)}</strong>
-                </div>
-              </div>
-
-              <div className="exam-question-card">
-                <span className="question-num">CÂU HỎI 03 / 40 • HỆ THỐNG PHÂN TÁN</span>
-                <p className="question-title">
-                  Trong Node.js Event Loop, hàng đợi nào được ưu tiên xử lý ngay sau khi kết thúc một pha hiện tại?
-                </p>
-
-                <div className="exam-options-list">
-                  {[
-                    { id: 'A', text: 'Timers Queue (setTimeout / setInterval)' },
-                    { id: 'B', text: 'Microtask Queue (process.nextTick & Promise callbacks)' },
-                    { id: 'C', text: 'Check Queue (setImmediate)' },
-                    { id: 'D', text: 'I/O Polling Queue' },
-                  ].map((opt) => (
-                    <button
-                      key={opt.id}
-                      type="button"
-                      onClick={() => {
-                        setSelectedAnswer(opt.id);
-                        setAutosaveNotice(`✓ Đã lưu tự động đáp án (${opt.id}) vào Redis Cache (độ trễ 6ms)`);
-                      }}
-                      className={`exam-option-btn ${selectedAnswer === opt.id ? 'selected' : ''}`}
-                    >
-                      <span className="opt-id">{opt.id}</span>
-                      <span className="opt-text">{opt.text}</span>
-                    </button>
-                  ))}
-                </div>
-
-                <div className="autosave-status-bar">
-                  <span className="redis-indicator">● REDIS CACHE ACTIVE</span>
-                  <span className="autosave-message">{autosaveNotice}</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'anticheat' && (
-            <div className="sim-interactive-grid">
-              <strong className="sim-subheading">Cơ chế Chống Gian lận (Anti-Cheat Tab Monitoring)</strong>
-              <p className="sim-subdesc">
-                Hệ thống giám sát sự kiện mất focus trình duyệt để giữ tính công bằng học thuật:
-              </p>
-
-              <div className="anticheat-tester-box">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAntiCheatAlert(true);
-                    setTimeout(() => setAntiCheatAlert(false), 5000);
-                  }}
-                  className="btn-trigger-anticheat"
-                >
-                  ⚠️ Mô phỏng thí sinh chuyển tab hoặc mở ứng dụng khác
-                </button>
-
-                {antiCheatAlert && (
-                  <div className="anticheat-alert-modal animate-fade-in">
-                    <span className="alert-icon">🚨</span>
-                    <div className="alert-content">
-                      <strong>CẢNH BÁO VI PHẠM PHIÊN THI (LẦN 1/3)</strong>
-                      <p>
-                        Hệ thống ghi nhận sự kiện Tab Blur (Window Unfocused). Toàn bộ thao tác đã được gửi về server giám sát kèm mã thời gian.
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'rubric' && (
-            <div className="sim-interactive-grid">
-              <strong className="sim-subheading">Báo cáo Phân tích AI Rubric &amp; Lộ trình Ôn tập</strong>
-              <div className="rubric-bars-group">
-                <div className="rubric-row">
-                  <span className="rubric-name">Kiến trúc Hệ thống (System Architecture)</span>
-                  <div className="rubric-progress-track">
-                    <div className="rubric-progress-fill" style={{ width: '95%' }} />
-                  </div>
-                  <span className="rubric-score">9.5/10</span>
-                </div>
-                <div className="rubric-row">
-                  <span className="rubric-name">Tối ưu CSDL &amp; Redis Caching</span>
-                  <div className="rubric-progress-track">
-                    <div className="rubric-progress-fill" style={{ width: '90%' }} />
-                  </div>
-                  <span className="rubric-score">9.0/10</span>
-                </div>
-                <div className="rubric-row">
-                  <span className="rubric-name">Bảo mật API &amp; Xác thực Phiên</span>
-                  <div className="rubric-progress-track">
-                    <div className="rubric-progress-fill" style={{ width: '88%' }} />
-                  </div>
-                  <span className="rubric-score">8.8/10</span>
-                </div>
-              </div>
-              <div className="ai-feedback-quote">
-                <strong>Đánh giá từ AI:</strong> Thí sinh nắm vững nguyên lý hoạt động của Microtask Queue và luồng đồng bộ Redis. Đề xuất làm thêm 2 bài tập về Connection Pooling để hoàn thiện 100%.
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    // --- 4. VK DIGITAL HUB ---
-    if (project.slug === 'vk-digital-hub') {
-      return (
-        <div style={{ padding: isInsideScreen ? '18px' : '0' }}>
-          {activeTab === 'roi' && (
-            <div className="sim-interactive-grid">
-              <div className="sim-row-header">
-                <div>
-                  <strong className="sim-subheading">Máy tính Dự phóng ROI Tăng trưởng Khách hàng</strong>
-                  <p className="sim-subdesc">Kéo thanh trượt ngân sách để tính toán dự báo doanh thu:</p>
-                </div>
-                <span className="budget-display">${marketingBudget.toLocaleString()} AUD / tháng</span>
-              </div>
-
-              <div className="slider-wrapper">
-                <input
-                  type="range"
-                  min="1000"
-                  max="10000"
-                  step="500"
-                  value={marketingBudget}
-                  onChange={(e) => setMarketingBudget(Number(e.target.value))}
-                  className="roi-range-input"
-                />
-                <div className="slider-labels">
-                  <span>$1,000 AUD</span>
-                  <span>$5,000 AUD</span>
-                  <span>$10,000 AUD</span>
-                </div>
-              </div>
-
-              <div className="roi-metrics-grid">
-                <div className="metric-box">
-                  <span className="m-label">Lượt xem tiếp cận</span>
-                  <strong className="m-val">{(marketingBudget * 38).toLocaleString()}</strong>
-                </div>
-                <div className="metric-box">
-                  <span className="m-label">Khách hàng tiềm năng (Leads)</span>
-                  <strong className="m-val highlight">
-                    {Math.round(marketingBudget * 0.062)} leads
-                  </strong>
-                </div>
-                <div className="metric-box">
-                  <span className="m-label">Doanh thu dự kiến</span>
-                  <strong className="m-val revenue">
-                    ${(marketingBudget * 4.2).toLocaleString()} AUD
-                  </strong>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'webhook' && (
-            <div className="sim-interactive-grid">
-              <strong className="sim-subheading">Kịch bản Webhook Make.com Lead Automation</strong>
-              <p className="sim-subdesc">Click để kiểm thử tốc độ đẩy lead từ website sang CRM &amp; Slack:</p>
-
-              <div className="webhook-trigger-box">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setWebhookTriggered(true);
-                    setTimeout(() => setWebhookTriggered(false), 5000);
-                  }}
-                  className="btn-trigger-webhook"
-                >
-                  ⚡ Gửi thông tin tư vấn thử nghiệm qua Webhook
-                </button>
-
-                {webhookTriggered && (
-                  <div className="webhook-payload-viewer animate-fade-in">
-                    <div className="payload-header">
-                      <span>POST https://hook.eu1.make.com/sc-vk-agency-lead</span>
-                      <span className="latency-pill">200 OK • 180ms</span>
-                    </div>
-                    <pre className="payload-code">
-                      {JSON.stringify(
-                        {
-                          event: 'LEAD_INQUIRY_CREATED',
-                          lead: {
-                            fullName: 'Alex Tran',
-                            company: 'Perth Retail Group',
-                            budgetAud: marketingBudget,
-                            serviceTier: 'Growth Accelerator',
-                          },
-                          dispatchedTo: ['HubSpot CRM', 'Slack #new-leads', 'Google Sheets'],
-                          status: 'SYNCHRONIZED',
-                        },
-                        null,
-                        2
-                      )}
-                    </pre>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'services' && (
-            <div className="sim-interactive-grid">
-              <strong className="sim-subheading">Bảng Phân tầng Dịch vụ Tăng trưởng</strong>
-              <div className="tiers-comparison-row">
-                <div className="tier-card">
-                  <span className="t-name">Starter</span>
-                  <span className="t-price">$1,200 AUD / tháng</span>
-                  <span className="t-desc">SEO Cơ bản &amp; Tối ưu Google Business</span>
-                </div>
-                <div className="tier-card featured">
-                  <span className="t-name">Growth Partner</span>
-                  <span className="t-price">$2,800 AUD / tháng</span>
-                  <span className="t-desc">Google Ads + SEO + Tự động hóa CRM Make</span>
-                </div>
-                <div className="tier-card">
-                  <span className="t-name">Enterprise</span>
-                  <span className="t-price">$5,500 AUD / tháng</span>
-                  <span className="t-desc">Toàn diện Omni-channel &amp; Phễu bán hàng cao cấp</span>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    // --- 5. NH HUYNH PORTFOLIO ---
-    if (project.slug === 'nh-huynh-portfolio') {
-      return (
-        <div style={{ padding: isInsideScreen ? '18px' : '0' }}>
-          {activeTab === 'tilt' && (
-            <div className="sim-interactive-grid">
-              <div className="sim-row-header">
-                <div>
-                  <strong className="sim-subheading">Thử nghiệm 3D Tilt Card &amp; Hào quang Ambient Backlight</strong>
-                  <p className="sim-subdesc">Điều chỉnh thanh trượt hoặc chọn màu ánh sáng hào quang:</p>
-                </div>
-                <div className="aura-color-pills">
-                  {[
-                    { color: '#2563EB', name: 'Blue' },
-                    { color: '#7C3AED', name: 'Purple' },
-                    { color: '#059669', name: 'Emerald' },
-                    { color: '#D9777F', name: 'Rose' },
-                  ].map((c) => (
-                    <button
-                      key={c.color}
-                      type="button"
-                      onClick={() => setPortfolioAuraColor(c.color)}
-                      className={`aura-btn ${portfolioAuraColor === c.color ? 'active' : ''}`}
-                      style={{ backgroundColor: c.color }}
-                      title={c.name}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Live 3D Tilt Card Sandbox */}
-              <div className="portfolio-tilt-sandbox">
-                <div
-                  className="portfolio-mini-tilt-card"
-                  style={{
-                    transform: `perspective(600px) rotateX(${portfolioTiltX}deg) rotateY(${portfolioTiltY}deg)`,
-                    boxShadow: `0 16px 36px -8px ${portfolioAuraColor}40, 0 0 0 1px #E2E8F0`,
-                  }}
-                >
-                  <div
-                    className="portfolio-mini-card-aura"
-                    style={{
-                      background: `radial-gradient(circle at 60% 40%, ${portfolioAuraColor}55, transparent 70%)`,
-                    }}
-                  />
-                  <div className="mini-card-header">
-                    <span className="mini-card-badge">Full-Stack Project</span>
-                    <span className="mini-card-year">10/2026</span>
-                  </div>
-                  <strong className="mini-card-title">Nguyễn Hoàng Huynh Portfolio</strong>
-                  <p className="mini-card-desc">Giao diện Light Theme tinh tế với hiệu ứng 3D tilt và vầng hào quang theo chuột.</p>
-                  <div className="mini-card-tags">
-                    <span>Next.js 16</span>
-                    <span>TypeScript</span>
-                    <span>PostgreSQL</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="tilt-sliders-row">
-                <div className="slider-group">
-                  <label>Góc xoay dọc (Rotate X): {portfolioTiltX}°</label>
-                  <input
-                    type="range"
-                    min="-15"
-                    max="15"
-                    value={portfolioTiltX}
-                    onChange={(e) => setPortfolioTiltX(Number(e.target.value))}
-                    className="roi-range-input"
-                  />
-                </div>
-                <div className="slider-group">
-                  <label>Góc xoay ngang (Rotate Y): {portfolioTiltY}°</label>
-                  <input
-                    type="range"
-                    min="-15"
-                    max="15"
-                    value={portfolioTiltY}
-                    onChange={(e) => setPortfolioTiltY(Number(e.target.value))}
-                    className="roi-range-input"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'lang' && (
-            <div className="sim-interactive-grid">
-              <div className="sim-row-header">
-                <div>
-                  <strong className="sim-subheading">Thử nghiệm Chuyển đổi Ngôn ngữ 1 Chạm (Bilingual EN/VI)</strong>
-                  <p className="sim-subdesc">Bấm công tắc để thấy văn bản được chuyển đổi tức thời không cần tải lại trang:</p>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setPortfolioSimLang(portfolioSimLang === 'vi' ? 'en' : 'vi')}
-                  className="lang-toggle-sim-btn"
-                >
-                  <span className={`sim-lang-option ${portfolioSimLang === 'vi' ? 'active' : ''}`}>VI</span>
-                  <span className={`sim-lang-option ${portfolioSimLang === 'en' ? 'active' : ''}`}>EN</span>
-                </button>
-              </div>
-
-              <div className="lang-preview-card">
-                <div className="lang-preview-header">
-                  <span className="lang-current-flag">
-                    {portfolioSimLang === 'vi' ? '🇻🇳 Tiếng Việt (Mặc định)' : '🇬🇧 English (Global)'}
-                  </span>
-                  <span className="lang-storage-badge">LocalStorage Sync: OK</span>
-                </div>
-                <h4 className="lang-preview-title">
-                  {portfolioSimLang === 'vi'
-                    ? 'Nguyễn Hoàng Huynh — Lập trình viên Web Full-Stack'
-                    : 'Nguyen Hoang Huynh — Full-Stack Web Developer'}
-                </h4>
-                <p className="lang-preview-body">
-                  {portfolioSimLang === 'vi'
-                    ? 'Chuyên phát triển các ứng dụng web tối ưu quy mô, trải nghiệm mượt mà và câu chuyện kỹ thuật trực quan.'
-                    : 'Specializing in scalable web architectures, responsive craft, and authentic engineering storytelling.'}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'cms' && (
-            <div className="sim-interactive-grid">
-              <strong className="sim-subheading">Kiểm tra Xác thực Phiên CMS &amp; Database Pooling</strong>
-              <p className="sim-subdesc">Mô phỏng xác thực cookie HttpOnly bảo mật và kết nối PostgreSQL Neon:</p>
-
-              <div className="cms-audit-card">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setCmsVerified(true);
-                    setTimeout(() => setCmsVerified(false), 5000);
-                  }}
-                  className="btn-verify-cms"
-                >
-                  ⚡ Mô phỏng kiểm tra phiên Admin (nh_admin_session)
-                </button>
-
-                {cmsVerified ? (
-                  <div className="cms-verified-status animate-fade-in">
-                    <div className="audit-metric-row">
-                      <span>HttpOnly Cookie:</span>
-                      <strong className="text-emerald">✓ Verified (Token HMAC-SHA256)</strong>
-                    </div>
-                    <div className="audit-metric-row">
-                      <span>Database Connection:</span>
-                      <strong className="text-blue">PostgreSQL Neon (14 active pools, 12ms)</strong>
-                    </div>
-                    <div className="audit-metric-row">
-                      <span>CRUD Operations:</span>
-                      <strong>Projects, Storytelling Chapters, Inbox Messages (Ready)</strong>
-                    </div>
-                  </div>
-                ) : (
-                  <span className="cms-await-text">Nhấp vào nút trên để thực hiện kiểm tra bảo mật API.</span>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    // Generic fallback for any other project
-    return (
-      <div className="sim-interactive-grid" style={{ padding: isInsideScreen ? '24px' : '0', textAlign: 'center' }}>
-        <strong className="sim-subheading">Khám phá Tính năng &amp; Trải nghiệm Trực tiếp</strong>
-        <p className="sim-subdesc">
-          Hệ thống đã triển khai sẵn sàng tại liên kết bên dưới. Bạn có thể mở trực tiếp để kiểm thử toàn diện:
-        </p>
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-open-live-large"
-            style={{ display: 'inline-block', margin: '14px auto 0' }}
-          >
-            Truy cập trang web đang hoạt động ↗
-          </a>
-        )}
-      </div>
-    );
   };
 
   return (
-    <section className="scrollytelling-engine-root" aria-label="Interactive Storytelling Engine">
-      {/* FLOATING HUD & PROGRESS RADAR */}
-      <div className="scrolly-hud-container container">
-        <div className="scrolly-hud-pill">
-          <div className="scrolly-radar-dot">
-            <span className="radar-ping" />
-            <span className="radar-core" />
-          </div>
-          <div className="scrolly-hud-text">
-            <span className="hud-phase-label">
-              {lang === 'vi' ? 'GIAI ĐOẠN' : 'PHASE'} {chapters[activeIdx]?.number || '01'} /{' '}
-              {String(chapters.length).padStart(2, '0')}:
-            </span>
-            <strong className="hud-phase-title">
-              {chapters[activeIdx]?.title.split('&')[0].trim()}
-            </strong>
-          </div>
-          <div className="scrolly-hud-steps">
+    <section
+      className={`master-scrollytelling-section ${projectTheme.themeClass}`}
+      id="case-scrollytelling-engine"
+    >
+      <div className="container scrollytelling-grid-container">
+        {/* ========================================================
+            LEFT COLUMN: CHAPTERS NARRATIVE SCROLL TRACK
+           ======================================================== */}
+        <div className="scrollytelling-narrative-col">
+          <div className="narrative-progress-track" aria-hidden="true">
+            <div
+              className="narrative-progress-fill"
+              style={{
+                height: `${((activeIdx + 1) / chapters.length) * 100}%`,
+                background: projectTheme.color,
+              }}
+            />
             {chapters.map((ch, idx) => (
               <button
                 key={ch.id}
                 type="button"
-                onClick={() => handleJumpToChapter(idx, ch.id)}
-                className={`hud-step-dot ${activeIdx === idx ? 'active' : ''}`}
+                className={`narrative-scrubber-dot ${idx === activeIdx ? 'active' : ''} ${idx < activeIdx ? 'completed' : ''}`}
+                style={{ top: `${(idx / (chapters.length - 1 || 1)) * 100}%` }}
+                onClick={() => scrollToChapter(idx)}
                 title={`Chương ${ch.number}: ${ch.title}`}
-                aria-label={`Chương ${ch.number}`}
               >
-                <span>{ch.number}</span>
+                <span className="dot-inner" />
+                <span className="dot-tooltip">{ch.number}</span>
               </button>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* MASTER 2-COLUMN SCROLLYTELLING CONTAINER */}
-      <div className="container scrollytelling-main-grid">
-        {/* LEFT COLUMN: NARRATIVE STREAM (Story Chapters) */}
-        <div className="scrollytelling-narrative-stream">
-          <div className="narrative-stream-track">
-            {chapters.map((ch, idx) => {
-              const meta = visualMetaList[idx] || visualMetaList[0];
-              const isActive = activeIdx === idx;
+          <div className="narrative-cards-flow">
+            {chapters.map((chapter, idx) => {
+              const visual = visualList[idx] || visualList[0];
+              const isCurrent = idx === activeIdx;
 
               return (
                 <article
-                  key={ch.id}
-                  id={ch.id}
+                  key={chapter.id}
+                  id={chapter.id || `chapter-card-${idx}`}
                   data-chapter-index={idx}
-                  className={`scrolly-chapter-card ${isActive ? 'is-active-step' : ''}`}
+                  className={`scrolly-narrative-card ${isCurrent ? 'is-active-step' : ''}`}
                 >
-                  {/* Step Connector Line */}
-                  <div className="chapter-step-indicator">
-                    <span className="step-circle">{ch.number}</span>
-                    {idx < chapters.length - 1 && <span className="step-line" />}
+                  {/* CHAPTER PHASE BADGE */}
+                  <div className="narrative-chapter-eyebrow">
+                    <span
+                      className="chapter-badge-pill"
+                      style={{
+                        color: projectTheme.color,
+                        borderColor: projectTheme.color,
+                        background: projectTheme.accentBg,
+                      }}
+                    >
+                      {lang === 'vi' ? 'CHƯƠNG' : 'CHAPTER'} {chapter.number}
+                    </span>
+                    <span className="chapter-step-counter">
+                      {idx + 1} / {chapters.length}
+                    </span>
                   </div>
 
-                  {/* Card Content Body */}
-                  <div className="chapter-card-body">
-                    <div className="chapter-header-badge-row">
-                      <span className="chapter-phase-badge">
-                        {lang === 'vi' ? 'GIAI ĐOẠN' : 'PHASE'} {ch.number} / {String(chapters.length).padStart(2, '0')}
-                      </span>
-                      <span className="chapter-action-cue-tag">
-                        🎯 {meta.actionCue}
-                      </span>
+                  {/* CHAPTER TITLE */}
+                  <h3 className="narrative-chapter-title">{chapter.title}</h3>
+
+                  {/* CHAPTER BODY */}
+                  <div className="narrative-chapter-body">
+                    <p className="narrative-lead-p">{chapter.content}</p>
+                  </div>
+
+                  {/* TECHNICAL NOTES & HIGHLIGHT TAGS */}
+                  {chapter.technicalNotes && chapter.technicalNotes.length > 0 && (
+                    <div className="narrative-tech-box">
+                      <strong className="tech-box-title">
+                        {lang === 'vi' ? 'Kiến trúc & Công nghệ then chốt:' : 'Key Architecture & Stack:'}
+                      </strong>
+                      <ul className="tech-notes-list">
+                        {chapter.technicalNotes.map((note, nIdx) => (
+                          <li key={nIdx}>
+                            <span className="tech-bullet" style={{ color: projectTheme.color }}>✦</span>
+                            <span>{note}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
+                  )}
 
-                    <h3 className="chapter-heading">{ch.title}</h3>
-                    <p className="chapter-text-lead">{ch.content}</p>
-
-                    {/* Technical Architecture Notes */}
-                    {ch.technicalNotes && ch.technicalNotes.length > 0 && (
-                      <div className="chapter-tech-box">
-                        <div className="tech-box-title">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                          </svg>
-                          <span>{lang === 'vi' ? 'KIẾN TRÚC & GIẢI PHÁP KỸ THUẬT' : 'ENGINEERING ARCHITECTURE & CONSTRAINTS'}</span>
-                        </div>
-                        <ul className="tech-notes-list">
-                          {ch.technicalNotes.map((note, nIdx) => (
-                            <li key={nIdx}>
-                              <span className="bullet-chevron">›</span>
-                              <span>{note}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {/* Interactive Action Focus Button */}
-                    <div className="chapter-action-footer">
-                      <button
-                        type="button"
-                        className="btn-focus-stage"
-                        onClick={() => handleJumpToChapter(idx, ch.id)}
-                      >
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="10" />
-                          <circle cx="12" cy="12" r="3" />
-                        </svg>
-                        <span>{lang === 'vi' ? 'Xem tương tác trên giao diện thực tế' : 'Inspect live interaction on stage'}</span>
-                        <span className="cue-arrow">→</span>
-                      </button>
-
-                      <span className="chapter-target-component">
-                        <strong>{lang === 'vi' ? 'Đang giải thích:' : 'Explaining:'}</strong> {meta.hotspot.label}
-                      </span>
-                    </div>
+                  {/* ARCHITECTURAL TAKEAWAY QUOTE */}
+                  <div className="narrative-takeaway-card">
+                    <span className="takeaway-icon">💡</span>
+                    <p className="takeaway-text">
+                      <strong>{lang === 'vi' ? 'Điểm nhấn kỹ thuật:' : 'Key Takeaway:'}</strong>{' '}
+                      {lang === 'vi' ? visual.takeawayVi : visual.takeawayEn}
+                    </p>
                   </div>
                 </article>
               );
@@ -2601,46 +1354,34 @@ export function MasterInteractiveScrollytelling({
           </div>
         </div>
 
-        {/* RIGHT COLUMN: STICKY VISUAL STAGE & ACTION SIMULATOR */}
-        <div className="scrollytelling-stage-column">
+        {/* ========================================================
+            RIGHT COLUMN: STICKY VISUAL STORYTELLING STAGE
+           ======================================================== */}
+        <div className="scrollytelling-stage-col">
           <div className="sticky-stage-anchor">
-            {/* 3D DEVICE FRAME CONTAINER */}
-            <div className="stage-device-frame">
-              {/* BROWSER TOP CHROME / HEADER */}
-              <div className="stage-topbar">
-                <div className="window-dots">
-                  <span className="dot red" />
-                  <span className="dot yellow" />
-                  <span className="dot green" />
+            {/* BESPOKE DEVICE BROWSER FRAME */}
+            <div
+              ref={stageRef}
+              className={`stage-browser-device ${projectTheme.themeClass}`}
+              style={tiltStyle}
+              onMouseMove={handleStageMouseMove}
+              onMouseLeave={handleStageMouseLeave}
+            >
+              {/* BROWSER TOP WINDOW CONTROLS BAR */}
+              <div className="stage-browser-header">
+                <div className="stage-window-controls" aria-hidden="true">
+                  <span className="control-dot dot-close" />
+                  <span className="control-dot dot-min" />
+                  <span className="control-dot dot-max" />
                 </div>
 
-                <div className="browser-url-pill">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                  </svg>
-                  <span className="url-text">{project.liveUrl || 'https://production-system.live'}</span>
-                </div>
-
-                {/* MODE TOGGLE: LIVE INTERACTION vs SCREENSHOT */}
-                <div className="stage-mode-switch">
-                  <button
-                    type="button"
-                    className={`mode-toggle-btn ${viewMode === 'interactive' ? 'active' : ''}`}
-                    onClick={() => setViewMode('interactive')}
-                    title="Trải nghiệm ứng dụng tương tác trực tiếp trên màn hình"
-                  >
-                    <span className="live-ping-dot" />
-                    <span>{lang === 'vi' ? 'Tương tác trực tiếp' : 'Interactive'}</span>
-                  </button>
-                  <button
-                    type="button"
-                    className={`mode-toggle-btn ${viewMode === 'screenshot' ? 'active' : ''}`}
-                    onClick={() => setViewMode('screenshot')}
-                    title="Xem ảnh chụp giao diện gốc"
-                  >
-                    <span>{lang === 'vi' ? 'Ảnh chụp' : 'Screenshot'}</span>
-                  </button>
+                <div className="stage-url-display">
+                  <span className="stage-ssl-lock">🔒</span>
+                  <span className="stage-url-text">
+                    {project.liveUrl
+                      ? project.liveUrl.replace(/^https?:\/\//, '')
+                      : `${project.slug}.online`}
+                  </span>
                 </div>
 
                 {project.liveUrl && (
@@ -2661,162 +1402,133 @@ export function MasterInteractiveScrollytelling({
                 )}
               </div>
 
-              {/* STAGE FEATURE SUBBAR */}
-              <div className="stage-feature-subbar">
-                {projectFeatureTabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    className={`stage-feature-tab ${activeTab === tab.id ? 'active' : ''}`}
-                    onClick={() => {
-                      setActiveTab(tab.id);
-                      setViewMode('interactive');
+              {/* STAGE SCREEN VIEWPORT: AUTHENTIC SCREENSHOT + BESPOKE ANIMATION OVERLAY */}
+              <div className="stage-viewport">
+                <div className="stage-image-wrapper">
+                  <Image
+                    key={currentVisual.imageUrl}
+                    src={currentVisual.imageUrl}
+                    alt={currentVisual.imageAlt}
+                    width={1200}
+                    height={720}
+                    className="stage-screenshot-img animate-fade-in"
+                    priority
+                    unoptimized
+                  />
+                  <div className="stage-screen-sheen" />
+
+                  {/* 1 OF 5 BESPOKE PROJECT ANIMATION OVERLAYS */}
+                  {projectTheme.overlayComponent}
+
+                  {/* OVERLAID RADAR HOTSPOT PIN */}
+                  <div
+                    className={`scrolly-hotspot-pin ${isHoveringHotspot ? 'is-expanded' : ''}`}
+                    style={{
+                      left: `${currentVisual.hotspot.x}%`,
+                      top: `${currentVisual.hotspot.y}%`,
+                    }}
+                    onMouseEnter={() => setIsHoveringHotspot(true)}
+                    onMouseLeave={() => setIsHoveringHotspot(false)}
+                    onClick={() => setIsHoveringHotspot(!isHoveringHotspot)}
+                  >
+                    <div className="hotspot-radar-ripple ring-1" />
+                    <div className="hotspot-radar-ripple ring-2" />
+                    <div className="hotspot-core-dot" />
+
+                    {/* CONTEXTUAL ARCHITECTURAL CALLOUT CARD */}
+                    <div className="hotspot-callout-card">
+                      <div className="callout-badge-row">
+                        <span className="callout-pill-tag">
+                          🎯 {lang === 'vi' ? 'VỊ TRÍ ĐANG GIẢI THÍCH' : 'ACTIVE EXPLAINED COMPONENT'}
+                        </span>
+                        <span className="callout-phase-num">CH.{chapters[activeIdx]?.number}</span>
+                      </div>
+                      <strong className="callout-component-name">
+                        {lang === 'vi' ? currentVisual.hotspot.labelVi : currentVisual.hotspot.labelEn}
+                      </strong>
+                      <p className="callout-action-desc">
+                        <strong>{lang === 'vi' ? 'Hành động:' : 'Action:'}</strong>{' '}
+                        {lang === 'vi' ? currentVisual.hotspot.actionVi : currentVisual.hotspot.actionEn}
+                      </p>
+                      <p className="callout-detail-text">
+                        {lang === 'vi' ? currentVisual.hotspot.descriptionVi : currentVisual.hotspot.descriptionEn}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* SIMULATED MOUSE CURSOR POINTER */}
+                  <div
+                    className="scrolly-simulated-cursor"
+                    style={{
+                      left: `${currentVisual.cursor.x}%`,
+                      top: `${currentVisual.cursor.y}%`,
                     }}
                   >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* STAGE SCREEN VIEWPORT (With Interactive App OR Screenshot & Hotspot Pin) */}
-              <div className={`stage-viewport ${viewMode === 'interactive' ? 'is-interactive-mode' : ''}`}>
-                {viewMode === 'interactive' ? (
-                  <div className="stage-interactive-screen">
-                    {renderInteractiveApp(true)}
-                  </div>
-                ) : (
-                  <div className="stage-image-wrapper">
-                    <Image
-                      key={currentVisual.imageUrl}
-                      src={currentVisual.imageUrl}
-                      alt={currentVisual.imageAlt}
-                      width={1200}
-                      height={720}
-                      className="stage-screenshot-img animate-fade-in"
-                      priority
-                      unoptimized
-                    />
-                    <div className="stage-screen-sheen" />
-
-                    {/* OVERLAID RADAR HOTSPOT PIN */}
-                    <div
-                      className={`scrolly-hotspot-pin ${isHoveringHotspot ? 'is-expanded' : ''}`}
-                      style={{
-                        left: `${currentVisual.hotspot.x}%`,
-                        top: `${currentVisual.hotspot.y}%`,
-                      }}
-                      onMouseEnter={() => setIsHoveringHotspot(true)}
-                      onMouseLeave={() => setIsHoveringHotspot(false)}
-                    >
-                      <div className="hotspot-radar-ripple ring-1" />
-                      <div className="hotspot-radar-ripple ring-2" />
-                      <div className="hotspot-core-dot" />
-
-                      <div className="hotspot-callout-card">
-                        <div className="callout-badge-row">
-                          <span className="callout-pill-tag">
-                            🎯 {lang === 'vi' ? 'VỊ TRÍ ĐANG GIẢI THÍCH' : 'ACTIVE EXPLAINED COMPONENT'}
-                          </span>
-                          <span className="callout-phase-num">CH.{chapters[activeIdx]?.number}</span>
-                        </div>
-                        <strong className="callout-component-name">{currentVisual.hotspot.label}</strong>
-                        <p className="callout-action-desc">
-                          <strong>{lang === 'vi' ? 'Hành động:' : 'Action:'}</strong> {currentVisual.hotspot.action}
-                        </p>
-                        <p className="callout-detail-text">{currentVisual.hotspot.description}</p>
-                      </div>
+                    <div className="cursor-pointer-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
+                          fill="#0F172A"
+                          stroke="#FFFFFF"
+                          strokeWidth="1.5"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span className="cursor-click-wave" />
                     </div>
 
-                    {/* SIMULATED MOUSE CURSOR POINTER */}
-                    <div
-                      className="scrolly-simulated-cursor"
-                      style={{
-                        left: `${currentVisual.cursor.x}%`,
-                        top: `${currentVisual.cursor.y}%`,
-                      }}
-                    >
-                      <div className="cursor-pointer-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                          <path
-                            d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
-                            fill="#0F172A"
-                            stroke="#FFFFFF"
-                            strokeWidth="1.5"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        <span className="cursor-click-wave" />
-                      </div>
-
-                      <div className="cursor-action-tag">
-                        <span className="cursor-pulse-light" />
-                        <span>{currentVisual.cursor.actionText}</span>
-                      </div>
+                    <div className="cursor-action-tag">
+                      <span className="cursor-pulse-light" />
+                      <span>{lang === 'vi' ? currentVisual.cursor.actionTextVi : currentVisual.cursor.actionTextEn}</span>
                     </div>
                   </div>
-                )}
+                </div>
 
-                {/* STAGE BOTTOM STATUS OVERLAY */}
+                {/* SYNCHRONIZED CAPTION BAR */}
                 <div className="stage-caption-bar">
                   <div className="caption-text-group">
                     <span className="caption-eyebrow">
-                      {lang === 'vi' ? 'ĐỒNG BỘ TRỰC QUAN THEO NỘI DUNG:' : 'SYNCHRONIZED VISUAL NARRATIVE:'}
+                      {lang === 'vi' ? 'ĐỒNG BỘ TRỰC QUAN THEO CHƯƠNG:' : 'SYNCHRONIZED CHAPTER NARRATIVE:'}
                     </span>
-                    <strong className="caption-main">{currentVisual.imageCaption}</strong>
+                    <strong className="caption-main">
+                      {lang === 'vi' ? currentVisual.imageCaptionVi : currentVisual.imageCaptionEn}
+                    </strong>
                   </div>
                   <div className="caption-sync-badge">
                     <span className="sync-pulse-dot" />
-                    <span>{viewMode === 'interactive' ? (lang === 'vi' ? 'LIVE TƯƠNG TÁC' : 'LIVE DEMO') : (lang === 'vi' ? 'ĐANG ĐỒNG BỘ' : 'SYNCED')}</span>
+                    <span>{lang === 'vi' ? 'ĐANG ĐỒNG BỘ' : 'SYNCED'}</span>
                   </div>
                 </div>
               </div>
 
-              {/* TELEMETRY CONSOLE IN INTERACTIVE MODE */}
-              {viewMode === 'interactive' && telemetryInfo && (
-                <div className="stage-telemetry-console">
-                  <div className="telemetry-console-header">
-                    <span className="telemetry-tag">
-                      <span className="telemetry-ping" />
-                      <span>{telemetryInfo.tag}</span>
-                    </span>
-                    <span className="telemetry-status-pill">{telemetryInfo.status}</span>
-                  </div>
-                  <div className="telemetry-body-log">
-                    {telemetryInfo.log}
+              {/* NARRATIVE ATMOSPHERE & QUICK-JUMP SCRUBBER STRIP */}
+              <div className="stage-atmosphere-bar">
+                <div className="atmosphere-theme-tag">
+                  <span className="theme-dot" style={{ background: projectTheme.color }} />
+                  <span className="theme-text">
+                    {lang === 'vi' ? projectTheme.badgeTextVi : projectTheme.badgeTextEn}
+                  </span>
+                </div>
+
+                <div className="stage-quick-scrubber">
+                  <span className="scrubber-label">
+                    {lang === 'vi' ? 'Chuyển nhanh:' : 'Jump to:'}
+                  </span>
+                  <div className="scrubber-pills">
+                    {chapters.map((ch, idx) => (
+                      <button
+                        key={ch.id}
+                        type="button"
+                        className={`scrubber-pill ${idx === activeIdx ? 'active' : ''}`}
+                        onClick={() => scrollToChapter(idx)}
+                        title={`Chương ${ch.number}: ${ch.title}`}
+                      >
+                        {ch.number}
+                      </button>
+                    ))}
                   </div>
                 </div>
-              )}
-
-              {/* AUXILIARY ACTION SIMULATOR IN SCREENSHOT MODE */}
-              {viewMode === 'screenshot' && (
-                <div className="stage-action-simulator">
-                  <div className="simulator-header-tabs">
-                    <div className="sim-title-group">
-                      <span className="sim-indicator-dot" />
-                      <span className="sim-header-label">
-                        {lang === 'vi' ? 'BỘ GIẢ LẬP HÀNH ĐỘNG DƯỚI MÀN HÌNH' : 'LIVE ACTION SIMULATOR'}
-                      </span>
-                    </div>
-
-                    <div className="sim-tab-list">
-                      {projectFeatureTabs.map((tab) => (
-                        <button
-                          key={tab.id}
-                          type="button"
-                          className={`sim-tab-btn ${activeTab === tab.id ? 'active' : ''}`}
-                          onClick={() => setActiveTab(tab.id)}
-                        >
-                          {tab.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="simulator-canvas">
-                    {renderInteractiveApp(false)}
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
