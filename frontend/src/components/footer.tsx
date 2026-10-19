@@ -55,61 +55,109 @@ export function Footer() {
         {/* MONUMENTAL RUNNING STROKE WATERMARK SIGNATURE */}
         <div className="footer-watermark-row" aria-hidden="true">
           <div className="footer-watermark-wrap">
+            <div className="footer-watermark-ambient-glow" />
             <svg
-              viewBox="0 0 1440 140"
+              viewBox="0 0 1600 160"
               className="footer-watermark-svg"
               preserveAspectRatio="xMidYMid meet"
             >
               <defs>
-                <linearGradient id="footerStrokeFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.25">
-                    <animate attributeName="stop-color" values="#2563EB;#38BDF8;#818CF8;#EC4899;#2563EB" dur="10s" repeatCount="indefinite" />
+                {/* 1. Rich Modern Multi-stop Gradient Fill */}
+                <linearGradient id="footerNameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.32">
+                    <animate attributeName="stop-color" values="#2563EB;#4F46E5;#06B6D4;#2563EB" dur="12s" repeatCount="indefinite" />
                   </stop>
-                  <stop offset="35%" stopColor="#38BDF8" stopOpacity="0.85">
-                    <animate attributeName="stop-color" values="#38BDF8;#818CF8;#EC4899;#2563EB;#38BDF8" dur="10s" repeatCount="indefinite" />
+                  <stop offset="25%" stopColor="#4F46E5" stopOpacity="0.36">
+                    <animate attributeName="stop-color" values="#4F46E5;#7C3AED;#EC4899;#4F46E5" dur="12s" repeatCount="indefinite" />
                   </stop>
-                  <stop offset="70%" stopColor="#818CF8" stopOpacity="0.95">
-                    <animate attributeName="stop-color" values="#818CF8;#EC4899;#2563EB;#38BDF8;#818CF8" dur="10s" repeatCount="indefinite" />
+                  <stop offset="50%" stopColor="#7C3AED" stopOpacity="0.34">
+                    <animate attributeName="stop-color" values="#7C3AED;#2563EB;#4F46E5;#7C3AED" dur="12s" repeatCount="indefinite" />
                   </stop>
-                  <stop offset="100%" stopColor="#2563EB" stopOpacity="0.25">
-                    <animate attributeName="stop-color" values="#2563EB;#38BDF8;#818CF8;#EC4899;#2563EB" dur="10s" repeatCount="indefinite" />
+                  <stop offset="75%" stopColor="#06B6D4" stopOpacity="0.36">
+                    <animate attributeName="stop-color" values="#06B6D4;#EC4899;#2563EB;#06B6D4" dur="12s" repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="100%" stopColor="#EC4899" stopOpacity="0.30">
+                    <animate attributeName="stop-color" values="#EC4899;#06B6D4;#4F46E5;#EC4899" dur="12s" repeatCount="indefinite" />
                   </stop>
                 </linearGradient>
-                <linearGradient id="footerBaseFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#0F172A" stopOpacity="0.04" />
-                  <stop offset="100%" stopColor="#0F172A" stopOpacity="0.015" />
+
+                {/* 2. Base Outline Gradient */}
+                <linearGradient id="footerBaseOutlineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.35" />
+                  <stop offset="50%" stopColor="#6366F1" stopOpacity="0.45" />
+                  <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.35" />
+                </linearGradient>
+
+                {/* 3. Electric Running Laser Stroke Gradient */}
+                <linearGradient id="footerLaserStrokeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.3" />
+                  <stop offset="25%" stopColor="#38BDF8" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
+                  <stop offset="75%" stopColor="#818CF8" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#EC4899" stopOpacity="0.3" />
+                </linearGradient>
+
+                {/* 4. Secondary Counter-Beam Gradient */}
+                <linearGradient id="footerLaserStrokeGrad2" x1="100%" y1="0%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.3" />
+                  <stop offset="35%" stopColor="#38BDF8" stopOpacity="0.85" />
+                  <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
+                  <stop offset="65%" stopColor="#EC4899" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#6366F1" stopOpacity="0.3" />
                 </linearGradient>
               </defs>
 
-              {/* 1. Base Subtle Fill */}
+              {/* Layer 1: Ambient Background Glow Text */}
               <text
                 x="50%"
-                y="68%"
+                y="54%"
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="watermark-fill-text"
+                className="watermark-glow-text"
               >
                 NGUYỄN HOÀNG HUYNH
               </text>
 
-              {/* 2. Base Subtle Outline */}
+              {/* Layer 2: Main Rich Gradient Fill */}
               <text
                 x="50%"
-                y="68%"
+                y="54%"
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="watermark-outline-base"
+                className="watermark-gradient-fill"
               >
                 NGUYỄN HOÀNG HUYNH
               </text>
 
-              {/* 3. Dynamic Running Light Stroke */}
+              {/* Layer 3: Base Clean Outline */}
               <text
                 x="50%"
-                y="68%"
+                y="54%"
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="watermark-running-stroke"
+                className="watermark-base-outline"
+              >
+                NGUYỄN HOÀNG HUYNH
+              </text>
+
+              {/* Layer 4: Running Light Stroke Beam 1 */}
+              <text
+                x="50%"
+                y="54%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="watermark-laser-stroke-1"
+              >
+                NGUYỄN HOÀNG HUYNH
+              </text>
+
+              {/* Layer 5: Running Light Stroke Beam 2 (Counter pulse) */}
+              <text
+                x="50%"
+                y="54%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="watermark-laser-stroke-2"
               >
                 NGUYỄN HOÀNG HUYNH
               </text>
