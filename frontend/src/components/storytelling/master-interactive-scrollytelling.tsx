@@ -890,37 +890,93 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
   ],
 };
 
+const PROJECT_CHAPTER_DOMAINS: Record<string, { vi: string; en: string }[]> = {
+  'ticket-concert-agentic-rag': [
+    { vi: 'STADIUM DISCOVERY // 48kHz', en: 'STADIUM DISCOVERY // 48kHz' },
+    { vi: 'AGENTIC RAG // LANGCHAIN & GEMINI', en: 'AGENTIC RAG // LANGCHAIN & GEMINI' },
+    { vi: 'WEBSOCKET ANTI-COLLISION // 50ms', en: 'WEBSOCKET ANTI-COLLISION // 50ms' },
+    { vi: 'SEAT MATRIX // REAL-TIME CALC', en: 'SEAT MATRIX // REAL-TIME CALC' },
+    { vi: 'MOMO API // HMAC-SHA256 SECURE', en: 'MOMO API // HMAC-SHA256 SECURE' },
+    { vi: 'FULL-STACK REST // NEON POSTGRES', en: 'FULL-STACK REST // NEON POSTGRES' },
+    { vi: 'E-TICKET QR DISPATCH // 99.9% UPTIME', en: 'E-TICKET QR DISPATCH // 99.9% UPTIME' },
+  ],
+  'fashion-nail-morley': [
+    { vi: 'CHAMPAGNE ROSE // BRAND IDENTITY', en: 'CHAMPAGNE ROSE // BRAND IDENTITY' },
+    { vi: 'STUDIO LOOKBOOK // RETINA HD', en: 'STUDIO LOOKBOOK // RETINA HD' },
+    { vi: 'AUD PRICING MENU // MOBILE-FIRST', en: 'AUD PRICING MENU // MOBILE-FIRST' },
+    { vi: 'ONE-TAP BOOKING // SUB-30s FLOW', en: 'ONE-TAP BOOKING // SUB-30s FLOW' },
+    { vi: 'RESEND API // 350ms EMAIL ALERT', en: 'RESEND API // 350ms EMAIL ALERT' },
+    { vi: 'GOOGLE MAPS // PERTH LOCAL SEO', en: 'GOOGLE MAPS // PERTH LOCAL SEO' },
+    { vi: 'VITE SPA // LIGHTHOUSE 98/100', en: 'VITE SPA // LIGHTHOUSE 98/100' },
+  ],
+  'examplatform-ai': [
+    { vi: 'DISTRACTION-FREE // ZERO-NOISE ROOM', en: 'DISTRACTION-FREE // ZERO-NOISE ROOM' },
+    { vi: 'ADAPTIVE DIFFICULTY // 5 TIERS', en: 'ADAPTIVE DIFFICULTY // 5 TIERS' },
+    { vi: 'ANTI-CHEAT // TAB DEFOCUS TELEMETRY', en: 'ANTI-CHEAT // TAB DEFOCUS TELEMETRY' },
+    { vi: 'REDIS CACHE // 6ms TIMEOUT PROTECTION', en: 'REDIS CACHE // 6ms TIMEOUT PROTECTION' },
+    { vi: 'ACADEMIC INTEGRITY // JWT TOKEN ENCRYPT', en: 'ACADEMIC INTEGRITY // JWT TOKEN ENCRYPT' },
+    { vi: 'FULL-STACK ARCH // TAILWIND UI', en: 'FULL-STACK ARCH // TAILWIND UI' },
+    { vi: 'OUTCOME AUDIT // 99.8% RELIABILITY', en: 'OUTCOME AUDIT // 99.8% RELIABILITY' },
+  ],
+  'vk-digital-hub': [
+    { vi: 'B2B FINTECH // HIGH CONVERSION', en: 'B2B FINTECH // HIGH CONVERSION' },
+    { vi: 'MAKE.COM WEBHOOK // 180ms INGESTION', en: 'MAKE.COM WEBHOOK // 180ms INGESTION' },
+    { vi: 'SERVICE MATRIX // +340% ROI LIFT', en: 'SERVICE MATRIX // +340% ROI LIFT' },
+    { vi: 'INSTANT SYNC // SLACK & CRM TEAM', en: 'INSTANT SYNC // SLACK & CRM TEAM' },
+    { vi: 'CLIENT VALIDATION // 99% ACCURACY', en: 'CLIENT VALIDATION // 99% ACCURACY' },
+    { vi: 'JAMSTACK SERVERLESS // ZERO BILL', en: 'JAMSTACK SERVERLESS // ZERO BILL' },
+    { vi: 'PRODUCTION READY // NETLIFY CDN', en: 'PRODUCTION READY // NETLIFY CDN' },
+  ],
+  'nh-huynh-portfolio': [
+    { vi: '3D SPATIAL // RETINA LIGHT THEME', en: '3D SPATIAL // RETINA LIGHT THEME' },
+    { vi: 'PROJECT CARDS // 3D TILT MATRIX', en: 'PROJECT CARDS // 3D TILT MATRIX' },
+    { vi: 'INTERACTIVE RADAR // RETICLE TARGET', en: 'INTERACTIVE RADAR // RETICLE TARGET' },
+    { vi: 'BESPOKE STORYTELLING // DOMAIN MOTION', en: 'BESPOKE STORYTELLING // DOMAIN MOTION' },
+    { vi: 'ADMIN CMS // HTTPONLY COOKIE AUTH', en: 'ADMIN CMS // HTTPONLY COOKIE AUTH' },
+    { vi: 'VERIFIED CREDENTIALS // TOEIC 550 & GPA 3.1', en: 'VERIFIED CREDENTIALS // TOEIC 550 & GPA 3.1' },
+    { vi: 'ENGINEERING EXCELLENCE // NEXT.JS 15 & TS', en: 'ENGINEERING EXCELLENCE // NEXT.JS 15 & TS' },
+  ],
+};
+
 // 1. TICKET CONCERT OVERLAY (Cyber Neon, Audio Equalizer Waves, Laser Scanner, HUD Telemetry)
 function CyberConcertOverlay() {
+  const eqHeights = [35, 80, 50, 95, 65, 88, 42, 92, 70, 48, 85, 60, 90, 52, 78, 45, 82, 68];
   return (
     <div className="tc-cyber-overlay" aria-hidden="true">
-      {/* Dynamic Audio Equalizer Bars */}
+      {/* Dynamic 18-Bar Audio Equalizer Visualizer */}
       <div className="tc-eq-bars">
-        {[40, 75, 55, 95, 60, 85, 45, 90, 70, 50, 80, 65].map((h, i) => (
-          <span
-            key={i}
-            className="tc-eq-bar"
-            style={{
-              height: `${h}%`,
-              animationDelay: `${i * 0.12}s`,
-            }}
-          />
-        ))}
+        <div className="tc-eq-inner">
+          {eqHeights.map((h, i) => (
+            <span
+              key={i}
+              className="tc-eq-bar"
+              style={{
+                height: `${h}%`,
+                animationDelay: `${(i % 6) * 0.14}s`,
+              }}
+            />
+          ))}
+        </div>
+        <div className="tc-eq-frequencies">
+          <span>32Hz</span>
+          <span>1kHz</span>
+          <span>16kHz</span>
+        </div>
       </div>
 
-      {/* Sweeping Laser Beam */}
+      {/* Sweeping Dual-Beam Laser Scanner */}
       <div className="tc-laser-sweep" />
 
       {/* Cyber Corner HUD Brackets */}
-      <div className="tc-hud-bracket top-left">[ + ]</div>
-      <div className="tc-hud-bracket top-right">[ + ]</div>
-      <div className="tc-hud-bracket bottom-left">[ 48kHz ]</div>
-      <div className="tc-hud-bracket bottom-right">[ 60FPS ]</div>
+      <div className="tc-hud-bracket top-left">[ + ARENA AUDIO ]</div>
+      <div className="tc-hud-bracket top-right">[ 48kHz / 24-BIT ]</div>
+      <div className="tc-hud-bracket bottom-left">[ LATENCY: 34ms ]</div>
+      <div className="tc-hud-bracket bottom-right">[ 60FPS STABLE ]</div>
 
       {/* Top Stream Telemetry Badge */}
       <div className="tc-stream-badge">
         <span className="tc-stream-dot" />
-        <span>LIVE CONCERT STREAM // WEBSOCKET ACTIVE</span>
+        <span>LIVE CONCERT BROADCAST // WEBSOCKET ACTIVE</span>
       </div>
     </div>
   );
@@ -928,18 +984,24 @@ function CyberConcertOverlay() {
 
 // 2. FASHION NAIL OVERLAY (Ken Burns Pan, Floating Gold Bokeh Shimmer, Glass Glint, Atelier Seal)
 function LuxurySalonOverlay() {
+  const bokehParticles = [
+    { x: 12, y: 82, size: 8, delay: 0 },
+    { x: 28, y: 72, size: 14, delay: 1.1 },
+    { x: 45, y: 88, size: 6, delay: 0.6 },
+    { x: 62, y: 76, size: 12, delay: 1.8 },
+    { x: 78, y: 84, size: 9, delay: 2.3 },
+    { x: 88, y: 68, size: 11, delay: 1.4 },
+    { x: 20, y: 62, size: 7, delay: 2.7 },
+    { x: 55, y: 65, size: 10, delay: 0.9 },
+    { x: 72, y: 58, size: 8, delay: 2.0 },
+    { x: 38, y: 54, size: 13, delay: 1.6 },
+  ];
+
   return (
     <div className="fn-luxury-overlay" aria-hidden="true">
       {/* Floating Champagne Gold Bokeh Particles */}
       <div className="fn-bokeh-container">
-        {[
-          { x: 15, y: 80, size: 8, delay: 0 },
-          { x: 35, y: 70, size: 12, delay: 1.2 },
-          { x: 60, y: 85, size: 6, delay: 0.7 },
-          { x: 80, y: 75, size: 10, delay: 1.9 },
-          { x: 25, y: 60, size: 7, delay: 2.4 },
-          { x: 70, y: 65, size: 9, delay: 1.5 },
-        ].map((dot, i) => (
+        {bokehParticles.map((dot, i) => (
           <span
             key={i}
             className="fn-bokeh-dot"
@@ -979,12 +1041,14 @@ function ProctorExamOverlay() {
         <div className="radar-crosshair-v" />
         <div className="radar-sweep-beam" />
         <span className="radar-center-dot" />
+        <span className="radar-target-blip blip-1" />
+        <span className="radar-target-blip blip-2" />
       </div>
 
       {/* Technical Blueprint Coordinate Tags */}
       <div className="ep-crosshair-tag top-left">
         <span>AI_MONITOR: ACTIVE</span>
-        <small>ZONE_01 [X:142.8 Y:89.2]</small>
+        <small>ZONE_01 [X:142.8 Y:89.2] • JWT_ENCRYPTED</small>
       </div>
 
       {/* Session Integrity Telemetry HUD */}
@@ -1001,8 +1065,13 @@ function ProctorExamOverlay() {
         </div>
         <div className="hud-metric-pill">
           <span className="metric-icon">⏱️</span>
-          <span className="metric-label">TIME:</span>
+          <span className="metric-label">TIMER:</span>
           <strong className="metric-val">45:00</strong>
+        </div>
+        <div className="hud-metric-pill">
+          <span className="metric-icon">🔒</span>
+          <span className="metric-label">TAB:</span>
+          <strong className="metric-val">LOCKED</strong>
         </div>
       </div>
     </div>
@@ -1013,7 +1082,7 @@ function ProctorExamOverlay() {
 function GrowthPipelineOverlay() {
   return (
     <div className="vk-growth-overlay" aria-hidden="true">
-      {/* Live Animated Data-Flow Pipeline */}
+      {/* Live Animated Data-Flow Pipeline Banner */}
       <div className="vk-data-pipeline">
         <div className="pipeline-node active">
           <span className="node-dot" />
@@ -1042,17 +1111,17 @@ function GrowthPipelineOverlay() {
           <path
             d="M 5 35 Q 35 32 60 20 T 115 5"
             stroke="url(#vkGrowthGrad)"
-            strokeWidth="3"
+            strokeWidth="3.5"
             strokeLinecap="round"
           />
           <defs>
             <linearGradient id="vkGrowthGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0.4" />
+              <stop offset="0%" stopColor="#10B981" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#34D399" stopOpacity="1" />
             </linearGradient>
           </defs>
         </svg>
-        <span className="vk-growth-badge">+340% ROI</span>
+        <span className="vk-growth-badge">+340% ROI LIFT</span>
       </div>
 
       {/* Lead Telemetry Ticker */}
@@ -1300,16 +1369,25 @@ export function MasterInteractiveScrollytelling({
                 >
                   {/* CHAPTER PHASE BADGE */}
                   <div className="narrative-chapter-eyebrow">
-                    <span
-                      className="chapter-badge-pill"
-                      style={{
-                        color: projectTheme.color,
-                        borderColor: projectTheme.color,
-                        background: projectTheme.accentBg,
-                      }}
-                    >
-                      {lang === 'vi' ? 'CHƯƠNG' : 'CHAPTER'} {chapter.number}
-                    </span>
+                    <div className="chapter-eyebrow-left">
+                      <span
+                        className="chapter-badge-pill"
+                        style={{
+                          color: projectTheme.color,
+                          borderColor: projectTheme.color,
+                          background: projectTheme.accentBg,
+                        }}
+                      >
+                        {lang === 'vi' ? 'CHƯƠNG' : 'CHAPTER'} {chapter.number}
+                      </span>
+                      {PROJECT_CHAPTER_DOMAINS[project.slug]?.[idx] && (
+                        <span className="chapter-domain-tag">
+                          {lang === 'vi'
+                            ? PROJECT_CHAPTER_DOMAINS[project.slug][idx].vi
+                            : PROJECT_CHAPTER_DOMAINS[project.slug][idx].en}
+                        </span>
+                      )}
+                    </div>
                     <span className="chapter-step-counter">
                       {idx + 1} / {chapters.length}
                     </span>

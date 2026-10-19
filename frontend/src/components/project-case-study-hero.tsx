@@ -9,9 +9,10 @@ import { useLanguage } from '@/context/language-context';
 
 interface ProjectCaseStudyHeroProps {
   project: Project;
+  themeClass?: string;
 }
 
-export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
+export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHeroProps) {
   const { t, lang } = useLanguage();
   const accentColor = project.themeColor || '#7C3AED';
   const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
@@ -41,7 +42,7 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
     : t('case.solo');
 
   return (
-    <header className="hh-case-hero-root">
+    <header className={`hh-case-hero-root ${themeClass || ''}`}>
       <div className="container">
         {/* BACK LINK */}
         <div className="hh-case-back-row">

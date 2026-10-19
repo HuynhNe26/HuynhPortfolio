@@ -10,6 +10,7 @@ interface ProjectStoryBodyProps {
   project: Project;
   prevProject: Project | null;
   nextProject: Project | null;
+  themeClass?: string;
 }
 
 const PROJECT_CHAPTERS_VI: Record<string, ProjectChapter[]> = {
@@ -414,6 +415,7 @@ export function ProjectStoryBody({
   project,
   prevProject,
   nextProject,
+  themeClass,
 }: ProjectStoryBodyProps) {
   const { t, lang } = useLanguage();
 
@@ -471,7 +473,7 @@ export function ProjectStoryBody({
   return (
     <>
       {/* CHAPTER NAVIGATION STRIP */}
-      <nav className="chapter-sticky-nav" aria-label="Case study chapters">
+      <nav className={`chapter-sticky-nav ${themeClass || ''}`} aria-label="Case study chapters">
         <div className="container chapter-nav-inner">
           <span className="chapter-nav-label">{t('story.chaptersNav')}</span>
           <div className="chapter-links-scroll">

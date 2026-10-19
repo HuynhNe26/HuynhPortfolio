@@ -32,23 +32,35 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const nextProject = currentIndex >= 0 && currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
+  const themeClass = project.slug === 'ticket-concert-agentic-rag'
+    ? 'theme-cyber-concert'
+    : project.slug === 'fashion-nail-morley'
+    ? 'theme-luxury-salon'
+    : project.slug === 'examplatform-ai'
+    ? 'theme-proctor-exam'
+    : project.slug === 'vk-digital-hub'
+    ? 'theme-growth-pipeline'
+    : 'theme-architectural-glass';
+
   return (
     <main
       id="main-content"
-      className="project-story-page"
+      className={`project-story-page ${themeClass}`}
+      data-project-slug={project.slug}
       style={{
         '--project-accent': project.themeColor || '#2563EB',
         '--project-accent-bg': project.themeBg || '#EFF6FF',
       } as React.CSSProperties}
     >
       {/* 1. MOCKUP HERO WITH 3D LAPTOP, 4 SPECS, TECH ICONS & KEY FEATURES */}
-      <ProjectCaseStudyHero project={project} />
+      <ProjectCaseStudyHero project={project} themeClass={themeClass} />
 
       {/* 2. BILINGUAL CHAPTERS NAVIGATION, BESPOKE 3D STORYTELLING, PAGER & CTA */}
       <ProjectStoryBody
         project={project}
         prevProject={prevProject}
         nextProject={nextProject}
+        themeClass={themeClass}
       />
     </main>
   );
