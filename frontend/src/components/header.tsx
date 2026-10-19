@@ -168,7 +168,7 @@ export function Header() {
   return (
     <header className={`hh-site-header ${isScrolled || open ? 'is-scrolled' : ''}`}>
       <div className="container hh-header-inner">
-        {/* HH MONOGRAM LOGO */}
+        {/* HH MONOGRAM LOGO & BRAND NAME */}
         <Link
           className="hh-brand-logo"
           href="/"
@@ -185,13 +185,14 @@ export function Header() {
             }
           }}
         >
-          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="hh-logo-svg">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="hh-logo-svg">
             <path d="M6 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
             <path d="M6 16H16" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
             <path d="M16 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
             <path d="M16 16H26" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
             <path d="M26 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
           </svg>
+          <span className="hh-brand-name">NGUYỄN HOÀNG HUYNH</span>
         </Link>
 
         {/* MOBILE MENU TOGGLE */}

@@ -9262,18 +9262,56 @@ body {
 .hh-brand-logo {
   display: flex;
   align-items: center;
+  gap: 12px;
   color: #0F172A;
   text-decoration: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .hh-brand-logo:hover {
-  opacity: 0.85;
-  transform: scale(1.04);
+  opacity: 1;
 }
 
 .hh-logo-svg {
   display: block;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+
+.hh-brand-logo:hover .hh-logo-svg {
+  transform: scale(1.06);
+  color: var(--color-primary, #2563EB);
+}
+
+.hh-brand-name {
+  font-family: var(--font-heading, inherit);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0F172A;
+  opacity: 0.42;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s ease, letter-spacing 0.3s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* When navbar is scrolled over white/frosted glass */
+.hh-site-header.is-scrolled .hh-brand-name {
+  opacity: 0.58;
+}
+
+/* Hover state: crisp, clear and highlighted */
+.hh-brand-logo:hover .hh-brand-name {
+  opacity: 1;
+  color: #0F172A;
+  letter-spacing: 0.14em;
+}
+
+@media (max-width: 640px) {
+  .hh-brand-name {
+    display: none;
+  }
 }
 
 .hh-nav-menu {
