@@ -2359,6 +2359,94 @@ p {
   color: #2563EB;
 }
 
+/* MONUMENTAL RUNNING STROKE WATERMARK SIGNATURE */
+.footer-watermark-row {
+  position: relative;
+  width: 100%;
+  padding-top: 24px;
+  padding-bottom: 8px;
+  user-select: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.footer-watermark-wrap {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.footer-watermark-svg {
+  width: 100%;
+  height: auto;
+  max-height: 110px;
+  display: block;
+  overflow: visible;
+}
+
+.watermark-fill-text {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 88px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  fill: url(#footerBaseFillGrad);
+  opacity: 0.85;
+}
+
+.watermark-outline-base {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 88px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  fill: transparent;
+  stroke: rgba(15, 23, 42, 0.08);
+  stroke-width: 1.6px;
+}
+
+.watermark-running-stroke {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 88px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  fill: transparent;
+  stroke: url(#footerStrokeFlowGrad);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 140 560;
+  animation: watermarkStrokeFlow 10s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.4));
+  transition: filter 0.4s ease, stroke-width 0.4s ease;
+}
+
+@keyframes watermarkStrokeFlow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -1400;
+  }
+}
+
+.site-footer:hover .watermark-running-stroke {
+  stroke-width: 2.8px;
+  filter: drop-shadow(0 0 16px rgba(37, 99, 235, 0.75)) drop-shadow(0 0 32px rgba(56, 189, 248, 0.4));
+  animation-duration: 6s;
+}
+
+@media (max-width: 768px) {
+  .footer-watermark-row {
+    padding-top: 16px;
+    padding-bottom: 4px;
+  }
+  .watermark-fill-text,
+  .watermark-outline-base,
+  .watermark-running-stroke {
+    font-size: 82px;
+    letter-spacing: 0.12em;
+  }
+}
+
 .footer-bottom-bar {
   display: flex;
   justify-content: space-between;

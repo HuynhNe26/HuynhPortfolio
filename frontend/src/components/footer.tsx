@@ -52,6 +52,71 @@ export function Footer() {
           </div>
         </div>
 
+        {/* MONUMENTAL RUNNING STROKE WATERMARK SIGNATURE */}
+        <div className="footer-watermark-row" aria-hidden="true">
+          <div className="footer-watermark-wrap">
+            <svg
+              viewBox="0 0 1440 140"
+              className="footer-watermark-svg"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <defs>
+                <linearGradient id="footerStrokeFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.25">
+                    <animate attributeName="stop-color" values="#2563EB;#38BDF8;#818CF8;#EC4899;#2563EB" dur="10s" repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="35%" stopColor="#38BDF8" stopOpacity="0.85">
+                    <animate attributeName="stop-color" values="#38BDF8;#818CF8;#EC4899;#2563EB;#38BDF8" dur="10s" repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="70%" stopColor="#818CF8" stopOpacity="0.95">
+                    <animate attributeName="stop-color" values="#818CF8;#EC4899;#2563EB;#38BDF8;#818CF8" dur="10s" repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="100%" stopColor="#2563EB" stopOpacity="0.25">
+                    <animate attributeName="stop-color" values="#2563EB;#38BDF8;#818CF8;#EC4899;#2563EB" dur="10s" repeatCount="indefinite" />
+                  </stop>
+                </linearGradient>
+                <linearGradient id="footerBaseFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#0F172A" stopOpacity="0.04" />
+                  <stop offset="100%" stopColor="#0F172A" stopOpacity="0.015" />
+                </linearGradient>
+              </defs>
+
+              {/* 1. Base Subtle Fill */}
+              <text
+                x="50%"
+                y="68%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="watermark-fill-text"
+              >
+                NGUYỄN HOÀNG HUYNH
+              </text>
+
+              {/* 2. Base Subtle Outline */}
+              <text
+                x="50%"
+                y="68%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="watermark-outline-base"
+              >
+                NGUYỄN HOÀNG HUYNH
+              </text>
+
+              {/* 3. Dynamic Running Light Stroke */}
+              <text
+                x="50%"
+                y="68%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="watermark-running-stroke"
+              >
+                NGUYỄN HOÀNG HUYNH
+              </text>
+            </svg>
+          </div>
+        </div>
+
         <div className="footer-bottom-bar">
           <div className="footer-meta-pill">
             <span>CORE: NEXT.JS 16 • REACT 19 • NEON POSTGRESQL</span>
