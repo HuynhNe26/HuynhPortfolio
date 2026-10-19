@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import type { Project, ProjectChapter } from '@/lib/types';
+import { STORYTELLING_MODES_CATALOG } from '@/lib/types';
 import { useLanguage } from '@/context/language-context';
 
 interface MasterInteractiveScrollytellingProps {
@@ -888,6 +888,346 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       takeawayEn: 'Rigorous transparency and verified credentials build deep trust with engineering recruiters.',
     },
   ],
+  'skyroute-aviation-ops': [
+    {
+      imageUrl: '/projects/skyroute-hero.png',
+      imageCaptionVi: 'Bản đồ Radar Giám sát Chuyến bay Toàn cầu & HUD Telemetry',
+      imageCaptionEn: 'Global Flight Radar Operations & HUD Telemetry',
+      imageAlt: 'SkyRoute Flight Dispatch Radar Dashboard',
+      hotspot: {
+        x: 50,
+        y: 35,
+        labelVi: '3D Exploded Flight Radar & Telemetry HUD',
+        labelEn: '3D Exploded Flight Radar & Telemetry HUD',
+        actionVi: 'Kích hoạt radar không lưu & stream dữ liệu ADS-B thời gian thực',
+        actionEn: 'Activate airspace radar & real-time ADS-B telemetry stream',
+        descriptionVi: 'Màn hình hiển thị tọa độ chuyến bay, độ cao FL360, tốc độ mặt đất 485kts và trạng thái cân bằng tải.',
+        descriptionEn: 'High-density cockpit radar displaying live coordinates, FL360 altitude, 485kts ground speed, and load balance.',
+      },
+      cursor: {
+        x: 52,
+        y: 37,
+        actionTextVi: 'Kích hoạt radar không lưu ADS-B',
+        actionTextEn: 'Activate ADS-B radar stream',
+      },
+      takeawayVi: 'Theo dõi đồng thời hàng trăm chuyến bay với tần số cập nhật dữ liệu 1090MHz ADS-B dưới 80ms.',
+      takeawayEn: 'Concurrent tracking of global flights via 1090MHz ADS-B with sub-80ms message delivery.',
+    },
+    {
+      imageUrl: '/projects/skyroute-hero.png',
+      imageCaptionVi: 'Kiến trúc 3D Exploded Đa tầng: 4 Lớp Hệ thống Phân tán',
+      imageCaptionEn: '3D Exploded-View Architecture: 4 Distributed Layers',
+      imageAlt: 'SkyRoute 3D Exploded Architecture Diagram',
+      hotspot: {
+        x: 74,
+        y: 32,
+        labelVi: '3D Exploded System Architecture Layer',
+        labelEn: '3D Exploded System Architecture Layer',
+        actionVi: 'Bóc tách tầng Trình diễn → Cổng Telemetry → Động cơ C.G → Database',
+        actionEn: 'Explode Presentation → Telemetry Gateway → C.G Engine → Database layers',
+        descriptionVi: 'Bóc tách trực quan 4 tầng hệ thống giúp giải thích rõ ràng luồng dữ liệu thời gian thực và an toàn bay.',
+        descriptionEn: 'Visual exploded-view separating frontend presentation, WebSocket gateway, aerodynamic calculation, and Geo spatial storage.',
+      },
+      cursor: {
+        x: 72,
+        y: 34,
+        actionTextVi: 'Bóc tách 4 tầng kiến trúc 3D',
+        actionTextEn: 'Explode 4-layer 3D architecture',
+      },
+      takeawayVi: 'Bóc tách 4 lớp hệ thống giúp cô lập hoàn toàn tiến trình tính toán khí động học khỏi luồng radar streaming.',
+      takeawayEn: 'Isolating aerodynamic physics engine from WebSocket radar pub/sub prevents telemetry bottlenecks.',
+    },
+    {
+      imageUrl: '/projects/skyroute-cargo.png',
+      imageCaptionVi: 'Đồ thị Phong bì Trọng tâm C.G Boeing 777F Thời gian thực',
+      imageCaptionEn: 'Real-Time Boeing 777F Center of Gravity (C.G) Envelope',
+      imageAlt: 'SkyRoute Center of Gravity Envelope Polygon',
+      hotspot: {
+        x: 78,
+        y: 48,
+        labelVi: 'Center of Gravity (% MAC) Safety Envelope',
+        labelEn: 'Center of Gravity (% MAC) Safety Envelope',
+        actionVi: 'Tính toán vị trí % MAC và đối soát biên an toàn cất cánh / hạ cánh',
+        actionEn: 'Compute % MAC position and verify takeoff / landing safety envelope',
+        descriptionVi: 'Đồ thị đa giác phong bì trọng tâm C.G tự động cảnh báo đỏ khi tải trọng lệch khỏi giới hạn an toàn hàng không.',
+        descriptionEn: 'Interactive polygon envelope with dynamic warning thresholds preventing tail strike or nose-heavy stalls.',
+      },
+      cursor: {
+        x: 76,
+        y: 46,
+        actionTextVi: 'Kiểm tra biên an toàn C.G (28.4% MAC)',
+        actionTextEn: 'Inspect C.G envelope (28.4% MAC)',
+      },
+      takeawayVi: 'Ngăn chặn hoàn toàn hiện tượng máy bay mất thăng bằng khi cất cánh bằng thuật toán giải đa giác phong bì trọng tâm.',
+      takeawayEn: 'Eliminates flight trim imbalances using aerodynamic center-of-gravity polygon algorithms.',
+    },
+    {
+      imageUrl: '/projects/skyroute-cargo.png',
+      imageCaptionVi: 'Sơ đồ Mặt cắt Hầm hàng Boeing 777F & Bố trí Vị trí Thùng Hàng ULD',
+      imageCaptionEn: 'Boeing 777F Cross-Section Cargo Bay & ULD Positioning',
+      imageAlt: 'Boeing 777F Cargo Bay ULD Grid',
+      hotspot: {
+        x: 42,
+        y: 36,
+        labelVi: 'Interactive 28-Bay ULD Container Grid',
+        labelEn: 'Interactive 28-Bay ULD Container Grid',
+        actionVi: 'Kéo thả pallet ULD, phân loại hàng nguy hiểm DG và hàng lạnh',
+        actionEn: 'Drag-and-drop ULD pallets, isolate Dangerous Goods (DG) and perishables',
+        descriptionVi: 'Bố cục mặt cắt 28 vị trí boong chính và hầm dưới tàu bay Boeing 777F, tự động cộng dồn tải trọng từng khoang.',
+        descriptionEn: '28-position main deck and lower cargo hold layout with instant running weight tally per compartment.',
+      },
+      cursor: {
+        x: 40,
+        y: 38,
+        actionTextVi: 'Xếp pallet ULD vào vị trí khoang 11L',
+        actionTextEn: 'Stow ULD pallet into bay 11L',
+      },
+      takeawayVi: 'Tối ưu hóa phân bổ tải trọng giữa boong chính và hầm dưới, giảm 30 phút thời gian bốc xếp trước giờ khởi hành.',
+      takeawayEn: 'Optimized main/lower deck distribution slashes pre-departure load planning time by 30 minutes.',
+    },
+    {
+      imageUrl: '/projects/skyroute-hero.png',
+      imageCaptionVi: 'Đồng bộ Tọa độ Radar Bay qua WebSocket & Redis Geo',
+      imageCaptionEn: 'Real-Time Radar Sync via WebSocket & Redis Geo',
+      imageAlt: 'WebSocket Redis Geo Flight Radar Ingestion',
+      hotspot: {
+        x: 30,
+        y: 60,
+        labelVi: 'Redis Geo Spatial Ingestion Engine',
+        labelEn: 'Redis Geo Spatial Ingestion Engine',
+        actionVi: 'Truy vấn bán kính chuyến bay GEORADIUS và broadcast pub/sub',
+        actionEn: 'Execute GEORADIUS flight queries and broadcast via pub/sub',
+        descriptionVi: 'Lưu trữ kinh độ, vĩ độ và độ cao máy bay trong bộ nhớ RAM, phân phối tín hiệu đến bàn điều phái trong 80ms.',
+        descriptionEn: 'In-memory geospatial indexing distributing real-time aircraft vectors to dispatch stations under 80ms.',
+      },
+      cursor: {
+        x: 32,
+        y: 58,
+        actionTextVi: 'Truy vấn GEORADIUS 500km không lưu',
+        actionTextEn: 'Query GEORADIUS 500km airspace',
+      },
+      takeawayVi: 'Xử lý truy vấn không gian cực nhanh dưới 5ms với cấu trúc dữ liệu GeoHash tối ưu của Redis.',
+      takeawayEn: 'Sub-5ms geospatial range queries powered by optimized Redis GeoHash memory structures.',
+    },
+    {
+      imageUrl: '/projects/skyroute-cargo.png',
+      imageCaptionVi: 'Bộ Xuất Điện văn Tải trọng Loadsheet Chuẩn IATA & PDF',
+      imageCaptionEn: 'IATA Standard Electronic Loadsheet & PDF Exporter',
+      imageAlt: 'IATA AHMR Compliant Electronic Loadsheet',
+      hotspot: {
+        x: 50,
+        y: 72,
+        labelVi: 'IATA AHMR Compliant Loadsheet Generator',
+        labelEn: 'IATA AHMR Compliant Loadsheet Generator',
+        actionVi: 'Ký số mật mã học và phát hành điện văn ACARS truyền lên buồng lái',
+        actionEn: 'Cryptographically sign and dispatch ACARS telex to cockpit',
+        descriptionVi: 'Xuất văn bản phân bổ tải trọng đạt chuẩn IATA AHMR kèm mã hash kiểm toán chống chỉnh sửa trái phép.',
+        descriptionEn: 'Generates standardized IATA AHMR weight-and-balance manifest with tamper-evident cryptographic hash.',
+      },
+      cursor: {
+        x: 52,
+        y: 70,
+        actionTextVi: 'Ký số điện văn ACARS truyền buồng lái',
+        actionTextEn: 'Sign ACARS dispatch telex for cockpit',
+      },
+      takeawayVi: 'Chuẩn hóa định dạng điện văn hàng không quốc tế với chữ ký số toàn vẹn dữ liệu cho phi hành đoàn.',
+      takeawayEn: 'Standardized international aviation telemetry format with zero-tampering cryptographic signatures.',
+    },
+    {
+      imageUrl: '/projects/skyroute-hero.png',
+      imageCaptionVi: 'Đóng gói Triển khai Docker & Giám sát Sức khỏe Dịch vụ 99.9%',
+      imageCaptionEn: 'Docker Containerization & 99.9% High Availability Audit',
+      imageAlt: 'Docker High Availability Cluster Telemetry',
+      hotspot: {
+        x: 86,
+        y: 20,
+        labelVi: 'High Availability Multi-Node Docker Engine',
+        labelEn: 'High Availability Multi-Node Docker Engine',
+        actionVi: 'Tự động kiểm tra sức khỏe container và đối soát Neon Postgres',
+        actionEn: 'Automated container health check and Neon Postgres pooling',
+        descriptionVi: 'Hạ tầng phân tán bảo đảm hệ thống trực tuyến liên tục 24/7 phục vụ các chuyến bay liên lục địa.',
+        descriptionEn: 'Multi-container orchestration maintaining 99.9% uptime for round-the-clock transcontinental flight ops.',
+      },
+      cursor: {
+        x: 84,
+        y: 22,
+        actionTextVi: 'Kiểm tra trạng thái cluster 99.9%',
+        actionTextEn: 'Inspect 99.9% cluster health',
+      },
+      takeawayVi: 'Kiến trúc container hóa sẵn sàng cho môi trường điều hành bay khắt khe, zero downtime khi nâng cấp.',
+      takeawayEn: 'Production-ready containerized architecture ensuring zero-downtime rolling upgrades.',
+    },
+  ],
+  'medicare-ai-triage': [
+    {
+      imageUrl: '/projects/medicare-hero.png',
+      imageCaptionVi: 'Hàng đợi Tiếp nhận Bệnh nhân & Xem trước Bệnh án EMR',
+      imageCaptionEn: 'Patient Intake Queue & Real-Time EMR Preview',
+      imageAlt: 'MediCare AI Patient Intake Queue',
+      hotspot: {
+        x: 30,
+        y: 40,
+        labelVi: 'Intake Queue & Manchester Triage Priority',
+        labelEn: 'Intake Queue & Manchester Triage Priority',
+        actionVi: 'Tiếp nhận bệnh nhân và xếp lớp ưu tiên theo mã màu chuẩn y khoa',
+        actionEn: 'Intake patient and sort queue by medical priority color code',
+        descriptionVi: 'Phân loại tự động 3 cấp độ: Emergency (Đỏ), Urgent (Cam), Routine (Xanh lá) dựa trên triệu chứng lâm sàng.',
+        descriptionEn: 'Three-tier triage queue sorting patients by emergency urgency score rather than arrival timestamp.',
+      },
+      cursor: {
+        x: 32,
+        y: 42,
+        actionTextVi: 'Chọn bệnh nhân cấp cứu P-042',
+        actionTextEn: 'Select emergency patient P-042',
+      },
+      takeawayVi: 'Phân loại thứ tự khám ưu tiên dựa trên mức độ đe dọa sinh tồn thay vì quy tắc xếp hàng thông thường.',
+      takeawayEn: 'Triages clinical priority by physiological threat score, reducing critical emergency wait time.',
+    },
+    {
+      imageUrl: '/projects/medicare-consult.png',
+      imageCaptionVi: 'Trục Thời gian Lâm sàng: Quy trình 4 Giai đoạn Khám bệnh',
+      imageCaptionEn: 'Clinical Timeline: 4-Phase Longitudinal Consultation Journey',
+      imageAlt: 'Clinical Timeline Consultation Journey',
+      hotspot: {
+        x: 18,
+        y: 45,
+        labelVi: 'Clinical Milestone Timeline Track',
+        labelEn: 'Clinical Milestone Timeline Track',
+        actionVi: 'Lướt dọc trục thời gian từ Tiếp đón → AI Triage → Khám bệnh → Kê đơn',
+        actionEn: 'Scrub timeline from Intake → AI Triage → Consultation → Prescription',
+        descriptionVi: 'Giao diện dòng thời gian trực quan giúp bác sĩ nắm bắt trọn vẹn diễn biến sức khỏe và tiền sử khám qua nhiều năm.',
+        descriptionEn: 'Timeline-based storytelling interface providing longitudinal health trajectory at a glance.',
+      },
+      cursor: {
+        x: 20,
+        y: 47,
+        actionTextVi: 'Xem mốc khám lâm sàng 02:15',
+        actionTextEn: 'Inspect clinical milestone 02:15',
+      },
+      takeawayVi: 'Mô hình Timeline-Based Storytelling giúp bác sĩ nắm bắt tiền sử bệnh chỉ trong 10 giây lướt trục thời gian.',
+      takeawayEn: 'Timeline-based storytelling enables clinicians to grasp longitudinal patient history within 10 seconds.',
+    },
+    {
+      imageUrl: '/projects/medicare-hero.png',
+      imageCaptionVi: 'Động cơ Phân loại Triệu chứng Cấp cứu Gemini Medical AI',
+      imageCaptionEn: 'Gemini Medical AI Automatic Symptom Triage Engine',
+      imageAlt: 'Gemini AI Clinical Symptom Analysis',
+      hotspot: {
+        x: 75,
+        y: 35,
+        labelVi: 'Gemini Medical AI Differential Triage',
+        labelEn: 'Gemini Medical AI Differential Triage',
+        actionVi: 'Phân tích ngôn ngữ tự nhiên và đề xuất chẩn đoán phân biệt có cơ sở',
+        actionEn: 'Analyze natural language complaint and propose grounded differentials',
+        descriptionVi: 'AI trích xuất các chỉ số sinh tồn bất thường và cảnh báo nguy cơ nhồi máu cơ tim hoặc sốc phản vệ trong 450ms.',
+        descriptionEn: 'Extracts vital sign anomalies and surfaces differential diagnoses for myocardial infarction or anaphylaxis in 450ms.',
+      },
+      cursor: {
+        x: 73,
+        y: 33,
+        actionTextVi: 'Phân tích lý do khám: Đau ngực cấp',
+        actionTextEn: 'Analyze complaint: Acute chest pain',
+      },
+      takeawayVi: 'Đề xuất các khả năng chẩn đoán phân biệt và chỉ số nguy cơ nhồi máu cơ tim tức thì không hallucination.',
+      takeawayEn: 'Surfaces differential diagnostic options and critical risk indices without clinical hallucinations.',
+    },
+    {
+      imageUrl: '/projects/medicare-consult.png',
+      imageCaptionVi: 'Phòng Khám Video Trực tuyến Mã hóa WebRTC Peer-to-Peer',
+      imageCaptionEn: 'Peer-to-Peer Encrypted WebRTC Telehealth Consultation Room',
+      imageAlt: 'WebRTC Telehealth Consultation Video Interface',
+      hotspot: {
+        x: 50,
+        y: 35,
+        labelVi: 'Encrypted WebRTC Telehealth Video Channel',
+        labelEn: 'Encrypted WebRTC Telehealth Video Channel',
+        actionVi: 'Kết nối âm thanh/hình ảnh E2EE và ghi nhận lâm sàng song song',
+        actionEn: 'Establish E2EE video/audio and record clinical notes simultaneously',
+        descriptionVi: 'Phòng khám trực tuyến bảo mật cao, kết nối trực tiếp không qua máy chủ trung gian để bảo vệ bí mật y tế.',
+        descriptionEn: 'HIPAA-compliant peer-to-peer WebRTC stream with zero cloud video persistence for total patient privacy.',
+      },
+      cursor: {
+        x: 52,
+        y: 33,
+        actionTextVi: 'Bắt đầu cuộc gọi video bác sĩ WebRTC',
+        actionTextEn: 'Start doctor WebRTC video consult',
+      },
+      takeawayVi: 'Kết nối video HD trực tiếp bác sĩ - bệnh nhân với độ trễ dưới 200ms và không lưu trữ media trên cloud.',
+      takeawayEn: 'Direct peer-to-peer HD telehealth video stream with sub-200ms latency and zero server-side media retention.',
+    },
+    {
+      imageUrl: '/projects/medicare-consult.png',
+      imageCaptionVi: 'Biểu đồ Diễn tiến Chỉ số Sinh tồn (Huyết áp & SpO2)',
+      imageCaptionEn: 'Longitudinal Vital Signs Chart (Blood Pressure & SpO2)',
+      imageAlt: 'Dynamic Vital Signs ECG Chart',
+      hotspot: {
+        x: 52,
+        y: 65,
+        labelVi: 'Dynamic Vital Signs Vector Chart (BP & HR)',
+        labelEn: 'Dynamic Vital Signs Vector Chart (BP & HR)',
+        actionVi: 'Quan sát diễn biến huyết áp, SpO2 và nhịp tim qua từng buổi khám',
+        actionEn: 'Track blood pressure, SpO2, and heart rate trajectories over visits',
+        descriptionVi: 'Biểu đồ vector tương tác giúp bác sĩ phát hiện các xu hướng tăng huyết áp tiềm ẩn hoặc hạ oxy máu.',
+        descriptionEn: 'Interactive vector trendlines highlighting occult hypertension or desaturation episodes.',
+      },
+      cursor: {
+        x: 50,
+        y: 63,
+        actionTextVi: 'So sánh chỉ số huyết áp 3 lần khám',
+        actionTextEn: 'Compare BP trends across 3 visits',
+      },
+      takeawayVi: 'Biểu đồ vector SVG trực quan giúp phát hiện sớm các cơn tăng huyết áp kịch phát bất thường.',
+      takeawayEn: 'Intuitive SVG vector trajectories allow early detection of acute hypertensive spikes.',
+    },
+    {
+      imageUrl: '/projects/medicare-consult.png',
+      imageCaptionVi: 'Bộ Kê đơn Thuốc Điện tử & Cảnh báo Tương tác Thuốc Nguy hại',
+      imageCaptionEn: 'Digital e-Prescription Builder & Drug-Drug Interaction Warning',
+      imageAlt: 'Digital e-Prescription Builder with Interaction Checks',
+      hotspot: {
+        x: 80,
+        y: 60,
+        labelVi: 'e-Prescription & Drug-Drug Interaction Matrix',
+        labelEn: 'e-Prescription & Drug-Drug Interaction Matrix',
+        actionVi: 'Tự động tính liều lượng theo cân nặng và quét xung đột dược lý chéo',
+        actionEn: 'Auto-calculate weight-based dosage and scan cross-drug interactions',
+        descriptionVi: 'Cảnh báo màu đỏ nổi bật khi bác sĩ kê đơn 2 loại thuốc tương tác nguy hiểm, gợi ý thuốc thay thế an toàn.',
+        descriptionEn: 'Instant visual alert flagging severe drug interactions with safe therapeutic alternative suggestions.',
+      },
+      cursor: {
+        x: 78,
+        y: 58,
+        actionTextVi: 'Kê đơn Amoxicillin 500mg (An toàn)',
+        actionTextEn: 'Prescribe Amoxicillin 500mg (Safe)',
+      },
+      takeawayVi: 'Thuật toán đối soát cơ sở dữ liệu dược lý tự động ngăn chặn 100% rủi ro kê đơn trùng lặp và tương tác xấu.',
+      takeawayEn: 'Automated pharmacovigilance matrix eliminates adverse drug-drug interactions before dispensary.',
+    },
+    {
+      imageUrl: '/projects/medicare-hero.png',
+      imageCaptionVi: 'Phân quyền RBAC Y tế & Bảo mật Hồ sơ Bệnh án EMR',
+      imageCaptionEn: 'Role-Based Access Control (RBAC) & EMR Privacy Compliance',
+      imageAlt: 'HIPAA Compliant RBAC Security Vault',
+      hotspot: {
+        x: 88,
+        y: 18,
+        labelVi: 'HIPAA Compliant RBAC Security Vault',
+        labelEn: 'HIPAA Compliant RBAC Security Vault',
+        actionVi: 'Xác thực phân quyền Bác sĩ, Y tá và Bệnh nhân với JWT token an toàn',
+        actionEn: 'Authenticate Doctor, Nurse, and Patient roles with secure JWT tokens',
+        descriptionVi: 'Cơ chế mã hóa các trường nhạy cảm trong MongoDB Atlas bảo đảm tuân thủ quyền riêng tư dữ liệu y tế.',
+        descriptionEn: 'Field-level encryption across MongoDB Atlas clusters guaranteeing medical confidentiality.',
+      },
+      cursor: {
+        x: 86,
+        y: 20,
+        actionTextVi: 'Xác thực bác sĩ chuyên khoa khoa Nội',
+        actionTextEn: 'Verify Internal Medicine specialist',
+      },
+      takeawayVi: 'Phân tách nghiêm ngặt quyền truy cập giữa Bác sĩ, Y tá và Bệnh nhân, bảo vệ quyền riêng tư hồ sơ y tế.',
+      takeawayEn: 'Strict role-based isolation between clinical staff and patients protects personal health information.',
+    },
+  ],
 };
 
 const PROJECT_CHAPTER_DOMAINS: Record<string, { vi: string; en: string }[]> = {
@@ -935,6 +1275,24 @@ const PROJECT_CHAPTER_DOMAINS: Record<string, { vi: string; en: string }[]> = {
     { vi: 'ADMIN CMS // HTTPONLY COOKIE AUTH', en: 'ADMIN CMS // HTTPONLY COOKIE AUTH' },
     { vi: 'VERIFIED CREDENTIALS // TOEIC 550 & GPA 3.1', en: 'VERIFIED CREDENTIALS // TOEIC 550 & GPA 3.1' },
     { vi: 'ENGINEERING EXCELLENCE // NEXT.JS 15 & TS', en: 'ENGINEERING EXCELLENCE // NEXT.JS 15 & TS' },
+  ],
+  'skyroute-aviation-ops': [
+    { vi: 'AERODROME RADAR // 1090MHz ADS-B', en: 'AERODROME RADAR // 1090MHz ADS-B' },
+    { vi: '3D EXPLODED ARCH // 4 DISTRIBUTED LAYERS', en: '3D EXPLODED ARCH // 4 DISTRIBUTED LAYERS' },
+    { vi: 'MASS & BALANCE // CENTER OF GRAVITY (CG)', en: 'MASS & BALANCE // CENTER OF GRAVITY (CG)' },
+    { vi: 'CARGO BAY SCHEMATIC // 28 ULD POSITIONS', en: 'CARGO BAY SCHEMATIC // 28 ULD POSITIONS' },
+    { vi: 'REDIS GEO ENGINE // 80ms RADAR SYNC', en: 'REDIS GEO ENGINE // 80ms RADAR SYNC' },
+    { vi: 'IATA LOADSHEET // CRYPTOGRAPHIC CHECKSUM', en: 'IATA LOADSHEET // CRYPTOGRAPHIC CHECKSUM' },
+    { vi: 'DOCKER HA CLUSTER // 99.9% UPTIME AUDIT', en: 'DOCKER HA CLUSTER // 99.9% UPTIME AUDIT' },
+  ],
+  'medicare-ai-triage': [
+    { vi: 'CLINICAL INTAKE // MANCHESTER TRIAGE', en: 'CLINICAL INTAKE // MANCHESTER TRIAGE' },
+    { vi: 'LONGITUDINAL TIMELINE // 4-PHASE CARE', en: 'LONGITUDINAL TIMELINE // 4-PHASE CARE' },
+    { vi: 'GEMINI MEDICAL AI // DIFFERENTIAL DIAGNOSIS', en: 'GEMINI MEDICAL AI // DIFFERENTIAL DIAGNOSIS' },
+    { vi: 'TELEHEALTH WEBRTC // E2EE CONSULTATION', en: 'TELEHEALTH WEBRTC // E2EE CONSULTATION' },
+    { vi: 'VITAL SIGNS VECTOR // BP & HR TRAJECTORY', en: 'VITAL SIGNS VECTOR // BP & HR TRAJECTORY' },
+    { vi: 'E-PRESCRIPTION // DRUG INTERACTION MATRIX', en: 'E-PRESCRIPTION // DRUG INTERACTION MATRIX' },
+    { vi: 'RBAC VAULT // HIPAA PRIVACY COMPLIANCE', en: 'RBAC VAULT // HIPAA PRIVACY COMPLIANCE' },
   ],
 };
 
@@ -1153,6 +1511,124 @@ function ArchitecturalGlassOverlay() {
   );
 }
 
+// 6. AVIATION 3D EXPLODED OVERLAY (Radar Sweep, 3D Layers Stack, Telemetry Altitude & CG HUD)
+function AviationExplodedOverlay() {
+  return (
+    <div className="av-exploded-overlay" aria-hidden="true">
+      {/* 3D Exploded-View Layer Stack Indicator */}
+      <div className="av-layer-stack">
+        <div className="av-layer-item layer-4">
+          <span className="layer-dot" />
+          <span className="layer-name">L4: ADS-B RADAR // 1090MHz</span>
+        </div>
+        <div className="av-layer-item layer-3">
+          <span className="layer-dot" />
+          <span className="layer-name">L3: AIRFRAME & ULD CARGO BAY</span>
+        </div>
+        <div className="av-layer-item layer-2">
+          <span className="layer-dot" />
+          <span className="layer-name">L2: WEIGHT & CG ENVELOPE</span>
+        </div>
+        <div className="av-layer-item layer-1">
+          <span className="layer-dot" />
+          <span className="layer-name">L1: POSTGIS & REDIS GEO</span>
+        </div>
+      </div>
+
+      {/* Aerodrome Radar Beam & Reticle */}
+      <div className="av-radar-beam" />
+      <div className="av-crosshair-center" />
+
+      {/* Flight Telemetry Altitude & CG Strip */}
+      <div className="av-telemetry-hud">
+        <div className="av-hud-pill">
+          <span className="hud-label">ALT:</span>
+          <strong className="hud-val">FL360</strong>
+        </div>
+        <div className="av-hud-pill">
+          <span className="hud-label">GS:</span>
+          <strong className="hud-val">485 kts</strong>
+        </div>
+        <div className="av-hud-pill">
+          <span className="hud-label">MACH:</span>
+          <strong className="hud-val">0.82</strong>
+        </div>
+        <div className="av-hud-pill">
+          <span className="hud-label">CG:</span>
+          <strong className="hud-val">28.4% MAC</strong>
+        </div>
+      </div>
+
+      {/* Cockpit Coordinates Stamp */}
+      <div className="av-cockpit-stamp top-left">
+        <span>VVTS ➔ WSSS // OFP-0772</span>
+        <small>B777-200F • MTOW: 347,815 KG</small>
+      </div>
+    </div>
+  );
+}
+
+// 7. MEDICARE CLINICAL TIMELINE OVERLAY (Pulsing ECG Waveform, Longitudinal Milestones, HIPAA Vault)
+function ClinicalTimelineOverlay() {
+  return (
+    <div className="mc-timeline-overlay" aria-hidden="true">
+      {/* Animated ECG Pulse Waveform SVG */}
+      <div className="mc-ecg-container">
+        <svg viewBox="0 0 200 40" className="mc-ecg-svg" fill="none">
+          <path
+            d="M 0 20 L 40 20 L 48 8 L 54 32 L 62 4 L 70 24 L 78 20 L 120 20 L 128 8 L 134 32 L 142 4 L 150 24 L 158 20 L 200 20"
+            stroke="url(#mcEcgGrad)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <defs>
+            <linearGradient id="mcEcgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0D9488" stopOpacity="0.2" />
+              <stop offset="50%" stopColor="#14B8A6" stopOpacity="1" />
+              <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0.2" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      {/* Clinical Timeline Journey Ribbon */}
+      <div className="mc-timeline-ribbon">
+        <span className="timeline-node done">00:00 Intake</span>
+        <span className="timeline-arrow">➔</span>
+        <span className="timeline-node done">02:15 AI Triage</span>
+        <span className="timeline-arrow">➔</span>
+        <span className="timeline-node active">05:30 Consult</span>
+        <span className="timeline-arrow">➔</span>
+        <span className="timeline-node">08:45 Rx</span>
+      </div>
+
+      {/* Vital Signs Real-Time Monitor Badge */}
+      <div className="mc-vitals-hud">
+        <div className="mc-vital-item">
+          <span className="vital-icon">❤️</span>
+          <span className="vital-label">HR:</span>
+          <strong>72 bpm</strong>
+        </div>
+        <div className="mc-vital-item">
+          <span className="vital-icon">🫁</span>
+          <span className="vital-label">SpO2:</span>
+          <strong>98%</strong>
+        </div>
+        <div className="mc-vital-item">
+          <span className="vital-icon">🩺</span>
+          <span className="vital-label">BP:</span>
+          <strong>120/80</strong>
+        </div>
+        <div className="mc-vital-item">
+          <span className="vital-icon">🔒</span>
+          <strong>HIPAA VAULT</strong>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function MasterInteractiveScrollytelling({
   project,
   chapters,
@@ -1162,6 +1638,14 @@ export function MasterInteractiveScrollytelling({
   const [isHoveringHotspot, setIsHoveringHotspot] = useState(false);
   const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
   const stageRef = useRef<HTMLDivElement>(null);
+
+  // Retrieve storytelling mode metadata
+  const modeMeta = useMemo(() => {
+    return (
+      STORYTELLING_MODES_CATALOG.find((m) => m.id === project.storytellingStyle) ||
+      STORYTELLING_MODES_CATALOG[0]
+    );
+  }, [project.storytellingStyle]);
 
   // Retrieve project visual mapping or generate default
   const visualList = useMemo(() => {
@@ -1236,6 +1720,24 @@ export function MasterInteractiveScrollytelling({
           color: '#059669',
           accentBg: 'rgba(5, 150, 105, 0.08)',
           overlayComponent: <GrowthPipelineOverlay />,
+        };
+      case 'skyroute-aviation-ops':
+        return {
+          themeClass: 'theme-aviation-exploded',
+          badgeTextVi: '3D EXPLODED FLIGHT OPS // BOEING 777F TELEMETRY',
+          badgeTextEn: '3D EXPLODED FLIGHT OPS // BOEING 777F TELEMETRY',
+          color: '#0284C7',
+          accentBg: 'rgba(2, 132, 199, 0.08)',
+          overlayComponent: <AviationExplodedOverlay />,
+        };
+      case 'medicare-ai-triage':
+        return {
+          themeClass: 'theme-clinical-timeline',
+          badgeTextVi: 'CLINICAL TIMELINE TELEHEALTH // MANCHESTER TRIAGE & FHIR',
+          badgeTextEn: 'CLINICAL TIMELINE TELEHEALTH // MANCHESTER TRIAGE & FHIR',
+          color: '#0D9488',
+          accentBg: 'rgba(13, 148, 136, 0.08)',
+          overlayComponent: <ClinicalTimelineOverlay />,
         };
       case 'nh-huynh-portfolio':
       default:
@@ -1324,7 +1826,8 @@ export function MasterInteractiveScrollytelling({
 
   return (
     <section
-      className={`master-scrollytelling-section ${projectTheme.themeClass}`}
+      className={`master-scrollytelling-section ${projectTheme.themeClass} storytelling-mode-${project.storytellingStyle || 'sticky-split'}`}
+      data-storytelling-mode={project.storytellingStyle || 'sticky-split'}
       id="case-scrollytelling-engine"
     >
       <div className="container scrollytelling-grid-container">
@@ -1585,6 +2088,16 @@ export function MasterInteractiveScrollytelling({
                   <span className="theme-dot" style={{ background: projectTheme.color }} />
                   <span className="theme-text">
                     {lang === 'vi' ? projectTheme.badgeTextVi : projectTheme.badgeTextEn}
+                  </span>
+                </div>
+
+                <div
+                  className="atmosphere-mode-badge"
+                  title={lang === 'vi' ? modeMeta.descriptionVi : modeMeta.descriptionEn}
+                >
+                  <span className="mode-badge-icon">{modeMeta.icon}</span>
+                  <span className="mode-badge-name">
+                    {lang === 'vi' ? modeMeta.titleVi : modeMeta.titleEn}
                   </span>
                 </div>
 

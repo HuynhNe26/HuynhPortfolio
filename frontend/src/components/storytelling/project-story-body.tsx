@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Project, ProjectChapter } from '@/lib/types';
+import { STORYTELLING_MODES_CATALOG } from '@/lib/types';
 import { useLanguage } from '@/context/language-context';
 import { MasterInteractiveScrollytelling } from './master-interactive-scrollytelling';
 
@@ -470,12 +471,22 @@ export function ProjectStoryBody({
     ? (PROJECT_CHAPTERS_VI[project.slug] || (project.chapters && project.chapters.length > 0 ? project.chapters : defaultChapters))
     : (project.chapters && project.chapters.length > 0 ? project.chapters : defaultChapters);
 
+  const storytellingMode = STORYTELLING_MODES_CATALOG.find((m) => m.id === project.storytellingStyle);
+
   return (
     <>
       {/* CHAPTER NAVIGATION STRIP */}
       <nav className={`chapter-sticky-nav ${themeClass || ''}`} aria-label="Case study chapters">
         <div className="container chapter-nav-inner">
-          <span className="chapter-nav-label">{t('story.chaptersNav')}</span>
+          <div className="chapter-nav-brand-group">
+            <span className="chapter-nav-label">{t('story.chaptersNav')}</span>
+            {storytellingMode && (
+              <span className="chapter-storytelling-mode-pill" title={lang === 'vi' ? storytellingMode.descriptionVi : storytellingMode.descriptionEn}>
+                <span className="mode-pill-icon">{storytellingMode.icon}</span>
+                <span className="mode-pill-name">{lang === 'vi' ? storytellingMode.titleVi : storytellingMode.titleEn}</span>
+              </span>
+            )}
+          </div>
           <div className="chapter-links-scroll">
             {chapters.map((ch) => (
               <a key={ch.id} href={`#${ch.id}`} className="chapter-nav-link">

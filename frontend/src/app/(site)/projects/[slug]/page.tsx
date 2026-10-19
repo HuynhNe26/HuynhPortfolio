@@ -40,13 +40,20 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
     ? 'theme-proctor-exam'
     : project.slug === 'vk-digital-hub'
     ? 'theme-growth-pipeline'
+    : project.slug === 'skyroute-aviation-ops'
+    ? 'theme-aviation-exploded'
+    : project.slug === 'medicare-ai-triage'
+    ? 'theme-clinical-timeline'
     : 'theme-architectural-glass';
+
+  const modeClass = project.storytellingStyle ? `storytelling-mode-${project.storytellingStyle}` : '';
 
   return (
     <main
       id="main-content"
-      className={`project-story-page ${themeClass}`}
+      className={`project-story-page ${themeClass} ${modeClass}`}
       data-project-slug={project.slug}
+      data-storytelling-mode={project.storytellingStyle || ''}
       style={{
         '--project-accent': project.themeColor || '#2563EB',
         '--project-accent-bg': project.themeBg || '#EFF6FF',
