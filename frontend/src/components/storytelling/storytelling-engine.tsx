@@ -964,26 +964,14 @@ function DeviceMorphingStorytellingView({ project, chapters }: { project: Projec
 /**
  * ============================================================================
  * MASTER STORYTELLING ENGINE DISPATCHER
- * Routes to the exact storytelling view configured in Admin or project data.
- * Also offers a quick on-the-fly preview switcher so recruiters/admins can
- * test any of the 10 styles with 1 click!
+ * Automatically renders the exact dedicated storytelling layout configured
+ * for each individual project.
  * ============================================================================
  */
 export function StorytellingEngine({ project, chapters }: StorytellingEngineProps) {
-  const { lang } = useLanguage();
-  // Allow on-the-fly preview switching, defaulting to project's configured style
-  const [selectedStyle, setSelectedStyle] = useState<StorytellingModeId>(
-    (project.storytellingStyle as StorytellingModeId) || 'sticky-split'
-  );
+  const selectedStyle = (project.storytellingStyle as StorytellingModeId) || 'sticky-split';
 
-  const activeModeMeta = useMemo(() => {
-    return (
-      STORYTELLING_MODES_CATALOG.find((m) => m.id === selectedStyle) ||
-      STORYTELLING_MODES_CATALOG[0]
-    );
-  }, [selectedStyle]);
-
-  // Render the exact tailored storytelling component
+  // Render the exact tailored storytelling component for this project
   const renderEngine = () => {
     switch (selectedStyle) {
       case 'cinematic-scroll':
@@ -1012,42 +1000,6 @@ export function StorytellingEngine({ project, chapters }: StorytellingEngineProp
 
   return (
     <div className={`storytelling-engine-container mode-${selectedStyle}`}>
-      {/* STORYTELLING MODE SWITCHER PREVIEW BAR */}
-      <div className="storytelling-mode-preview-bar">
-        <div className="container preview-bar-inner">
-          <div className="current-mode-info">
-            <span className="mode-eyebrow">
-              {lang === 'vi' ? 'PHONG CÁCH KỂ CHUYỆN (STORYTELLING STYLE):' : 'ACTIVE STORYTELLING STYLE:'}
-            </span>
-            <span className="mode-active-pill">
-              <span className="pill-icon">{activeModeMeta.icon}</span>
-              <span className="pill-title">{lang === 'vi' ? activeModeMeta.titleVi : activeModeMeta.titleEn}</span>
-            </span>
-          </div>
-
-          <div className="mode-quick-pills">
-            <span className="quick-label">
-              {lang === 'vi' ? 'Thử 10 phong cách khác:' : 'Test all 10 styles:'}
-            </span>
-            <div className="pills-scroll-row">
-              {STORYTELLING_MODES_CATALOG.map((m) => (
-                <button
-                  key={m.id}
-                  type="button"
-                  className={`mode-quick-btn ${m.id === selectedStyle ? 'active' : ''}`}
-                  onClick={() => setSelectedStyle(m.id)}
-                  title={lang === 'vi' ? m.descriptionVi : m.descriptionEn}
-                >
-                  <span>{m.icon}</span>
-                  <span className="btn-index">{m.index}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* RENDER THE EXACT MATCHING BESPOKE STORYTELLING COMPONENT */}
       {renderEngine()}
     </div>
   );
