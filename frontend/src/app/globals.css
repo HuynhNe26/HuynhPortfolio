@@ -2643,11 +2643,17 @@ html.dark .site-layout-root[data-footer-reveal="active"] .site-content-layer {
   color: #64748B;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
 }
 
 .footer-top-link:hover {
   color: #0F172A;
+  transform: translateY(-2px);
 }
 
 .page-intro {

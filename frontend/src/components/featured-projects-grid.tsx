@@ -99,7 +99,12 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
 
     // Stabilize card when hovering over buttons or links so clicks register with 100% reliability
     const target = e.target as HTMLElement;
-    if (target.closest('.hh-card-actions-row') || target.closest('.hh-card-btn')) {
+    if (
+      target.closest('.hh-card-actions-row') ||
+      target.closest('.hh-card-btn') ||
+      target.closest('a') ||
+      target.closest('button')
+    ) {
       if (card) {
         card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1.008, 1.008, 1.008)';
       }
@@ -204,9 +209,9 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={(e) => {
-        // Allow clicking anywhere on the card to open details, unless clicking external live site or report
+        // Allow clicking card background to navigate, but let all anchors and buttons handle their own clicks
         const target = e.target as HTMLElement;
-        if (target.closest('.hh-btn-card-live') || target.closest('.hh-btn-card-report')) return;
+        if (target.closest('a') || target.closest('button')) return;
         router.push(`/projects/${project.slug}`);
       }}
     >
@@ -223,10 +228,6 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       <Link
         href={`/projects/${project.slug}`}
         className="hh-card-image-box"
-        onClick={(e) => {
-          e.stopPropagation();
-          router.push(`/projects/${project.slug}`);
-        }}
       >
         <Image
           src={project.coverUrl || '/projects/ticket-concert-hero.png'}
@@ -259,10 +260,6 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
         <Link
           href={`/projects/${project.slug}`}
           className="hh-card-title-link"
-          onClick={(e) => {
-            e.stopPropagation();
-            router.push(`/projects/${project.slug}`);
-          }}
         >
           <h3 className="hh-card-title">{project.title}</h3>
         </Link>
@@ -322,10 +319,6 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
           <Link
             href={`/projects/${project.slug}`}
             className="hh-card-btn hh-btn-card-detail"
-            onClick={(e) => {
-              e.stopPropagation();
-              router.push(`/projects/${project.slug}`);
-            }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -380,10 +373,6 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
             <Link
               href={`/projects/${project.slug}`}
               className="hh-card-btn hh-btn-card-live"
-              onClick={(e) => {
-                e.stopPropagation();
-                router.push(`/projects/${project.slug}`);
-              }}
             >
               <span>{t('featured.visitProduct')}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

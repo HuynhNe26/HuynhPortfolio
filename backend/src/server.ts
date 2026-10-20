@@ -575,9 +575,31 @@ export const server = createServer(handleRequest);
 server.requestTimeout = 15000;
 server.headersTimeout = 10000;
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+const isTestRunner = Boolean(process.env.NODE_TEST_CONTEXT) || process.argv.some((arg) => arg.includes('test'));
+const isMainModule =
+  !isTestRunner &&
+  (!process.argv[1] ||
+    process.argv[1].endsWith('server.ts') ||
+    process.argv[1].endsWith('server.js') ||
+    (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href));
+
+if (isMainModule) {
   const port = Number(process.env.PORT || 4000);
   const host = process.env.HOST || '127.0.0.1';
+
+  server.on('error', (err: any) => {
+    if (err.code === 'EADDRINUSE') {
+      console.warn(`Port ${port} busy, retrying in 500ms...`);
+      setTimeout(() => {
+        try {
+          server.close();
+        } catch {}
+        server.listen(port, host);
+      }, 500);
+    } else {
+      console.error('Portfolio API server error:', err);
+    }
+  });
 
   server.listen(port, host, () => {
     console.log(`Portfolio API listening at http://${host}:${port}`);

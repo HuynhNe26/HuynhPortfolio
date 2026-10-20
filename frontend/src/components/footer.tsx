@@ -166,7 +166,12 @@ export function Footer() {
             aria-label="Back to top"
             onClick={(e) => {
               e.preventDefault();
-              smoothScrollToTop(950);
+              smoothScrollToTop();
+              try {
+                if (window.location.hash) {
+                  history.pushState(null, '', window.location.pathname);
+                }
+              } catch {}
             }}
           >
             {t('footer.top')}
