@@ -145,8 +145,8 @@ async function route(request: IncomingMessage, response: ServerResponse): Promis
     }
 
     const adminResult = await query(
-      'SELECT id, email, password_hash FROM admins WHERE id = $1 AND email = $2',
-      ['owner', input.email]
+      'SELECT id, email, password_hash FROM admins WHERE LOWER(email) = LOWER($1)',
+      [input.email]
     );
     const admin = adminResult.rows[0];
 
@@ -157,7 +157,7 @@ async function route(request: IncomingMessage, response: ServerResponse): Promis
       throw new HttpError(401, 'Email or password is incorrect.');
     }
 
-    const token = await createSession(request);
+    const token = await createSession(request, admin.id);
     response.setHeader('Set-Cookie', sessionCookie(token));
     json(response, 200, {
       message: 'Signed in.',

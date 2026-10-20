@@ -44,7 +44,7 @@ export function sessionCookie(token: string, clear = false): string {
   return `${cookieName}=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${clear ? 0 : sessionLifetime}${secure}`;
 }
 
-export async function createSession(request: IncomingMessage): Promise<string> {
+export async function createSession(request: IncomingMessage, adminId = 'owner'): Promise<string> {
   const previous = sessionToken(request);
 
   if (previous) {
@@ -64,7 +64,7 @@ export async function createSession(request: IncomingMessage): Promise<string> {
     const expiresAt = new Date(Date.now() + sessionLifetime * 1000);
     await query(
       'INSERT INTO sessions (token_hash, admin_id, expires_at) VALUES ($1, $2, $3)',
-      [tokenHash, 'owner', expiresAt]
+      [tokenHash, adminId, expiresAt]
     );
   } else {
     inMemorySessions.add(tokenHash);

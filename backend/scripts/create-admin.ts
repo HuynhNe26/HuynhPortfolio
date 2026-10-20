@@ -6,18 +6,18 @@ try {
   const email = z.string().email().parse(process.env.ADMIN_EMAIL).toLowerCase();
   const password = z.string().min(14).max(256).parse(process.env.ADMIN_PASSWORD);
 
-  const existing = await query('SELECT id FROM admins WHERE id = $1', ['owner']);
-  if (existing.rows.length > 0) {
-    throw new Error('An administrator already exists. No existing account was changed.');
-  }
-
   const passwordHash = await hashPassword(password);
   await query(
-    'INSERT INTO admins (id, email, password_hash, created_at) VALUES ($1, $2, $3, NOW())',
-    ['owner', email, passwordHash]
+    `INSERT INTO admins (id, email, password_hash, created_at)
+     VALUES ('owner', $1, $2, NOW())
+     ON CONFLICT (id) DO UPDATE SET
+       email = EXCLUDED.email,
+       password_hash = EXCLUDED.password_hash,
+       created_at = NOW()`,
+    [email, passwordHash]
   );
 
-  console.log('Administrator created. Remove ADMIN_PASSWORD from backend/.env now.');
+  console.log(`✓ Administrator account (${email}) successfully provisioned on PostgreSQL (Neon).`);
 } catch (error) {
   console.error(
     error instanceof z.ZodError
@@ -29,4 +29,5 @@ try {
   process.exitCode = 1;
 } finally {
   await closeDatabase();
+  process.exit(process.exitCode || 0);
 }
