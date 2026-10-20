@@ -1,1 +1,11 @@
-export { default, size, contentType, runtime, alt } from './opengraph-image';
+import OpenGraphImage from './opengraph-image';
+
+export const runtime = 'nodejs';
+export const alt = 'Nguyễn Hoàng Huynh — Full-Stack Web Developer & Software Engineer | Portfolio';
+export const size = {
+  width: 1200,
+  height: 630,
+};
+export const contentType = 'image/png';
+
+export default OpenGraphImage;
