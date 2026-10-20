@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/language-context';
 import { useTheme } from '@/context/theme-context';
+import { smoothScrollToTop } from '@/lib/smooth-scroll';
 
 interface NavItem {
   id: string;
@@ -128,7 +129,7 @@ export function Header() {
       isClickScrollingRef.current = true;
 
       if (item.targetId === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        smoothScrollToTop(850);
         try {
           history.pushState(null, '', '/');
         } catch {}
@@ -179,7 +180,7 @@ export function Header() {
             setOpen(false);
             if (pathname === '/') {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              smoothScrollToTop(850);
               setActiveSection('home');
               try {
                 history.pushState(null, '', '/');

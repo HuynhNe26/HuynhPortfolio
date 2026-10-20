@@ -32,6 +32,7 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
   const [coverUrl, setCoverUrl] = useState(project?.coverUrl || '');
   const [liveUrl, setLiveUrl] = useState(project?.liveUrl || '');
   const [sourceUrl, setSourceUrl] = useState(project?.sourceUrl || '');
+  const [reportUrl, setReportUrl] = useState(project?.reportUrl || '');
   const [featured, setFeatured] = useState(Boolean(project?.featured));
   const [published, setPublished] = useState(project ? Boolean(project.published) : true);
   const [storytellingStyle, setStorytellingStyle] = useState<string>(
@@ -214,6 +215,7 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
       coverUrl: coverUrl.trim() || undefined,
       liveUrl: liveUrl.trim() || undefined,
       sourceUrl: sourceUrl.trim() || undefined,
+      reportUrl: reportUrl.trim() || undefined,
       featured,
       published,
       storytellingStyle,
@@ -481,6 +483,17 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
                 value={sourceUrl}
                 onChange={(e) => setSourceUrl(e.target.value)}
                 placeholder="VD: https://github.com/..."
+              />
+            </div>
+
+            <div className="field">
+              <label htmlFor="reportUrl">Link Báo Cáo Dự Án (Google Docs Report URL)</label>
+              <input
+                id="reportUrl"
+                type="text"
+                value={reportUrl}
+                onChange={(e) => setReportUrl(e.target.value)}
+                placeholder="VD: https://docs.google.com/document/d/... (Mở xem trực tiếp)"
               />
             </div>
           </div>

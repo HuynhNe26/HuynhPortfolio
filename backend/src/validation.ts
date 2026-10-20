@@ -60,6 +60,7 @@ export const projectSchema = z.object({
   coverUrl: safeUrl.optional(),
   liveUrl: safeUrl.optional(),
   sourceUrl: safeUrl.optional(),
+  reportUrl: safeUrl.optional(),
   featured: z.boolean(),
   published: z.boolean(),
   order: z.number().int().optional(),
@@ -67,7 +68,7 @@ export const projectSchema = z.object({
   chapters: z.array(chapterSchema).optional(),
   features: z.array(featureSchema).optional(),
   gallery: z.array(screenshotSchema).optional(),
-}).passthrough();
+}).strict();
 
 export const educationItemSchema = z.object({
   institution: text(2, 150),

@@ -1638,6 +1638,51 @@ export function MasterInteractiveScrollytelling({
   const [isHoveringHotspot, setIsHoveringHotspot] = useState(false);
   const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
   const stageRef = useRef<HTMLDivElement>(null);
+  const cardsFlowRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Smooth continuous scroll progress tracker for the timeline rail
+  useEffect(() => {
+    let ticking = false;
+
+    const updateScrollProgress = () => {
+      const flowEl = cardsFlowRef.current;
+      if (!flowEl) {
+        ticking = false;
+        return;
+      }
+
+      const rect = flowEl.getBoundingClientRect();
+      const viewportH = window.innerHeight;
+
+      // Start calculating when the top of the cards reaches 35% from the top of the viewport
+      const startTrigger = viewportH * 0.35;
+      const totalScrollDistance = rect.height - viewportH * 0.45;
+      const currentScrolled = startTrigger - rect.top;
+
+      const rawPercentage = (currentScrolled / (totalScrollDistance || 1)) * 100;
+      const clamped = Math.min(Math.max(rawPercentage, 0), 100);
+
+      setScrollProgress(clamped);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollProgress);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateScrollProgress();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [chapters.length]);
 
   // Retrieve storytelling mode metadata
   const modeMeta = useMemo(() => {
@@ -1819,7 +1864,7 @@ export function MasterInteractiveScrollytelling({
     const chapterId = chapters[idx]?.id;
     const targetEl = (chapterId && document.getElementById(chapterId)) || document.getElementById(`chapter-card-${idx}`);
     if (targetEl) {
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setActiveIdx(idx);
     }
   };
@@ -1839,26 +1884,32 @@ export function MasterInteractiveScrollytelling({
             <div
               className="narrative-progress-fill"
               style={{
-                height: `${((activeIdx + 1) / chapters.length) * 100}%`,
+                height: `${scrollProgress}%`,
                 background: projectTheme.color,
               }}
             />
-            {chapters.map((ch, idx) => (
-              <button
-                key={ch.id}
-                type="button"
-                className={`narrative-scrubber-dot ${idx === activeIdx ? 'active' : ''} ${idx < activeIdx ? 'completed' : ''}`}
-                style={{ top: `${(idx / (chapters.length - 1 || 1)) * 100}%` }}
-                onClick={() => scrollToChapter(idx)}
-                title={`Chương ${ch.number}: ${ch.title}`}
-              >
-                <span className="dot-inner" />
-                <span className="dot-tooltip">{ch.number}</span>
-              </button>
-            ))}
+            {chapters.map((ch, idx) => {
+              const dotPos = (idx / (chapters.length - 1 || 1)) * 100;
+              const isPassed = scrollProgress >= dotPos - 2;
+              const isCurrent = idx === activeIdx;
+
+              return (
+                <button
+                  key={ch.id}
+                  type="button"
+                  className={`narrative-scrubber-dot ${isCurrent ? 'active' : ''} ${isPassed ? 'completed' : ''}`}
+                  style={{ top: `${dotPos}%` }}
+                  onClick={() => scrollToChapter(idx)}
+                  title={`Chương ${ch.number}: ${ch.title}`}
+                >
+                  <span className="dot-inner" />
+                  <span className="dot-tooltip">{ch.number}</span>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="narrative-cards-flow">
+          <div ref={cardsFlowRef} className="narrative-cards-flow">
             {chapters.map((chapter, idx) => {
               const visual = visualList[idx] || visualList[0];
               const isCurrent = idx === activeIdx;

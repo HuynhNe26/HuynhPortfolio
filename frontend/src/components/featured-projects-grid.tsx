@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
@@ -76,6 +77,7 @@ export function formatTimelineMonthYear(rawTimeline?: string, lang: 'en' | 'vi' 
 
 function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
   const { t, lang } = useLanguage();
+  const router = useRouter();
   const cardRef = useRef<HTMLDivElement>(null);
   const backlightRef = useRef<HTMLDivElement>(null);
   const ambientRef = useRef<HTMLDivElement>(null);
@@ -83,8 +85,26 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
   const rafIdRef = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // If theme sweep is running, freeze 3D tilt to prevent GPU composite glitching
+    if (
+      typeof document !== 'undefined' &&
+      (document.documentElement.hasAttribute('data-theme-switching') ||
+        document.documentElement.hasAttribute('data-theme-sweeping'))
+    ) {
+      return;
+    }
+
     const card = cardRef.current;
     if (!card) return;
+
+    // Stabilize card when hovering over buttons or links so clicks register with 100% reliability
+    const target = e.target as HTMLElement;
+    if (target.closest('.hh-card-actions-row') || target.closest('.hh-card-btn')) {
+      if (card) {
+        card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1.008, 1.008, 1.008)';
+      }
+      return;
+    }
 
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -115,7 +135,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       if (backlightRef.current) {
         backlightRef.current.style.opacity = '0.75';
         backlightRef.current.style.background = `radial-gradient(circle 280px at ${x}px ${y}px, var(--card-glow, #38BDF8) 0%, transparent 75%)`;
-        backlightRef.current.style.transform = `translate3d(${percentX * 16}px, ${percentY * 16}px, -25px)`;
+        backlightRef.current.style.transform = `translate3d(${percentX * 16}px, ${percentY * 16}px, 0)`;
       }
 
       // 3. Ambient glow on card surface follows cursor
@@ -127,24 +147,22 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       // 4. Specular glare highlight on card surface follows cursor
       if (glareRef.current) {
         glareRef.current.style.opacity = '0.55';
-        glareRef.current.style.background = `radial-gradient(circle 300px at ${x}px ${y}px, rgba(255, 255, 255, 0.5) 0%, transparent 65%)`;
+        glareRef.current.style.background = `radial-gradient(circle 300px at ${x}px ${y}px, rgba(255, 255, 255, 0.45) 0%, transparent 65%)`;
       }
     });
   };
 
   const handleMouseEnter = () => {
+    if (
+      typeof document !== 'undefined' &&
+      (document.documentElement.hasAttribute('data-theme-switching') ||
+        document.documentElement.hasAttribute('data-theme-sweeping'))
+    ) {
+      return;
+    }
     const card = cardRef.current;
     if (card) {
       card.style.transition = 'transform 0.15s ease-out, border-color 0.35s ease, box-shadow 0.35s ease';
-    }
-    if (backlightRef.current) {
-      backlightRef.current.style.transition = 'opacity 0.25s ease';
-    }
-    if (ambientRef.current) {
-      ambientRef.current.style.transition = 'opacity 0.25s ease';
-    }
-    if (glareRef.current) {
-      glareRef.current.style.transition = 'opacity 0.25s ease';
     }
   };
 
@@ -154,21 +172,21 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     }
     const card = cardRef.current;
     if (card) {
-      card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease';
-      card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.transform = '';
+      card.style.transition = '';
     }
     if (backlightRef.current) {
-      backlightRef.current.style.transition = 'opacity 0.4s ease, transform 0.5s ease';
       backlightRef.current.style.opacity = '0';
-      backlightRef.current.style.transform = 'translate3d(0, 0, -25px)';
+      backlightRef.current.style.transform = '';
+      backlightRef.current.style.transition = '';
     }
     if (ambientRef.current) {
-      ambientRef.current.style.transition = 'opacity 0.4s ease';
       ambientRef.current.style.opacity = '0.06';
+      ambientRef.current.style.transition = '';
     }
     if (glareRef.current) {
-      glareRef.current.style.transition = 'opacity 0.4s ease';
       glareRef.current.style.opacity = '0';
+      glareRef.current.style.transition = '';
     }
   };
 
@@ -185,6 +203,12 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={(e) => {
+        // Allow clicking anywhere on the card to open details, unless clicking external live site or report
+        const target = e.target as HTMLElement;
+        if (target.closest('.hh-btn-card-live') || target.closest('.hh-btn-card-report')) return;
+        router.push(`/projects/${project.slug}`);
+      }}
     >
       {/* 1. DYNAMIC AMBIENT BACKLIGHT BEHIND THE CARD (FLOATS OUTSIDE BEHIND CARD, TRACKS MOUSE) */}
       <div ref={backlightRef} className="hh-card-backlight-glow" aria-hidden="true" />
@@ -196,7 +220,14 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       <div ref={glareRef} className="hh-project-card-glare" aria-hidden="true" />
 
       {/* IMAGE PREVIEW FRAME (CLICKABLE TO CASE STUDY) */}
-      <Link href={`/projects/${project.slug}`} className="hh-card-image-box" tabIndex={-1} aria-hidden="true">
+      <Link
+        href={`/projects/${project.slug}`}
+        className="hh-card-image-box"
+        onClick={(e) => {
+          e.stopPropagation();
+          router.push(`/projects/${project.slug}`);
+        }}
+      >
         <Image
           src={project.coverUrl || '/projects/ticket-concert-hero.png'}
           alt={project.title}
@@ -225,9 +256,23 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       {/* CARD BODY CONTENT */}
       <div className="hh-card-content">
         {/* PROJECT TITLE */}
-        <Link href={`/projects/${project.slug}`} className="hh-card-title-link">
+        <Link
+          href={`/projects/${project.slug}`}
+          className="hh-card-title-link"
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push(`/projects/${project.slug}`);
+          }}
+        >
           <h3 className="hh-card-title">{project.title}</h3>
         </Link>
+
+        {/* PROJECT SUMMARY / MÔ TẢ DỰ ÁN */}
+        {project.summary && (
+          <p className="hh-card-summary" title={project.summary}>
+            {project.summary}
+          </p>
+        )}
 
         {/* 1. VAI TRÒ & 2. THỜI GIAN THEO THÁNG/NĂM */}
         <div className="hh-card-meta-grid">
@@ -272,11 +317,15 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
           </div>
         </div>
 
-        {/* 4. HAI NÚT: XEM CHI TIẾT & XEM SẢN PHẨM */}
+        {/* 4. CÁC NÚT: XEM CHI TIẾT, XEM BÁO CÁO (GG DOCS) & XEM SẢN PHẨM */}
         <div className="hh-card-actions-row">
           <Link
             href={`/projects/${project.slug}`}
             className="hh-card-btn hh-btn-card-detail"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/projects/${project.slug}`);
+            }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -287,12 +336,38 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
             <span>{t('featured.viewDetails')}</span>
           </Link>
 
+          {(project.reportUrl || true) && (
+            <a
+              href={project.reportUrl || `https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hh-card-btn hh-btn-card-report"
+              onClick={(e) => e.stopPropagation()}
+              title={lang === 'vi' ? 'Xem báo cáo đồ án trên Google Docs' : 'View project report on Google Docs'}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <line x1="10" y1="9" x2="8" y2="9"/>
+              </svg>
+              <span>{t('featured.viewReport')}</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          )}
+
           {project.liveUrl ? (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="hh-card-btn hh-btn-card-live"
+              onClick={(e) => e.stopPropagation()}
             >
               <span>{t('featured.visitProduct')}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -305,6 +380,10 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
             <Link
               href={`/projects/${project.slug}`}
               className="hh-card-btn hh-btn-card-live"
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/projects/${project.slug}`);
+              }}
             >
               <span>{t('featured.visitProduct')}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

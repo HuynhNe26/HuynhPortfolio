@@ -1,5 +1,5 @@
 import { api } from '@/lib/api';
-import type { MediaAsset } from '../../../../../../backend/src/models';
+import type { MediaAsset } from '@/lib/types';
 import { FormField, MutationButton } from '@/components/forms';
 
 export const dynamic = 'force-dynamic';

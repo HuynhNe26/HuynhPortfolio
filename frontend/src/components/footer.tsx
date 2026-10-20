@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/language-context';
+import { smoothScrollToTop } from '@/lib/smooth-scroll';
 
 export function Footer() {
   const { t, lang } = useLanguage();
@@ -15,7 +16,7 @@ export function Footer() {
             <Link className="footer-brand" href="/">
               <div className="footer-brand-badge">HH</div>
               <span className="footer-brand-name">
-                Nguyễn Hoàng Huynh <span className="brand-dot">// SYSTEMS</span>
+                Nguyễn Hoàng Huynh
               </span>
             </Link>
             <p className="footer-tagline">
@@ -57,35 +58,25 @@ export function Footer() {
           <div className="footer-watermark-wrap">
             <div className="footer-watermark-ambient-glow" />
             <svg
-              viewBox="0 0 1600 160"
+              viewBox="0 0 1700 160"
               className="footer-watermark-svg"
               preserveAspectRatio="xMidYMid meet"
             >
               <defs>
-                {/* 1. Rich Modern Multi-stop Gradient Fill */}
+                {/* 1. Rich Modern Multi-stop Gradient Fill (GPU-cached) */}
                 <linearGradient id="footerNameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.32">
-                    <animate attributeName="stop-color" values="#2563EB;#4F46E5;#06B6D4;#2563EB" dur="12s" repeatCount="indefinite" />
-                  </stop>
-                  <stop offset="25%" stopColor="#4F46E5" stopOpacity="0.36">
-                    <animate attributeName="stop-color" values="#4F46E5;#7C3AED;#EC4899;#4F46E5" dur="12s" repeatCount="indefinite" />
-                  </stop>
-                  <stop offset="50%" stopColor="#7C3AED" stopOpacity="0.34">
-                    <animate attributeName="stop-color" values="#7C3AED;#2563EB;#4F46E5;#7C3AED" dur="12s" repeatCount="indefinite" />
-                  </stop>
-                  <stop offset="75%" stopColor="#06B6D4" stopOpacity="0.36">
-                    <animate attributeName="stop-color" values="#06B6D4;#EC4899;#2563EB;#06B6D4" dur="12s" repeatCount="indefinite" />
-                  </stop>
-                  <stop offset="100%" stopColor="#EC4899" stopOpacity="0.30">
-                    <animate attributeName="stop-color" values="#EC4899;#06B6D4;#4F46E5;#EC4899" dur="12s" repeatCount="indefinite" />
-                  </stop>
+                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.85" />
+                  <stop offset="25%" stopColor="#4F46E5" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#7C3AED" stopOpacity="0.85" />
+                  <stop offset="75%" stopColor="#06B6D4" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#EC4899" stopOpacity="0.85" />
                 </linearGradient>
 
                 {/* 2. Base Outline Gradient */}
                 <linearGradient id="footerBaseOutlineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.35" />
-                  <stop offset="50%" stopColor="#6366F1" stopOpacity="0.45" />
-                  <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.35" />
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.5" />
+                  <stop offset="50%" stopColor="#6366F1" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.5" />
                 </linearGradient>
 
                 {/* 3. Electric Running Laser Stroke Gradient */}
@@ -110,7 +101,7 @@ export function Footer() {
               {/* Layer 1: Ambient Background Glow Text */}
               <text
                 x="50%"
-                y="54%"
+                y="55%"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="watermark-glow-text"
@@ -121,7 +112,7 @@ export function Footer() {
               {/* Layer 2: Main Rich Gradient Fill */}
               <text
                 x="50%"
-                y="54%"
+                y="55%"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="watermark-gradient-fill"
@@ -132,7 +123,7 @@ export function Footer() {
               {/* Layer 3: Base Clean Outline */}
               <text
                 x="50%"
-                y="54%"
+                y="55%"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="watermark-base-outline"
@@ -143,32 +134,29 @@ export function Footer() {
               {/* Layer 4: Running Light Stroke Beam 1 */}
               <text
                 x="50%"
-                y="54%"
+                y="55%"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="watermark-laser-stroke-1"
               >
-                NGUYỄN HOÀNG HUYNH
+                NGUYEN HOANG HUYNH
               </text>
 
               {/* Layer 5: Running Light Stroke Beam 2 (Counter pulse) */}
               <text
                 x="50%"
-                y="54%"
+                y="55%"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="watermark-laser-stroke-2"
               >
-                NGUYỄN HOÀNG HUYNH
+                NGUYEN HOANG HUYNH
               </text>
             </svg>
           </div>
         </div>
 
         <div className="footer-bottom-bar">
-          <div className="footer-meta-pill">
-            <span>CORE: NEXT.JS 16 • REACT 19 • NEON POSTGRESQL</span>
-          </div>
           <div className="footer-copyright">
             © {new Date().getFullYear()} Nguyễn Hoàng Huynh. {t('footer.rights')}
           </div>
@@ -178,7 +166,7 @@ export function Footer() {
             aria-label="Back to top"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              smoothScrollToTop(950);
             }}
           >
             {t('footer.top')}

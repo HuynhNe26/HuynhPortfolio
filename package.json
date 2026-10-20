@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "build:frontend": "npm run build --workspace frontend",
+    "build:backend": "npm run build --workspace backend",
     "lint": "eslint frontend/src backend/src backend/scripts backend/tests",
     "typecheck": "npm run typecheck --workspace backend && npm run typecheck --workspace frontend",
     "test": "npm run test --workspace backend",

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 export type Theme = 'light' | 'dark';
 
@@ -8,6 +9,7 @@ interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
   setTheme: (theme: Theme) => void;
+  isSweeping: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -16,7 +18,8 @@ const THEME_STORAGE_KEY = 'huynh_portfolio_theme';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('light');
-  const [mounted, setMounted] = useState(false);
+  const [isSweeping] = useState(false);
+  const isTransitioningRef = useRef(false);
 
   useEffect(() => {
     // 1. Check stored preference
@@ -34,10 +37,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       }
     } catch {
       // Fallback in case localStorage access fails
-      applyTheme('light');
     }
-
-    setMounted(true);
   }, []);
 
   const applyTheme = (targetTheme: Theme) => {
@@ -62,12 +62,64 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   const toggleTheme = () => {
+    if (isTransitioningRef.current) return;
     const nextTheme: Theme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    // Modern Native View Transitions API: Pure Left-to-Right cinematic reveal
+    if (typeof document !== 'undefined' && 'startViewTransition' in document) {
+      isTransitioningRef.current = true;
+
+      const root = document.documentElement;
+      root.setAttribute('data-theme-switching', 'true');
+      root.setAttribute('data-theme-sweeping', 'true');
+
+      try {
+        const transition = (document as any).startViewTransition(() => {
+          // Synchronously flush DOM and React updates before new snapshot is taken
+          flushSync(() => {
+            applyTheme(nextTheme);
+            setThemeState(nextTheme);
+          });
+          try {
+            localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+          } catch {}
+        });
+
+        transition.finished
+          .catch(() => {})
+          .finally(() => {
+            root.removeAttribute('data-theme-sweeping');
+            root.removeAttribute('data-theme-switching');
+            isTransitioningRef.current = false;
+          });
+        return;
+      } catch {
+        root.removeAttribute('data-theme-sweeping');
+        root.removeAttribute('data-theme-switching');
+        isTransitioningRef.current = false;
+      }
+    }
+
+    // Fallback for older browsers
+    setThemeState(nextTheme);
+    applyTheme(nextTheme);
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    } catch {}
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme, isSweeping }}>
       {children}
     </ThemeContext.Provider>
   );

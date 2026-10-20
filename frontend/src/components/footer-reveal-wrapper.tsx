@@ -10,8 +10,6 @@ interface FooterRevealWrapperProps {
 export function FooterRevealWrapper({ children, footer }: FooterRevealWrapperProps) {
   const [footerHeight, setFooterHeight] = useState<number>(0);
   const [isRevealActive, setIsRevealActive] = useState<boolean>(false);
-  const [revealProgress, setRevealProgress] = useState<number>(0);
-  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const footerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -44,38 +42,57 @@ export function FooterRevealWrapper({ children, footer }: FooterRevealWrapperPro
     };
   }, [updateMetrics]);
 
-  // Monitor scroll position to calculate reveal progress & toggle visibility/pointer events
+  // Direct high-performance 120 FPS scroll listener without React rerender overhead or CSS transition lag
   useEffect(() => {
     if (!isRevealActive || footerHeight === 0) {
-      setIsVisible(true);
-      setRevealProgress(1);
+      if (footerRef.current) {
+        footerRef.current.style.visibility = 'visible';
+        footerRef.current.style.pointerEvents = 'auto';
+        footerRef.current.style.transform = 'none';
+        footerRef.current.style.opacity = '1';
+      }
       return;
     }
 
-    const handleScroll = () => {
-      if (!contentRef.current) return;
+    let ticking = false;
+
+    const updateFooterReveal = () => {
+      if (!contentRef.current || !footerRef.current) {
+        ticking = false;
+        return;
+      }
       const contentRect = contentRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
-      // contentRect.bottom is distance from top of viewport to bottom of content
-      // When contentRect.bottom <= windowHeight, the bottom of content has scrolled into or above viewport
       const distancePastBottom = windowHeight - contentRect.bottom;
 
-      if (distancePastBottom <= -200) {
-        // Far above footer reveal zone
-        setIsVisible(false);
-        setRevealProgress(0);
+      if (distancePastBottom <= -120) {
+        // Far above reveal zone
+        footerRef.current.style.visibility = 'hidden';
+        footerRef.current.style.pointerEvents = 'none';
       } else {
         // Within or near reveal zone
-        setIsVisible(true);
+        footerRef.current.style.visibility = 'visible';
+        footerRef.current.style.pointerEvents = distancePastBottom > 20 ? 'auto' : 'none';
+
         const clampedRevealed = Math.max(0, Math.min(footerHeight, distancePastBottom));
         const progress = clampedRevealed / footerHeight;
-        setRevealProgress(progress);
+
+        // Direct hardware-accelerated transform with zero transition lag
+        footerRef.current.style.transform = `translate3d(0, ${(1 - progress) * -16}px, 0)`;
+        footerRef.current.style.opacity = `${0.9 + progress * 0.1}`;
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateFooterReveal);
+        ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    updateFooterReveal();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -118,11 +135,6 @@ export function FooterRevealWrapper({ children, footer }: FooterRevealWrapperPro
                 left: 0,
                 width: '100%',
                 zIndex: 1,
-                visibility: isVisible ? 'visible' : 'hidden',
-                pointerEvents: isVisible && revealProgress > 0.1 ? 'auto' : 'none',
-                transform: `translateY(${(1 - revealProgress) * -16}px)`,
-                opacity: 0.85 + revealProgress * 0.15,
-                transition: 'transform 0.06s linear, opacity 0.06s linear',
                 willChange: 'transform, opacity',
               }
             : {

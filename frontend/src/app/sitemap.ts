@@ -1,33 +1,45 @@
 import type { MetadataRoute } from 'next';
 import { publicContent } from '@/lib/api';
+import { getSiteUrl } from '@/lib/site-config';
 
 export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.APP_URL || 'http://localhost:3000';
+  const base = getSiteUrl();
   const { projects } = await publicContent();
+
+  const now = new Date();
 
   return [
     {
       url: base,
-      priority: 1
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 1.0,
     },
     {
       url: `${base}/projects`,
-      priority: 0.8
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
     {
       url: `${base}/about`,
-      priority: 0.9
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
     {
       url: `${base}/contact`,
-      priority: 0.7
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     ...projects.map((project) => ({
       url: `${base}/projects/${project.slug}`,
-      lastModified: new Date(project.updatedAt),
-      priority: 0.8,
+      lastModified: project.updatedAt ? new Date(project.updatedAt) : now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85,
     })),
   ];
 }

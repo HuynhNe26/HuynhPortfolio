@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/context/language-context';
@@ -21,6 +21,16 @@ export function HeroShowcase({
   linkedinUrl = '',
 }: HeroShowcaseProps) {
   const { t } = useLanguage();
+  const [isSettled, setIsSettled] = useState(false);
+
+  useEffect(() => {
+    // Lock hero section after initial entrance finishes (1.05s)
+    // so toggling dark/light mode or re-rendering never re-triggers entrance animations
+    const timer = setTimeout(() => {
+      setIsSettled(true);
+    }, 1050);
+    return () => clearTimeout(timer);
+  }, []);
 
   const scrollToWork = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -31,7 +41,7 @@ export function HeroShowcase({
   };
 
   return (
-    <section id="home" className="hh-hero-section">
+    <section id="home" className={`hh-hero-section ${isSettled ? 'hh-hero-settled' : ''}`}>
       <div className="hh-hero-ambient-spotlight" aria-hidden="true" />
       <div className="container hh-hero-container">
         {/* HERO TOP: 2 COLUMNS (LEFT CONTENT, RIGHT PORTRAIT) */}

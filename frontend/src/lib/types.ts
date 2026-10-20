@@ -88,6 +88,7 @@ export interface Project {
   coverUrl: string;
   liveUrl: string;
   sourceUrl: string;
+  reportUrl?: string;
   featured: boolean;
   published: boolean;
   order?: number;
@@ -345,6 +346,7 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/ticket-concert-hero.png',
     liveUrl: 'https://www.ticketconcert.online',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 1,
@@ -517,6 +519,7 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/fashion-nail-hero.jpg',
     liveUrl: 'https://fashionnailmorley.com.au',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 2,
@@ -651,6 +654,7 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/exam-platform-hero.png',
     liveUrl: 'https://exam-platform.online',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 3,
@@ -785,6 +789,7 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/vk-digital-hero.png',
     liveUrl: 'https://vkdigitalhub.netlify.app',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 4,
@@ -928,10 +933,11 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/portfolio-hero.png',
     liveUrl: 'http://localhost:3000',
     sourceUrl: 'https://github.com/HuynhNe26/HuynhPortfolio',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 5,
-    storytellingStyle: 'bento-grid', // 5. Bento Grid Storytelling
+    storytellingStyle: 'horizontal-scroll', // 6. Horizontal Scroll Storytelling
     problem: 'Các website portfolio truyền thống thường nhàm chán, hiển thị danh sách tĩnh và không thể hiện được chiều sâu kỹ thuật, khả năng xử lý tương tác thời gian thực cũng như câu chuyện đằng sau mỗi sản phẩm công nghệ.',
     approach: 'Kiến trúc nền tảng với Next.js 16 App Router & Node.js backend. Ứng dụng ngôn ngữ thiết kế Light Theme tối giản sang trọng với thẻ 3D tilt kèm hào quang theo chuột, chuyển đổi ngôn ngữ 1 chạm EN/VI, động cơ Scrollytelling chia đôi màn hình đồng bộ hình ảnh và radar hotspot trực quan, cùng bộ giả lập tương tác thực tế.',
     outcome: 'Một nền tảng cá nhân chuẩn mực, tải trang nhanh dưới 1 giây, mang lại trải nghiệm xem dự án sống động như một câu chuyện thực thụ, tích hợp hệ thống CMS quản trị backend bảo mật.',
@@ -1136,6 +1142,7 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/skyroute-hero.png',
     liveUrl: 'https://aviaops.online',
     sourceUrl: 'https://github.com/HuynhNe26/skyroute-aviation-ops',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 6,
@@ -1268,6 +1275,7 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/medicare-hero.png',
     liveUrl: 'https://medicare-ai.health',
     sourceUrl: 'https://github.com/HuynhNe26/medicare-ai-triage',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 7,
@@ -1375,3 +1383,17 @@ export const defaultProjects: Project[] = [
     updatedAt: '2026-10-19T00:00:00.000Z',
   },
 ];
+
+export interface MediaAsset {
+  _id: string;
+  url: string;
+  filename: string;
+  publicId?: string;
+  altText: string;
+  format?: string;
+  width?: number;
+  height?: number;
+  bytes?: number;
+  createdAt: string | Date;
+}
+
