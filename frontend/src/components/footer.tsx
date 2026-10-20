@@ -29,7 +29,7 @@ export function Footer() {
           </div>
 
           <div className="footer-links-col">
-            <span className="footer-col-title">{lang === 'vi' ? 'Điều hướng' : 'Navigation'}</span>
+            <span className="footer-col-title">{lang === 'vi' ? 'Điều hướng' : lang === 'zh' ? '快速导航' : 'Navigation'}</span>
             <Link href="/projects">{t('nav.projects')}</Link>
             <Link href="/about">{t('nav.about')}</Link>
             <Link href="/#skills">{t('nav.experience')}</Link>
@@ -37,7 +37,7 @@ export function Footer() {
           </div>
 
           <div className="footer-links-col">
-            <span className="footer-col-title">{lang === 'vi' ? 'Kết nối & Trực tiếp' : 'Connect & Direct'}</span>
+            <span className="footer-col-title">{lang === 'vi' ? 'Kết nối & Trực tiếp' : lang === 'zh' ? '保持联系' : 'Connect & Direct'}</span>
             <a href="tel:+84937569205">
               📞 +84 937 569 205
             </a>

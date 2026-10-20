@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/language-context';
 import { useTheme } from '@/context/theme-context';
 import { smoothScrollToTop } from '@/lib/smooth-scroll';
+import { LanguageDropdown } from '@/components/language-dropdown';
 
 interface NavItem {
   id: string;
@@ -282,18 +283,8 @@ export function Header() {
             </span>
           </button>
 
-          {/* Language Toggle Switch (1 click to toggle) */}
-          <button
-            type="button"
-            className={`hh-lang-toggle ${lang}`}
-            onClick={toggleLang}
-            aria-label={`Đổi ngôn ngữ (Hiện tại: ${lang === 'vi' ? 'Tiếng Việt' : 'English'})`}
-            title={lang === 'vi' ? 'Bấm để chuyển sang English' : 'Click to switch to Tiếng Việt'}
-          >
-            <span className="hh-lang-toggle-thumb" aria-hidden="true" />
-            <span className={`hh-lang-toggle-label ${lang === 'en' ? 'active' : ''}`}>EN</span>
-            <span className={`hh-lang-toggle-label ${lang === 'vi' ? 'active' : ''}`}>VI</span>
-          </button>
+          {/* Language Dropdown (VI, EN, ZH) */}
+          <LanguageDropdown />
 
           <Link
             href="/#contact"

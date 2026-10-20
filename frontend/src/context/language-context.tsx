@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type Language = 'en' | 'vi';
+export type Language = 'en' | 'vi' | 'zh';
 
 interface LanguageContextType {
   lang: Language;
@@ -328,6 +328,164 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.top': 'Lên Đầu trang ↑',
     'footer.available': 'Hiện đang sẵn sàng cho các vị trí Thực tập, Fresher & Junior Full-Stack Developer.',
   },
+  zh: {
+    // Nav
+    'nav.home': '首页',
+    'nav.about': '关于我',
+    'nav.projects': '项目作品',
+    'nav.experience': '专业技能',
+    'nav.education': '教育背景',
+    'nav.contact': '联系方式',
+    'nav.letsTalk': '立即沟通',
+    'nav.stack': '技术栈',
+    'nav.cms': 'CMS 门户',
+    'nav.status': '可随时到岗',
+
+    // Hero Showcase (Frame 1)
+    'hero.role': 'Web 全栈开发工程师',
+    'hero.badge': '可随时到岗 • 越南航空学院 (2026届)',
+    'hero.subtitle': '全栈软件工程师 & 系统架构',
+    'hero.bio': '充满热情的全栈开发工程师，越南航空学院计算机科学与技术专业大三学生，致力于运用现代技术构建高效实用的工程方案。',
+    'hero.intro': '越南航空学院计算机科学与技术专业三年级学生（累计 GPA 3.1 / 4.0）。专注高并发高性能 Web 应用程序、高可用后端架构以及基于 TypeScript、Next.js 16 和 PostgreSQL Neon 的 AI Agentic 智能体工作流。',
+    'hero.viewProjects': '查看我的项目',
+    'hero.contactMe': '联系我',
+    'hero.viewWork': '浏览精选项目',
+    'hero.getInTouch': '建立合作',
+    'hero.stats.gpa': 'GPA 绩点',
+    'hero.stats.projects': '实战项目',
+    'hero.stats.learning': '研习年限',
+    'hero.stats.passion': '技术热情',
+    'hero.scrollHint': '向下滚动探索',
+
+    // Featured Projects (Frame 2)
+    'featured.eyebrow': '精选项目',
+    'featured.title': '核心项目作品',
+    'featured.subtitle': '汇集我在大学阶段与自主钻研中独立开发的实战项目，涵盖实际商业痛点与前沿技术方案。',
+    'featured.role': '担任角色',
+    'featured.timeline': '项目周期',
+    'featured.techStack': '核心技术',
+    'featured.viewDetails': '查看详情',
+    'featured.viewReport': '技术报告',
+    'featured.visitProduct': '在线演示',
+    'filter.all': '全部',
+    'filter.webApp': 'Web 应用',
+    'filter.landing': '营销落地页',
+    'filter.academic': '学术课设',
+    'filter.ongoing': '进行中',
+
+    // Bento Grid: About Me (Frame 4)
+    'bento.about.eyebrow': '关于我',
+    'bento.about.heading1': '将创意与构想',
+    'bento.about.heading2': '转化为落地产品',
+    'bento.about.bio': '我是阮黄兄（Nguyễn Hoàng Huynh），越南航空学院信息技术专业大三学生。热爱 Web 开发，乐于构建解决现实问题的优质软件。',
+    'bento.about.downloadCv': '下载个人简历',
+    'bento.badge.student': '大学三年级',
+    'bento.badge.studentSub': '计算机专业',
+    'bento.badge.passionate': '专注探索',
+    'bento.badge.passionateSub': 'Web 开发',
+
+    // Bento Grid: Education & Certificates (Frame 5)
+    'bento.edu.title': '教育经历',
+    'bento.cert.title': '资格证书',
+    'bento.more': '更多 →',
+    'bento.edu.school': '越南航空学院',
+    'bento.edu.major': '信息技术 / 计算机科学',
+    'bento.edu.period': '2023 – 至今',
+    'bento.edu.gpa': 'GPA: 3.1/4.0',
+    'bento.cert.name': 'TOEIC 550 - 听力与阅读',
+    'bento.cert.issuer': '美国教育考试服务中心 (ETS)',
+    'bento.cert.date': '2025年10月',
+    'bento.cert.score': '成绩: 550',
+
+    // Bento Grid: Skills (Frame 6)
+    'bento.skills.title': '专业技能',
+    'bento.skills.subtitle': '日常使用的技术栈与工具',
+    'bento.skills.all': '全部',
+    'bento.skills.frontend': '前端开发',
+    'bento.skills.backend': '后端架构',
+    'bento.skills.database': '数据库',
+    'bento.skills.tools': '开发工具与 API',
+
+    // Bento Grid: Contact (Frame 7)
+    'bento.contact.eyebrow': '保持联系',
+    'bento.contact.title': '携手打造卓越产品',
+    'bento.contact.desc': '随时欢迎交流新的职业机会、探讨有趣的项目或技术交流。',
+    'bento.contact.namePlaceholder': '您的姓名',
+    'bento.contact.emailPlaceholder': '电子邮箱',
+    'bento.contact.msgPlaceholder': '请输入您的留言内容...',
+    'bento.contact.sendBtn': '发送留言',
+    'bento.contact.sending': '发送中...',
+    'bento.contact.success': '✓ 留言发送成功！感谢您的联系。',
+
+    // Case Study Detail (Frame 3)
+    'case.back': '← 返回项目列表',
+    'case.visitSite': '访问线上网站',
+    'case.viewReport': '技术报告 (Docs)',
+    'case.viewGithub': 'GitHub 源码',
+    'case.exploreArch': '系统架构图',
+    'case.role': '担任职责',
+    'case.teamSize': '团队规模',
+    'case.solo': '独立全栈开发',
+    'case.members': '人',
+    'case.time': '开发周期',
+    'case.status': '项目状态',
+    'case.inDev': '开发中',
+    'case.completed': '已完成',
+    'case.techsUsed': '所用技术栈',
+    'case.overview': '项目概述',
+    'case.features': '核心特性',
+
+    // Storytelling & Pager
+    'story.chaptersNav': '3D 交互叙事章节:',
+    'story.prev': '← 上一个项目',
+    'story.next': '下一个项目 →',
+    'story.ctaEyebrow': '准备好开始合作了吗？',
+    'story.ctaTitle': '一起探讨我们能共同打造的卓越系统。',
+    'story.ctaTalk': '发起沟通 ↗',
+    'story.ctaMore': '浏览更多项目',
+
+    // Projects Page (/projects)
+    'projects.viewReport': '查看报告',
+    'projectsPage.eyebrow': '生产级系统与技术案例',
+    'projectsPage.title': '专为高可用与可扩展性设计',
+    'projectsPage.desc': '探索阮黄兄（Nguyễn Hoàng Huynh）自主构建的全栈 Web 应用、AI Agentic RAG 智能体以及商业化落地系统。',
+
+    // About Page (/about)
+    'aboutPage.eyebrow': '个人档案与技术履历',
+    'aboutPage.title': '秉承工程严谨，追求卓越性能',
+    'aboutPage.factsTitle': '系统档案',
+    'aboutPage.fullName': '姓名',
+    'aboutPage.standing': '学历 / 年级',
+    'aboutPage.standingVal': '信息技术大三在读 (2026届)',
+    'aboutPage.institution': '毕业 / 在读院校',
+    'aboutPage.institutionVal': '越南航空学院',
+    'aboutPage.gpa': '累计 GPA',
+    'aboutPage.english': '外语资质',
+    'aboutPage.englishVal': 'TOEIC 550 [美国 ETS 认证]',
+    'aboutPage.hometown': '所在地区',
+    'aboutPage.phone': '联系电话',
+    'aboutPage.email': '电子邮箱',
+
+    // Contact Page (/contact)
+    'contactPage.eyebrow': '联系我',
+    'contactPage.title': '携手创造不凡的产品与系统。',
+    'contactPage.desc': '如果您有软件开发项目、实习招聘机会或技术问题想要探讨，欢迎随时与我联络。',
+    'contactPage.directChannel': '直接沟通渠道。通常在 24 小时内回复。',
+    'contactPage.phoneDirect': '电话 & WhatsApp/Zalo:',
+    'contactPage.formTitle': '发送消息',
+    'contactPage.formSubtitle': '在下方填写您的信息，我会尽快回复。',
+    'contactPage.fieldName': '您的姓名',
+    'contactPage.fieldEmail': '电子邮箱',
+    'contactPage.fieldMsg': '您有什么想法或项目需要探讨？',
+    'contactPage.fieldSubmit': '发送消息 →',
+
+    // Footer
+    'footer.tagline': '专注性能、高可用与极致视觉体验。',
+    'footer.rights': '保留所有权利。',
+    'footer.admin': 'CMS 管理后台',
+    'footer.top': '回到顶部 ↑',
+    'footer.available': '目前正在积极寻找全栈开发实习生、Fresher 及 Junior 岗位机会。',
+  },
 };
 
 const LanguageContext = createContext<LanguageContextType>({
@@ -344,12 +502,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem('portfolio_lang');
-      if (stored === 'en' || stored === 'vi') {
-        setLangState(stored);
+      if (stored === 'en' || stored === 'vi' || stored === 'zh') {
+        setLangState(stored as Language);
+        document.documentElement.lang = stored === 'zh' ? 'zh-CN' : stored;
       } else {
         // Default to Vietnamese
         setLangState('vi');
         localStorage.setItem('portfolio_lang', 'vi');
+        document.documentElement.lang = 'vi';
       }
     } catch {
       // ignore
@@ -360,14 +520,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLangState(newLang);
     try {
       localStorage.setItem('portfolio_lang', newLang);
-      document.documentElement.lang = newLang;
+      document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : newLang;
     } catch {
       // ignore
     }
   };
 
   const toggleLang = () => {
-    setLang(lang === 'en' ? 'vi' : 'en');
+    const cycleMap: Record<Language, Language> = {
+      vi: 'en',
+      en: 'zh',
+      zh: 'vi',
+    };
+    setLang(cycleMap[lang] || 'vi');
   };
 
   const t = (key: string): string => {

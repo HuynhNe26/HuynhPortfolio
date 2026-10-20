@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
-import { useLanguage } from '@/context/language-context';
+import { useLanguage, type Language } from '@/context/language-context';
 
 interface FeaturedProjectsGridProps {
   projects: Project[];
@@ -24,7 +24,7 @@ interface ProjectTiltCardProps {
  * - "April 2026 – Present" -> "04/2026 – Hiện tại" (vi) / "04/2026 – Present" (en)
  * - "September 2026 – October 2026" -> "09/2026 – 10/2026"
  */
-export function formatTimelineMonthYear(rawTimeline?: string, lang: 'en' | 'vi' = 'vi'): string {
+export function formatTimelineMonthYear(rawTimeline?: string, lang: Language = 'vi'): string {
   if (!rawTimeline) return '';
 
   const monthMap: Record<string, string> = {
@@ -66,7 +66,7 @@ export function formatTimelineMonthYear(rawTimeline?: string, lang: 'en' | 'vi' 
   });
 
   // Handle "Present" / "Now" / "Hiện tại"
-  const presentText = lang === 'vi' ? 'Hiện tại' : 'Present';
+  const presentText = lang === 'vi' ? 'Hiện tại' : (lang === 'zh' ? '至今' : 'Present');
   formatted = formatted.replace(/\b(present|now|hiện tại)\b/gi, presentText);
 
   // Normalize dash
@@ -248,8 +248,8 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
           <span className="hh-status-dot-ping" />
           <span>
             {project.status === 'Ongoing'
-              ? (lang === 'vi' ? 'Đang phát triển' : 'Ongoing')
-              : (lang === 'vi' ? 'Hoàn thành' : 'Completed')}
+              ? (lang === 'vi' ? 'Đang phát triển' : (lang === 'zh' ? '进行中' : 'Ongoing'))
+              : (lang === 'vi' ? 'Hoàn thành' : (lang === 'zh' ? '已完成' : 'Completed'))}
           </span>
         </span>
       </Link>
@@ -336,7 +336,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
               rel="noopener noreferrer"
               className="hh-card-btn hh-btn-card-report"
               onClick={(e) => e.stopPropagation()}
-              title={lang === 'vi' ? 'Xem báo cáo đồ án trên Google Docs' : 'View project report on Google Docs'}
+              title={lang === 'vi' ? 'Xem báo cáo đồ án trên Google Docs' : (lang === 'zh' ? '在 Google Docs 上查看项目报告' : 'View project report on Google Docs')}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>

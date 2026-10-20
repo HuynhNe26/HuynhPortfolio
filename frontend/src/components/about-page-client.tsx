@@ -94,14 +94,14 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
 
             <div className="profile-actions">
               <Link href="/contact" className="button button-pro-primary full-width">
-                {lang === 'vi' ? 'Liên hệ Hợp tác' : 'Get in Touch'}
+                {lang === 'vi' ? 'Liên hệ Hợp tác' : lang === 'zh' ? '保持联系' : 'Get in Touch'}
                 <span aria-hidden="true">↗</span>
               </Link>
               <a
                 href={`mailto:${profile.email}?subject=Request CV - Nguyễn Hoàng Huynh`}
                 className="button button-pro-secondary full-width"
               >
-                {lang === 'vi' ? 'Tải xuống CV' : 'Download Resume'}
+                {lang === 'vi' ? 'Tải xuống CV' : lang === 'zh' ? '下载个人简历' : 'Download Resume'}
                 <span aria-hidden="true">↓</span>
               </a>
             </div>
@@ -110,43 +110,47 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
 
         <div className="about-details">
           <section className="about-narrative">
-            <p className="eyebrow">{lang === 'vi' ? '01 / TIỂU SỬ & ĐỊNH HƯỚNG' : '01 / BIOGRAPHY & OUTLOOK'}</p>
-            <h2>{lang === 'vi' ? 'Kết nối mã nguồn sạch với trải nghiệm người dùng thực tế.' : 'Connecting clean code with human interaction.'}</h2>
+            <p className="eyebrow">{lang === 'vi' ? '01 / TIỂU SỬ & ĐỊNH HƯỚNG' : lang === 'zh' ? '01 / 个人履历与愿景' : '01 / BIOGRAPHY & OUTLOOK'}</p>
+            <h2>{lang === 'vi' ? 'Kết nối mã nguồn sạch với trải nghiệm người dùng thực tế.' : lang === 'zh' ? '以优雅的代码架构连接卓越的用户体验。' : 'Connecting clean code with human interaction.'}</h2>
             <div className="prose-text">
               <p>
                 {lang === 'vi'
                   ? 'Hiện là sinh viên năm thứ ba chuyên ngành Công nghệ Thông tin tại Học viện Hàng không Việt Nam (GPA 3.1/4.0), tôi liên tục đào sâu nghiên cứu các công nghệ web hiện đại, kỹ thuật xây dựng backend, thiết kế cơ sở dữ liệu, xác thực bảo mật, tích hợp API và kiến trúc phần mềm thực tiễn.'
+                  : lang === 'zh'
+                  ? '现为越南航空学院计算机科学与技术专业三年级在读本科生（累计 GPA 3.1/4.0），持续深入专研现代 Web 前沿技术、高性能后端构建、数据库架构设计、安全身份认证、API 体系以及实用软件工程架构。'
                   : profile.biography}
               </p>
               <p>
                 {lang === 'vi'
                   ? 'Mục tiêu trọng tâm của tôi là phát triển các ứng dụng đáng tin cậy, chuẩn SEO, tối ưu hiệu năng và dễ mở rộng. Tôi đam mê tìm hiểu toàn diện kiến trúc hệ thống từ tầng cơ sở dữ liệu phân tán, thiết kế API chuẩn mực đến từng chi tiết giao diện trên thiết bị di động và máy tính.'
+                  : lang === 'zh'
+                  ? '我的核心方向是构建高可用、高扩展、SEO 友好且极致性能的现代化应用。我热衷于全面理解从分布式数据库层、规范化 API 交互协议到移动端与桌面端像素级视觉层级的整体工程体系。'
                   : 'My focus centers on developing reliable, accessible, and high-performance applications. I enjoy understanding systems from the database layer through API contracts to the pixel-level visual hierarchy on mobile and desktop devices.'}
               </p>
             </div>
           </section>
 
           <section className="about-section-block">
-            <p className="eyebrow">{lang === 'vi' ? '02 / HỌC VẤN & BẰNG CẤP' : '02 / EDUCATION'}</p>
-            <h2>{lang === 'vi' ? 'Nền tảng Học vấn & Đào tạo' : 'Academic Foundation'}</h2>
+            <p className="eyebrow">{lang === 'vi' ? '02 / HỌC VẤN & BẰNG CẤP' : lang === 'zh' ? '02 / 教育经历与背景' : '02 / EDUCATION'}</p>
+            <h2>{lang === 'vi' ? 'Nền tảng Học vấn & Đào tạo' : lang === 'zh' ? '教育与学术培养' : 'Academic Foundation'}</h2>
             <div className="timeline-cards">
               <div className="timeline-card">
                 <div className="timeline-header">
                   <div>
-                    <span className="timeline-period">{lang === 'vi' ? '2023 – Hiện tại' : '2023 – Present'}</span>
-                    <h3>{lang === 'vi' ? 'Học viện Hàng không Việt Nam (VAA)' : 'Vietnam Aviation Academy'}</h3>
+                    <span className="timeline-period">{lang === 'vi' ? '2023 – Hiện tại' : lang === 'zh' ? '2023 – 至今' : '2023 – Present'}</span>
+                    <h3>{lang === 'vi' ? 'Học viện Hàng không Việt Nam (VAA)' : lang === 'zh' ? '越南航空学院 (VAA)' : 'Vietnam Aviation Academy'}</h3>
                   </div>
                   <span className="gpa-pill">GPA 3.1 / 4.0</span>
                 </div>
-                <p className="timeline-major">{lang === 'vi' ? 'Cử nhân Công nghệ Thông tin (CNTT)' : 'Bachelor of Science in Information Technology'}</p>
-                <p className="timeline-note">{lang === 'vi' ? 'Sinh viên năm thứ ba (Khóa 2023 – 2027)' : 'Third-year university student (as of October 2026)'}</p>
+                <p className="timeline-major">{lang === 'vi' ? 'Cử nhân Công nghệ Thông tin (CNTT)' : lang === 'zh' ? '工学学士 • 计算机科学与技术' : 'Bachelor of Science in Information Technology'}</p>
+                <p className="timeline-note">{lang === 'vi' ? 'Sinh viên năm thứ ba (Khóa 2023 – 2027)' : lang === 'zh' ? '大三在读本科生 (2023 – 2027)' : 'Third-year university student (as of October 2026)'}</p>
               </div>
             </div>
           </section>
 
           <section className="about-section-block">
-            <p className="eyebrow">{lang === 'vi' ? '03 / CHỨNG CHỈ XÁC THỰC' : '03 / CERTIFICATIONS'}</p>
-            <h2>{lang === 'vi' ? 'Chứng chỉ & Văn bằng Quốc tế' : 'Verified Credentials'}</h2>
+            <p className="eyebrow">{lang === 'vi' ? '03 / CHỨNG CHỈ XÁC THỰC' : lang === 'zh' ? '03 / 权威资格认证' : '03 / CERTIFICATIONS'}</p>
+            <h2>{lang === 'vi' ? 'Chứng chỉ & Văn bằng Quốc tế' : lang === 'zh' ? '权威认证证书' : 'Verified Credentials'}</h2>
             <div className="certificate-cards">
               <div
                 className="certificate-card certificate-card-interactive"
@@ -159,7 +163,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                     setIsCertModalOpen(true);
                   }
                 }}
-                title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : 'Click to view official certificate'}
+                title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : lang === 'zh' ? '点击查看官方权威证书' : 'Click to view official certificate'}
               >
                 <div className="hh-cert-thumb-preview">
                   <Image
@@ -182,16 +186,16 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 <div className="cert-body">
                   <div className="hh-cert-badge-row">
                     <span className="ets-logo-txt-pill">ETS</span>
-                    <span className="cert-status-tag">{lang === 'vi' ? 'Chứng nhận chính thức' : 'Official Verified'}</span>
+                    <span className="cert-status-tag">{lang === 'vi' ? 'Chứng nhận chính thức' : lang === 'zh' ? '官方权威验证' : 'Official Verified'}</span>
                   </div>
-                  <h3>{lang === 'vi' ? 'TOEIC 550 - Kỹ năng Nghe & Đọc' : 'TOEIC Listening & Reading'}</h3>
+                  <h3>{lang === 'vi' ? 'TOEIC 550 - Kỹ năng Nghe & Đọc' : lang === 'zh' ? 'TOEIC 550 - 听力与阅读' : 'TOEIC Listening & Reading'}</h3>
                   <p className="cert-meta">
-                    {lang === 'vi' ? 'Cấp bởi Tổ chức Khảo thí ETS Hoa Kỳ • Tháng 10, 2025' : 'Issued by ETS • October 2025'}
+                    {lang === 'vi' ? 'Cấp bởi Tổ chức Khảo thí ETS Hoa Kỳ • Tháng 10, 2025' : lang === 'zh' ? '由美国教育考试服务中心 (ETS) 签发 • 2025年10月' : 'Issued by ETS • October 2025'}
                   </p>
                   <div className="cert-bottom-actions">
-                    <div className="cert-badge">{lang === 'vi' ? 'Điểm đạt: 550 / 990' : 'Score: 550 / 990'}</div>
+                    <div className="cert-badge">{lang === 'vi' ? 'Điểm đạt: 550 / 990' : lang === 'zh' ? '考试总分: 550 / 990' : 'Score: 550 / 990'}</div>
                     <span className="cert-view-cta">
-                      {lang === 'vi' ? 'Xem ảnh chứng chỉ ↗' : 'View Certificate ↗'}
+                      {lang === 'vi' ? 'Xem ảnh chứng chỉ ↗' : lang === 'zh' ? '查看认证大图 ↗' : 'View Certificate ↗'}
                     </span>
                   </div>
                 </div>
@@ -202,21 +206,21 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
               isOpen={isCertModalOpen}
               onClose={() => setIsCertModalOpen(false)}
               certificate={{
-                name: lang === 'vi' ? 'Chứng chỉ TOEIC Nghe & Đọc (550 / 990)' : 'TOEIC Listening & Reading Certificate (550 / 990)',
+                name: lang === 'vi' ? 'Chứng chỉ TOEIC Nghe & Đọc (550 / 990)' : lang === 'zh' ? 'TOEIC 听力与阅读官方成绩证书 (550 / 990)' : 'TOEIC Listening & Reading Certificate (550 / 990)',
                 issuer: 'ETS (Educational Testing Service)',
                 score: '550 / 990',
-                issueDate: lang === 'vi' ? 'Tháng 10, 2025' : 'October 2025',
+                issueDate: lang === 'vi' ? 'Tháng 10, 2025' : lang === 'zh' ? '2025年10月' : 'October 2025',
                 imageUrl: '/certificates/toeic-550.jpg',
               }}
             />
           </section>
 
           <section className="about-section-block">
-            <p className="eyebrow">{lang === 'vi' ? '04 / KỸ NĂNG CHUYÊN MÔN' : '04 / TECHNICAL EXPERTISE'}</p>
-            <h2>{lang === 'vi' ? 'Hệ sinh thái Công nghệ Phân loại' : 'Categorized Toolkit'}</h2>
+            <p className="eyebrow">{lang === 'vi' ? '04 / KỸ NĂNG CHUYÊN MÔN' : lang === 'zh' ? '04 / 专业技能架构' : '04 / TECHNICAL EXPERTISE'}</p>
+            <h2>{lang === 'vi' ? 'Hệ sinh thái Công nghệ Phân loại' : lang === 'zh' ? '分类技术生态与工具栈' : 'Categorized Toolkit'}</h2>
             <div className="skills-categorized-grid">
               <div className="skill-group">
-                <h4>{lang === 'vi' ? 'Lập trình Frontend' : 'Frontend Development'}</h4>
+                <h4>{lang === 'vi' ? 'Lập trình Frontend' : lang === 'zh' ? '前端技术栈' : 'Frontend Development'}</h4>
                 <div className="tags">
                   {profile.skillsCategorized.frontend.map((s) => (
                     <TechBadge key={s} tech={s} />
@@ -224,7 +228,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 </div>
               </div>
               <div className="skill-group">
-                <h4>{lang === 'vi' ? 'Kỹ thuật Backend' : 'Backend Engineering'}</h4>
+                <h4>{lang === 'vi' ? 'Kỹ thuật Backend' : lang === 'zh' ? '后端技术工程' : 'Backend Engineering'}</h4>
                 <div className="tags">
                   {profile.skillsCategorized.backend.map((s) => (
                     <TechBadge key={s} tech={s} />
@@ -232,7 +236,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 </div>
               </div>
               <div className="skill-group">
-                <h4>{lang === 'vi' ? 'Cơ sở Dữ liệu' : 'Databases'}</h4>
+                <h4>{lang === 'vi' ? 'Cơ sở Dữ liệu' : lang === 'zh' ? '数据库系统' : 'Databases'}</h4>
                 <div className="tags">
                   {profile.skillsCategorized.databases.map((s) => (
                     <TechBadge key={s} tech={s} />
@@ -240,7 +244,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 </div>
               </div>
               <div className="skill-group">
-                <h4>{lang === 'vi' ? 'API & Tích hợp Dịch vụ' : 'APIs & Integrations'}</h4>
+                <h4>{lang === 'vi' ? 'API & Tích hợp Dịch vụ' : lang === 'zh' ? 'API 与云端集成' : 'APIs & Integrations'}</h4>
                 <div className="tags">
                   {profile.skillsCategorized.apis.map((s) => (
                     <TechBadge key={s} tech={s} />
@@ -248,7 +252,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 </div>
               </div>
               <div className="skill-group">
-                <h4>{lang === 'vi' ? 'Công cụ & Triển khai' : 'Tools & Deployment'}</h4>
+                <h4>{lang === 'vi' ? 'Công cụ & Triển khai' : lang === 'zh' ? '工程工具与部署' : 'Tools & Deployment'}</h4>
                 <div className="tags">
                   {profile.skillsCategorized.tools.map((s) => (
                     <TechBadge key={s} tech={s} />

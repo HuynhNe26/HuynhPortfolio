@@ -63,7 +63,7 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
           <div className="cert-modal-title-group">
             <span className="cert-badge-verified">
               <span className="cert-verified-dot" />
-              {lang === 'vi' ? 'Chứng chỉ chính thức ETS' : 'ETS Official Credential'}
+              {lang === 'vi' ? 'Chứng chỉ chính thức ETS' : lang === 'zh' ? 'ETS 官方权威认证' : 'ETS Official Credential'}
             </span>
             <h3 className="cert-modal-title">
               {certificate?.name || 'TOEIC Listening & Reading Test'}
@@ -73,7 +73,7 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
             type="button"
             className="cert-modal-close"
             onClick={onClose}
-            aria-label={lang === 'vi' ? 'Đóng' : 'Close'}
+            aria-label={lang === 'vi' ? 'Đóng' : lang === 'zh' ? '关闭' : 'Close'}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18" />
@@ -99,19 +99,19 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
         <div className="cert-modal-footer">
           <div className="cert-modal-meta-pills">
             <div className="cert-pill">
-              <span className="pill-k">{lang === 'vi' ? 'Thí sinh' : 'Candidate'}:</span>
+              <span className="pill-k">{lang === 'vi' ? 'Thí sinh' : lang === 'zh' ? '考生姓名' : 'Candidate'}:</span>
               <span className="pill-v">Nguyễn Hoàng Huynh</span>
             </div>
             <div className="cert-pill highlight">
-              <span className="pill-k">{lang === 'vi' ? 'Tổng điểm' : 'Total Score'}:</span>
+              <span className="pill-k">{lang === 'vi' ? 'Tổng điểm' : lang === 'zh' ? '考试总分' : 'Total Score'}:</span>
               <span className="pill-v">550 / 990</span>
             </div>
             <div className="cert-pill">
-              <span className="pill-k">{lang === 'vi' ? 'Thời gian thi' : 'Test Date'}:</span>
+              <span className="pill-k">{lang === 'vi' ? 'Thời gian thi' : lang === 'zh' ? '考试时间' : 'Test Date'}:</span>
               <span className="pill-v">{certificate?.issueDate || '10/2025'}</span>
             </div>
             <div className="cert-pill">
-              <span className="pill-k">{lang === 'vi' ? 'Đơn vị cấp' : 'Issuer'}:</span>
+              <span className="pill-k">{lang === 'vi' ? 'Đơn vị cấp' : lang === 'zh' ? '发证机构' : 'Issuer'}:</span>
               <span className="pill-v">{certificate?.issuer || 'ETS'}</span>
             </div>
           </div>
@@ -123,7 +123,7 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
               rel="noopener noreferrer"
               className="cert-btn-full"
             >
-              <span>{lang === 'vi' ? 'Mở ảnh gốc chất lượng cao' : 'Open Full Image'}</span>
+              <span>{lang === 'vi' ? 'Mở ảnh gốc chất lượng cao' : lang === 'zh' ? '查看高清证书原图' : 'Open Full Image'}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                 <polyline points="15 3 21 3 21 9" />

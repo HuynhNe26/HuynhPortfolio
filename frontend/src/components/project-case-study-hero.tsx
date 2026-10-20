@@ -26,6 +26,13 @@ export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHe
         'Đồng bộ trạng thái ghế tức thì thông qua WebSockets',
         'Tự động đối soát cổng thanh toán trực tuyến & phát hành vé điện tử',
       ]
+    : lang === 'zh'
+    ? [
+        '智能客户服务与上下文精准检索 (Agentic RAG)',
+        '高并发实时在线选座与锁票系统',
+        '基于 WebSockets 的毫秒级座位状态实时同步',
+        '全自动在线支付网关对账与电子票实时签发',
+      ]
     : [
         'AI-powered support & contextual retrieval (Agentic RAG)',
         'High-throughput interactive booking & seat holds',
