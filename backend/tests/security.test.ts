@@ -53,11 +53,12 @@ async function request(url: string, init: RequestInit = {}) {
   };
 }
 
-test('scrypt passwords use different salts and reject incorrect passwords', async () => {
+test('bcrypt passwords use distinct salts, format as $2b$, and reject incorrect passwords', async () => {
   const password = 'a long unique test password';
   const first = await hashPassword(password);
   const second = await hashPassword(password);
   assert.notEqual(first, second);
+  assert.match(first, /^\$2[ab]\$12\$/);
   assert.equal(await verifyPassword(password, first), true);
   assert.equal(await verifyPassword('wrong password', first), false);
   assert.equal(await verifyPassword(password, 'malformed'), false);

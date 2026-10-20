@@ -1,6 +1,7 @@
 import { createHash, randomBytes, scrypt, timingSafeEqual } from 'node:crypto';
 import { promisify } from 'node:util';
 import type { IncomingMessage } from 'node:http';
+import bcrypt from 'bcryptjs';
 import { isDatabaseConfigured, query } from './database.js';
 import { HttpError } from './errors.js';
 
@@ -12,21 +13,27 @@ export const cookieName = 'nh_admin_session';
 const inMemorySessions = new Set<string>();
 
 export async function hashPassword(password: string): Promise<string> {
-  const salt = randomBytes(16).toString('hex');
-  const key = (await deriveKey(password, salt, 64)) as Buffer;
-  return `${salt}:${key.toString('hex')}`;
+  const salt = await bcrypt.genSalt(12);
+  return bcrypt.hash(password, salt);
 }
 
 export async function verifyPassword(password: string, stored: string): Promise<boolean> {
-  const [salt, encoded] = stored.split(':');
+  if (!stored) return false;
 
-  if (!salt || !encoded || !/^[a-f0-9]{128}$/.test(encoded)) {
-    return false;
+  // 1. Primary check: standard bcrypt hash ($2a$, $2b$, $2y$)
+  if (stored.startsWith('$2a$') || stored.startsWith('$2b$') || stored.startsWith('$2y$')) {
+    return bcrypt.compare(password, stored);
   }
 
-  const expected = Buffer.from(encoded, 'hex');
-  const actual = (await deriveKey(password, salt, 64)) as Buffer;
-  return timingSafeEqual(expected, actual);
+  // 2. Backward-compatible fallback for legacy scrypt hashes (salt:hex)
+  const [salt, encoded] = stored.split(':');
+  if (salt && encoded && /^[a-f0-9]{128}$/.test(encoded)) {
+    const expected = Buffer.from(encoded, 'hex');
+    const actual = (await deriveKey(password, salt, 64)) as Buffer;
+    return timingSafeEqual(expected, actual);
+  }
+
+  return false;
 }
 
 export function digest(value: string): string {
