@@ -4,10 +4,9 @@
 # ==============================================================================
 
 [build]
-  # When building from monorepo root, target the Next.js frontend workspace
-  command = "npm run build --workspace frontend"
-  # Next.js production build output directory relative to repository root
-  publish = "frontend/.next"
+  # Full monorepo build: compiles backend & frontend, then syncs .next for Netlify
+  command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   # Use Node.js 22 to match package.json engine requirements (>=22.14.0)

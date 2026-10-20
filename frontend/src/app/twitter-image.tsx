@@ -8,4 +8,6 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-export default OpenGraphImage;
+export default async function Image() {
+  return OpenGraphImage();
+}
