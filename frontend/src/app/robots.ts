@@ -1,14 +1,18 @@
 import type { MetadataRoute } from 'next';
+import { getSiteUrl } from '@/lib/site-config';
 
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.APP_URL || 'http://localhost:3000';
+  const base = getSiteUrl();
 
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/admin', '/api']
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/admin', '/api'],
+      },
+    ],
     sitemap: `${base}/sitemap.xml`,
+    host: base,
   };
 }

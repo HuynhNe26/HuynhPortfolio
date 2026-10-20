@@ -56,6 +56,8 @@ async function seed() {
         issuer: 'ETS',
         score: '550',
         issueDate: 'October 2025',
+        verificationUrl: '',
+        imageUrl: '/certificates/toeic-550.jpg',
       },
     ],
     updatedAt: now,
@@ -440,79 +442,259 @@ async function seed() {
       ],
     },
     {
-      title: 'NH HUYNH — Developer Portfolio & Content Management System',
+      title: 'NH HUYNH — Developer Portfolio & Interactive Scrollytelling Platform',
       slug: 'nh-huynh-portfolio',
       summary:
-        'A personal portfolio platform designed to showcase projects, technical skills, education, and engineering experience through interactive case studies and a custom-built content management system.',
+        'Nền tảng portfolio kỹ thuật Full-Stack của Nguyễn Hoàng Huynh, kết hợp ngôn ngữ thiết kế Light Theme cao cấp, hiệu ứng thẻ 3D Tilt tương tác, động cơ Scrollytelling chia đôi màn hình và hệ quản trị nội dung CMS bảo mật.',
       category: 'Full-Stack Web Product & CMS',
-      role: 'Full-Stack Developer',
-      timeline: 'October 2026 – Present',
+      role: 'Full-Stack Developer & UI/UX Architect',
+      timeline: 'Tháng 10/2026 – Hiện tại',
       status: 'Ongoing',
       year: 2026,
-      technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Tailwind CSS', 'Resend API'],
-      themeColor: '#4B5563',
-      themeBg: '#F3F4F6',
-      coverUrl: '',
-      liveUrl: 'https://huynhportfolio.com',
-      sourceUrl: '',
+      technologies: ['Next.js 16', 'TypeScript', 'Node.js', 'PostgreSQL (Neon)', 'Tailwind CSS', 'LangChain.js', 'Gemini API', 'Resend API'],
+      themeColor: '#2563EB',
+      themeBg: '#EFF6FF',
+      coverUrl: '/projects/portfolio-hero.png',
+      liveUrl: 'http://localhost:3000',
+      sourceUrl: 'https://github.com/HuynhNe26/HuynhPortfolio',
       featured: true,
       published: true,
       order: 5,
       problem:
-        'Standard static developer templates cannot securely manage live project storytelling, message auditing, or profile configuration dynamically.',
+        'Các website portfolio truyền thống thường nhàm chán, hiển thị danh sách tĩnh và không thể hiện được chiều sâu kỹ thuật, khả năng xử lý tương tác thời gian thực cũng như câu chuyện đằng sau mỗi sản phẩm công nghệ.',
       approach:
-        'Engineered an App Router Next.js application with a dedicated Node.js backend, HttpOnly session authentication, and MongoDB Atlas database.',
+        'Kiến trúc nền tảng với Next.js 16 App Router & Node.js backend. Ứng dụng ngôn ngữ thiết kế Light Theme tối giản sang trọng với thẻ 3D tilt kèm hào quang theo chuột, chuyển đổi ngôn ngữ 1 chạm EN/VI, động cơ Scrollytelling chia đôi màn hình đồng bộ hình ảnh và radar hotspot trực quan, cùng bộ giả lập tương tác thực tế.',
       outcome:
-        'Delivered an Apple-inspired editorial design system with full CMS administration, contact rate-limiting, and 7-chapter storytelling.',
+        'Một nền tảng cá nhân chuẩn mực, tải trang nhanh dưới 1 giây, mang lại trải nghiệm xem dự án sống động như một câu chuyện thực thụ, tích hợp hệ thống CMS quản trị backend bảo mật.',
       chapters: [
         {
           id: 'chapter-01',
           number: '01',
-          title: 'Introduction & Project Overview',
+          title: 'Tổng quan & Triết lý Thiết kế Light Theme Hiện đại',
           content:
-            'NH HUYNH Developer Portfolio is a full-featured digital product combining an Apple-inspired editorial public showcase with an authenticated content management system for projects, storytelling, profile, education, certificates, and inbox management.',
+            'Portfolio cá nhân được thiết kế như một sản phẩm số hoàn chỉnh, tôn vinh các dự án kỹ thuật thực tế với ngôn ngữ thiết kế Light Theme tinh tế, typography hiện đại và bố cục phân tầng sắc sảo.',
         },
         {
           id: 'chapter-02',
           number: '02',
-          title: 'The Idea & Philosophy',
+          title: 'Thẻ Dự án 3D Tilt & Vầng Hào quang Ambient Tương tác',
           content:
-            'Built to demonstrate real-world software engineering: clean separation of concerns, defense-in-depth security, strict TypeScript typings, and zero reliance on mock data.',
+            'Thay vì các thẻ dự án phẳng thông thường, các card dự án nổi bật sở hữu cơ chế tính toán góc nghiêng 3D theo con trỏ chuột, kết hợp vầng hào quang backlight phát sáng theo hướng di chuyển của chuột.',
         },
         {
           id: 'chapter-03',
           number: '03',
-          title: 'The Challenge & Security Posture',
+          title: 'Thách thức Kỹ thuật: Trải nghiệm Scrollytelling Thực thụ',
           content:
-            'Protecting admin operations without exposing credentials, preventing CSRF and NoSQL injection, enforcing rate limits, and ensuring resilient rendering even when external services are pending configuration.',
+            'Làm thế nào để người xem khi cuộn đến đâu thì hình ảnh thực tế sẽ giải thích ngay cho những gì đang nói, đồng thời cho người xem biết vị trí thành phần và hành động tương tác diễn ra ra sao mà không làm gián đoạn dòng đọc?',
         },
         {
           id: 'chapter-04',
           number: '04',
-          title: 'The Experience',
+          title: 'Sân khấu Trực quan Ghim Cố định & Radar Hotspot Định vị',
           content:
-            'Features a bespoke 7-chapter storytelling case study layout, interactive filterable project index, responsive navigation across 320px–1920px displays, and a streamlined admin suite.',
+            'Giải pháp là phân tách bố cục 2 cột: cột trái là dòng chảy câu chuyện, cột phải là thiết bị mockup được ghim cố định (sticky). Điểm radar phát sóng chỉ rõ thành phần UI kèm con trỏ chuột mô phỏng hành động.',
         },
         {
           id: 'chapter-05',
           number: '05',
-          title: 'Engineering Architecture',
+          title: 'Bộ Giả lập Hành động Thực tế (Live Action Simulator)',
           content:
-            'Next.js App Router with server-side API proxying, cached MongoClient connection pooling, scrypt password hashing, and durable Resend email dispatch.',
+            'Ngay dưới thiết bị, người xem có thể trực tiếp click thử nghiệm: chọn ghế WebSocket với đồng hồ đếm ngược, gửi câu hỏi cho AI RAG, quét mã MoMo, tính ROI marketing hay nộp bài thi lưu vào Redis cache.',
         },
         {
           id: 'chapter-06',
           number: '06',
-          title: 'My Contribution',
+          title: 'Đóng góp của Tôi: Kiến trúc Full-Stack & Cổng CMS Quản trị',
           content:
-            'Solo architect and engineer: visual design system, frontend component architecture, backend API and database schemas, authentication, security controls, and documentation.',
+            'Một mình đảm nhiệm toàn bộ vòng đời phát triển: thiết kế UI/UX, lập trình component React/Next.js, xây dựng REST API backend Node.js, thiết kế CSDL PostgreSQL Neon và cổng đăng nhập quản trị CMS bảo mật.',
         },
         {
           id: 'chapter-07',
           number: '07',
-          title: 'Outcome & Ongoing Development',
+          title: 'Kết quả Triển khai, Tối ưu Hiệu năng & Tương lai',
           content:
-            'An extensible, production-ready portfolio establishing a strong professional foundation for Full-Stack Developer opportunities.',
+            'Website đạt tốc độ tải trang cực nhanh, tối ưu hóa toàn diện cho thiết bị di động, chứng minh năng lực kỹ thuật vững chắc và sẵn sàng cho các cơ hội Full-Stack Developer chuyên nghiệp.',
+        },
+      ],
+    },
+    {
+      title: 'SkyRoute Dispatcher — Real-Time Flight Operations & Cargo Management',
+      slug: 'skyroute-aviation-ops',
+      summary:
+        'Nền tảng điều phối bay và kiểm soát tải trọng hàng không thời gian thực với bản đồ bay radar, tính toán trọng tâm máy bay (Center of Gravity) và phân bổ ULD tối ưu.',
+      category: 'Aviation IT & Real-Time Logistics',
+      role: 'Lead Full-Stack Developer',
+      teamSize: 2,
+      timeline: 'Tháng 9, 2025 – Hiện tại',
+      status: 'Completed',
+      year: 2026,
+      technologies: [
+        'Next.js 15',
+        'TypeScript',
+        'Node.js',
+        'WebSocket',
+        'Redis Geo',
+        'PostgreSQL (Neon)',
+        'Leaflet / Mapbox',
+        'Docker',
+        'Tailwind CSS',
+      ],
+      themeColor: '#0284C7',
+      themeBg: '#F0F9FF',
+      coverUrl: '/projects/skyroute-hero.png',
+      liveUrl: 'https://aviaops.online',
+      sourceUrl: 'https://github.com/HuynhNe26/skyroute-aviation-ops',
+      reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
+      featured: true,
+      published: true,
+      order: 6,
+      storytellingStyle: '3d-exploded',
+      problem:
+        'Nhân viên điều phái bay và loadmaster thường phải thao tác thủ công trên nhiều phần mềm rời rạc để tính toán trọng tâm máy bay (CG) và giám sát tải trọng bay, dễ gây chậm trễ lịch trình và sai lệch tải trọng khí động học.',
+      approach:
+        'Kiến trúc nền tảng thời gian thực với Next.js 15 và Node.js WebSocket hai chiều. Xây dựng động cơ tính toán Weight & Balance tự động cho tàu bay Boeing 777F, lưu trữ tọa độ radar bay với Redis Geo và CSDL PostgreSQL Neon Serverless.',
+      outcome:
+        'Triệt tiêu hoàn toàn sai sót tính toán trọng tâm máy bay, đồng bộ hóa tọa độ radar bay toàn cầu dưới 100ms và tự động xuất điện văn tải trọng chuẩn IATA.',
+      chapters: [
+        {
+          id: 'chapter-01',
+          number: '01',
+          title: 'Tổng quan & Trung tâm Điều hành Bay Hàng không Toàn cầu',
+          content:
+            'SkyRoute Dispatcher là nền tảng công nghệ hàng không chuyên sâu được thiết kế để hiện đại hóa quy trình điều phái bay và bốc xếp hàng hóa hàng không. Dự án do sinh viên ngành CNTT tại Học viện Hàng không Việt Nam phát triển, kết hợp giữa nghiệp vụ hàng không thực tế và công nghệ web hiệu năng cao.',
+        },
+        {
+          id: 'chapter-02',
+          number: '02',
+          title: 'Bóc tách Kiến trúc 3D Đa tầng: 4 Lớp Hệ thống Phân tán',
+          content:
+            'Hệ thống áp dụng kiến trúc 3D Exploded 4 tầng lớp rõ rệt: Tầng Trình diễn (Next.js & Bản đồ Radar Leaflet) ➔ Tầng Cổng Thu nhận Telemetry (Node.js & WebSocket stream) ➔ Tầng Động cơ Tính toán Khí động học (Weight & Balance Engine) ➔ Tầng Lưu trữ Tốc độ cao (Redis Geo Cache & Neon PostgreSQL).',
+        },
+        {
+          id: 'chapter-03',
+          number: '03',
+          title: 'Cân bằng Trọng lượng & Trọng tâm Tàu bay (Center of Gravity Envelope)',
+          content:
+            'Tính toán trọng tâm chính xác là yếu tố sống còn cho an toàn bay. Động cơ tự động tính toán vị trí dây cung khí động trung bình (% MAC) khi thay đổi tải trọng hàng hóa, vẽ biểu đồ phong bì giới hạn trọng tâm cất cánh và hạ cánh theo thời gian thực.',
+        },
+        {
+          id: 'chapter-04',
+          number: '04',
+          title: 'Sơ đồ Tương tác Mặt cắt Hầm hàng & Bố trí Vị trí Thùng Hàng ULD',
+          content:
+            'Chuyên viên Loadmaster trực tiếp sắp xếp các thùng hàng Unit Load Devices (ULD) trên 28 vị trí boong chính và hầm dưới. Sơ đồ tự động nhận diện hàng nguy hiểm (DG), hàng dễ vỡ và pallet siêu trọng với màu sắc phân biệt trực quan.',
+        },
+        {
+          id: 'chapter-05',
+          number: '05',
+          title: 'Đồng bộ Tọa độ Radar Bay qua WebSocket & Redis Geo',
+          content:
+            'Tín hiệu tọa độ từ các chuyến bay đang bay được nạp qua các lệnh Redis Geo (GEOADD, GEORADIUS) và phát sóng đến tất cả bàn điều phối chỉ trong dưới 80ms, mang lại khả năng nắm bắt tình hình không lưu toàn cầu liên tục.',
+        },
+        {
+          id: 'chapter-06',
+          number: '06',
+          title: 'Tự động Xuất Điện văn Tải trọng Loadsheet Chuẩn IATA',
+          content:
+            'Sau khi hoàn tất sơ đồ xếp dỡ, hệ thống xuất điện văn loadsheet điện tử theo đúng chuẩn IATA AHMR. Chữ ký số mã hóa bảo đảm không xảy ra bất kỳ sự can thiệp dữ liệu trái phép nào giữa khâu phát hành và buồng lái.',
+        },
+        {
+          id: 'chapter-07',
+          number: '07',
+          title: 'Đóng gói Triển khai Container Docker & Đảm bảo Tính Sẵn sàng Cao',
+          content:
+            'Toàn bộ hệ thống được đóng gói container hóa với Docker, thiết lập cơ chế giám sát trạng thái sức khỏe tự động, đảm bảo thời gian hoạt động liên tục 99.9% cho các quy trình điều hành bay nghiêm ngặt.',
+        },
+      ],
+    },
+    {
+      title: 'MediCare AI — Smart Telehealth & Clinical Decision Support System',
+      slug: 'medicare-ai-triage',
+      summary:
+        'Hệ thống bệnh án điện tử (EMR) và phân loại triệu chứng bệnh nhân bằng AI, tích hợp phòng khám video WebRTC và kê đơn thuốc số cảnh báo tương tác thuốc.',
+      category: 'Healthcare & Clinical AI',
+      role: 'Full-Stack Developer',
+      teamSize: 3,
+      timeline: 'Tháng 11, 2025 – Tháng 5, 2026',
+      status: 'Completed',
+      year: 2026,
+      technologies: [
+        'React.js',
+        'TypeScript',
+        'Express.js',
+        'MongoDB Atlas',
+        'WebRTC',
+        'Gemini AI API',
+        'JWT Role Auth',
+        'Tailwind CSS',
+        'Cloudinary',
+      ],
+      themeColor: '#0D9488',
+      themeBg: '#F0FDFA',
+      coverUrl: '/projects/medicare-hero.png',
+      liveUrl: 'https://medicare-ai.health',
+      sourceUrl: 'https://github.com/HuynhNe26/medicare-ai-triage',
+      reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
+      featured: true,
+      published: true,
+      order: 7,
+      storytellingStyle: 'timeline-based',
+      problem:
+        'Các phòng khám và bệnh viện thường xuyên quá tải ở khâu tiếp đón ban đầu, bệnh nhân chờ đợi lâu, thiếu phân loại mức độ khẩn cấp tự động và tiềm ẩn nguy cơ kê đơn tương tác thuốc nguy hiểm.',
+      approach:
+        'Xây dựng quy trình khám bệnh khép kín tích hợp AI phân loại triệu chứng bằng Gemini API, phòng khám trực tuyến bảo mật WebRTC, hồ sơ bệnh án điện tử EMR lưu trữ trên MongoDB Atlas và động cơ cảnh báo tương tác thuốc tự động.',
+      outcome:
+        'Rút ngắn 55% thời gian chờ đợi tiếp nhận, ưu tiên xử lý tức thì các ca khẩn cấp, hỗ trợ bác sĩ chẩn đoán phân biệt chính xác và giảm thiểu rủi ro dùng thuốc.',
+      chapters: [
+        {
+          id: 'chapter-01',
+          number: '01',
+          title: 'Cổng Tiếp nhận Khám Trực tuyến & Hàng đợi Bệnh nhân',
+          content:
+            'MediCare AI là giải pháp khám chữa bệnh từ xa và quản lý bệnh án điện tử (EMR) được xây dựng nhằm chuẩn hóa quy trình chăm sóc sức khỏe ban đầu. Hệ thống kết nối bệnh nhân với đội ngũ y bác sĩ thông qua một cổng dịch vụ duy nhất.',
+        },
+        {
+          id: 'chapter-02',
+          number: '02',
+          title: 'Trục Thời gian Lâm sàng: Quy trình 4 Giai đoạn từ Tiếp nhận đến Kê đơn',
+          content:
+            'Toàn bộ câu chuyện dự án được thể hiện qua Trục thời gian lâm sàng (Timeline-Based): Giai đoạn 1 (Đăng ký & Đo lường Chỉ số Sinh tồn) ➔ Giai đoạn 2 (AI Phân loại Triệu chứng Khẩn cấp) ➔ Giai đoạn 3 (Bác sĩ Khám Trực tuyến WebRTC) ➔ Giai đoạn 4 (Xuất Đơn thuốc Điện tử & Lịch Tái khám).',
+        },
+        {
+          id: 'chapter-03',
+          number: '03',
+          title: 'Động cơ Phân loại Triệu chứng Cấp cứu Tự động với Gemini Medical AI',
+          content:
+            'Bệnh nhân mô tả triệu chứng bằng ngôn ngữ tự nhiên. Mô hình Gemini AI phân tích lý do khám, tiền sử bệnh án và các chỉ số sinh tồn để xếp lớp cấp cứu: Khẩn cấp đỏ (Emergency), Cần khám sớm (Urgent), hoặc Khám thông thường (Routine), giúp phòng khám xử lý ngay các ca nguy kịch.',
+        },
+        {
+          id: 'chapter-04',
+          number: '04',
+          title: 'Phòng Khám Video Trực tuyến Bảo mật Peer-to-Peer WebRTC',
+          content:
+            'Buổi tư vấn diễn ra qua kênh truyền thông video WebRTC ngang hàng được mã hóa hai đầu cuối. Bác sĩ vừa có thể quan sát triệu chứng của bệnh nhân, vừa tra cứu hồ sơ bệnh án và cập nhật ghi chú khám bệnh trong thời gian thực.',
+        },
+        {
+          id: 'chapter-05',
+          number: '05',
+          title: 'Hồ sơ Bệnh án Điện tử (EMR) & Biểu đồ Chỉ số Sinh tồn Theo Thời gian',
+          content:
+            'Bác sĩ có thể theo dõi biểu đồ diễn tiến sinh tồn của bệnh nhân qua các đợt khám: huyết áp tâm thu/tâm trương, nhịp tim, nhiệt độ và nồng độ oxy trong máu SpO2, hỗ trợ chẩn đoán phân biệt chuẩn xác.',
+        },
+        {
+          id: 'chapter-06',
+          number: '06',
+          title: 'Bộ Kê đơn Thuốc Điện tử & Cảnh báo Tương tác Thuốc Nguy hại',
+          content:
+            'Công cụ kê đơn tự động tính toán liều lượng chuẩn (ví dụ Amoxicillin 500mg, ngày 4 lần) và tự động đối chiếu với danh mục thuốc bệnh nhân đang sử dụng để phát hiện cảnh báo tương tác thuốc chéo, ngăn ngừa sốc thuốc hoặc tương tác bất lợi.',
+        },
+        {
+          id: 'chapter-07',
+          number: '07',
+          title: 'Phân quyền Vai trò (Bác sĩ, Y tá, Bệnh nhân) & Bảo mật Y tế',
+          content:
+            'Hệ thống áp dụng cơ chế phân quyền RBAC nghiêm ngặt: Bác sĩ có quyền chẩn đoán và kê đơn; Y tá phụ trách tiếp nhận và ghi nhận chỉ số sinh tồn ban đầu; Bệnh nhân có cổng riêng theo dõi đơn thuốc và lịch hẹn.',
         },
       ],
     },
@@ -523,13 +705,13 @@ async function seed() {
       `INSERT INTO projects (
         title, slug, summary, category, role, team_size, timeline, status, year,
         technologies, theme_color, theme_bg, problem, approach, outcome,
-        cover_url, live_url, source_url, featured, published, display_order, chapters,
-        created_at, updated_at
+        cover_url, live_url, source_url, report_url, featured, published, display_order,
+        storytelling_style, chapters, created_at, updated_at
       ) VALUES (
         $1, $2, $3, $4, $5, $6, $7, $8, $9,
         $10::jsonb, $11, $12, $13, $14, $15,
-        $16, $17, $18, $19, $20, $21, $22::jsonb,
-        $23, $24
+        $16, $17, $18, $19, $20, $21, $22,
+        $23, $24::jsonb, $25, $26
       ) ON CONFLICT (slug) DO UPDATE SET
         title = EXCLUDED.title,
         summary = EXCLUDED.summary,
@@ -548,9 +730,11 @@ async function seed() {
         cover_url = EXCLUDED.cover_url,
         live_url = EXCLUDED.live_url,
         source_url = EXCLUDED.source_url,
+        report_url = EXCLUDED.report_url,
         featured = EXCLUDED.featured,
         published = EXCLUDED.published,
         display_order = EXCLUDED.display_order,
+        storytelling_style = EXCLUDED.storytelling_style,
         chapters = EXCLUDED.chapters,
         updated_at = EXCLUDED.updated_at`,
       [
@@ -572,9 +756,11 @@ async function seed() {
         proj.coverUrl ?? '',
         proj.liveUrl ?? '',
         proj.sourceUrl ?? '',
+        (proj as any).reportUrl ?? 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
         Boolean(proj.featured),
         Boolean(proj.published),
         proj.order ?? 0,
+        (proj as any).storytellingStyle ?? null,
         JSON.stringify(proj.chapters || []),
         now,
         now,

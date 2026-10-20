@@ -5,8 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
+import { CertificateModal } from '@/components/certificate-modal';
 
-interface AboutMeBentoProps {
+interface AboutMeProps {
   email?: string;
 }
 
@@ -29,65 +30,17 @@ const SKILLS_LIST = [
   { name: 'Docker', cat: 'Tools & APIs' },
 ];
 
-export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeBentoProps) {
+/**
+ * 1. ABOUT ME HERO SECTION
+ * Placed directly above Featured Projects
+ */
+export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeProps) {
   const { t } = useLanguage();
-  const [activeSkillCat, setActiveSkillCat] = useState('All');
-  const [formName, setFormName] = useState('');
-  const [formEmail, setFormEmail] = useState('');
-  const [formMessage, setFormMessage] = useState('');
-  const [formPending, setFormPending] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
-  const [formError, setFormError] = useState('');
-
-  const skillTabs = [
-    { id: 'All', label: t('bento.skills.all') },
-    { id: 'Frontend', label: t('bento.skills.frontend') },
-    { id: 'Backend', label: t('bento.skills.backend') },
-    { id: 'Database', label: t('bento.skills.database') },
-    { id: 'Tools & APIs', label: t('bento.skills.tools') },
-  ];
-
-  const filteredSkills = SKILLS_LIST.filter((s) => {
-    if (activeSkillCat === 'All') return true;
-    return s.cat === activeSkillCat;
-  });
-
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormPending(true);
-    setFormError('');
-    setFormSuccess(false);
-
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formName,
-          email: formEmail,
-          message: formMessage,
-        }),
-      });
-
-      if (!res.ok) {
-        throw new Error('Không thể gửi tin nhắn. Vui lòng thử lại sau.');
-      }
-
-      setFormSuccess(true);
-      setFormName('');
-      setFormEmail('');
-      setFormMessage('');
-    } catch (err: any) {
-      setFormError(err.message || 'Lỗi gửi tin nhắn.');
-    } finally {
-      setFormPending(false);
-    }
-  };
 
   return (
-    <section id="about" className="hh-bento-section">
-      <div className="container hh-bento-grid-container">
-        {/* ROW 1: ABOUT ME HERO CARD + PHOTO WITH FLOATING BADGES */}
+    <section id="about" data-section="about" className="hh-about-section">
+      <div className="container">
+        {/* ABOUT ME HERO CARD + PHOTO WITH FLOATING BADGES */}
         <div className="hh-bento-card hh-about-card">
           <div className="hh-about-left">
             <div className="hh-eyebrow-pill">
@@ -143,6 +96,8 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
                 width={480}
                 height={520}
                 className="hh-about-photo"
+                loading="lazy"
+                decoding="async"
               />
 
               {/* FLOATING BADGE 1: 3rd year IT Student */}
@@ -163,6 +118,108 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * 2. SKILLS, EDUCATION & CONTACT BENTO
+ * Placed below Featured Projects
+ */
+export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeProps) {
+  const { t, lang } = useLanguage();
+  const [activeSkillCat, setActiveSkillCat] = useState('All');
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+  const [formName, setFormName] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [formMessage, setFormMessage] = useState('');
+  const [formPending, setFormPending] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const [formError, setFormError] = useState('');
+
+  const skillTabs = [
+    { id: 'All', label: t('bento.skills.all') },
+    { id: 'Frontend', label: t('bento.skills.frontend') },
+    { id: 'Backend', label: t('bento.skills.backend') },
+    { id: 'Database', label: t('bento.skills.database') },
+    { id: 'Tools & APIs', label: t('bento.skills.tools') },
+  ];
+
+  const filteredSkills = SKILLS_LIST.filter((s) => {
+    if (activeSkillCat === 'All') return true;
+    return s.cat === activeSkillCat;
+  });
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormPending(true);
+    setFormError('');
+    setFormSuccess(false);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formName,
+          email: formEmail,
+          message: formMessage,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Không thể gửi tin nhắn. Vui lòng thử lại sau.');
+      }
+
+      setFormSuccess(true);
+      setFormName('');
+      setFormEmail('');
+      setFormMessage('');
+    } catch (err: any) {
+      setFormError(err.message || 'Lỗi gửi tin nhắn.');
+    } finally {
+      setFormPending(false);
+    }
+  };
+
+  return (
+    <section className="hh-bento-section">
+      <div className="container hh-bento-grid-container">
+        {/* ROW 1: MY SKILLS TECH MATRIX (DARK BENTO TILE) */}
+        <div id="skills" data-section="skills" className="hh-bento-card hh-skills-card">
+          <span id="experience" className="sr-only" aria-hidden="true" />
+          <div className="hh-skills-header">
+            <div>
+              <h3 className="hh-skills-title">{t('bento.skills.title')}</h3>
+              <p className="hh-skills-subtitle">{t('bento.skills.subtitle')}</p>
+            </div>
+
+            <div className="hh-skills-filter-tabs" role="tablist">
+              {skillTabs.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  className={`hh-skill-tab ${activeSkillCat === cat.id ? 'active' : ''}`}
+                  onClick={() => setActiveSkillCat(cat.id)}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="hh-skills-icons-grid">
+            {filteredSkills.map((s) => (
+              <div key={s.name} className="hh-skill-icon-tile">
+                <div className="skill-icon-box">
+                  <TechIcon name={s.name} className="skill-svg-icon" />
+                </div>
+                <span className="skill-tile-name">{s.name}</span>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -196,20 +253,65 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
             </div>
           </div>
 
-          {/* CERTIFICATES CARD */}
+          {/* CERTIFICATES CARD WITH THUMBNAIL PREVIEW & LIGHTBOX */}
           <div className="hh-bento-card hh-cert-card">
             <div className="hh-card-top-row">
               <h3>{t('bento.cert.title')}</h3>
-              <Link href="/about" className="hh-link-more">
-                {t('bento.more')}
-              </Link>
+              <button
+                type="button"
+                className="hh-link-more hh-btn-cert-preview"
+                onClick={() => setIsCertModalOpen(true)}
+                title={lang === 'vi' ? 'Xem chứng chỉ' : 'View Certificate'}
+              >
+                <span>{lang === 'vi' ? 'Xem chứng chỉ' : 'View Certificate'}</span>
+                <span aria-hidden="true">↗</span>
+              </button>
             </div>
 
-            <div className="hh-edu-item">
-              <div className="hh-cert-badge-logo" aria-hidden="true">
-                <span className="ets-logo-txt">ETS</span>
+            <div
+              className="hh-cert-interactive-box"
+              onClick={() => setIsCertModalOpen(true)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setIsCertModalOpen(true);
+                }
+              }}
+              title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : 'Click to view official certificate'}
+            >
+              <div className="hh-cert-thumb-preview">
+                <Image
+                  src="/certificates/toeic-550.jpg"
+                  alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
+                  width={140}
+                  height={100}
+                  className="hh-cert-thumb-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="hh-cert-thumb-overlay" aria-hidden="true">
+                  <span className="cert-zoom-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      <line x1="11" y1="8" x2="11" y2="14" />
+                      <line x1="8" y1="11" x2="14" y2="11" />
+                    </svg>
+                    <span>{lang === 'vi' ? 'Xem to' : 'Zoom'}</span>
+                  </span>
+                </div>
               </div>
+
               <div className="hh-edu-details">
+                <div className="hh-cert-badge-row">
+                  <span className="ets-logo-txt-pill">ETS</span>
+                  <span className="cert-status-tag">
+                    <span className="cert-verified-dot" />
+                    <span>{lang === 'vi' ? 'Đã xác thực' : 'Verified'}</span>
+                  </span>
+                </div>
                 <h4>{t('bento.cert.name')}</h4>
                 <p className="edu-major">{t('bento.cert.issuer')}</p>
                 <div className="edu-meta">
@@ -222,41 +324,7 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
           </div>
         </div>
 
-        {/* ROW 3: MY SKILLS TECH MATRIX (DARK BENTO TILE) */}
-        <div id="skills" className="hh-bento-card hh-skills-card">
-          <div className="hh-skills-header">
-            <div>
-              <h3 className="hh-skills-title">{t('bento.skills.title')}</h3>
-              <p className="hh-skills-subtitle">{t('bento.skills.subtitle')}</p>
-            </div>
-
-            <div className="hh-skills-filter-tabs" role="tablist">
-              {skillTabs.map((cat) => (
-                <button
-                  key={cat.id}
-                  type="button"
-                  className={`hh-skill-tab ${activeSkillCat === cat.id ? 'active' : ''}`}
-                  onClick={() => setActiveSkillCat(cat.id)}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="hh-skills-icons-grid">
-            {filteredSkills.map((s) => (
-              <div key={s.name} className="hh-skill-icon-tile">
-                <div className="skill-icon-box">
-                  <TechIcon name={s.name} className="skill-svg-icon" />
-                </div>
-                <span className="skill-tile-name">{s.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ROW 4: GET IN TOUCH CONTACT CARD */}
+        {/* ROW 3: GET IN TOUCH CONTACT CARD */}
         <div id="contact" className="hh-bento-card hh-contact-card">
           <div className="hh-contact-intro">
             <div className="hh-eyebrow-pill">
@@ -317,6 +385,31 @@ export function AboutMeBento({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutM
           </form>
         </div>
       </div>
+
+      {/* OFFICIAL CERTIFICATE LIGHTBOX MODAL */}
+      <CertificateModal
+        isOpen={isCertModalOpen}
+        onClose={() => setIsCertModalOpen(false)}
+        certificate={{
+          name: lang === 'vi' ? 'Chứng chỉ TOEIC Nghe & Đọc (550 / 990)' : 'TOEIC Listening & Reading Certificate (550 / 990)',
+          issuer: 'ETS (Educational Testing Service)',
+          score: '550 / 990',
+          issueDate: lang === 'vi' ? 'Tháng 10, 2025' : 'October 2025',
+          imageUrl: '/certificates/toeic-550.jpg',
+        }}
+      />
     </section>
+  );
+}
+
+/**
+ * Backwards compatibility export
+ */
+export function AboutMeBento({ email }: AboutMeProps) {
+  return (
+    <>
+      <AboutMeSection email={email} />
+      <SkillsEducationContact email={email} />
+    </>
   );
 }

@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import type { Project, ProjectChapter, ScreenshotItem } from '@/lib/types';
+import type { Project, ProjectChapter, ScreenshotItem, StorytellingModeId } from '@/lib/types';
+import { STORYTELLING_MODES_CATALOG } from '@/lib/types';
 
 interface ProjectEditorProps {
   project?: Project;
@@ -31,6 +32,7 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
   const [coverUrl, setCoverUrl] = useState(project?.coverUrl || '');
   const [liveUrl, setLiveUrl] = useState(project?.liveUrl || '');
   const [sourceUrl, setSourceUrl] = useState(project?.sourceUrl || '');
+  const [reportUrl, setReportUrl] = useState(project?.reportUrl || '');
   const [featured, setFeatured] = useState(Boolean(project?.featured));
   const [published, setPublished] = useState(project ? Boolean(project.published) : true);
   const [storytellingStyle, setStorytellingStyle] = useState<string>(
@@ -213,6 +215,7 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
       coverUrl: coverUrl.trim() || undefined,
       liveUrl: liveUrl.trim() || undefined,
       sourceUrl: sourceUrl.trim() || undefined,
+      reportUrl: reportUrl.trim() || undefined,
       featured,
       published,
       storytellingStyle,
@@ -482,6 +485,17 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
                 placeholder="VD: https://github.com/..."
               />
             </div>
+
+            <div className="field">
+              <label htmlFor="reportUrl">Link Báo Cáo Dự Án (Google Docs Report URL)</label>
+              <input
+                id="reportUrl"
+                type="text"
+                value={reportUrl}
+                onChange={(e) => setReportUrl(e.target.value)}
+                placeholder="VD: https://docs.google.com/document/d/... (Mở xem trực tiếp)"
+              />
+            </div>
           </div>
 
           <div className="checkbox-row">
@@ -534,37 +548,64 @@ export function ProjectEditor({ project }: ProjectEditorProps) {
             Tổng cộng: <strong>{chapters.length} phần mô tả chi tiết</strong>
           </div>
 
-          {/* CHỌN PHONG CÁCH STORYTELLING 3D ĐỘC BẢN */}
+          {/* CHỌN PHONG CÁCH STORYTELLING TRONG 10 KIỂU HIỆN ĐẠI */}
           <div className="storytelling-style-selector-box">
             <div className="field">
-              <label htmlFor="storytellingStyle" className="storytelling-style-label">
-                ✨ Phong cách Kể chuyện Storytelling 3D &amp; Diễn hoạt Animation Độc Bản *
-              </label>
+              <div className="storytelling-style-header">
+                <div>
+                  <label htmlFor="storytellingStyle" className="storytelling-style-label">
+                    ✨ Tùy chọn 1 trong 10 Kiểu Storytelling Hiện Đại cho Dự án *
+                  </label>
+                  <p className="field-hint">
+                    Mỗi dự án sở hữu một phong cách kể chuyện độc bản, tương thích 100% với đặc thù sản phẩm và công nghệ.
+                  </p>
+                </div>
+                <div className="active-mode-badge-pill">
+                  <span className="active-pulse-dot" />
+                  <span>Đang chọn: <strong>{STORYTELLING_MODES_CATALOG.find((m) => m.id === storytellingStyle)?.titleVi || storytellingStyle}</strong></span>
+                </div>
+              </div>
+
+              {/* Quick Dropdown Picker */}
               <select
                 id="storytellingStyle"
                 value={storytellingStyle}
                 onChange={(e) => setStorytellingStyle(e.target.value)}
                 className="select-field storytelling-style-select"
               >
-                <option value="agentic-radar">
-                  🌌 Cyber Holographic Neural Stream (Dành cho AI Agentic, Real-Time WebSocket, Neon Scanlines)
-                </option>
-                <option value="luxury-editorial">
-                  🌸 Haute Couture Editorial Lookbook (Dành cho Salon, Beauty, Luxury Parallax, Rèm lụa mềm &amp; Gold Foil)
-                </option>
-                <option value="edtech-terminal">
-                  🎯 Tactical Assessment Terminal (Dành cho EdTech, Hệ thống thi cử, Blueprint Matrix &amp; Telemetry Ping)
-                </option>
-                <option value="growth-pipeline">
-                  ⚡ Dynamic Growth Funnel &amp; Pipeline (Dành cho Marketing, Lead Webhook, Luồng hạt năng lượng)
-                </option>
-                <option value="apple-keynote">
-                  🍏 Apple Keynote Spatial Studio (Dành cho CMS, Product Portfolio, Zoom chiều sâu 3D &amp; Titanium Glass)
-                </option>
+                {STORYTELLING_MODES_CATALOG.map((mode) => (
+                  <option key={mode.id} value={mode.id}>
+                    {mode.icon} {mode.index}. {mode.titleVi} — ({mode.bestForVi})
+                  </option>
+                ))}
               </select>
-              <p className="field-hint">
-                Mỗi dự án sử dụng một bộ diễn hoạt và bố cục 3D hoàn toàn độc nhất, không bị trùng lặp animation giữa các dự án.
-              </p>
+
+              {/* Interactive 10-Mode Visual Grid */}
+              <div className="storytelling-modes-grid">
+                {STORYTELLING_MODES_CATALOG.map((mode) => {
+                  const isSelected = storytellingStyle === mode.id;
+                  return (
+                    <button
+                      key={mode.id}
+                      type="button"
+                      onClick={() => setStorytellingStyle(mode.id)}
+                      className={`storytelling-mode-card ${isSelected ? 'is-selected' : ''}`}
+                    >
+                      <div className="mode-card-top">
+                        <div className="mode-icon-box">{mode.icon}</div>
+                        <span className="mode-num-tag">0{mode.index}</span>
+                        {isSelected && <span className="mode-active-check">✓ Đang kích hoạt</span>}
+                      </div>
+                      <h4 className="mode-title">{mode.titleVi}</h4>
+                      <p className="mode-desc">{mode.descriptionVi}</p>
+                      <div className="mode-best-for">
+                        <span className="best-for-label">Phù hợp nhất:</span>
+                        <span className="best-for-val">{mode.bestForVi}</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 

@@ -13,6 +13,7 @@ export interface CertificateItem {
   score: string;
   issueDate: string;
   verificationUrl?: string;
+  imageUrl?: string;
 }
 
 export interface CategorizedSkills {
@@ -87,6 +88,7 @@ export interface Project {
   coverUrl: string;
   liveUrl: string;
   sourceUrl: string;
+  reportUrl?: string;
   featured: boolean;
   published: boolean;
   order?: number;
@@ -96,10 +98,158 @@ export interface Project {
   gallery?: ScreenshotItem[];
   features?: ProjectFeature[];
   chapters?: ProjectChapter[];
-  storytellingStyle?: 'agentic-radar' | 'luxury-editorial' | 'edtech-terminal' | 'growth-pipeline' | 'apple-keynote' | string;
+  storytellingStyle?: StorytellingModeId | 'agentic-radar' | 'luxury-editorial' | 'edtech-terminal' | 'growth-pipeline' | 'apple-keynote' | string;
   createdAt: string;
   updatedAt: string;
 }
+
+export type StorytellingModeId =
+  | 'sticky-split'
+  | 'cinematic-scroll'
+  | 'timeline-based'
+  | '3d-exploded'
+  | 'bento-grid'
+  | 'horizontal-scroll'
+  | 'interactive-hotspot'
+  | 'before-after'
+  | 'data-flow'
+  | 'device-morphing';
+
+export interface StorytellingModeDefinition {
+  id: StorytellingModeId;
+  index: number;
+  icon: string;
+  titleVi: string;
+  titleEn: string;
+  descriptionVi: string;
+  descriptionEn: string;
+  bestForVi: string;
+  bestForEn: string;
+  badgeTag: string;
+}
+
+export const STORYTELLING_MODES_CATALOG: StorytellingModeDefinition[] = [
+  {
+    id: 'sticky-split',
+    index: 1,
+    icon: '📱',
+    titleVi: 'Sticky Split-Screen Storytelling',
+    titleEn: 'Sticky Split-Screen Storytelling',
+    descriptionVi: 'Màn hình chia hai phần: một bên kể câu chuyện, bên còn lại giữ cố định hình ảnh sản phẩm. Khi cuộn qua từng chức năng, hình ảnh tự thay đổi.',
+    descriptionEn: 'Split-screen layout: narrative card on one side, sticky product device stage on the other. Scrolling smoothly updates visual context.',
+    bestForVi: 'Giới thiệu chức năng của từng dự án',
+    bestForEn: 'Introducing detailed features of individual projects',
+    badgeTag: 'SPLIT-SCREEN DUAL STAGE',
+  },
+  {
+    id: 'cinematic-scroll',
+    index: 2,
+    icon: '🎬',
+    titleVi: 'Cinematic Scrollytelling',
+    titleEn: 'Cinematic Scrollytelling',
+    descriptionVi: 'Kể chuyện bằng hiệu ứng điện ảnh, chuyển cảnh, zoom, chiều sâu 3D và animation điều khiển theo thanh cuộn.',
+    descriptionEn: 'Storytelling through cinematic camera transitions, smooth Ken Burns zoom, 3D atmospheric depth and scroll-bound animations.',
+    bestForVi: 'Mở đầu dự án, giới thiệu tầm nhìn và sản phẩm cuối',
+    bestForEn: 'Project inception, brand vision & finalized hero experience',
+    badgeTag: 'CINEMATIC SCOPE // 3D DEPTH',
+  },
+  {
+    id: 'timeline-based',
+    index: 3,
+    icon: '⏳',
+    titleVi: 'Timeline-Based Storytelling',
+    titleEn: 'Timeline-Based Storytelling',
+    descriptionVi: 'Kể chuyện theo mốc thời gian, từ nghiên cứu, thiết kế cơ sở dữ liệu, phát triển backend/frontend đến kiểm thử, triển khai.',
+    descriptionEn: 'Chronological milestone journey: from research and schema design through backend/frontend sprints to QA and cloud deployment.',
+    bestForVi: 'Thể hiện quá trình phát triển và vai trò của developer',
+    bestForEn: 'Demonstrating engineering lifecycle and developer ownership',
+    badgeTag: 'DEV TIMELINE // SDLC SPRINTS',
+  },
+  {
+    id: '3d-exploded',
+    index: 4,
+    icon: '🧊',
+    titleVi: '3D Exploded-View Storytelling',
+    titleEn: '3D Exploded-View Storytelling',
+    descriptionVi: 'Các thành phần hệ thống được tách thành nhiều lớp 3D, ví dụ Frontend → API → Backend → Database, sau đó kết nối lại.',
+    descriptionEn: 'Multi-layered 3D isometric separation: peeling apart Frontend UI, Gateway APIs, Backend Services, and Database layers.',
+    bestForVi: 'Giải thích kiến trúc hệ thống, microservices và AI',
+    bestForEn: 'Explaining distributed architecture, microservices and AI pipelines',
+    badgeTag: '3D ISOMETRIC // SYSTEM STACK',
+  },
+  {
+    id: 'bento-grid',
+    index: 5,
+    icon: '🍱',
+    titleVi: 'Bento Grid Storytelling',
+    titleEn: 'Bento Grid Storytelling',
+    descriptionVi: 'Chia các tính năng thành những ô có kích thước khác nhau, kết hợp ảnh, mô tả, chỉ số và video demo.',
+    descriptionEn: 'Modular bento partitions combining high-density metrics, interactive video demos, and capability highlights.',
+    bestForVi: 'Tóm tắt nhiều tính năng sau phần kể chuyện chính',
+    bestForEn: 'Synthesizing feature highlights following the primary narrative',
+    badgeTag: 'BENTO MATRIX // MODULAR HIGHLIGHTS',
+  },
+  {
+    id: 'horizontal-scroll',
+    index: 6,
+    icon: '↔️',
+    titleVi: 'Horizontal Scroll Storytelling',
+    titleEn: 'Horizontal Scroll Storytelling',
+    descriptionVi: 'Khi cuộn xuống, các màn hình giao diện lần lượt trượt ngang như đang lật những chương trong một cuốn sách.',
+    descriptionEn: 'Horizontal card conveyor where vertical scrolling translates to lateral canvas transitions across UI suites.',
+    bestForVi: 'Trình diễn các màn hình Login, Dashboard, Admin, Analytics',
+    bestForEn: 'Showcasing Login, Dashboard, Admin, and Analytics suites',
+    badgeTag: 'LATERAL CAROUSEL // CHAPTER FLIP',
+  },
+  {
+    id: 'interactive-hotspot',
+    index: 7,
+    icon: '🎯',
+    titleVi: 'Interactive Hotspot Storytelling',
+    titleEn: 'Interactive Hotspot Storytelling',
+    descriptionVi: 'Đánh dấu các vị trí ngay trên ảnh giao diện. Khi người xem nhấn hoặc di chuột, một bảng nhỏ xuất hiện giải thích chức năng và cách hoạt động.',
+    descriptionEn: 'Live coordinate hotspot pins placed directly on screenshot UI with contextual interactive callouts.',
+    bestForVi: 'Giúp nhà tuyển dụng hiểu chi tiết các chức năng',
+    bestForEn: 'Guiding recruiters and tech leads through precision feature locations',
+    badgeTag: 'RADAR HOTSPOTS // UI CALLOUTS',
+  },
+  {
+    id: 'before-after',
+    index: 8,
+    icon: '⚖️',
+    titleVi: 'Before–After Transformation',
+    titleEn: 'Before–After Transformation',
+    descriptionVi: 'So sánh tình trạng ban đầu và giải pháp sau khi phát triển, qua hai hình ảnh hoặc thanh trượt đối chiếu.',
+    descriptionEn: 'Side-by-side interactive curtain comparison revealing baseline latency/friction versus engineered solution.',
+    bestForVi: 'Giải thích vấn đề và giá trị mà dự án mang lại',
+    bestForEn: 'Proving problem resolution and measurable business impact',
+    badgeTag: 'DUAL CURTAIN // TRANSFORMATION LIFT',
+  },
+  {
+    id: 'data-flow',
+    index: 9,
+    icon: '⚡',
+    titleVi: 'Data-Flow Storytelling',
+    titleEn: 'Data-Flow Storytelling',
+    descriptionVi: 'Những đường kết nối chuyển động giúp minh họa dữ liệu đi từ người dùng đến API, hệ thống AI, cơ sở dữ liệu và quay về giao diện.',
+    descriptionEn: 'Animated circuit conduits tracing telemetry and packet lifecycles from client triggers to AI inference and DB writes.',
+    bestForVi: 'Chứng minh kiến thức backend, AI, security và system design',
+    bestForEn: 'Proving backend mastery, AI orchestration and system resilience',
+    badgeTag: 'LIVE TELEMETRY // DATA PIPELINE',
+  },
+  {
+    id: 'device-morphing',
+    index: 10,
+    icon: '💻',
+    titleVi: 'Device-Morphing Storytelling',
+    titleEn: 'Device-Morphing Storytelling',
+    descriptionVi: 'Hình ảnh giao diện chuyển từ desktop sang tablet, rồi smartphone trong lúc cuộn để thể hiện responsive design.',
+    descriptionEn: 'Dynamic viewport morphing from 4K desktop monitor to tablet slate to smartphone viewport on scroll.',
+    bestForVi: 'Trình diễn giao diện thích ứng trên nhiều thiết bị',
+    bestForEn: 'Proving seamless adaptive UI/UX and multi-formfactor ergonomics',
+    badgeTag: 'DEVICE MORPHING // MULTI-SCREEN',
+  },
+];
 
 export interface Message {
   _id: string;
@@ -158,6 +308,8 @@ export const defaultProfile: Profile = {
       issuer: 'ETS',
       score: '550',
       issueDate: 'October 2025',
+      verificationUrl: '',
+      imageUrl: '/certificates/toeic-550.jpg',
     },
   ],
   avatarUrl: '/avatar.jpg',
@@ -194,10 +346,11 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/ticket-concert-hero.png',
     liveUrl: 'https://www.ticketconcert.online',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 1,
-    storytellingStyle: 'agentic-radar',
+    storytellingStyle: 'data-flow', // 9. Data-Flow Storytelling
     problem: 'Concert attendees frequently face delays obtaining event information, seating confirmation, and payment resolution during high-traffic ticket sales.',
     approach: 'Engineered an agentic retrieval-augmented generation (RAG) system with LangChain.js and Gemini API integrated with Node.js and real-time WebSocket communication.',
     outcome: 'Delivered an automated support workflow handling multi-turn ticketing inquiries with MoMo API payment verification and reliable transactional email notifications.',
@@ -366,10 +519,11 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/fashion-nail-hero.jpg',
     liveUrl: 'https://fashionnailmorley.com.au',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 2,
-    storytellingStyle: 'luxury-editorial',
+    storytellingStyle: 'cinematic-scroll', // 2. Cinematic Scrollytelling
     problem: 'The salon needed an elegant, mobile-first web presence for Western Australian customers to view service menus, gallery work, and request appointments.',
     approach: 'Built a lightweight, high-performance React application powered by Vite, integrated with a Node.js backend and Resend API for immediate booking inquiry notifications.',
     outcome: 'Achieved sub-second page loads, accessible mobile navigation, and streamlined booking conversion without friction.',
@@ -500,10 +654,11 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/exam-platform-hero.png',
     liveUrl: 'https://exam-platform.online',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 3,
-    storytellingStyle: 'edtech-terminal',
+    storytellingStyle: 'interactive-hotspot', // 7. Interactive Hotspot Storytelling
     problem: 'Traditional online examination systems lack personalization and struggle with high concurrency during simultaneous exam submissions.',
     approach: 'Architected a decoupled React and Node.js platform utilizing Redis caching for session tokens and question banks, with PostgreSQL for ACID compliance.',
     outcome: 'Currently active in ongoing development, providing reliable test sessions and automated scoring algorithms.',
@@ -634,10 +789,11 @@ export const defaultProjects: Project[] = [
     coverUrl: '/projects/vk-digital-hero.png',
     liveUrl: 'https://vkdigitalhub.netlify.app',
     sourceUrl: '',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 4,
-    storytellingStyle: 'growth-pipeline',
+    storytellingStyle: 'device-morphing', // 10. Device-Morphing Storytelling
     problem: 'Agency needed a modern showcase for digital growth services with automated routing of prospective client inquiries directly to CRM and team inboxes.',
     approach: 'Developed a component-driven React interface with webhook integration to Make.com scenarios for zero-latency lead routing and email acknowledgment.',
     outcome: 'Seamlessly deployed on Netlify with automated email workflows handling marketing consultations.',
@@ -754,144 +910,490 @@ export const defaultProjects: Project[] = [
   },
   {
     _id: 'default-05',
-    title: 'NH HUYNH — Developer Portfolio & Content Management System',
+    title: 'NH HUYNH — Developer Portfolio & Interactive Scrollytelling Platform',
     slug: 'nh-huynh-portfolio',
-    summary: 'A personal portfolio platform designed to showcase projects, technical skills, education, and engineering experience through interactive case studies and a custom-built content management system.',
+    summary: 'Nền tảng portfolio kỹ thuật Full-Stack của Nguyễn Hoàng Huynh, kết hợp ngôn ngữ thiết kế Light Theme cao cấp, hiệu ứng thẻ 3D Tilt tương tác, động cơ Scrollytelling chia đôi màn hình và hệ quản trị nội dung CMS bảo mật.',
     category: 'Full-Stack Web Product & CMS',
-    role: 'Full-Stack Developer',
-    timeline: 'October 2026 – Present',
+    role: 'Full-Stack Developer & UI/UX Architect',
+    timeline: 'Tháng 10/2026 – Hiện tại',
     status: 'Ongoing',
     year: 2026,
-    technologies: ['Next.js 16', 'TypeScript', 'PostgreSQL (Neon)', 'Tailwind CSS', 'Resend API'],
-    themeColor: '#4B5563',
-    themeBg: '#F3F4F6',
-    coverUrl: '/projects/portfolio-preview.jpg',
-    liveUrl: 'https://huynhportfolio.com',
-    sourceUrl: '',
+    technologies: [
+      'Next.js 16',
+      'TypeScript',
+      'Node.js',
+      'PostgreSQL (Neon)',
+      'Tailwind CSS',
+      'LangChain.js',
+      'Gemini API',
+      'Resend API',
+    ],
+    themeColor: '#2563EB',
+    themeBg: '#EFF6FF',
+    coverUrl: '/projects/portfolio-hero.png',
+    liveUrl: 'http://localhost:3000',
+    sourceUrl: 'https://github.com/HuynhNe26/HuynhPortfolio',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
     published: true,
     order: 5,
-    storytellingStyle: 'apple-keynote',
-    problem: 'Standard static developer templates cannot securely manage live project storytelling, message auditing, or profile configuration dynamically.',
-    approach: 'Engineered an App Router Next.js application with a dedicated Node.js backend, HttpOnly session authentication, and PostgreSQL Neon serverless database.',
-    outcome: 'Delivered an Apple-inspired editorial design system with full CMS administration, contact rate-limiting, and 7-chapter storytelling.',
+    storytellingStyle: 'horizontal-scroll', // 6. Horizontal Scroll Storytelling
+    problem: 'Các website portfolio truyền thống thường nhàm chán, hiển thị danh sách tĩnh và không thể hiện được chiều sâu kỹ thuật, khả năng xử lý tương tác thời gian thực cũng như câu chuyện đằng sau mỗi sản phẩm công nghệ.',
+    approach: 'Kiến trúc nền tảng với Next.js 16 App Router & Node.js backend. Ứng dụng ngôn ngữ thiết kế Light Theme tối giản sang trọng với thẻ 3D tilt kèm hào quang theo chuột, chuyển đổi ngôn ngữ 1 chạm EN/VI, động cơ Scrollytelling chia đôi màn hình đồng bộ hình ảnh và radar hotspot trực quan, cùng bộ giả lập tương tác thực tế.',
+    outcome: 'Một nền tảng cá nhân chuẩn mực, tải trang nhanh dưới 1 giây, mang lại trải nghiệm xem dự án sống động như một câu chuyện thực thụ, tích hợp hệ thống CMS quản trị backend bảo mật.',
     gallery: [
       {
-        url: '/projects/portfolio-preview.jpg',
-        caption: 'Apple-Inspired Editorial Portfolio & 3D Interactive Showcase',
-        alt: 'NH Huynh Portfolio Preview',
-        description: 'Modern editorial portfolio featuring 7-chapter storytelling, verified credentials, and full-stack matrix.',
+        url: '/projects/portfolio-hero.png',
+        caption: 'Giao diện Trang chủ & Hero Section Chân dung 3D Light Theme',
+        alt: 'Nguyễn Hoàng Huynh Portfolio Hero View',
+        description: 'Giao diện Light Theme tinh tế, hiệu ứng ánh sáng phát quang tên, chân dung 3D lát cắt và các chỉ số học vấn GPA 3.1/4.0.',
       },
       {
-        url: '/projects/portfolio-cms.jpg',
-        caption: 'Authenticated Headless CMS & Live Engineering Studio',
+        url: '/projects/portfolio-projects.png',
+        caption: 'Bộ sưu tập Dự án Nổi bật với Hiệu ứng 3D Tilt & Hào quang Động',
+        alt: 'Featured Projects Showcase',
+        description: 'Các thẻ dự án nghiêng 3D theo con trỏ chuột, vầng hào quang backlight tương tác, huy hiệu vai trò và mốc thời gian chi tiết.',
+      },
+      {
+        url: '/projects/portfolio-scrollytelling.png',
+        caption: 'Hệ thống Scrollytelling Tương tác Chia đôi Màn hình',
+        alt: 'Interactive Scrollytelling Engine',
+        description: 'Sân khấu trực quan ghim cố định, radar hotspot định vị thành phần UI, con trỏ thao tác mô phỏng và bộ simulator thử nghiệm trực tiếp.',
+      },
+      {
+        url: '/projects/portfolio-admin.png',
+        caption: 'Cổng Quản trị Nội dung CMS Bảo mật Phiên HttpOnly',
         alt: 'Portfolio CMS Admin Portal',
-        description: 'Secure HttpOnly session authentication for real-time CRUD management across projects, biography, skills, and contact messages.',
+        description: 'Trang xác thực quản trị viên, quản lý toàn diện dự án, nội dung các chương câu chuyện, danh mục kỹ năng và tin nhắn liên hệ.',
+      },
+      {
+        url: '/projects/portfolio-about.png',
+        caption: 'Hồ sơ Năng lực Kỹ thuật & Chứng chỉ Xác thực',
+        alt: 'About Profile & Credentials',
+        description: 'Thông tin sinh viên năm 3 Học viện Hàng không Việt Nam, chứng chỉ TOEIC 550, cây kỹ năng phân tầng Frontend/Backend/Database/APIs.',
       },
     ],
     features: [
       {
         id: 'feat-pf-01',
-        title: 'Editorial Design System & Glassmorphism',
-        description: 'Sophisticated typography hierarchy, transparent navbar with scroll blur, dark case study accents, and responsive layout craftsmanship.',
+        title: 'Light Theme Hiện đại & Hiệu ứng Ánh sáng Phát quang',
+        description: 'Hệ thống màu sáng nhất quán (#F8FAFC, #FFFFFF, #0F172A), hiệu ứng ánh sáng gradient động chuyển màu tinh tế trên tên Nguyễn Hoàng Huynh.',
         category: 'UI/UX & Design Systems',
-        screenshotUrl: '/projects/portfolio-preview.jpg',
-        screenshotAlt: 'Portfolio design system preview',
+        screenshotUrl: '/projects/portfolio-hero.png',
+        screenshotAlt: 'Giao diện Light Theme và hiệu ứng phát quang',
       },
       {
         id: 'feat-pf-02',
-        title: '3D Perspective Cinematic Portrait',
-        description: 'Interactive sliced perspective portrait with real-time mouse tilt physics, depth lighting, and dual presentation styles.',
+        title: 'Thẻ Dự án 3D Tilt & Vầng Hào quang Ambient Backlight',
+        description: 'Các thẻ dự án nghiêng theo chuột tự nhiên, vầng hào quang backlight phía sau trôi theo tọa độ con trỏ, hiển thị vai trò và thời gian làm dự án.',
         category: '3D & Creative Frontend',
-        screenshotUrl: '/projects/portfolio-preview.jpg',
-        screenshotAlt: '3D Portrait interactive demo',
+        screenshotUrl: '/projects/portfolio-projects.png',
+        screenshotAlt: 'Thẻ dự án 3D Tilt và vầng hào quang',
       },
       {
         id: 'feat-pf-03',
-        title: 'Horizontal Sticky Stacking Project Deck',
-        description: 'Apple-style stacked card deck that sticky-scrolls and overlaps as the user browses through projects.',
+        title: 'Động cơ Scrollytelling Chia đôi Màn hình & Radar Hotspot',
+        description: 'Khi cuộn nội dung, sân khấu trực quan bên phải được ghim cố định và tự động chuyển ảnh giải thích chính xác thành phần UI kèm radar phát sáng và con trỏ chuột mô phỏng.',
         category: 'Interactive Engineering',
-        screenshotUrl: '/projects/portfolio-preview.jpg',
-        screenshotAlt: 'Horizontal sticky cards preview',
+        screenshotUrl: '/projects/portfolio-scrollytelling.png',
+        screenshotAlt: 'Scrollytelling chia đôi màn hình',
       },
       {
         id: 'feat-pf-04',
-        title: 'Full CMS Administration Portal',
-        description: 'Secure HttpOnly session authentication for real-time CRUD management across projects, biography, skills, and contact messages.',
-        category: 'Full-Stack Architecture',
-        screenshotUrl: '/projects/portfolio-cms.jpg',
-        screenshotAlt: 'CMS Administration console',
+        title: 'Bộ Giả lập Hành động Thực tế (Live Action Simulators)',
+        description: 'Tích hợp các bảng thử nghiệm trực tiếp cho người xem (chọn ghế WebSocket, hỏi AI RAG, quét MoMo QR, tính ROI marketing, autosave phòng thi).',
+        category: 'Interactive Simulators',
+        screenshotUrl: '/projects/portfolio-scrollytelling.png',
+        screenshotAlt: 'Bộ giả lập tương tác thực tế',
       },
       {
         id: 'feat-pf-05',
-        title: 'Bilingual Localization (EN / VI)',
-        description: 'Instant client-side language switching between English and Vietnamese with persistent preference storage.',
+        title: 'Chuyển đổi Ngôn ngữ Tức thì 1 Chạm (Bilingual EN/VI)',
+        description: 'Công tắc trượt chuyển ngữ mượt mà chỉ sau 1 lần bấm, hỗ trợ lưu trữ trạng thái vào LocalStorage và dịch toàn diện nội dung.',
         category: 'Internationalization',
-        screenshotUrl: '/projects/portfolio-preview.jpg',
-        screenshotAlt: 'Language switcher preview',
+        screenshotUrl: '/projects/portfolio-hero.png',
+        screenshotAlt: 'Nút chuyển đổi ngôn ngữ 1 chạm',
+      },
+      {
+        id: 'feat-pf-06',
+        title: 'Hệ Thống Quản trị Nội dung CMS Bảo mật HttpOnly',
+        description: 'Quản trị viên quản lý danh sách dự án, cập nhật câu chuyện từng chương, chỉnh sửa hồ sơ kỹ năng và tiếp nhận tin nhắn từ form liên hệ.',
+        category: 'Full-Stack Architecture',
+        screenshotUrl: '/projects/portfolio-admin.png',
+        screenshotAlt: 'Cổng CMS quản trị viên',
       },
     ],
     chapters: [
       {
         id: 'chapter-01',
         number: '01',
-        title: 'Introduction & Project Overview',
-        content: 'NH HUYNH Developer Portfolio is a full-featured digital product combining an Apple-inspired editorial public showcase with an authenticated content management system for projects, storytelling, profile, education, certificates, and inbox management.',
+        title: 'Tổng quan & Triết lý Thiết kế Light Theme Hiện đại',
+        content: 'Portfolio cá nhân được thiết kế như một sản phẩm số hoàn chỉnh, tôn vinh các dự án kỹ thuật thực tế với ngôn ngữ thiết kế Light Theme tinh tế, typography hiện đại và bố cục phân tầng sắc sảo.',
+        technicalNotes: [
+          'Kiến trúc Next.js 16 App Router với SSR tối ưu SEO và Core Web Vitals',
+          'Hệ màu Light Theme #F8FAFC, #FFFFFF, viền #E2E8F0 và chữ Slate #0F172A',
+          'Hiệu ứng hào quang phát sáng tinh tế trên tiêu đề tên cá nhân',
+        ],
         screenshots: [
           {
-            url: '/projects/portfolio-preview.jpg',
-            caption: 'Full-Stack Developer Architectural Showcase',
-            alt: 'Portfolio Overview',
-            description: 'Modern editorial portfolio featuring 7-chapter storytelling, verified credentials, and full-stack matrix.',
+            url: '/projects/portfolio-hero.png',
+            caption: 'Giao diện Trang chủ & Hero Section Chân dung 3D',
+            alt: 'Portfolio Hero Overview',
+            description: 'Bố cục Hero ấn tượng với hiệu ứng ánh sáng phát quang tên, chân dung lát cắt 3D và các chỉ số học vấn.',
           },
         ],
       },
       {
         id: 'chapter-02',
         number: '02',
-        title: 'The Idea & Philosophy',
-        content: 'Built to demonstrate real-world software engineering: clean separation of concerns, defense-in-depth security, strict TypeScript typings, and zero reliance on mock data.',
+        title: 'Thẻ Dự án 3D Tilt & Vầng Hào quang Ambient Tương tác',
+        content: 'Thay vì các thẻ dự án phẳng thông thường, các card dự án nổi bật sở hữu cơ chế tính toán góc nghiêng 3D theo con trỏ chuột, kết hợp vầng hào quang backlight phát sáng theo hướng di chuyển của chuột.',
+        screenshots: [
+          {
+            url: '/projects/portfolio-projects.png',
+            caption: 'Bộ sưu tập Dự án Nổi bật với Hiệu ứng 3D Tilt & Hào quang Động',
+            alt: 'Featured Projects Showcase',
+            description: 'Các thẻ dự án nghiêng 3D theo con trỏ chuột, vầng hào quang backlight tương tác, huy hiệu vai trò và mốc thời gian chi tiết.',
+          },
+        ],
       },
       {
         id: 'chapter-03',
         number: '03',
-        title: 'The Challenge & Security Posture',
-        content: 'Protecting admin operations without exposing credentials, preventing CSRF and SQL injection, enforcing rate limits, and ensuring resilient rendering even when external services are pending configuration.',
+        title: 'Thách thức Kỹ thuật: Trải nghiệm Scrollytelling Thực thụ',
+        content: 'Làm thế nào để người xem khi cuộn đến đâu thì hình ảnh thực tế sẽ giải thích ngay cho những gì đang nói, đồng thời cho người xem biết vị trí thành phần và hành động tương tác diễn ra ra sao mà không làm gián đoạn dòng đọc?',
       },
       {
         id: 'chapter-04',
         number: '04',
-        title: 'The Experience & CMS Administration Studio',
-        content: 'Features a bespoke 7-chapter storytelling case study layout, interactive filterable project index, responsive navigation across 320px–1920px displays, and a streamlined admin suite.',
+        title: 'Sân khấu Trực quan Ghim Cố định & Radar Hotspot Định vị',
+        content: 'Giải pháp là phân tách bố cục 2 cột: cột trái là dòng chảy câu chuyện, cột phải là thiết bị mockup được ghim cố định (sticky). Điểm radar phát sóng chỉ rõ thành phần UI kèm con trỏ chuột mô phỏng hành động.',
         screenshots: [
           {
-            url: '/projects/portfolio-cms.jpg',
-            caption: 'Mission Control CMS Administration Studio',
-            alt: 'CMS Admin Studio',
-            description: 'Authenticated administration dashboard for managing projects, 7-chapter storytelling, contact inbox, and site SEO.',
+            url: '/projects/portfolio-scrollytelling.png',
+            caption: 'Hệ thống Scrollytelling Tương tác Chia đôi Màn hình',
+            alt: 'Interactive Scrollytelling Engine',
+            description: 'Sân khấu trực quan ghim cố định, radar hotspot định vị thành phần UI, con trỏ thao tác mô phỏng và bộ simulator thử nghiệm trực tiếp.',
           },
         ],
       },
       {
         id: 'chapter-05',
         number: '05',
-        title: 'Engineering Architecture',
-        content: 'Next.js App Router with server-side API proxying, PostgreSQL Neon connection pooling with pg.Pool, scrypt password hashing, and durable Resend email dispatch.',
+        title: 'Bộ Giả lập Hành động Thực tế (Live Action Simulator)',
+        content: 'Ngay dưới thiết bị, người xem có thể trực tiếp click thử nghiệm: chọn ghế WebSocket với đồng hồ đếm ngược, gửi câu hỏi cho AI RAG, quét mã MoMo, tính ROI marketing hay nộp bài thi lưu vào Redis cache.',
       },
       {
         id: 'chapter-06',
         number: '06',
-        title: 'My Contribution',
-        content: 'Solo architect and engineer: visual design system, frontend component architecture, backend API and database schemas, authentication, security controls, and documentation.',
+        title: 'Đóng góp của Tôi: Kiến trúc Full-Stack & Cổng CMS Quản trị',
+        content: 'Một mình đảm nhiệm toàn bộ vòng đời phát triển: thiết kế UI/UX, lập trình component React/Next.js, xây dựng REST API backend Node.js, thiết kế CSDL PostgreSQL Neon và cổng đăng nhập quản trị CMS bảo mật.',
+        screenshots: [
+          {
+            url: '/projects/portfolio-admin.png',
+            caption: 'Cổng Quản trị Nội dung CMS Bảo mật Phiên HttpOnly',
+            alt: 'Portfolio CMS Admin Portal',
+            description: 'Trang xác thực quản trị viên, quản lý toàn diện dự án, nội dung các chương câu chuyện, danh mục kỹ năng và tin nhắn liên hệ.',
+          },
+        ],
       },
       {
         id: 'chapter-07',
         number: '07',
-        title: 'Outcome & Ongoing Development',
-        content: 'An extensible, production-ready portfolio establishing a strong professional foundation for Full-Stack Developer opportunities.',
+        title: 'Kết quả Triển khai, Tối ưu Hiệu năng & Tương lai',
+        content: 'Website đạt tốc độ tải trang cực nhanh, tối ưu hóa toàn diện cho thiết bị di động, chứng minh năng lực kỹ thuật vững chắc và sẵn sàng cho các cơ hội Full-Stack Developer chuyên nghiệp.',
+        screenshots: [
+          {
+            url: '/projects/portfolio-about.png',
+            caption: 'Hồ sơ Năng lực Kỹ thuật & Chứng chỉ Xác thực',
+            alt: 'About Profile & Credentials',
+            description: 'Thông tin sinh viên năm 3 Học viện Hàng không Việt Nam, chứng chỉ TOEIC 550, cây kỹ năng phân tầng Frontend/Backend/Database/APIs.',
+          },
+        ],
       },
     ],
     createdAt: '2026-10-15T00:00:00.000Z',
-    updatedAt: '2026-10-15T00:00:00.000Z',
+    updatedAt: '2026-10-18T00:00:00.000Z',
+  },
+  {
+    _id: 'default-06',
+    title: 'SkyRoute Dispatcher — Real-Time Flight Operations & Cargo Management',
+    slug: 'skyroute-aviation-ops',
+    summary: 'Nền tảng điều phối bay và kiểm soát tải trọng hàng không thời gian thực với bản đồ bay radar, tính toán trọng tâm máy bay (Center of Gravity) và phân bổ ULD tối ưu.',
+    category: 'Aviation IT & Real-Time Logistics',
+    role: 'Lead Full-Stack Developer',
+    teamSize: 2,
+    timeline: 'Tháng 9, 2025 – Hiện tại',
+    status: 'Completed',
+    year: 2026,
+    technologies: [
+      'Next.js 15',
+      'TypeScript',
+      'Node.js',
+      'WebSocket',
+      'Redis Geo',
+      'PostgreSQL (Neon)',
+      'Leaflet / Mapbox',
+      'Docker',
+      'Tailwind CSS',
+    ],
+    themeColor: '#0284C7',
+    themeBg: '#F0F9FF',
+    coverUrl: '/projects/skyroute-hero.png',
+    liveUrl: 'https://aviaops.online',
+    sourceUrl: 'https://github.com/HuynhNe26/skyroute-aviation-ops',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
+    featured: true,
+    published: true,
+    order: 6,
+    storytellingStyle: '3d-exploded', // 4. 3D Exploded-View Storytelling
+    problem: 'Nhân viên điều phái bay và loadmaster thường phải thao tác thủ công trên nhiều phần mềm rời rạc để tính toán trọng tâm máy bay (CG) và giám sát tải trọng bay, dễ gây chậm trễ lịch trình và sai lệch tải trọng khí động học.',
+    approach: 'Kiến trúc nền tảng thời gian thực với Next.js 15 và Node.js WebSocket hai chiều. Xây dựng động cơ tính toán Weight & Balance tự động cho tàu bay Boeing 777F, lưu trữ tọa độ radar bay với Redis Geo và CSDL PostgreSQL Neon Serverless.',
+    outcome: 'Triệt tiêu hoàn toàn sai sót tính toán trọng tâm máy bay, đồng bộ hóa tọa độ radar bay toàn cầu dưới 100ms và tự động xuất điện văn tải trọng chuẩn IATA.',
+    gallery: [
+      {
+        url: '/projects/skyroute-hero.png',
+        caption: 'Bản đồ Radar Giám sát Chuyến bay Toàn cầu & Bảng Đo lường Trọng tâm C.G',
+        alt: 'SkyRoute Dispatch Operations Dashboard',
+        description: 'Bản đồ radar bay trực tiếp, biểu đồ phong bì trọng tâm C.G Boeing 777F, danh sách chuyến bay đang hoạt động và bảng chỉ số telemetry.',
+      },
+      {
+        url: '/projects/skyroute-cargo.png',
+        caption: 'Sơ đồ Mặt cắt Hầm hàng Boeing 777F & Ma trận Phân bổ Container ULD',
+        alt: 'SkyRoute LoadMaster Cargo Bay Schematic',
+        description: 'Sơ đồ phân bổ pallet boong chính và hầm dưới, khóa vị trí tải trọng, bảng tính nhiên liệu bay và biểu đồ giới hạn an toàn C.G.',
+      },
+    ],
+    features: [
+      {
+        id: 'feat-sr-01',
+        title: 'Bản đồ Radar Bay Toàn cầu & Stream Telemetry Thời gian thực',
+        description: 'Theo dõi vị trí tàu bay trên bản đồ thế giới với độ cao, tốc độ mặt đất và hướng bay đồng bộ qua Redis Geo và WebSocket.',
+        category: 'Real-Time Telemetry',
+        screenshotUrl: '/projects/skyroute-hero.png',
+        screenshotAlt: 'Global flight radar telemetry view',
+      },
+      {
+        id: 'feat-sr-02',
+        title: 'Động cơ Tính toán Trọng tâm & Cân bằng Khí động học Tự động',
+        description: 'Tự động tính trọng lượng không nhiên liệu (ZFW), trọng lượng cất cánh tối đa (MTOW) và vị trí trọng tâm (% MAC) đảm bảo máy bay luôn bay trong vùng an toàn.',
+        category: 'Aviation Engineering',
+        screenshotUrl: '/projects/skyroute-cargo.png',
+        screenshotAlt: 'Weight and balance envelope diagram',
+      },
+      {
+        id: 'feat-sr-03',
+        title: 'Phân bổ Vị trí Thùng Hàng ULD & Xuất Điện văn Loadsheet IATA',
+        description: 'Hệ thống xếp chỗ pallet hàng hóa boong chính và hầm dưới phân loại hàng nguy hiểm (DG), hàng dễ vỡ với khả năng xuất điện văn IATA điện tử.',
+        category: 'Cargo Logistics',
+        screenshotUrl: '/projects/skyroute-cargo.png',
+        screenshotAlt: 'Boeing 777F cargo bay schematic view',
+      },
+    ],
+    chapters: [
+      {
+        id: 'chapter-01',
+        number: '01',
+        title: 'Tổng quan & Trung tâm Điều hành Bay Hàng không Toàn cầu',
+        content: 'SkyRoute Dispatcher là nền tảng công nghệ hàng không chuyên sâu được thiết kế để hiện đại hóa quy trình điều phái bay và bốc xếp hàng hóa hàng không. Dự án do sinh viên ngành CNTT tại Học viện Hàng không Việt Nam phát triển, kết hợp giữa nghiệp vụ hàng không thực tế và công nghệ web hiệu năng cao.',
+        technicalNotes: ['Kiến trúc Next.js 15 App Router & TypeScript hiệu năng cao', 'Giao diện radar buồng lái tối màu chuẩn hàng không Retina', 'Được tối ưu cho nhân viên điều phái bay và chuyên viên Loadmaster'],
+        screenshots: [{ url: '/projects/skyroute-hero.png', caption: 'Bản đồ Radar Bay & Trung tâm Điều phối', alt: 'SkyRoute Hero' }],
+      },
+      {
+        id: 'chapter-02',
+        number: '02',
+        title: 'Bóc tách Kiến trúc 3D Đa tầng: 4 Lớp Hệ thống Phân tán',
+        content: 'Hệ thống áp dụng kiến trúc 3D Exploded 4 tầng lớp rõ rệt: Tầng Trình diễn (Next.js & Bản đồ Radar Leaflet) ➔ Tầng Cổng Thu nhận Telemetry (Node.js & WebSocket stream) ➔ Tầng Động cơ Tính toán Khí động học (Weight & Balance Engine) ➔ Tầng Lưu trữ Tốc độ cao (Redis Geo Cache & Neon PostgreSQL).',
+        technicalNotes: ['Bóc tách kiến trúc 3D Exploded-View đa tầng lớp', 'Luồng truyền dữ liệu WebSocket hai chiều kết hợp Redis Geo spatial', 'Cô lập tiến trình tính toán khí động học độc lập'],
+        screenshots: [{ url: '/projects/skyroute-hero.png', caption: 'Kiến trúc Thu nhận Dữ liệu Bay Telemetry', alt: 'System Telemetry HUD' }],
+      },
+      {
+        id: 'chapter-03',
+        number: '03',
+        title: 'Cân bằng Trọng lượng & Trọng tâm Tàu bay (Center of Gravity Envelope)',
+        content: 'Tính toán trọng tâm chính xác là yếu tố sống còn cho an toàn bay. Động cơ tự động tính toán vị trí dây cung khí động trung bình (% MAC) khi thay đổi tải trọng hàng hóa, vẽ biểu đồ phong bì giới hạn trọng tâm cất cánh và hạ cánh theo thời gian thực.',
+        technicalNotes: ['Đồ thị đa giác phong bì trọng tâm CG Boeing 777F theo thời gian thực', 'Kiểm soát nghiêm ngặt giới hạn tải trọng cất cánh và hạ cánh', 'Cảnh báo tức thì khi trọng tâm tiến sát biên giới hạn an toàn'],
+        screenshots: [{ url: '/projects/skyroute-cargo.png', caption: 'Biểu đồ Phong bì Trọng tâm C.G Real-time', alt: 'CG Envelope' }],
+      },
+      {
+        id: 'chapter-04',
+        number: '04',
+        title: 'Sơ đồ Tương tác Mặt cắt Hầm hàng & Bố trí Vị trí Thùng Hàng ULD',
+        content: 'Chuyên viên Loadmaster trực tiếp sắp xếp các thùng hàng Unit Load Devices (ULD) trên 28 vị trí boong chính và hầm dưới. Sơ đồ tự động nhận diện hàng nguy hiểm (DG), hàng dễ vỡ và pallet siêu trọng với màu sắc phân biệt trực quan.',
+        technicalNotes: ['Sơ đồ mặt cắt tàu bay Boeing 777F định dạng vector SVG tương tác', 'Tự động tính phân bổ tải trọng giữa boong chính và hầm dưới', 'Cộng dồn trọng lượng pallet và so sánh với giới hạn sàn chịu tải'],
+        screenshots: [{ url: '/projects/skyroute-cargo.png', caption: 'Sơ đồ Mặt cắt Hầm hàng 777F', alt: 'Cargo Bay Schematic' }],
+      },
+      {
+        id: 'chapter-05',
+        number: '05',
+        title: 'Đồng bộ Tọa độ Radar Bay qua WebSocket & Redis Geo',
+        content: 'Tín hiệu tọa độ từ các chuyến bay đang bay được nạp qua các lệnh Redis Geo (GEOADD, GEORADIUS) và phát sóng đến tất cả bàn điều phối chỉ trong dưới 80ms, mang lại khả năng nắm bắt tình hình không lưu toàn cầu liên tục.',
+        technicalNotes: ['Lưu trữ tọa độ không gian Redis Geo với độ trễ micro-second', 'Cơ chế phát sóng bản tin WebSocket pub/sub đến các bàn điều phái', 'Tự động tái kết nối và đối soát trạng thái không bị mất gói tin'],
+      },
+      {
+        id: 'chapter-06',
+        number: '06',
+        title: 'Tự động Xuất Điện văn Tải trọng Loadsheet Chuẩn IATA',
+        content: 'Sau khi hoàn tất sơ đồ xếp dỡ, hệ thống xuất điện văn loadsheet điện tử theo đúng chuẩn IATA AHMR. Chữ ký số mã hóa bảo đảm không xảy ra bất kỳ sự can thiệp dữ liệu trái phép nào giữa khâu phát hành và buồng lái.',
+        technicalNotes: ['Định dạng điện văn loadsheet điện tử chuẩn IATA', 'Xác thực tính toàn vẹn dữ liệu bằng checksum mật mã học', 'Hỗ trợ xuất file PDF tải trọng và gửi điện văn ACARS lên buồng lái'],
+      },
+      {
+        id: 'chapter-07',
+        number: '07',
+        title: 'Đóng gói Triển khai Container Docker & Đảm bảo Tính Sẵn sàng Cao',
+        content: 'Toàn bộ hệ thống được đóng gói container hóa với Docker, thiết lập cơ chế giám sát trạng thái sức khỏe tự động, đảm bảo thời gian hoạt động liên tục 99.9% cho các quy trình điều hành bay nghiêm ngặt.',
+        technicalNotes: ['Quy trình Docker multi-stage build tối ưu kích thước image', 'Pipeline triển khai không gián đoạn dịch vụ (Zero-downtime)', 'Cơ sở dữ liệu PostgreSQL Neon Serverless với cơ chế connection pool tự động'],
+      },
+    ],
+    createdAt: '2026-10-18T00:00:00.000Z',
+    updatedAt: '2026-10-19T00:00:00.000Z',
+  },
+  {
+    _id: 'default-07',
+    title: 'MediCare AI — Smart Telehealth & Clinical Decision Support System',
+    slug: 'medicare-ai-triage',
+    summary: 'Hệ thống bệnh án điện tử (EMR) và phân loại triệu chứng bệnh nhân bằng AI, tích hợp phòng khám video WebRTC và kê đơn thuốc số cảnh báo tương tác thuốc.',
+    category: 'Healthcare & Clinical AI',
+    role: 'Full-Stack Developer',
+    teamSize: 3,
+    timeline: 'Tháng 11, 2025 – Tháng 5, 2026',
+    status: 'Completed',
+    year: 2026,
+    technologies: [
+      'React.js',
+      'TypeScript',
+      'Express.js',
+      'MongoDB Atlas',
+      'WebRTC',
+      'Gemini AI API',
+      'JWT Role Auth',
+      'Tailwind CSS',
+      'Cloudinary',
+    ],
+    themeColor: '#0D9488',
+    themeBg: '#F0FDFA',
+    coverUrl: '/projects/medicare-hero.png',
+    liveUrl: 'https://medicare-ai.health',
+    sourceUrl: 'https://github.com/HuynhNe26/medicare-ai-triage',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
+    featured: true,
+    published: true,
+    order: 7,
+    storytellingStyle: 'timeline-based', // 3. Timeline-Based Storytelling
+    problem: 'Các phòng khám và bệnh viện thường xuyên quá tải ở khâu tiếp đón ban đầu, bệnh nhân chờ đợi lâu, thiếu phân loại mức độ khẩn cấp tự động và tiềm ẩn nguy cơ kê đơn tương tác thuốc nguy hiểm.',
+    approach: 'Xây dựng quy trình khám bệnh khép kín tích hợp AI phân loại triệu chứng bằng Gemini API, phòng khám trực tuyến bảo mật WebRTC, hồ sơ bệnh án điện tử EMR lưu trữ trên MongoDB Atlas và động cơ cảnh báo tương tác thuốc tự động.',
+    outcome: 'Rút ngắn 55% thời gian chờ đợi tiếp nhận, ưu tiên xử lý tức thì các ca khẩn cấp, hỗ trợ bác sĩ chẩn đoán phân biệt chính xác và giảm thiểu rủi ro dùng thuốc.',
+    gallery: [
+      {
+        url: '/projects/medicare-hero.png',
+        caption: 'Hàng đợi Tiếp nhận Bệnh nhân & Phân loại Triệu chứng Cấp cứu AI',
+        alt: 'MediCare EMR Dashboard Interface',
+        description: 'Hàng đợi tiếp nhận thời gian thực với nhãn mức độ AI Triage (Emergency, Urgent, Routine), xem trước hồ sơ bệnh án và biểu đồ sinh tồn.',
+      },
+      {
+        url: '/projects/medicare-consult.png',
+        caption: 'Trục Thời gian Lâm sàng Khám bệnh & Bộ Kê đơn Thuốc Điện tử',
+        alt: 'MediCare Clinical Consultation Console',
+        description: 'Bàn làm việc của bác sĩ với trục thời gian lịch sử khám, chẩn đoán phân biệt gợi ý bởi AI, đồ thị chỉ số sinh tồn và bộ tính liều lượng thuốc.',
+      },
+    ],
+    features: [
+      {
+        id: 'feat-mc-01',
+        title: 'Phân loại Triệu chứng & Đánh giá Cấp độ Cấp cứu Tự động với AI',
+        description: 'Phân tích triệu chứng bệnh nhân nhập vào bằng Google Gemini AI, tự động gán nhãn mức độ Cấp cứu (Emergency), Khẩn cấp (Urgent) hoặc Định kỳ (Routine).',
+        category: 'Clinical AI',
+        screenshotUrl: '/projects/medicare-hero.png',
+        screenshotAlt: 'AI patient triage queue interface',
+      },
+      {
+        id: 'feat-mc-02',
+        title: 'Phòng Khám Telehealth Trực tuyến Mã hóa WebRTC',
+        description: 'Kết nối video và âm thanh trực tiếp giữa bác sĩ và bệnh nhân với độ trễ thấp, tích hợp công cụ ghi chú lâm sàng song song trên cùng một màn hình.',
+        category: 'Telemedicine',
+        screenshotUrl: '/projects/medicare-consult.png',
+        screenshotAlt: 'Doctor telehealth consultation view',
+      },
+      {
+        id: 'feat-mc-03',
+        title: 'Kê đơn Thuốc Số & Tự động Cảnh báo Tương tác Thuốc Nguy hại',
+        description: 'Tự động tính liều lượng theo cân nặng/độ tuổi và đối soát đơn thuốc với cơ sở dữ liệu tương tác thuốc, đưa ra cảnh báo tức thì khi có tương tác bất lợi.',
+        category: 'Patient Safety',
+        screenshotUrl: '/projects/medicare-consult.png',
+        screenshotAlt: 'Digital e-prescription builder with pharmacy routing',
+      },
+    ],
+    chapters: [
+      {
+        id: 'chapter-01',
+        number: '01',
+        title: 'Cổng Tiếp nhận Khám Trực tuyến & Hàng đợi Bệnh nhân',
+        content: 'MediCare AI là giải pháp khám chữa bệnh từ xa và quản lý bệnh án điện tử (EMR) được xây dựng nhằm chuẩn hóa quy trình chăm sóc sức khỏe ban đầu. Hệ thống kết nối bệnh nhân với đội ngũ y bác sĩ thông qua một cổng dịch vụ duy nhất.',
+        technicalNotes: ['Giao diện y tế React.js chuẩn màn hình y khoa với TypeScript', 'Kiến trúc phân quyền nghiêm ngặt với xác thực JWT và mã hóa đường truyền', 'Bảng màu xanh ngọc lam (Teal) và trắng sạch sẽ, thân thiện với bệnh nhân'],
+        screenshots: [{ url: '/projects/medicare-hero.png', caption: 'Hàng đợi Tiếp nhận & Xem trước Bệnh án Điện tử', alt: 'MediCare Hero' }],
+      },
+      {
+        id: 'chapter-02',
+        number: '02',
+        title: 'Trục Thời gian Lâm sàng: Quy trình 4 Giai đoạn từ Tiếp nhận đến Kê đơn',
+        content: 'Toàn bộ câu chuyện dự án được thể hiện qua Trục thời gian lâm sàng (Timeline-Based): Giai đoạn 1 (Đăng ký & Đo lường Chỉ số Sinh tồn) ➔ Giai đoạn 2 (AI Phân loại Triệu chứng Khẩn cấp) ➔ Giai đoạn 3 (Bác sĩ Khám Trực tuyến WebRTC) ➔ Giai đoạn 4 (Xuất Đơn thuốc Điện tử & Lịch Tái khám).',
+        technicalNotes: ['Kiến trúc kể chuyện Timeline-Based Storytelling', 'Đồng bộ hóa trạng thái mốc thời gian dọc theo từng giai đoạn khám bệnh', 'Ghi nhật ký kiểm toán (Audit Log) theo dõi mọi biến động hồ sơ bệnh án'],
+        screenshots: [{ url: '/projects/medicare-consult.png', caption: 'Trục Thời gian Lâm sàng & Ghi chú Bác sĩ', alt: 'Clinical Timeline' }],
+      },
+      {
+        id: 'chapter-03',
+        number: '03',
+        title: 'Động cơ Phân loại Triệu chứng Cấp cứu Tự động với Gemini Medical AI',
+        content: 'Bệnh nhân mô tả triệu chứng bằng ngôn ngữ tự nhiên. Mô hình Gemini AI phân tích lý do khám, tiền sử bệnh án và các chỉ số sinh tồn để xếp lớp cấp cứu: Khẩn cấp đỏ (Emergency), Cần khám sớm (Urgent), hoặc Khám thông thường (Routine), giúp phòng khám xử lý ngay các ca nguy kịch.',
+        technicalNotes: ['Prompt engineering chuyên sâu với mô hình Gemini AI y khoa', 'Tự động trích xuất các chỉ số sinh tồn (Nhịp tim 108 bpm, SpO2 95%, Huyết áp 145/92)', 'Tự động xếp lại thứ tự hàng đợi theo mức độ khẩn cấp y tế'],
+        screenshots: [{ url: '/projects/medicare-hero.png', caption: 'Hàng đợi Phân loại Cấp cứu AI', alt: 'AI Triage Queue' }],
+      },
+      {
+        id: 'chapter-04',
+        number: '04',
+        title: 'Phòng Khám Video Trực tuyến Bảo mật Peer-to-Peer WebRTC',
+        content: 'Buổi tư vấn diễn ra qua kênh truyền thông video WebRTC ngang hàng được mã hóa hai đầu cuối. Bác sĩ vừa có thể quan sát triệu chứng của bệnh nhân, vừa tra cứu hồ sơ bệnh án và cập nhật ghi chú khám bệnh trong thời gian thực.',
+        technicalNotes: ['Kênh truyền thông media ngang hàng WebRTC qua máy chủ STUN/TURN', 'Độ trễ truyền video và âm thanh dưới 200ms', 'Không lưu trữ video trên máy chủ nhằm đảm bảo quyền riêng tư người bệnh'],
+      },
+      {
+        id: 'chapter-05',
+        number: '05',
+        title: 'Hồ sơ Bệnh án Điện tử (EMR) & Biểu đồ Chỉ số Sinh tồn Theo Thời gian',
+        content: 'Bác sĩ có thể theo dõi biểu đồ diễn tiến sinh tồn của bệnh nhân qua các đợt khám: huyết áp tâm thu/tâm trương, nhịp tim, nhiệt độ và nồng độ oxy trong máu SpO2, hỗ trợ chẩn đoán phân biệt chuẩn xác.',
+        technicalNotes: ['Đồ thị vector SVG diễn tiến huyết áp và nhịp tim liên tục', 'Cơ sở dữ liệu MongoDB Atlas lưu trữ cấu trúc tài liệu bệnh án linh hoạt', 'Tối ưu hóa truy vấn lịch sử khám qua nhiều lần tái khám'],
+        screenshots: [{ url: '/projects/medicare-consult.png', caption: 'Đồ thị Diễn tiến Chỉ số Sinh tồn', alt: 'Vital Signs History' }],
+      },
+      {
+        id: 'chapter-06',
+        number: '06',
+        title: 'Bộ Kê đơn Thuốc Điện tử & Cảnh báo Tương tác Thuốc Nguy hại',
+        content: 'Công cụ kê đơn tự động tính toán liều lượng chuẩn (ví dụ Amoxicillin 500mg, ngày 4 lần) và tự động đối chiếu với danh mục thuốc bệnh nhân đang sử dụng để phát hiện cảnh báo tương tác thuốc chéo, ngăn ngừa sốc thuốc hoặc tương tác bất lợi.',
+        technicalNotes: ['Tự động tính toán liều lượng và thời gian điều trị theo thể trọng/tuổi', 'Ma trận đối soát tương tác thuốc (Drug-Drug Interaction matrix)', 'Liên kết trực tiếp với hệ thống nhà thuốc phân phối thuốc điện tử'],
+        screenshots: [{ url: '/projects/medicare-consult.png', caption: 'Bộ Kê đơn Thuốc Số & Định tuyến Nhà thuốc', alt: 'e-Prescription Builder' }],
+      },
+      {
+        id: 'chapter-07',
+        number: '07',
+        title: 'Phân quyền Vai trò (Bác sĩ, Y tá, Bệnh nhân) & Bảo mật Y tế',
+        content: 'Hệ thống áp dụng cơ chế phân quyền RBAC nghiêm ngặt: Bác sĩ có quyền chẩn đoán và kê đơn; Y tá phụ trách tiếp nhận và ghi nhận chỉ số sinh tồn ban đầu; Bệnh nhân có cổng riêng theo dõi đơn thuốc và lịch hẹn.',
+        technicalNotes: ['Phân quyền người dùng theo vai trò (RBAC) với JWT token an toàn', 'Mã hóa các trường dữ liệu nhạy cảm trong cơ sở dữ liệu', 'Tuân thủ các nguyên tắc bảo vệ quyền riêng tư dữ liệu y tế'],
+      },
+    ],
+    createdAt: '2026-10-18T00:00:00.000Z',
+    updatedAt: '2026-10-19T00:00:00.000Z',
   },
 ];
+
+export interface MediaAsset {
+  _id: string;
+  url: string;
+  filename: string;
+  publicId?: string;
+  altText: string;
+  format?: string;
+  width?: number;
+  height?: number;
+  bytes?: number;
+  createdAt: string | Date;
+}
+

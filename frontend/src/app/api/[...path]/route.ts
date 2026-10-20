@@ -16,13 +16,45 @@ async function proxy(request: Request, context: { params: Promise<{ path: string
 
   const headers = new Headers();
 
-  for (const key of ['content-type', 'cookie', 'origin']) {
+  for (const key of ['content-type', 'cookie']) {
     const value = request.headers.get(key);
 
     if (value) {
       headers.set(key, value);
     }
   }
+
+  // Derive and forward client origin to backend for CSRF validation
+  let origin = request.headers.get('origin');
+  if (!origin) {
+    const referer = request.headers.get('referer');
+    if (referer) {
+      try {
+        origin = new URL(referer).origin;
+      } catch {
+        // ignore
+      }
+    }
+  }
+  if (!origin) {
+    const host = request.headers.get('host');
+    const proto = request.headers.get('x-forwarded-proto') || 'http';
+    if (host) {
+      origin = `${proto}://${host}`;
+    }
+  }
+  if (!origin && process.env.APP_URL) {
+    try {
+      origin = new URL(process.env.APP_URL).origin;
+    } catch {
+      // ignore
+    }
+  }
+  if (!origin) {
+    origin = 'http://localhost:3000';
+  }
+
+  headers.set('origin', origin);
 
   let body: Uint8Array | undefined;
 

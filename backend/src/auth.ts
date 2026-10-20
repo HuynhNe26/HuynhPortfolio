@@ -1,12 +1,15 @@
 import { createHash, randomBytes, scrypt, timingSafeEqual } from 'node:crypto';
 import { promisify } from 'node:util';
 import type { IncomingMessage } from 'node:http';
-import { query } from './database.js';
+import { isDatabaseConfigured, query } from './database.js';
 import { HttpError } from './errors.js';
 
 const deriveKey = promisify(scrypt);
 const sessionLifetime = 8 * 60 * 60;
 export const cookieName = 'nh_admin_session';
+
+// In-memory sessions store for development/preview when PostgreSQL (Neon) is not linked yet
+const inMemorySessions = new Set<string>();
 
 export async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16).toString('hex');
@@ -45,19 +48,33 @@ export async function createSession(request: IncomingMessage): Promise<string> {
   const previous = sessionToken(request);
 
   if (previous) {
-    await query('DELETE FROM sessions WHERE token_hash = $1', [digest(previous)]);
+    if (isDatabaseConfigured()) {
+      try {
+        await query('DELETE FROM sessions WHERE token_hash = $1', [digest(previous)]);
+      } catch {}
+    } else {
+      inMemorySessions.delete(digest(previous));
+    }
   }
 
   const token = randomBytes(32).toString('hex');
   const tokenHash = digest(token);
-  const expiresAt = new Date(Date.now() + sessionLifetime * 1000);
 
-  await query(
-    'INSERT INTO sessions (token_hash, admin_id, expires_at) VALUES ($1, $2, $3)',
-    [tokenHash, 'owner', expiresAt]
-  );
+  if (isDatabaseConfigured()) {
+    const expiresAt = new Date(Date.now() + sessionLifetime * 1000);
+    await query(
+      'INSERT INTO sessions (token_hash, admin_id, expires_at) VALUES ($1, $2, $3)',
+      [tokenHash, 'owner', expiresAt]
+    );
+  } else {
+    inMemorySessions.add(tokenHash);
+  }
 
   return token;
+}
+
+export function deleteSession(token: string): void {
+  inMemorySessions.delete(digest(token));
 }
 
 export async function requireAdmin(request: IncomingMessage): Promise<void> {
@@ -65,6 +82,13 @@ export async function requireAdmin(request: IncomingMessage): Promise<void> {
 
   if (!token) {
     throw new HttpError(401, 'Please sign in to continue.');
+  }
+
+  if (!isDatabaseConfigured()) {
+    if (!inMemorySessions.has(digest(token))) {
+      throw new HttpError(401, 'Your session has expired. Please sign in again.');
+    }
+    return;
   }
 
   const result = await query<{ token_hash: string }>(
@@ -80,15 +104,69 @@ export async function requireAdmin(request: IncomingMessage): Promise<void> {
   }
 }
 
-export function assertOrigin(origin: string | undefined): void {
-  const configured = process.env.APP_URL || (process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : '');
+export function assertOrigin(origin: string | undefined, referer?: string): void {
+  // Extract candidate origin from origin header or fallback to referer
+  let candidate = origin;
+  if (!candidate && referer) {
+    try {
+      candidate = new URL(referer).origin;
+    } catch {
+      // ignore invalid referer URL
+    }
+  }
 
-  if (!configured || origin !== new URL(configured).origin) {
+  if (!candidate) {
+    throw new HttpError(403, 'This request origin is not allowed.');
+  }
+
+  const isDev = process.env.NODE_ENV !== 'production';
+
+  // In development, permit all loopback and local development hosts
+  if (isDev) {
+    try {
+      const parsed = new URL(candidate);
+      if (
+        parsed.hostname === 'localhost' ||
+        parsed.hostname === '127.0.0.1' ||
+        parsed.hostname === '0.0.0.0' ||
+        parsed.hostname.endsWith('.localhost')
+      ) {
+        return;
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  // Parse allowed origins from configured APP_URL (supports comma-separated list)
+  const configuredRaw = process.env.APP_URL || (isDev ? 'http://localhost:3000' : '');
+  const allowedOrigins = configuredRaw
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => {
+      try {
+        return new URL(item).origin;
+      } catch {
+        return '';
+      }
+    })
+    .filter(Boolean);
+
+  if (isDev) {
+    allowedOrigins.push('http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001');
+  }
+
+  if (!allowedOrigins.includes(candidate)) {
     throw new HttpError(403, 'This request origin is not allowed.');
   }
 }
 
 export async function rateLimit(scope: string, maximum: number, windowMs: number): Promise<void> {
+  if (!isDatabaseConfigured()) {
+    return;
+  }
+
   const window = Math.floor(Date.now() / windowMs);
   const id = digest(`${scope}:${window}`);
   const expiresAt = new Date((window + 2) * windowMs);

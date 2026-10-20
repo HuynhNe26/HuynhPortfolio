@@ -9,9 +9,10 @@ import { useLanguage } from '@/context/language-context';
 
 interface ProjectCaseStudyHeroProps {
   project: Project;
+  themeClass?: string;
 }
 
-export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
+export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHeroProps) {
   const { t, lang } = useLanguage();
   const accentColor = project.themeColor || '#7C3AED';
   const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
@@ -41,7 +42,7 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
     : t('case.solo');
 
   return (
-    <header className="hh-case-hero-root">
+    <header className={`hh-case-hero-root ${themeClass || ''}`}>
       <div className="container">
         {/* BACK LINK */}
         <div className="hh-case-back-row">
@@ -70,6 +71,29 @@ export function ProjectCaseStudyHero({ project }: ProjectCaseStudyHeroProps) {
                   className="hh-btn-primary"
                 >
                   {t('case.visitSite')}
+                </a>
+              )}
+              {(project.reportUrl || true) && (
+                <a
+                  href={project.reportUrl || `https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hh-btn-report"
+                  title={lang === 'vi' ? 'Xem báo cáo chi tiết dự án trên Google Docs' : 'View full project report on Google Docs'}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <line x1="10" y1="9" x2="8" y2="9"/>
+                  </svg>
+                  <span>{t('case.viewReport')}</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
                 </a>
               )}
               {project.sourceUrl ? (

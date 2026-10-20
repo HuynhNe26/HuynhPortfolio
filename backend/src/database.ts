@@ -152,9 +152,11 @@ export async function initializeSchema(activePool: Pool): Promise<void> {
       cover_url TEXT,
       live_url TEXT,
       source_url TEXT,
+      report_url TEXT,
       featured BOOLEAN NOT NULL DEFAULT false,
       published BOOLEAN NOT NULL DEFAULT true,
       display_order INT NOT NULL DEFAULT 0,
+      storytelling_style VARCHAR(100),
       chapters JSONB NOT NULL DEFAULT '[]'::jsonb,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -163,6 +165,7 @@ export async function initializeSchema(activePool: Pool): Promise<void> {
     CREATE INDEX IF NOT EXISTS idx_projects_slug ON projects(slug);
     CREATE INDEX IF NOT EXISTS idx_projects_published_featured ON projects(published, featured, display_order, created_at DESC);
     ALTER TABLE projects ADD COLUMN IF NOT EXISTS storytelling_style VARCHAR(100);
+    ALTER TABLE projects ADD COLUMN IF NOT EXISTS report_url TEXT;
 
     CREATE TABLE IF NOT EXISTS rate_limits (
       id VARCHAR(128) PRIMARY KEY,

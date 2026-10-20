@@ -45,6 +45,12 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.eyebrow': 'MY WORK',
     'featured.title': 'Featured Projects',
     'featured.subtitle': "A collection of projects I've built during my academic journey and personal learning, each with unique challenges and real-world impact.",
+    'featured.role': 'Role',
+    'featured.timeline': 'Timeline',
+    'featured.techStack': 'Technologies',
+    'featured.viewDetails': 'View Details',
+    'featured.viewReport': 'View Report',
+    'featured.visitProduct': 'Live Demo',
     'filter.all': 'All',
     'filter.webApp': 'Web Application',
     'filter.landing': 'Landing Page',
@@ -98,6 +104,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Case Study Detail (Frame 3)
     'case.back': '← Back to projects',
     'case.visitSite': 'Visit Website',
+    'case.viewReport': 'View Report (Docs)',
     'case.viewGithub': 'View on GitHub',
     'case.exploreArch': 'Explore Architecture',
     'case.role': 'My Role',
@@ -122,6 +129,7 @@ const translations: Record<Language, Record<string, string>> = {
     'story.ctaMore': 'Explore More Work',
 
     // Projects Page (/projects)
+    'projects.viewReport': 'View Report',
     'projectsPage.eyebrow': 'PRODUCTION SYSTEMS & CASE STUDIES',
     'projectsPage.title': 'Engineered for scale & resilience',
     'projectsPage.desc': 'Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyễn Hoàng Huynh.',
@@ -195,6 +203,12 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.eyebrow': 'DỰ ÁN CỦA TÔI',
     'featured.title': 'Dự án Nổi bật',
     'featured.subtitle': 'Tổng hợp các dự án tôi đã phát triển trong quá trình học đại học và tự nghiên cứu, mỗi dự án đều mang bài toán thực tế và ứng dụng công nghệ hiện đại.',
+    'featured.role': 'Vai trò',
+    'featured.timeline': 'Thời gian',
+    'featured.techStack': 'Công nghệ',
+    'featured.viewDetails': 'Xem chi tiết',
+    'featured.viewReport': 'Xem báo cáo',
+    'featured.visitProduct': 'Xem sản phẩm',
     'filter.all': 'Tất cả',
     'filter.webApp': 'Ứng dụng Web',
     'filter.landing': 'Trang đích Marketing',
@@ -248,6 +262,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Case Study Detail (Frame 3)
     'case.back': '← Quay lại danh sách dự án',
     'case.visitSite': 'Truy cập Website',
+    'case.viewReport': 'Xem báo cáo (Google Docs)',
     'case.viewGithub': 'Xem trên GitHub',
     'case.exploreArch': 'Khám phá Kiến trúc',
     'case.role': 'Vai trò của tôi',
@@ -272,6 +287,7 @@ const translations: Record<Language, Record<string, string>> = {
     'story.ctaMore': 'Xem thêm các dự án khác',
 
     // Projects Page (/projects)
+    'projects.viewReport': 'Xem báo cáo',
     'projectsPage.eyebrow': 'HỆ THỐNG THỰC TẾ & BÀI HỌC KỸ THUẬT',
     'projectsPage.title': 'Thiết kế tối ưu cho Quy mô & Độ Tin cậy',
     'projectsPage.desc': 'Khám phá toàn bộ các ứng dụng web Full-Stack, hệ thống AI Agentic RAG và các nền tảng thương mại thực tế do Nguyễn Hoàng Huynh phát triển.',

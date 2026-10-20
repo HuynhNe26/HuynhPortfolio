@@ -1,14 +1,14 @@
 import { Footer } from '@/components/footer';
+import { FooterRevealWrapper } from '@/components/footer-reveal-wrapper';
 import { Header } from '@/components/header';
+import { ScrollRevealProvider } from '@/components/scroll-reveal-provider';
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="site-layout-root">
-      <div className="site-content-layer">
-        <Header />
-        {children}
-      </div>
-      <Footer />
-    </div>
+    <FooterRevealWrapper footer={<Footer />}>
+      <ScrollRevealProvider />
+      <Header />
+      {children}
+    </FooterRevealWrapper>
   );
 }

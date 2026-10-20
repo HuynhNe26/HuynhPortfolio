@@ -1,4 +1,4 @@
-import { query } from './database.js';
+import { isDatabaseConfigured, query } from './database.js';
 import { HttpError } from './errors.js';
 import type { MediaAsset, Project, ProjectInput, SiteSettings, SiteSettingsInput } from './models.js';
 
@@ -31,6 +31,7 @@ function mapProjectRow(row: any): Project {
     coverUrl: row.cover_url || '',
     liveUrl: row.live_url || '',
     sourceUrl: row.source_url || '',
+    reportUrl: row.report_url || '',
     featured: Boolean(row.featured),
     published: Boolean(row.published),
     order: row.display_order !== null && row.display_order !== undefined ? Number(row.display_order) : 0,
@@ -95,13 +96,14 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
         cover_url = $16,
         live_url = $17,
         source_url = $18,
-        featured = $19,
-        published = $20,
-        display_order = $21,
-        chapters = $22::jsonb,
-        storytelling_style = $23,
-        updated_at = $24
-       WHERE id = $25
+        report_url = $19,
+        featured = $20,
+        published = $21,
+        display_order = $22,
+        chapters = $23::jsonb,
+        storytelling_style = $24,
+        updated_at = $25
+       WHERE id = $26
        RETURNING *`,
       [
         input.title,
@@ -122,6 +124,7 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
         input.coverUrl ?? '',
         input.liveUrl ?? '',
         input.sourceUrl ?? '',
+        input.reportUrl ?? '',
         Boolean(input.featured),
         Boolean(input.published),
         input.order ?? 0,
@@ -143,13 +146,13 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
     `INSERT INTO projects (
       title, slug, summary, category, role, team_size, timeline, status, year,
       technologies, theme_color, theme_bg, problem, approach, outcome,
-      cover_url, live_url, source_url, featured, published, display_order, chapters,
+      cover_url, live_url, source_url, report_url, featured, published, display_order, chapters,
       storytelling_style, created_at, updated_at
     ) VALUES (
       $1, $2, $3, $4, $5, $6, $7, $8, $9,
       $10::jsonb, $11, $12, $13, $14, $15,
-      $16, $17, $18, $19, $20, $21, $22::jsonb,
-      $23, $24, $25
+      $16, $17, $18, $19, $20, $21, $22, $23::jsonb,
+      $24, $25, $26
     ) RETURNING *`,
     [
       input.title,
@@ -170,6 +173,7 @@ export async function saveProject(input: ProjectInput, id?: string): Promise<Pro
       input.coverUrl ?? '',
       input.liveUrl ?? '',
       input.sourceUrl ?? '',
+      input.reportUrl ?? '',
       Boolean(input.featured),
       Boolean(input.published),
       input.order ?? 0,
@@ -193,6 +197,18 @@ export async function deleteProject(id: string): Promise<{ message: string }> {
 }
 
 export async function getSiteSettings(): Promise<SiteSettings> {
+  if (!isDatabaseConfigured()) {
+    return {
+      _id: 'settings',
+      siteTitle: 'Nguyễn Hoàng Huynh — Full-Stack Developer Portfolio',
+      seoDescription: 'Personal developer portfolio and interactive project case studies of Nguyễn Hoàng Huynh.',
+      canonicalUrl: 'https://huynhportfolio.com',
+      contactEmail: 'nguyenhoanghuynh.vn@gmail.com',
+      publicVisibility: true,
+      updatedAt: new Date(),
+    };
+  }
+
   const result = await query('SELECT * FROM site_settings WHERE id = $1', ['settings']);
   if (result.rows.length === 0) {
     return {
@@ -243,6 +259,10 @@ export async function saveSiteSettings(input: SiteSettingsInput): Promise<{ mess
 }
 
 export async function listMediaAssets(): Promise<MediaAsset[]> {
+  if (!isDatabaseConfigured()) {
+    return [];
+  }
+
   const result = await query('SELECT * FROM media_assets ORDER BY created_at DESC LIMIT 100');
   return result.rows.map((row) => ({
     _id: String(row.id),
