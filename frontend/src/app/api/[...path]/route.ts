@@ -126,7 +126,7 @@ async function proxy(request: Request, context: { params: Promise<{ path: string
     // Graceful Netlify serverless fallback if standalone backend port is unreachable
     if (path[0] === 'projects') {
       if (path.length > 1) {
-        const found = defaultProjects.find((p) => p.slug === path[1] || p.id === path[1]);
+        const found = defaultProjects.find((p) => p.slug === path[1] || p._id === path[1]);
         if (found) return Response.json(found);
       } else {
         return Response.json(defaultProjects);
