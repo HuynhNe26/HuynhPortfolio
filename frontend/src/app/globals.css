@@ -10165,8 +10165,8 @@ body {
 .hh-hero-section {
   position: relative;
   background: #F8FAFC;
-  padding-top: 140px;
-  padding-bottom: 60px;
+  padding-top: 104px;
+  padding-bottom: 24px;
   overflow: hidden;
   border-bottom: 1px solid #E2E8F0;
 }
@@ -10209,8 +10209,8 @@ body {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 40px;
-  min-height: 540px;
+  gap: 36px;
+  min-height: auto;
 }
 
 .hh-hero-left {
@@ -10226,7 +10226,7 @@ body {
   background: #EFF6FF;
   border: 1px solid #BFDBFE;
   border-radius: 9999px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -10264,12 +10264,12 @@ body {
 }
 
 .hh-hero-name {
-  font-size: clamp(44px, 5.2vw, 68px);
+  font-size: clamp(42px, 5vw, 64px);
   font-weight: 800;
-  line-height: 1.22;
+  line-height: 1.2;
   letter-spacing: -0.03em;
   color: #0F172A;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   position: relative;
   z-index: 1;
 }
@@ -10414,11 +10414,11 @@ body {
 }
 
 .hh-hero-bio {
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 15.5px;
+  line-height: 1.6;
   color: #475569;
   max-width: 490px;
-  margin: 0 0 32px;
+  margin: 0 0 22px;
   will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -10430,7 +10430,7 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 36px;
+  margin-bottom: 22px;
   flex-wrap: wrap;
   will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
@@ -10566,7 +10566,7 @@ body {
 .hh-portrait-frame {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 390px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -10595,7 +10595,7 @@ body {
   z-index: 1;
   width: 100%;
   height: auto;
-  max-height: 540px;
+  max-height: 450px;
   object-fit: cover;
   object-position: top center;
   border-radius: 28px;
@@ -10648,8 +10648,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 60px;
-  padding-top: 32px;
+  margin-top: 24px;
+  padding-top: 20px;
   border-top: 1px solid #E2E8F0;
   background: transparent;
   will-change: transform, opacity;
