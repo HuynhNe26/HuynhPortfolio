@@ -129,7 +129,12 @@ const translations: Record<Language, Record<string, string>> = {
     'story.ctaMore': 'Explore More Work',
 
     // Projects Page (/projects)
+    'projects.featuresTitle': 'Key Features',
+    'projects.caseStudy': 'Case Study',
     'projects.viewReport': 'View Report',
+    'projects.liveSite': 'Live Demo',
+    'projects.emptyTitle': 'No projects found',
+    'projects.emptyDesc': 'Projects and case studies are being updated regularly.',
     'projectsPage.eyebrow': 'PRODUCTION SYSTEMS & CASE STUDIES',
     'projectsPage.title': 'Engineered for scale & resilience',
     'projectsPage.desc': 'Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyễn Hoàng Huynh.',
@@ -287,7 +292,12 @@ const translations: Record<Language, Record<string, string>> = {
     'story.ctaMore': 'Xem thêm các dự án khác',
 
     // Projects Page (/projects)
+    'projects.featuresTitle': 'Tính năng nổi bật',
+    'projects.caseStudy': 'Xem chi tiết',
     'projects.viewReport': 'Xem báo cáo',
+    'projects.liveSite': 'Trang trực tiếp',
+    'projects.emptyTitle': 'Chưa tìm thấy dự án',
+    'projects.emptyDesc': 'Các dự án kỹ thuật và Case Study đang được cập nhật thường xuyên.',
     'projectsPage.eyebrow': 'HỆ THỐNG THỰC TẾ & BÀI HỌC KỸ THUẬT',
     'projectsPage.title': 'Thiết kế tối ưu cho Quy mô & Độ Tin cậy',
     'projectsPage.desc': 'Khám phá toàn bộ các ứng dụng web Full-Stack, hệ thống AI Agentic RAG và các nền tảng thương mại thực tế do Nguyễn Hoàng Huynh phát triển.',
@@ -445,7 +455,12 @@ const translations: Record<Language, Record<string, string>> = {
     'story.ctaMore': '浏览更多项目',
 
     // Projects Page (/projects)
+    'projects.featuresTitle': '核心特性',
+    'projects.caseStudy': '查看案例',
     'projects.viewReport': '查看报告',
+    'projects.liveSite': '访问网站',
+    'projects.emptyTitle': '暂无项目',
+    'projects.emptyDesc': '工程项目与案例分析正在定期更新中。',
     'projectsPage.eyebrow': '生产级系统与技术案例',
     'projectsPage.title': '专为高可用与可扩展性设计',
     'projectsPage.desc': '探索阮黄兄（Nguyễn Hoàng Huynh）自主构建的全栈 Web 应用、AI Agentic RAG 智能体以及商业化落地系统。',

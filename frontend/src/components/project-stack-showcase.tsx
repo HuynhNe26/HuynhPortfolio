@@ -14,8 +14,8 @@ export function ProjectStackShowcase({ projects }: { projects: Project[] }) {
     return (
       <div className="pro-empty-card">
         <div className="empty-icon" aria-hidden="true">📂</div>
-        <h3>No projects found</h3>
-        <p>Projects and case studies are being updated regularly.</p>
+        <h3>{t('projects.emptyTitle')}</h3>
+        <p>{t('projects.emptyDesc')}</p>
       </div>
     );
   }
@@ -192,7 +192,7 @@ export function ProjectStackShowcase({ projects }: { projects: Project[] }) {
                   )}
 
                   <div className="horizontal-screenshot-overlay">
-                    <span className="overlay-pill">Explore 7-Chapter Storytelling →</span>
+                    <span className="overlay-pill">{t('projects.caseStudy')} →</span>
                   </div>
                 </Link>
               </div>
