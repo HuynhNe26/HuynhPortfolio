@@ -36,7 +36,6 @@ export default async function Image() {
             height: '460px',
             borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(124, 58, 237, 0.35) 0%, rgba(124, 58, 237, 0) 70%)',
-            filter: 'blur(40px)',
           }}
         />
         <div
@@ -48,7 +47,6 @@ export default async function Image() {
             height: '400px',
             borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(37, 99, 235, 0.35) 0%, rgba(37, 99, 235, 0) 70%)',
-            filter: 'blur(40px)',
           }}
         />
 
@@ -58,7 +56,6 @@ export default async function Image() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            zIndex: 10,
           }}
         >
           <div
@@ -135,7 +132,7 @@ export default async function Image() {
                 background: '#34D399',
               }}
             />
-            Available for Hire • 2026
+            <span>Available for Hire • 2026</span>
           </div>
         </div>
 
@@ -145,26 +142,24 @@ export default async function Image() {
             display: 'flex',
             flexDirection: 'column',
             gap: '16px',
-            zIndex: 10,
           }}
         >
           <div
             style={{
+              display: 'flex',
+              flexDirection: 'column',
               fontSize: '56px',
               fontWeight: 900,
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
-              background: 'linear-gradient(to right, #FFFFFF 30%, #C4B5FD 70%, #93C5FD 100%)',
-              backgroundClip: 'text',
-              color: 'transparent',
             }}
           >
-            Full-Stack Web Developer
-            <br />
-            & AI Agentic Systems
+            <span style={{ color: '#FFFFFF' }}>Full-Stack Web Developer</span>
+            <span style={{ color: '#C4B5FD' }}>& AI Agentic Systems</span>
           </div>
           <div
             style={{
+              display: 'flex',
               fontSize: '22px',
               lineHeight: 1.4,
               color: '#CBD5E1',
@@ -183,7 +178,6 @@ export default async function Image() {
             justifyContent: 'space-between',
             paddingTop: '28px',
             borderTop: '1px solid rgba(255, 255, 255, 0.12)',
-            zIndex: 10,
           }}
         >
           {/* Tech Badges */}
@@ -198,6 +192,7 @@ export default async function Image() {
               <span
                 key={tech}
                 style={{
+                  display: 'flex',
                   padding: '6px 14px',
                   borderRadius: '8px',
                   background: 'rgba(255, 255, 255, 0.08)',
