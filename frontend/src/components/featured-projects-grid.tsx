@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage, type Language } from '@/context/language-context';
+import { getLocalizedProject } from '@/lib/project-translations';
 
 interface FeaturedProjectsGridProps {
   projects: Project[];
@@ -97,20 +98,6 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     const card = cardRef.current;
     if (!card) return;
 
-    // Stabilize card when hovering over buttons or links so clicks register with 100% reliability
-    const target = e.target as HTMLElement;
-    if (
-      target.closest('.hh-card-actions-row') ||
-      target.closest('.hh-card-btn') ||
-      target.closest('a') ||
-      target.closest('button')
-    ) {
-      if (card) {
-        card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1.008, 1.008, 1.008)';
-      }
-      return;
-    }
-
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -121,8 +108,8 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     const percentX = (x - centerX) / centerX;
     const percentY = (y - centerY) / centerY;
 
-    // Gentle, subtle 3D tilt (3.8deg for natural elegance)
-    const maxTilt = 3.8;
+    // Premium, noticeable 3D tilt (8.5deg for natural responsiveness)
+    const maxTilt = 8.5;
     const rotateX = (-percentY * maxTilt).toFixed(2);
     const rotateY = (percentX * maxTilt).toFixed(2);
 
@@ -133,26 +120,27 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     rafIdRef.current = requestAnimationFrame(() => {
       // 1. Tilt card in 3D
       if (card) {
-        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.012, 1.012, 1.012)`;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.018, 1.018, 1.018)`;
+        card.style.transition = 'transform 0.08s ease-out';
       }
 
       // 2. Light BEHIND the card follows cursor position in real-time
       if (backlightRef.current) {
-        backlightRef.current.style.opacity = '0.75';
-        backlightRef.current.style.background = `radial-gradient(circle 280px at ${x}px ${y}px, var(--card-glow, #38BDF8) 0%, transparent 75%)`;
-        backlightRef.current.style.transform = `translate3d(${percentX * 16}px, ${percentY * 16}px, 0)`;
+        backlightRef.current.style.opacity = '0.85';
+        backlightRef.current.style.background = `radial-gradient(circle 300px at ${x}px ${y}px, var(--card-glow, #38BDF8) 0%, transparent 75%)`;
+        backlightRef.current.style.transform = `translate3d(${percentX * 20}px, ${percentY * 20}px, 0)`;
       }
 
       // 3. Ambient glow on card surface follows cursor
       if (ambientRef.current) {
-        ambientRef.current.style.opacity = '0.2';
-        ambientRef.current.style.background = `radial-gradient(circle 340px at ${x}px ${y}px, var(--card-glow, #38BDF8) 0%, transparent 65%)`;
+        ambientRef.current.style.opacity = '0.22';
+        ambientRef.current.style.background = `radial-gradient(circle 360px at ${x}px ${y}px, var(--card-glow, #38BDF8) 0%, transparent 65%)`;
       }
 
       // 4. Specular glare highlight on card surface follows cursor
       if (glareRef.current) {
-        glareRef.current.style.opacity = '0.55';
-        glareRef.current.style.background = `radial-gradient(circle 300px at ${x}px ${y}px, rgba(255, 255, 255, 0.45) 0%, transparent 65%)`;
+        glareRef.current.style.opacity = '0.6';
+        glareRef.current.style.background = `radial-gradient(circle 320px at ${x}px ${y}px, rgba(255, 255, 255, 0.45) 0%, transparent 65%)`;
       }
     });
   };
@@ -177,25 +165,26 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
     }
     const card = cardRef.current;
     if (card) {
-      card.style.transform = '';
-      card.style.transition = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     }
     if (backlightRef.current) {
       backlightRef.current.style.opacity = '0';
       backlightRef.current.style.transform = '';
-      backlightRef.current.style.transition = '';
+      backlightRef.current.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
     }
     if (ambientRef.current) {
       ambientRef.current.style.opacity = '0.06';
-      ambientRef.current.style.transition = '';
+      ambientRef.current.style.transition = 'opacity 0.4s ease';
     }
     if (glareRef.current) {
       glareRef.current.style.opacity = '0';
-      glareRef.current.style.transition = '';
+      glareRef.current.style.transition = 'opacity 0.4s ease';
     }
   };
 
   const glowColor = project.themeColor || '#2563EB';
+  const localized = getLocalizedProject(project, lang);
   const formattedTimeline = formatTimelineMonthYear(project.timeline, lang);
   const displayTechs = project.technologies?.slice(0, 4) || [];
   const remainingCount = (project.technologies?.length || 0) - displayTechs.length;
@@ -231,7 +220,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
       >
         <Image
           src={project.coverUrl || '/projects/ticket-concert-hero.png'}
-          alt={project.title}
+          alt={localized.title}
           width={720}
           height={460}
           className="hh-card-img"
@@ -261,13 +250,13 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
           href={`/projects/${project.slug}`}
           className="hh-card-title-link"
         >
-          <h3 className="hh-card-title">{project.title}</h3>
+          <h3 className="hh-card-title">{localized.title}</h3>
         </Link>
 
         {/* PROJECT SUMMARY / MÔ TẢ DỰ ÁN */}
-        {project.summary && (
-          <p className="hh-card-summary" title={project.summary}>
-            {project.summary}
+        {localized.summary && (
+          <p className="hh-card-summary" title={localized.summary}>
+            {localized.summary}
           </p>
         )}
 
@@ -280,8 +269,8 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
               </svg>
               <span>{t('featured.role')}</span>
             </span>
-            <span className="hh-meta-val" title={project.role || 'Full-Stack Developer'}>
-              {project.role || 'Full-Stack Developer'}
+            <span className="hh-meta-val" title={localized.role}>
+              {localized.role}
             </span>
           </div>
 

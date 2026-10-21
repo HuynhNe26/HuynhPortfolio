@@ -20,7 +20,7 @@ export function HeroShowcase({
   githubUrl = 'https://github.com/HuynhNe26',
   linkedinUrl = '',
 }: HeroShowcaseProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [isSettled, setIsSettled] = useState(false);
 
   useEffect(() => {
@@ -55,9 +55,25 @@ export function HeroShowcase({
             <div className="hh-hero-name-wrap">
               <div className="hh-name-glow-aura" aria-hidden="true" />
               <h1 className="hh-hero-name">
-                <span className="hh-name-first">Nguyễn</span>
+                <span className="hh-name-first">{lang === 'zh' ? '阮' : 'Nguyễn'}</span>
                 <br />
-                <span className="hh-name-highlight">Hoàng Huynh</span>
+                <span className="hh-name-highlight">{lang === 'zh' ? '黄兄' : 'Hoàng Huynh'}</span>
+                {lang === 'zh' && (
+                  <span
+                    className="hh-name-sub-latin"
+                    style={{
+                      display: 'block',
+                      fontSize: '0.36em',
+                      fontWeight: 600,
+                      letterSpacing: '0.04em',
+                      color: 'var(--text-muted, #64748B)',
+                      marginTop: '6px',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Nguyễn Hoàng Huynh
+                  </span>
+                )}
               </h1>
             </div>
 

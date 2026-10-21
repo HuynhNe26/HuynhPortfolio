@@ -16,7 +16,7 @@ export function Footer() {
             <Link className="footer-brand" href="/">
               <div className="footer-brand-badge">HH</div>
               <span className="footer-brand-name">
-                Nguyễn Hoàng Huynh
+                {lang === 'zh' ? '阮黄兄 (Nguyễn Hoàng Huynh)' : 'Nguyễn Hoàng Huynh'}
               </span>
             </Link>
             <p className="footer-tagline">
