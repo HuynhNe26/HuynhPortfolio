@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
+import { getLocalizedProject } from '@/lib/project-translations';
 
 interface ProjectCaseStudyHeroProps {
   project: Project;
@@ -14,6 +15,7 @@ interface ProjectCaseStudyHeroProps {
 
 export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHeroProps) {
   const { t, lang } = useLanguage();
+  const localized = getLocalizedProject(project, lang);
   const accentColor = project.themeColor || '#7C3AED';
   const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
     ? t('filter.landing')
@@ -65,9 +67,9 @@ export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHe
               {categoryTag}
             </span>
 
-            <h1 className="hh-case-title">{project.title.toUpperCase()}</h1>
+            <h1 className="hh-case-title">{localized.title.toUpperCase()}</h1>
 
-            <p className="hh-case-summary">{project.summary}</p>
+            <p className="hh-case-summary">{localized.summary}</p>
 
             <div className="hh-case-actions">
               {project.liveUrl && (
@@ -166,7 +168,7 @@ export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHe
             <div className="spec-icon" aria-hidden="true">👤</div>
             <div className="spec-text">
               <span className="spec-label">{t('case.role')}</span>
-              <strong className="spec-val">{project.role}</strong>
+              <strong className="spec-val">{localized.role}</strong>
             </div>
           </div>
 
@@ -182,7 +184,7 @@ export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHe
             <div className="spec-icon" aria-hidden="true">⏱</div>
             <div className="spec-text">
               <span className="spec-label">{t('case.time')}</span>
-              <strong className="spec-val">{project.timeline || String(project.year)}</strong>
+              <strong className="spec-val">{localized.timeline}</strong>
             </div>
           </div>
 

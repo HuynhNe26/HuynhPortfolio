@@ -35,7 +35,7 @@ const SKILLS_LIST = [
  * Placed directly above Featured Projects
  */
 export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <section id="about" data-section="about" className="hh-about-section">
@@ -65,7 +65,7 @@ export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: Abou
               </li>
               <li>
                 <span className="info-icon" aria-hidden="true">📍</span>
-                <span>Đồng Nai, Việt Nam</span>
+                <span>{lang === 'zh' ? '越南同奈 / 胡志明市' : (lang === 'vi' ? 'Đồng Nai & TP. Hồ Chí Minh, Việt Nam' : 'Dong Nai & Ho Chi Minh City, Vietnam')}</span>
               </li>
               <li>
                 <span className="info-icon" aria-hidden="true">📞</span>
@@ -261,9 +261,9 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                 type="button"
                 className="hh-link-more hh-btn-cert-preview"
                 onClick={() => setIsCertModalOpen(true)}
-                title={lang === 'vi' ? 'Xem chứng chỉ' : 'View Certificate'}
+                title={lang === 'vi' ? 'Xem chứng chỉ' : (lang === 'zh' ? '查看证书' : 'View Certificate')}
               >
-                <span>{lang === 'vi' ? 'Xem chứng chỉ' : 'View Certificate'}</span>
+                <span>{lang === 'vi' ? 'Xem chứng chỉ' : (lang === 'zh' ? '查看证书' : 'View Certificate')}</span>
                 <span aria-hidden="true">↗</span>
               </button>
             </div>
@@ -279,7 +279,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                   setIsCertModalOpen(true);
                 }
               }}
-              title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : 'Click to view official certificate'}
+              title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : (lang === 'zh' ? '点击查看官方证书原件' : 'Click to view official certificate')}
             >
               <div className="hh-cert-thumb-preview">
                 <Image
@@ -299,7 +299,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                       <line x1="11" y1="8" x2="11" y2="14" />
                       <line x1="8" y1="11" x2="14" y2="11" />
                     </svg>
-                    <span>{lang === 'vi' ? 'Xem to' : 'Zoom'}</span>
+                    <span>{lang === 'vi' ? 'Xem to' : (lang === 'zh' ? '放大查看' : 'Zoom')}</span>
                   </span>
                 </div>
               </div>
@@ -309,7 +309,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                   <span className="ets-logo-txt-pill">ETS</span>
                   <span className="cert-status-tag">
                     <span className="cert-verified-dot" />
-                    <span>{lang === 'vi' ? 'Đã xác thực' : 'Verified'}</span>
+                    <span>{lang === 'vi' ? 'Đã xác thực' : (lang === 'zh' ? '已官方认证' : 'Verified')}</span>
                   </span>
                 </div>
                 <h4>{t('bento.cert.name')}</h4>

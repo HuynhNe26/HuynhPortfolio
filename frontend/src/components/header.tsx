@@ -196,7 +196,7 @@ export function Header() {
             <path d="M16 16H26" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
             <path d="M26 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
           </svg>
-          <span className="hh-brand-name">NGUYỄN HOÀNG HUYNH</span>
+          <span className="hh-brand-name">{lang === 'zh' ? '阮黄兄 (NH HUYNH)' : 'NGUYỄN HOÀNG HUYNH'}</span>
         </Link>
 
         {/* MOBILE MENU TOGGLE */}

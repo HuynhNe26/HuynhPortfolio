@@ -5,9 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { TechIcon } from './tech-icon';
+import { useLanguage } from '@/context/language-context';
+import { getLocalizedProject } from '@/lib/project-translations';
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
+  const { lang, t } = useLanguage();
   const [inspectOpen, setInspectOpen] = useState(false);
+  const localized = getLocalizedProject(project, lang);
 
   // Extract clean domain from liveUrl for browser window header
   let domain = '';
@@ -98,20 +102,20 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 
         <h3 className="pro-card-title">
           <Link href={`/projects/${project.slug}`} className="pro-title-link">
-            {project.title}
+            {localized.title}
           </Link>
         </h3>
 
-        <p className="pro-card-summary">{project.summary}</p>
+        <p className="pro-card-summary">{localized.summary}</p>
 
         {/* HIGHLIGHTED ENGINEERING SPECS */}
         <div className="pro-specs-snippet">
           <div className="snippet-item">
-            <span className="snippet-label">Role:</span>
-            <span className="snippet-val">{project.role}{project.teamSize ? ` (Team of ${project.teamSize})` : ' (Solo)'}</span>
+            <span className="snippet-label">{lang === 'zh' ? '担任角色:' : (lang === 'vi' ? 'Vai trò:' : 'Role:')}</span>
+            <span className="snippet-val">{localized.role}{project.teamSize ? (lang === 'zh' ? ` (${project.teamSize}人团队)` : ` (Team of ${project.teamSize})`) : (lang === 'zh' ? ' (独立开发)' : ' (Solo)')}</span>
           </div>
           <div className="snippet-item">
-            <span className="snippet-label">Timeline:</span>
+            <span className="snippet-label">{lang === 'zh' ? '项目周期:' : (lang === 'vi' ? 'Thời gian:' : 'Timeline:')}</span>
             <span className="snippet-val">{project.timeline || `${project.year}`}</span>
           </div>
         </div>
