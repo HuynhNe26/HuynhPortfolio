@@ -310,7 +310,7 @@ export const defaultProfile: Profile = {
       score: '550',
       issueDate: 'October 2025',
       verificationUrl: '/certificates/toeic-550.pdf',
-      imageUrl: '/certificates/toeic-550.jpg',
+      imageUrl: '/certificates/toeic-550-thumb.jpg',
       pdfUrl: '/certificates/toeic-550.pdf',
     },
   ],

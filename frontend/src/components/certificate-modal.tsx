@@ -45,7 +45,7 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
 
   if (!isOpen) return null;
 
-  const imageUrl = certificate?.imageUrl || '/certificates/toeic-550.jpg';
+  const imageUrl = certificate?.imageUrl || '/certificates/toeic-550-official.jpg';
   const pdfUrl = certificate?.pdfUrl || '/certificates/toeic-550.pdf';
 
   return (

@@ -278,7 +278,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
             >
               <div className="hh-cert-thumb-preview">
                 <Image
-                  src="/certificates/toeic-550.jpg"
+                  src="/certificates/toeic-550-thumb.jpg"
                   alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
                   width={140}
                   height={100}
@@ -392,7 +392,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
           issuer: 'ETS (Educational Testing Service)',
           score: '550 / 990',
           issueDate: lang === 'vi' ? 'Tháng 10, 2025' : 'October 2025',
-          imageUrl: '/certificates/toeic-550.jpg',
+          imageUrl: '/certificates/toeic-550-official.jpg',
         }}
       />
     </section>

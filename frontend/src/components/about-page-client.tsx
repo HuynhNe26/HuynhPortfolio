@@ -161,7 +161,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
               >
                 <div className="hh-cert-thumb-preview">
                   <Image
-                    src="/certificates/toeic-550.jpg"
+                    src="/certificates/toeic-550-thumb.jpg"
                     alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
                     width={160}
                     height={115}
@@ -203,7 +203,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 issuer: 'ETS (Educational Testing Service)',
                 score: '550 / 990',
                 issueDate: lang === 'vi' ? 'Tháng 10, 2025' : lang === 'zh' ? '2025年10月' : 'October 2025',
-                imageUrl: '/certificates/toeic-550.jpg',
+                imageUrl: '/certificates/toeic-550-official.jpg',
               }}
             />
           </section>
