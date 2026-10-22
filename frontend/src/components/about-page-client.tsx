@@ -152,22 +152,16 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
             <p className="eyebrow">{lang === 'vi' ? '03 / CHỨNG CHỈ XÁC THỰC' : lang === 'zh' ? '03 / 权威资格认证' : '03 / CERTIFICATIONS'}</p>
             <h2>{lang === 'vi' ? 'Chứng chỉ & Văn bằng Quốc tế' : lang === 'zh' ? '权威认证证书' : 'Verified Credentials'}</h2>
             <div className="certificate-cards">
-              <div
+              <a
+                href="/certificates/toeic-550.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="certificate-card certificate-card-interactive"
-                onClick={() => setIsCertModalOpen(true)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setIsCertModalOpen(true);
-                  }
-                }}
-                title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : lang === 'zh' ? '点击查看官方权威证书' : 'Click to view official certificate'}
+                title={lang === 'vi' ? 'Nhấn để mở file PDF chứng chỉ chính thức (mở tab mới)' : lang === 'zh' ? '点击在新标签页打开官方证书 PDF' : 'Click to open official certificate PDF in new tab'}
               >
                 <div className="hh-cert-thumb-preview">
                   <Image
-                    src="/certificates/toeic-550.jpg"
+                    src="/certificates/toeic-550-thumb.jpg"
                     alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
                     width={160}
                     height={115}
@@ -175,10 +169,9 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                   />
                   <div className="hh-cert-thumb-overlay" aria-hidden="true">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                      <line x1="11" y1="8" x2="11" y2="14" />
-                      <line x1="8" y1="11" x2="14" y2="11" />
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
                     </svg>
                   </div>
                 </div>
@@ -195,11 +188,11 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                   <div className="cert-bottom-actions">
                     <div className="cert-badge">{lang === 'vi' ? 'Điểm đạt: 550 / 990' : lang === 'zh' ? '考试总分: 550 / 990' : 'Score: 550 / 990'}</div>
                     <span className="cert-view-cta">
-                      {lang === 'vi' ? 'Xem ảnh chứng chỉ ↗' : lang === 'zh' ? '查看认证大图 ↗' : 'View Certificate ↗'}
+                      {lang === 'vi' ? 'Xem chi tiết chứng chỉ (PDF) ↗' : lang === 'zh' ? '查看官方证书详情 (PDF) ↗' : 'View Certificate PDF ↗'}
                     </span>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
 
             <CertificateModal
@@ -210,7 +203,7 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 issuer: 'ETS (Educational Testing Service)',
                 score: '550 / 990',
                 issueDate: lang === 'vi' ? 'Tháng 10, 2025' : lang === 'zh' ? '2025年10月' : 'October 2025',
-                imageUrl: '/certificates/toeic-550.jpg',
+                imageUrl: '/certificates/toeic-550-official.jpg',
               }}
             />
           </section>

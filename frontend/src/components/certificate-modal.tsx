@@ -13,6 +13,7 @@ interface CertificateModalProps {
     score: string;
     issueDate: string;
     imageUrl?: string;
+    pdfUrl?: string;
   };
 }
 
@@ -44,7 +45,8 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
 
   if (!isOpen) return null;
 
-  const imageUrl = certificate?.imageUrl || '/certificates/toeic-550.jpg';
+  const imageUrl = certificate?.imageUrl || '/certificates/toeic-550-official.jpg';
+  const pdfUrl = certificate?.pdfUrl || '/certificates/toeic-550.pdf';
 
   return (
     <div
@@ -118,12 +120,12 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
 
           <div className="cert-modal-actions">
             <a
-              href={imageUrl}
+              href={pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="cert-btn-full"
             >
-              <span>{lang === 'vi' ? 'Mở ảnh gốc chất lượng cao' : lang === 'zh' ? '查看高清证书原图' : 'Open Full Image'}</span>
+              <span>{lang === 'vi' ? 'Xem chi tiết chứng chỉ (PDF) ↗' : lang === 'zh' ? '查看官方证书详情 (PDF) ↗' : 'View Certificate PDF ↗'}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                 <polyline points="15 3 21 3 21 9" />

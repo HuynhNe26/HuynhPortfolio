@@ -257,33 +257,28 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
           <div className="hh-bento-card hh-cert-card">
             <div className="hh-card-top-row">
               <h3>{t('bento.cert.title')}</h3>
-              <button
-                type="button"
+              <a
+                href="/certificates/toeic-550.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hh-link-more hh-btn-cert-preview"
-                onClick={() => setIsCertModalOpen(true)}
-                title={lang === 'vi' ? 'Xem chứng chỉ' : (lang === 'zh' ? '查看证书' : 'View Certificate')}
+                title={lang === 'vi' ? 'Xem chi tiết chứng chỉ PDF chính thức (mở tab mới)' : (lang === 'zh' ? '在新标签页打开官方证书 PDF' : 'Open official certificate PDF in new tab')}
               >
-                <span>{lang === 'vi' ? 'Xem chứng chỉ' : (lang === 'zh' ? '查看证书' : 'View Certificate')}</span>
+                <span>{lang === 'vi' ? 'Xem chi tiết PDF' : (lang === 'zh' ? '查看证书 PDF' : 'View PDF')}</span>
                 <span aria-hidden="true">↗</span>
-              </button>
+              </a>
             </div>
 
-            <div
+            <a
+              href="/certificates/toeic-550.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hh-cert-interactive-box"
-              onClick={() => setIsCertModalOpen(true)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setIsCertModalOpen(true);
-                }
-              }}
-              title={lang === 'vi' ? 'Nhấn để xem chứng chỉ chính thức' : (lang === 'zh' ? '点击查看官方证书原件' : 'Click to view official certificate')}
+              title={lang === 'vi' ? 'Nhấn để xem chi tiết chứng chỉ TOEIC (file PDF chính thức mở trong tab mới)' : (lang === 'zh' ? '点击在新标签页查看官方证书 PDF' : 'Click to view official TOEIC certificate PDF')}
             >
               <div className="hh-cert-thumb-preview">
                 <Image
-                  src="/certificates/toeic-550.jpg"
+                  src="/certificates/toeic-550-thumb.jpg"
                   alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
                   width={140}
                   height={100}
@@ -294,12 +289,11 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                 <div className="hh-cert-thumb-overlay" aria-hidden="true">
                   <span className="cert-zoom-btn">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                      <line x1="11" y1="8" x2="11" y2="14" />
-                      <line x1="8" y1="11" x2="14" y2="11" />
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
                     </svg>
-                    <span>{lang === 'vi' ? 'Xem to' : (lang === 'zh' ? '放大查看' : 'Zoom')}</span>
+                    <span>PDF ↗</span>
                   </span>
                 </div>
               </div>
@@ -319,8 +313,11 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                   <span className="meta-dot">•</span>
                   <span className="score-highlight">{t('bento.cert.score')}</span>
                 </div>
+                <div className="hh-cert-view-link">
+                  <span>{lang === 'vi' ? 'Xem chi tiết chứng chỉ (PDF) ↗' : (lang === 'zh' ? '查看官方证书详情 (PDF) ↗' : 'View Certificate PDF ↗')}</span>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -395,7 +392,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
           issuer: 'ETS (Educational Testing Service)',
           score: '550 / 990',
           issueDate: lang === 'vi' ? 'Tháng 10, 2025' : 'October 2025',
-          imageUrl: '/certificates/toeic-550.jpg',
+          imageUrl: '/certificates/toeic-550-official.jpg',
         }}
       />
     </section>
