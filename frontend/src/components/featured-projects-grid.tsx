@@ -8,6 +8,7 @@ import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage, type Language } from '@/context/language-context';
 import { getLocalizedProject } from '@/lib/project-translations';
+import { useProjectLoading } from '@/components/project-loading-overlay';
 
 interface FeaturedProjectsGridProps {
   projects: Project[];
@@ -78,6 +79,7 @@ export function formatTimelineMonthYear(rawTimeline?: string, lang: Language = '
 
 function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
   const { t, lang } = useLanguage();
+  const { showLoading } = useProjectLoading();
   const router = useRouter();
   const cardRef = useRef<HTMLDivElement>(null);
   const backlightRef = useRef<HTMLDivElement>(null);
@@ -201,6 +203,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
         // Allow clicking card background to navigate, but let all anchors and buttons handle their own clicks
         const target = e.target as HTMLElement;
         if (target.closest('a') || target.closest('button')) return;
+        showLoading(project.slug);
         router.push(`/projects/${project.slug}`);
       }}
     >
@@ -343,7 +346,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
             </a>
           )}
 
-          {project.liveUrl ? (
+          {project.liveUrl && project.slug !== 'nh-huynh-portfolio' && (
             <a
               href={project.liveUrl}
               target="_blank"
@@ -358,16 +361,6 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
                 <line x1="10" y1="14" x2="21" y2="3"/>
               </svg>
             </a>
-          ) : (
-            <Link
-              href={`/projects/${project.slug}`}
-              className="hh-card-btn hh-btn-card-live"
-            >
-              <span>{t('featured.visitProduct')}</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
           )}
         </div>
       </div>

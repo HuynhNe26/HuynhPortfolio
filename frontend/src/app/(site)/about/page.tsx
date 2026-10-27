@@ -5,11 +5,12 @@ import { BreadcrumbsJsonLd } from '@/components/seo-json-ld';
 import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
-  title: 'Giới thiệu & Hồ sơ Kỹ thuật — Nguyễn Hoàng Huynh | Full-Stack Web Developer',
+  title: 'Về tôi & Hồ sơ Kỹ thuật — Nguyễn Hoàng Huynh | Full-Stack Web Developer',
   description:
     'Hồ sơ kỹ thuật của Nguyễn Hoàng Huynh: Sinh viên ngành Công nghệ thông tin Học viện Hàng không Việt Nam (GPA 3.1/4.0), chứng chỉ TOEIC 550, năng lực Full-Stack Next.js 16, Node.js, AI Agentic RAG và cơ sở dữ liệu cloud.',
   keywords: [
     ...siteConfig.keywords,
+    'Về tôi Nguyễn Hoàng Huynh',
     'Giới thiệu Nguyễn Hoàng Huynh',
     'Nguyen Hoang Huynh Bio',
     'CV Nguyễn Hoàng Huynh',
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     canonical: '/about',
   },
   openGraph: {
-    title: 'Giới thiệu & Hồ sơ Kỹ thuật — Nguyễn Hoàng Huynh',
+    title: 'Về tôi & Hồ sơ Kỹ thuật — Nguyễn Hoàng Huynh',
     description:
       'Hồ sơ năng lực kỹ thuật, quá trình đào tạo tại Học viện Hàng không Việt Nam (GPA 3.1/4.0), chứng chỉ TOEIC 550 và chuyên môn Full-Stack Web Developer của Nguyễn Hoàng Huynh.',
     url: '/about',
@@ -46,7 +47,7 @@ export default async function AboutPage() {
       <BreadcrumbsJsonLd
         items={[
           { name: 'Trang chủ', url: '/' },
-          { name: 'Giới thiệu', url: '/about' },
+          { name: 'Về tôi', url: '/about' },
         ]}
       />
       <AboutPageClient profile={profile} />

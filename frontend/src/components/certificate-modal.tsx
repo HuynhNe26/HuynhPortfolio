@@ -102,7 +102,7 @@ export function CertificateModal({ isOpen, onClose, certificate }: CertificateMo
           <div className="cert-modal-meta-pills">
             <div className="cert-pill">
               <span className="pill-k">{lang === 'vi' ? 'Thí sinh' : lang === 'zh' ? '考生姓名' : 'Candidate'}:</span>
-              <span className="pill-v">Nguyễn Hoàng Huynh</span>
+              <span className="pill-v">{lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}</span>
             </div>
             <div className="cert-pill highlight">
               <span className="pill-k">{lang === 'vi' ? 'Tổng điểm' : lang === 'zh' ? '考试总分' : 'Total Score'}:</span>

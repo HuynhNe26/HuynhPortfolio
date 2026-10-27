@@ -72,7 +72,7 @@ export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHe
             <p className="hh-case-summary">{localized.summary}</p>
 
             <div className="hh-case-actions">
-              {project.liveUrl && (
+              {project.liveUrl && project.slug !== 'nh-huynh-portfolio' && (
                 <a
                   href={project.liveUrl}
                   target="_blank"

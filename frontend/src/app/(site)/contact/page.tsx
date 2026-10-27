@@ -27,26 +27,51 @@ export default function Contact() {
           )}
         </h1>
         <p>{t('contactPage.desc')}</p>
-        <div className="contact-note">
-          <span aria-hidden="true" style={{ fontSize: '28px' }}>
-            ✉️
-          </span>
-          <p>
-            {t('contactPage.directChannel')}
-          </p>
-        </div>
+        <div className="contact-channels-group">
+          <a
+            href="mailto:nguyenhoanghuynh.vn@gmail.com"
+            className="contact-channel-card"
+            title={lang === 'vi' ? 'Gửi email trực tiếp' : lang === 'zh' ? '发送邮件' : 'Send direct email'}
+          >
+            <div className="channel-icon-badge" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+            <div className="channel-info">
+              <span className="channel-label">{t('contactPage.directChannel')}</span>
+              <span className="channel-val">nguyenhoanghuynh.vn@gmail.com</span>
+            </div>
+            <div className="channel-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </div>
+          </a>
 
-        <div className="contact-note" style={{ marginTop: '16px' }}>
-          <span aria-hidden="true" style={{ fontSize: '28px' }}>
-            📞
-          </span>
-          <p>
-            {t('contactPage.phoneDirect')}
-            <br />
-            <a href="tel:+84937569205" className="text-link" style={{ fontSize: '16px', fontWeight: 700 }}>
-              +84 937 569 205
-            </a>
-          </p>
+          <a
+            href="tel:+84937569205"
+            className="contact-channel-card"
+            title={lang === 'vi' ? 'Gọi điện thoại hoặc kết nối Zalo' : lang === 'zh' ? '拨打电话或添加 Zalo' : 'Direct Call or Zalo'}
+          >
+            <div className="channel-icon-badge" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <div className="channel-info">
+              <span className="channel-label">{t('contactPage.phoneDirect')}</span>
+              <span className="channel-val">+84 937 569 205</span>
+            </div>
+            <div className="channel-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </div>
+          </a>
         </div>
       </div>
 

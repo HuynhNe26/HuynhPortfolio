@@ -15,7 +15,7 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Nav
     'nav.home': 'Home',
-    'nav.about': 'About',
+    'nav.about': 'About Me',
     'nav.projects': 'Projects',
     'nav.experience': 'Experience',
     'nav.education': 'Education',
@@ -61,7 +61,7 @@ const translations: Record<Language, Record<string, string>> = {
     'bento.about.eyebrow': 'ABOUT ME',
     'bento.about.heading1': 'Turning Ideas',
     'bento.about.heading2': 'Into Real Products',
-    'bento.about.bio': "I'm Nguyễn Hoàng Huynh, a 3rd year Information Technology student at Vietnam Aviation Academy. I'm passionate about web development and love building products that solve real-world problems.",
+    'bento.about.bio': "I'm Nguyen Hoang Huynh, a 3rd year Information Technology student at Vietnam Aviation Academy. I'm passionate about web development and love building products that solve real-world problems.",
     'bento.about.downloadCv': 'Download CV',
     'bento.badge.student': '3rd year',
     'bento.badge.studentSub': 'IT Student',
@@ -137,7 +137,7 @@ const translations: Record<Language, Record<string, string>> = {
     'projects.emptyDesc': 'Projects and case studies are being updated regularly.',
     'projectsPage.eyebrow': 'PRODUCTION SYSTEMS & CASE STUDIES',
     'projectsPage.title': 'Engineered for scale & resilience',
-    'projectsPage.desc': 'Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyễn Hoàng Huynh.',
+    'projectsPage.desc': 'Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyen Hoang Huynh.',
 
     // About Page (/about)
     'aboutPage.eyebrow': 'PROFILE & BACKGROUND',
@@ -178,7 +178,7 @@ const translations: Record<Language, Record<string, string>> = {
   vi: {
     // Nav
     'nav.home': 'Trang chủ',
-    'nav.about': 'Giới thiệu',
+    'nav.about': 'Về tôi',
     'nav.projects': 'Dự án',
     'nav.experience': 'Kinh nghiệm',
     'nav.education': 'Học vấn',

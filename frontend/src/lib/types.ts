@@ -933,7 +933,7 @@ export const defaultProjects: Project[] = [
     themeColor: '#2563EB',
     themeBg: '#EFF6FF',
     coverUrl: '/projects/portfolio-hero.png',
-    liveUrl: 'http://localhost:3000',
+    liveUrl: '',
     sourceUrl: 'https://github.com/HuynhNe26/HuynhPortfolio',
     reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
     featured: true,
@@ -963,6 +963,18 @@ export const defaultProjects: Project[] = [
         description: 'Sân khấu trực quan ghim cố định, radar hotspot định vị thành phần UI, con trỏ thao tác mô phỏng và bộ simulator thử nghiệm trực tiếp.',
       },
       {
+        url: '/projects/portfolio-themes.png',
+        caption: 'Mỗi Dự án Sở hữu Animation & Storytelling Riêng biệt',
+        alt: 'Bespoke Domain-Specific Storytelling Themes',
+        description: 'Giao diện độc bản theo từng dự án: Ticket Concert sóng âm Cyber, Fashion Nail sang trọng, ExamPlatform radar AI proctoring.',
+      },
+      {
+        url: '/projects/portfolio-bento.png',
+        caption: 'Hệ thống Kỹ năng & Khối Bento Grid Tương tác',
+        alt: 'Interactive Skills Matrix & Bento Grid Layout',
+        description: 'Tổ chức ma trận kỹ năng phân loại theo danh mục (Frontend, Backend, Database, Cloud APIs), khối Học vấn VAA và chứng chỉ TOEIC 550.',
+      },
+      {
         url: '/projects/portfolio-admin.png',
         caption: 'Cổng Quản trị Nội dung CMS Bảo mật Phiên HttpOnly',
         alt: 'Portfolio CMS Admin Portal',
@@ -970,9 +982,9 @@ export const defaultProjects: Project[] = [
       },
       {
         url: '/projects/portfolio-about.png',
-        caption: 'Hồ sơ Năng lực Kỹ thuật & Chứng chỉ Xác thực',
-        alt: 'About Profile & Credentials',
-        description: 'Thông tin sinh viên năm 3 Học viện Hàng không Việt Nam, chứng chỉ TOEIC 550, cây kỹ năng phân tầng Frontend/Backend/Database/APIs.',
+        caption: 'Trang Hồ sơ Kỹ thuật Về tôi (/about) & Giá trị Kỹ thuật',
+        alt: 'About Profile & Technical Credentials',
+        description: 'Trang Về tôi độc lập với thông tin học vấn VAA GPA 3.1, chứng chỉ TOEIC 550, hệ sinh thái công nghệ và 4 nguyên tắc kỹ thuật cốt lõi.',
       },
     ],
     features: [
@@ -1383,6 +1395,284 @@ export const defaultProjects: Project[] = [
     ],
     createdAt: '2026-10-18T00:00:00.000Z',
     updatedAt: '2026-10-19T00:00:00.000Z',
+  },
+  {
+    _id: 'default-08',
+    title: 'Smart Rental House Management & Local AI OCR — Nhà Trọ Thanh Tâm',
+    slug: 'rent-house-smart-management',
+    summary:
+      'Hệ thống quản trị nhà trọ toàn diện với Microservice AI OCR nhận diện chỉ số điện nước từ ảnh chụp thực tế, quy trình duyệt Human-in-the-loop, tự động lập hóa đơn đa kênh (SMS OTP & Email Resend), ký hợp đồng điện tử bất biến bảo mật mã băm SHA-256 trên Neon PostgreSQL và ứng dụng di động Android APK (Capacitor).',
+    category: 'PropTech & Local AI Microservices',
+    role: 'Full-Stack Developer & AI Microservices Architect',
+    teamSize: 1,
+    timeline: 'Tháng 8, 2025 – Tháng 10, 2026',
+    status: 'Completed',
+    year: 2026,
+    technologies: [
+      'React 18',
+      'Vite 6',
+      'Node.js (Express)',
+      'PostgreSQL (Neon)',
+      'FastAPI (Python)',
+      'OpenCV',
+      'Tesseract OCR',
+      'Capacitor 8 (Android/iOS)',
+      'Resend API',
+      'SMS OTP',
+      'PDFKit (SHA-256)',
+      'Docker',
+    ],
+    themeColor: '#0284C7',
+    themeBg: '#F0F9FF',
+    coverUrl: '/projects/rent-house-hero.png',
+    liveUrl: 'https://nhatrothanhtam.netlify.app',
+    sourceUrl: 'https://github.com/HuynhNe26/rent_house',
+    reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
+    featured: true,
+    published: true,
+    order: 8,
+    storytellingStyle: 'sticky-split',
+    problem:
+      'Chủ nhà trọ gặp nhiều khó khăn khi ghi số điện nước thủ công bằng sổ sách: tốn thời gian, dễ nhầm lẫn số liệu, hóa đơn tính tay dễ gây tranh chấp với khách thuê. Hợp đồng giấy truyền thống dễ thất lạc hoặc bị sửa đổi, và khách thuê (đặc biệt người lớn tuổi) khó theo dõi lịch sử tiêu thụ minh bạch.',
+    approach:
+      'Xây dựng giải pháp PropTech khép kín: Microservice AI OCR nhận diện chỉ số công tơ điện nước kèm phân tích chất lượng ảnh (độ mờ Laplacian variance), quy trình duyệt Human-In-The-Loop minh bạch, tự động hóa tính tiền điện bậc thang & dịch vụ, phát thông báo đa kênh SMS OTP/Email, và ký hợp đồng số trên màn hình cảm ứng lưu trữ mã băm SHA-256 với database trigger ngăn chặn sửa đổi.',
+    outcome:
+      'Tiết kiệm 85% thời gian chốt số điện nước hàng tháng, độ chính xác nhận diện AI đạt 98.6%, minh bạch 100% hình ảnh thực tế cho khách thuê, loại bỏ hoàn toàn rủi ro gian lận hợp đồng và phát hành ứng dụng di động Android APK cài đặt trực tiếp.',
+    gallery: [
+      {
+        url: '/projects/rent-house-hero.png',
+        caption: 'Cổng Khám Phá & Danh Mục Phòng Trọ Nhà Trọ Thanh Tâm',
+        alt: 'Landing Page & Catalog Phòng Trọ Nhà Trọ Thanh Tâm',
+        description: 'Trang chủ tìm kiếm phòng trọ tiện nghi, bảng giá niêm yết minh bạch và bộ lọc phòng trống thời gian thực.',
+      },
+      {
+        url: '/projects/rent-house-admin-dashboard.png',
+        caption: 'Bảng Điều Khiển Quản Trị & Phân Tích Tài Chính Nhà Trọ',
+        alt: 'Admin Dashboard Quản Trị Nhà Trọ Thanh Tâm',
+        description: 'Tổng quan tỷ lệ lấp đầy phòng, doanh thu thực thu, tiền điện, tiền nước và biểu đồ tiêu thụ.',
+      },
+      {
+        url: '/projects/rent-house-ai-meters.png',
+        caption: 'Giao Diện Ghi Chỉ Số Điện Nước & AI OCR Đối Chiếu Ảnh Thực Tế',
+        alt: 'AI OCR Meter Reading & Human-in-the-loop Review',
+        description: 'Động cơ AI OCR nhận diện chỉ số công tơ điện nước, kiểm tra độ mờ ảnh bằng phương sai Laplacian và quy trình duyệt Human-in-the-loop.',
+      },
+      {
+        url: '/projects/rent-house-billing.png',
+        caption: 'Quản Lý Hóa Đơn & Trạng Thái Gửi Thông Báo Tự Động',
+        alt: 'Admin Bills Management & Multi-channel Dispatch',
+        description: 'Tự động tính tiền phòng + điện nước + dịch vụ với Snapshot Pricing và phát thông báo qua SMS OTP & Email Resend.',
+      },
+      {
+        url: '/projects/rent-house-contracts.png',
+        caption: 'Quản Lý Hợp Đồng Điện Tử Bất Biến với Mã Băm SHA-256',
+        alt: 'Admin Electronic Contracts Management',
+        description: 'Quản lý hợp đồng số lưu trữ mã băm SHA-256 và trigger CSDL ngăn chặn sửa đổi hoặc xóa dữ liệu.',
+      },
+      {
+        url: '/projects/rent-house-tenant-portal.png',
+        caption: 'Cổng Thông Tin Người Thuê Dễ Dùng & Tra Cứu Ảnh Đồng Hồ Thực Tế',
+        alt: 'Tenant Portal High-Contrast Accessible Dashboard',
+        description: 'Giao diện công thái học dành cho người thuê với chữ to, số tiền nổi bật và modal phóng to ảnh chụp đồng hồ thực tế.',
+      },
+      {
+        url: '/projects/rent-house-signing.png',
+        caption: 'Khung Ký Hợp Đồng Cảm Ứng HTML5 Canvas SignaturePad',
+        alt: 'HTML5 Canvas SignaturePad on Touch Devices',
+        description: 'Ký số trực tiếp bằng ngón tay hoặc bút cảm ứng trên điện thoại thông minh.',
+      },
+      {
+        url: '/projects/rent-house-mobile.png',
+        caption: 'Ứng Dụng Di Động Android APK & Thanh Điều Hướng Liquid Glass Dock',
+        alt: 'Mobile Card UI & Liquid Glass Dock Navigation',
+        description: 'Ứng dụng di động Native đóng gói bằng Capacitor 8 và thanh dock kính lỏng phong cách Apple.',
+      },
+      {
+        url: '/projects/rent-house-meter-real.jpg',
+        caption: 'Ảnh Chụp Thực Tế Đồng Hồ Điện GELEX EMIC CV140',
+        alt: 'Actual Electric Meter Photo from Boarding House',
+        description: 'Hình ảnh công tơ điện thực tế được hệ thống AI OCR xử lý, nhận diện số và lưu trữ đối chiếu.',
+      },
+    ],
+    features: [
+      {
+        id: 'feat-rh-01',
+        title: 'Local AI OCR & Laplacian Blur Detector',
+        description: 'Microservice nhận diện chỉ số đồng hồ điện nước tự động, đánh giá chất lượng ảnh bằng phương sai Laplacian, gắn confidence score và đối chiếu Human-in-the-loop.',
+        category: 'AI & Computer Vision',
+        screenshotUrl: '/projects/rent-house-ai-meters.png',
+        screenshotAlt: 'AI OCR Meter Reading & Human-in-the-loop Review',
+      },
+      {
+        id: 'feat-rh-02',
+        title: 'Automated Multi-Channel Billing (SMS & Email)',
+        description: 'Tự động tập hợp chi phí phòng, điện, nước và dịch vụ với Snapshot Pricing, đồng thời gửi thông báo tức thời qua SMS OTP và Resend API.',
+        category: 'Automated Billing',
+        screenshotUrl: '/projects/rent-house-billing.png',
+        screenshotAlt: 'Admin Bills Management & Multi-channel Dispatch',
+      },
+      {
+        id: 'feat-rh-03',
+        title: 'Immutable Electronic Contracts (SHA-256)',
+        description: 'Ký hợp đồng trực tiếp trên canvas cảm ứng, xuất PDF bảo mật mã băm SHA-256 và khóa bất biến vĩnh viễn bằng database trigger trên Neon PostgreSQL.',
+        category: 'Security & Legal Tech',
+        screenshotUrl: '/projects/rent-house-contracts.png',
+        screenshotAlt: 'Admin Electronic Contracts Management',
+      },
+      {
+        id: 'feat-rh-04',
+        title: 'Accessible High-Contrast Tenant Portal',
+        description: 'Cổng dành riêng cho người thuê tối ưu font chữ to rõ (≥18px), số tiền đậm nét (32px), đăng nhập OTP và modal phóng to ảnh chụp đồng hồ thực tế.',
+        category: 'Accessibility & UI/UX',
+        screenshotUrl: '/projects/rent-house-tenant-portal.png',
+        screenshotAlt: 'Tenant Portal High-Contrast Accessible Dashboard',
+      },
+      {
+        id: 'feat-rh-05',
+        title: 'Cross-Platform Mobile App (Android APK & iOS)',
+        description: 'Đóng gói đa nền tảng với Capacitor 8, thanh điều hướng Liquid Glass Dock, giao diện card thông minh không cuộn ngang và tệp APK cài đặt trực tiếp.',
+        category: 'Mobile Engineering',
+        screenshotUrl: '/projects/rent-house-mobile.png',
+        screenshotAlt: 'Mobile Card UI & Liquid Glass Dock Navigation',
+      },
+    ],
+    chapters: [
+      {
+        id: 'chapter-01',
+        number: '01',
+        title: 'Cổng Khám Phá & Danh Mục Phòng Trọ Minh Bạch (Landing Page)',
+        content:
+          'Giao diện công khai tại nhatrothanhtam.netlify.app chào đón khách tìm phòng với danh mục trực quan các phòng trọ tiện nghi, bảng giá niêm yết rõ ràng, bộ lọc trạng thái (còn trống, đang thuê), cùng thông tin địa chỉ, tiện ích và vị trí thực tế.',
+        technicalNotes: [
+          'Giao diện chuẩn SEO Schema.org (ApartmentComplex) & OpenGraph',
+          'Hiển thị danh mục phòng với trạng thái thời gian thực và giá thuê minh bạch',
+          'Bố cục Responsive tối ưu cho cả máy tính và điện thoại di động',
+        ],
+        screenshots: [
+          {
+            url: '/projects/rent-house-hero.png',
+            caption: 'Cổng Khám Phá & Danh Mục Phòng Trọ Nhà Trọ Thanh Tâm',
+            alt: 'Landing Page & Catalog Phòng Trọ Nhà Trọ Thanh Tâm',
+          },
+        ],
+      },
+      {
+        id: 'chapter-02',
+        number: '02',
+        title: 'Trung Tâm Quản Trị & Phân Tích Hiệu Suất Vận Hành (Admin Dashboard)',
+        content:
+          'Bảng điều khiển quản trị trung tâm dành cho chủ nhà trọ, tổng hợp nhanh tỷ lệ lấp đầy phòng, doanh thu tiền phòng, tiền điện, tiền nước thực thu so với dự kiến. Biểu đồ trực quan theo dõi lượng tiêu thụ điện nước trung bình 3-6 tháng và cảnh báo nhanh các phòng quá hạn thanh toán.',
+        technicalNotes: [
+          'Bảo mật phiên đăng nhập Quản trị viên với HTTP-Only Cookie & Rate Limiting',
+          'Tổng hợp số liệu tài chính, doanh thu và công nợ tức thời',
+          'Biểu đồ Recharts phân tích xu hướng tiêu thụ điện nước theo chu kỳ tháng',
+        ],
+        screenshots: [
+          {
+            url: '/projects/rent-house-admin-dashboard.png',
+            caption: 'Bảng Điều Khiển Quản Trị & Phân Tích Tài Chính Nhà Trọ',
+            alt: 'Admin Dashboard Quản Trị Nhà Trọ Thanh Tâm',
+          },
+        ],
+      },
+      {
+        id: 'chapter-03',
+        number: '03',
+        title: 'Động Cơ AI OCR Nhận Diện Chỉ Số & Quy Trình Duyệt Human-In-The-Loop',
+        content:
+          'Điểm đột phá của dự án là việc xử lý ảnh công tơ điện và đồng hồ nước bằng mô hình AI OCR kết hợp thuật toán thị giác máy tính OpenCV. Hệ thống tự động phân tích độ sắc nét bằng phương sai Laplacian, cảnh báo ảnh mờ, chói sáng hoặc quá tối. Chủ nhà đối chiếu trực tiếp ảnh chụp thực tế và số liệu AI nhận diện, phê duyệt 1 chạm hoặc điều chỉnh số liệu trước khi chốt sổ.',
+        technicalNotes: [
+          'Local AI OCR Microservice (FastAPI + OpenCV + Tesseract) tự chủ 100% chi phí',
+          'Thuật toán kiểm tra chất lượng ảnh (Laplacian variance blur detector)',
+          'Quy trình kiểm soát Human-in-the-loop: đối chiếu song song ảnh gốc và số liệu OCR',
+        ],
+        screenshots: [
+          {
+            url: '/projects/rent-house-ai-meters.png',
+            caption: 'Giao Diện Ghi Chỉ Số Điện Nước & AI OCR Đối Chiếu Ảnh Thực Tế',
+            alt: 'AI OCR Meter Reading & Human-in-the-loop Review',
+          },
+        ],
+      },
+      {
+        id: 'chapter-04',
+        number: '04',
+        title: 'Tự Động Tính Tiền Hóa Đơn & Phát Thông Báo Đa Kênh (SMS OTP & Email Resend)',
+        content:
+          'Ngay sau khi chỉ số điện nước được phê duyệt, hệ thống tự động tính toán tổng hóa đơn gồm tiền phòng, tiền điện, tiền nước và phí dịch vụ. Cơ chế Snapshot Pricing chốt cứng đơn giá tại thời điểm lập hóa đơn để lịch sử kế toán không bao giờ sai lệch. Hóa đơn được phát tức thời tới khách thuê qua tin nhắn SMS OTP và Email thông báo chi tiết qua Resend API.',
+        technicalNotes: [
+          'Cơ chế Snapshot Pricing lưu trữ bất biến đơn giá tại thời điểm lập phiếu',
+          'Tự động tính toán phụ phí, trừ tiền đặt cọc hoặc cộng dồn nợ cũ',
+          'Tích hợp Resend API gửi bảng kê chi tiết kèm ảnh chụp công tơ và SMS thông báo',
+        ],
+        screenshots: [
+          {
+            url: '/projects/rent-house-billing.png',
+            caption: 'Quản Lý Hóa Đơn & Trạng Thái Gửi Thông Báo Tự Động',
+            alt: 'Admin Bills Management & Multi-channel Dispatch',
+          },
+        ],
+      },
+      {
+        id: 'chapter-05',
+        number: '05',
+        title: 'Hợp Đồng Thuê Điện Tử Bất Biến & Khóa Mật Mã SHA-256 Trigger CSDL',
+        content:
+          'Giải quyết triệt để rủi ro thất lạc hoặc sửa đổi hợp đồng thuê truyền thống. Hệ thống sinh hợp đồng điện tử định dạng PDF, mã hóa toàn bộ văn bản và sinh chuỗi băm mật mã học SHA-256. Database Trigger (trg_enforce_contract_immutability) trên Neon PostgreSQL kích hoạt cơ chế bảo vệ bất biến, nghiêm cấm mọi hành vi cập nhật hoặc xóa hợp đồng đã được hai bên ký kết.',
+        technicalNotes: [
+          'Sinh file PDF hợp đồng chuẩn pháp lý với thư viện PDFKit',
+          'Băm mật mã SHA-256 (document_hash) bảo đảm tính toàn vẹn tài liệu',
+          'PostgreSQL trigger trg_enforce_contract_immutability ngăn chặn sửa đổi vĩnh viễn',
+        ],
+        screenshots: [
+          {
+            url: '/projects/rent-house-contracts.png',
+            caption: 'Quản Lý Hợp Đồng Điện Tử Bất Biến với Mã Băm SHA-256',
+            alt: 'Admin Electronic Contracts Management',
+          },
+        ],
+      },
+      {
+        id: 'chapter-06',
+        number: '06',
+        title: 'Cổng Người Thuê Phòng: Chữ To, Tương Phản Cao & Đối Chiếu Ảnh Công Tơ',
+        content:
+          'Thấu hiểu tâm lý khách thuê và người lớn tuổi, Tenant Portal được thiết kế theo tiêu chuẩn công thái học cao: chữ to rõ ràng (≥18px), số tiền thanh toán hiển thị đậm nét (32px), nút bấm lớn (≥52px). Khách thuê đăng nhập nhanh bằng số điện thoại và mã OTP, có thể mở modal phóng to ảnh chụp đồng hồ thực tế để tự kiểm tra đối chiếu chỉ số của phòng mình.',
+        technicalNotes: [
+          'Xác thực đăng nhập không mật khẩu qua số điện thoại và mã OTP',
+          'Giao diện Accessible High-Contrast thiết kế chuyên biệt cho mọi lứa tuổi',
+          'Modal phóng to hình ảnh công tơ điện nước thực tế minh bạch 100%',
+        ],
+        screenshots: [
+          {
+            url: '/projects/rent-house-tenant-portal.png',
+            caption: 'Cổng Thông Tin Người Thuê Dễ Dùng & Tra Cứu Ảnh Đồng Hồ Thực Tế',
+            alt: 'Tenant Portal High-Contrast Accessible Dashboard',
+          },
+        ],
+      },
+      {
+        id: 'chapter-07',
+        number: '07',
+        title: 'Ký Hợp Đồng Cảm Ứng HTML5 Canvas & Ứng Dụng Di Động Android APK',
+        content:
+          'Khách thuê có thể ký tên trực tiếp bằng ngón tay hoặc bút cảm ứng trên màn hình điện thoại thông qua khung ký Canvas mượt mà. Hệ thống đóng gói ứng dụng di động hoàn chỉnh với Capacitor 8 cho Android và iOS, thanh điều hướng Liquid Glass Dock kiểu dáng Apple tinh tế, và cung cấp sẵn tệp APK cài đặt trực tiếp.',
+        technicalNotes: [
+          'Ký số trực tiếp trên màn hình cảm ứng với HTML5 Canvas SignaturePad',
+          'Đóng gói ứng dụng di động Native bằng Capacitor 8 (Android Studio / Gradle)',
+          'Biên dịch sẵn tệp APK Android độc lập và hỗ trợ PWA Standalone trên iOS',
+        ],
+        screenshots: [
+          {
+            url: '/projects/rent-house-mobile.png',
+            caption: 'Ứng Dụng Di Động Android APK & Thanh Điều Hướng Liquid Glass Dock',
+            alt: 'Mobile Card UI & Liquid Glass Dock Navigation',
+          },
+        ],
+      },
+    ],
+    createdAt: '2026-10-25T00:00:00.000Z',
+    updatedAt: '2026-10-27T00:00:00.000Z',
   },
 ];
 

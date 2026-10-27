@@ -16,7 +16,7 @@ export function Footer() {
             <Link className="footer-brand" href="/">
               <div className="footer-brand-badge">HH</div>
               <span className="footer-brand-name">
-                {lang === 'zh' ? '阮黄兄 (Nguyễn Hoàng Huynh)' : 'Nguyễn Hoàng Huynh'}
+                {lang === 'zh' ? '阮黄兄 (Nguyen Hoang Huynh)' : lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}
               </span>
             </Link>
             <p className="footer-tagline">
@@ -30,9 +30,10 @@ export function Footer() {
 
           <div className="footer-links-col">
             <span className="footer-col-title">{lang === 'vi' ? 'Điều hướng' : lang === 'zh' ? '快速导航' : 'Navigation'}</span>
-            <Link href="/projects">{t('nav.projects')}</Link>
+            <Link href="/">{t('nav.home')}</Link>
             <Link href="/about">{t('nav.about')}</Link>
-            <Link href="/#skills">{t('nav.experience')}</Link>
+            <Link href="/projects">{t('nav.projects')}</Link>
+            <Link href="/#education">{t('nav.education')}</Link>
             <Link href="/contact">{t('nav.contact')}</Link>
           </div>
 
@@ -106,7 +107,7 @@ export function Footer() {
                 dominantBaseline="middle"
                 className="watermark-glow-text"
               >
-                NGUYỄN HOÀNG HUYNH
+                {lang === 'en' ? 'NGUYEN HOANG HUYNH' : 'NGUYỄN HOÀNG HUYNH'}
               </text>
 
               {/* Layer 2: Main Rich Gradient Fill */}
@@ -117,7 +118,7 @@ export function Footer() {
                 dominantBaseline="middle"
                 className="watermark-gradient-fill"
               >
-                NGUYỄN HOÀNG HUYNH
+                {lang === 'en' ? 'NGUYEN HOANG HUYNH' : 'NGUYỄN HOÀNG HUYNH'}
               </text>
 
               {/* Layer 3: Base Clean Outline */}
@@ -128,7 +129,7 @@ export function Footer() {
                 dominantBaseline="middle"
                 className="watermark-base-outline"
               >
-                NGUYỄN HOÀNG HUYNH
+                {lang === 'en' ? 'NGUYEN HOANG HUYNH' : 'NGUYỄN HOÀNG HUYNH'}
               </text>
 
               {/* Layer 4: Running Light Stroke Beam 1 */}
@@ -158,7 +159,7 @@ export function Footer() {
 
         <div className="footer-bottom-bar">
           <div className="footer-copyright">
-            © {new Date().getFullYear()} Nguyễn Hoàng Huynh. {t('footer.rights')}
+            © {new Date().getFullYear()} {lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}. {t('footer.rights')}
           </div>
           <a
             href="#top"

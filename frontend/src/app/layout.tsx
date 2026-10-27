@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { LanguageProvider } from '@/context/language-context';
 import { ThemeProvider } from '@/context/theme-context';
+import { ProjectLoadingProvider } from '@/components/project-loading-overlay';
 import { NetflixLightReveal } from '@/components/netflix-light-reveal';
 import { PersonJsonLd, WebSiteJsonLd } from '@/components/seo-json-ld';
 import { getSiteUrl, siteConfig } from '@/lib/site-config';
@@ -130,11 +131,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body id="top">
         <ThemeProvider>
           <LanguageProvider>
-            <NetflixLightReveal autoPlayOnMount={false} />
-            <a className="skip-link" href="#main-content">
-              Skip to content
-            </a>
-            {children}
+            <ProjectLoadingProvider>
+              <NetflixLightReveal autoPlayOnMount={false} />
+              <a className="skip-link" href="#main-content">
+                Skip to content
+              </a>
+              {children}
+            </ProjectLoadingProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

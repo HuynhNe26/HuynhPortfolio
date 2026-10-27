@@ -88,6 +88,8 @@ export default async function ProjectStory({ params }: { params: Promise<{ slug:
     ? 'theme-aviation-exploded'
     : project.slug === 'medicare-ai-triage'
     ? 'theme-clinical-timeline'
+    : project.slug === 'rent-house-smart-management'
+    ? 'theme-smart-rental'
     : 'theme-architectural-glass';
 
   const modeClass = project.storytellingStyle ? `storytelling-mode-${project.storytellingStyle}` : '';

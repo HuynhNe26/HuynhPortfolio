@@ -145,7 +145,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           </Link>
 
           <div className="pro-secondary-actions">
-            {project.liveUrl && (
+            {project.liveUrl && project.slug !== 'nh-huynh-portfolio' && (
               <a
                 href={project.liveUrl}
                 target="_blank"

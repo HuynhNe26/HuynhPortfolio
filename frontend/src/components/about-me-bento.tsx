@@ -79,7 +79,7 @@ export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: Abou
 
             <div className="hh-about-actions">
               <a
-                href={`mailto:${email}?subject=Request CV - Nguyễn Hoàng Huynh`}
+                href={`mailto:${email}?subject=Request CV - ${lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}`}
                 className="hh-btn-download-cv"
               >
                 <span>{t('bento.about.downloadCv')}</span>
@@ -92,7 +92,7 @@ export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: Abou
             <div className="hh-about-photo-wrapper">
               <Image
                 src="/avatar.jpg"
-                alt="Nguyễn Hoàng Huynh"
+                alt={lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}
                 width={480}
                 height={520}
                 className="hh-about-photo"
@@ -279,7 +279,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
               <div className="hh-cert-thumb-preview">
                 <Image
                   src="/certificates/toeic-550-thumb.jpg"
-                  alt="TOEIC Official Score Certificate - Nguyễn Hoàng Huynh"
+                  alt={`TOEIC Official Score Certificate - ${lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}`}
                   width={140}
                   height={100}
                   className="hh-cert-thumb-img"

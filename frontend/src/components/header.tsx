@@ -17,9 +17,8 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: 'home', labelKey: 'nav.home', href: '/', targetId: 'home' },
-  { id: 'about', labelKey: 'nav.about', href: '/#about', targetId: 'about' },
+  { id: 'about', labelKey: 'nav.about', href: '/about', targetId: 'about' },
   { id: 'projects', labelKey: 'nav.projects', href: '/#projects', targetId: 'projects' },
-  { id: 'skills', labelKey: 'nav.experience', href: '/#skills', targetId: 'skills' },
   { id: 'education', labelKey: 'nav.education', href: '/#education', targetId: 'education' },
   { id: 'contact', labelKey: 'nav.contact', href: '/#contact', targetId: 'contact' },
 ];
@@ -29,7 +28,6 @@ const HOMEPAGE_SECTIONS = [
   'home',
   'about',
   'projects',
-  'skills',
   'education',
   'contact',
 ];
@@ -43,9 +41,19 @@ export function Header() {
   const { lang, toggleLang, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
-  // ScrollSpy listener for homepage
+  // 1. Global scroll listener: update isScrolled on ANY page
   useEffect(() => {
-    // If not on homepage, let pathname determine active item
+    const handleScrollState = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    handleScrollState();
+    window.addEventListener('scroll', handleScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollState);
+  }, []);
+
+  // 2. ScrollSpy listener: only for homepage sections
+  useEffect(() => {
     if (pathname !== '/') return;
 
     // Check initial hash on mount (e.g. user arrived with /#about)
@@ -64,15 +72,13 @@ export function Header() {
 
     let ticking = false;
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 20);
-
+    const handleScrollSpy = () => {
       // If a user just clicked a nav link, suppress spy until smooth scroll finishes
       if (isClickScrollingRef.current) return;
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
           const windowHeight = window.innerHeight;
           const docHeight = document.documentElement.scrollHeight;
 
@@ -112,9 +118,9 @@ export function Header() {
       }
     };
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScrollSpy();
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSpy);
   }, [pathname]);
 
   // Click handler for nav links
@@ -123,6 +129,11 @@ export function Header() {
     item: NavItem
   ) => {
     setOpen(false);
+
+    // If clicking 'about', allow direct navigation to /about (dedicated About Me page)
+    if (item.id === 'about') {
+      return;
+    }
 
     if (pathname === '/') {
       e.preventDefault();
@@ -170,13 +181,13 @@ export function Header() {
   };
 
   return (
-    <header className={`hh-site-header ${isScrolled || open ? 'is-scrolled' : ''}`}>
+    <header className={`hh-site-header ${isScrolled || open || pathname !== '/' ? 'is-scrolled' : ''}`}>
       <div className="container hh-header-inner">
         {/* HH MONOGRAM LOGO & BRAND NAME */}
         <Link
           className="hh-brand-logo"
           href="/"
-          aria-label="Nguyễn Hoàng Huynh, Home"
+          aria-label={lang === 'en' ? 'Nguyen Hoang Huynh, Home' : 'Nguyễn Hoàng Huynh, Home'}
           onClick={(e) => {
             setOpen(false);
             if (pathname === '/') {
@@ -196,7 +207,9 @@ export function Header() {
             <path d="M16 16H26" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
             <path d="M26 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
           </svg>
-          <span className="hh-brand-name">{lang === 'zh' ? '阮黄兄 (NH HUYNH)' : 'NGUYỄN HOÀNG HUYNH'}</span>
+          <span className="hh-brand-name">
+            {lang === 'zh' ? '阮黄兄 (NH HUYNH)' : lang === 'en' ? 'NGUYEN HOANG HUYNH' : 'NGUYỄN HOÀNG HUYNH'}
+          </span>
         </Link>
 
         {/* MOBILE MENU TOGGLE */}

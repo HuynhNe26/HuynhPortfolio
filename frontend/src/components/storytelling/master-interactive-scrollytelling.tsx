@@ -792,52 +792,52 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       takeawayEn: 'Tells technical engineering stories with narrative clarity matching international design standards.',
     },
     {
-      imageUrl: '/projects/portfolio-scrollytelling.png',
-      imageCaptionVi: 'Điểm nhấn Radar Hotspot & Con trỏ Thao tác Mô phỏng',
-      imageCaptionEn: 'Radar Hotspot System & Simulated Cursor Pointer',
-      imageAlt: 'Radar Hotspot Pin & Cursor',
-      hotspot: {
-        x: 50,
-        y: 48,
-        labelVi: 'Điểm Radar Hotspot Xung nhịp & Thẻ Hành động',
-        labelEn: 'Pulsing Radar Hotspot & Contextual Callout',
-        actionVi: 'Định vị chính xác thành phần UI đang được đề cập trong nội dung',
-        actionEn: 'Pinpoints exact UI feature explained in current chapter',
-        descriptionVi: 'Hiển thị giải thích chi tiết khi hover và con trỏ chuột mô phỏng thao tác người dùng.',
-        descriptionEn: 'Expandable card explains the architectural rationale and user interaction cue.',
-      },
-      cursor: {
-        x: 52,
-        y: 50,
-        actionTextVi: 'Chỉ rõ vị trí nút bấm & hành động',
-        actionTextEn: 'Locate UI component and action',
-      },
-      takeawayVi: 'Người đọc không bao giờ bị lạc khi xem ảnh chụp màn hình nhờ hệ thống định vị radar chính xác.',
-      takeawayEn: 'Visitors never get lost in complex screenshots thanks to precise radar targeting.',
-    },
-    {
-      imageUrl: '/projects/portfolio-scrollytelling.png',
+      imageUrl: '/projects/portfolio-themes.png',
       imageCaptionVi: 'Mỗi Dự án Sở hữu Animation & Storytelling Riêng biệt',
       imageCaptionEn: 'Bespoke Animations & Tailored Storytelling per Project',
       imageAlt: 'Unique Project Storytelling Themes',
       hotspot: {
         x: 50,
-        y: 78,
-        labelVi: 'Ngôn ngữ Thiết kế Riêng cho Từng Dự án',
-        labelEn: 'Domain-Tailored Storytelling Atmosphere',
+        y: 65,
+        labelVi: 'Ngôn ngữ Thiết kế Riêng & Trình Giả lập Độc bản',
+        labelEn: 'Domain-Tailored Storytelling & Interactive Simulators',
         actionVi: 'Mỗi dự án mang một phong cách visual và animation độc bản',
         actionEn: 'Each project boasts unique domain-specific motion aesthetics',
         descriptionVi: 'Ticket Concert mang sóng âm Cyber; Fashion Nail mang hiệu ứng Ken Burns & Bokeh vàng; ExamPlatform mang radar AI proctoring.',
         descriptionEn: 'Concert features audio waves; Fashion Nail features Ken Burns & gold bokeh; ExamPlatform features AI proctoring HUD.',
       },
       cursor: {
-        x: 50,
-        y: 80,
+        x: 52,
+        y: 68,
         actionTextVi: 'Chiêm ngưỡng chuyển động động cơ',
         actionTextEn: 'Observe thematic motion design',
       },
       takeawayVi: 'Tôn vinh tính cá bản của từng dự án, chứng minh năng lực thiết kế UI/UX phong phú và đa dạng.',
       takeawayEn: 'Celebrates each project’s unique identity, showcasing versatile UI/UX craftsmanship.',
+    },
+    {
+      imageUrl: '/projects/portfolio-bento.png',
+      imageCaptionVi: 'Hệ thống Kỹ năng & Khối Bento Grid Tương tác',
+      imageCaptionEn: 'Interactive Skills Matrix & Bento Grid Layout',
+      imageAlt: 'Skills and Bento Grid Layout',
+      hotspot: {
+        x: 35,
+        y: 42,
+        labelVi: 'Ma trận Kỹ năng Phân loại & Thẻ Học vấn VAA',
+        labelEn: 'Categorized Skills Matrix & VAA Education Card',
+        actionVi: 'Lọc kỹ năng thời gian thực theo danh mục và xem chi tiết học vấn',
+        actionEn: 'Real-time category filtering and academic background inspection',
+        descriptionVi: 'Phân tầng Frontend, Backend, Database, Cloud APIs kèm thẻ chứng chỉ TOEIC 550 chính thức.',
+        descriptionEn: 'Tiered Frontend, Backend, Database, Cloud APIs with official TOEIC 550 certificate preview.',
+      },
+      cursor: {
+        x: 38,
+        y: 45,
+        actionTextVi: 'Lọc kỹ năng & xem chứng chỉ',
+        actionTextEn: 'Filter skills and inspect certificate',
+      },
+      takeawayVi: 'Tổ chức thông tin mạch lạc, minh bạch năng lực thực tế tới người xem.',
+      takeawayEn: 'Clean, structured information architecture presenting verified engineering capabilities.',
     },
     {
       imageUrl: '/projects/portfolio-admin.png',
@@ -1228,6 +1228,176 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       takeawayEn: 'Strict role-based isolation between clinical staff and patients protects personal health information.',
     },
   ],
+  'rent-house-smart-management': [
+    {
+      imageUrl: '/projects/rent-house-hero.png',
+      imageCaptionVi: 'Cổng Khám Phá & Danh Mục Phòng Trọ Minh Bạch (Landing Page)',
+      imageCaptionEn: 'Landing Page & Transparent Boarding Rooms Catalog',
+      imageAlt: 'Landing Page & Rooms Catalog Nha Tro Thanh Tam',
+      hotspot: {
+        x: 48,
+        y: 38,
+        labelVi: 'Cổng Khám Phá & Danh Mục Phòng Trọ Minh Bạch',
+        labelEn: 'Landing Page & Transparent Boarding Rooms Catalog',
+        actionVi: 'Khám phá danh sách phòng trọ, lọc phòng trống và xem giá niêm yết',
+        actionEn: 'Filter vacancies, compare amenities and inspect transparent pricing',
+        descriptionVi: 'Giao diện công khai tối ưu hóa SEO Schema.org, hỗ trợ tìm kiếm phòng trọ tiện nghi nhanh chóng.',
+        descriptionEn: 'SEO Schema.org (ApartmentComplex) compliant portal providing instant real-time vacancy lookup.',
+      },
+      cursor: {
+        x: 50,
+        y: 40,
+        actionTextVi: 'Xem danh sách phòng trống P101 - P202',
+        actionTextEn: 'Inspect room vacancies P101 - P202',
+      },
+      takeawayVi: 'Tối ưu hóa khả năng hiển thị trên công cụ tìm kiếm và mang lại sự tin cậy tuyệt đối về giá thuê phòng.',
+      takeawayEn: 'Search-engine optimized catalog establishing total transparency in boarding room pricing.',
+    },
+    {
+      imageUrl: '/projects/rent-house-admin-dashboard.png',
+      imageCaptionVi: 'Trung Tâm Quản Trị & Phân Tích Hiệu Suất Vận Hành Nhà Trọ',
+      imageCaptionEn: 'Operations Command Center & Boarding House Analytics',
+      imageAlt: 'Admin Dashboard Nha Tro Thanh Tam',
+      hotspot: {
+        x: 32,
+        y: 44,
+        labelVi: 'Chỉ Số Lấp Đầy & Doanh Thu Vận Hành Thời Gian Thực',
+        labelEn: 'Real-Time Occupancy Rate & Revenue Analytics',
+        actionVi: 'Tổng hợp tỷ lệ lấp đầy, doanh thu phòng và công nợ điện nước',
+        actionEn: 'Aggregate occupancy metrics, room rent, and utility receivables',
+        descriptionVi: 'Bảng điều khiển tập trung số liệu tài chính, cảnh báo nợ quá hạn và biểu đồ xu hướng tiêu thụ 3-6 tháng.',
+        descriptionEn: 'Consolidated financial dashboard with delinquency alerts and 3-6 month consumption trends.',
+      },
+      cursor: {
+        x: 34,
+        y: 46,
+        actionTextVi: 'Kiểm tra tỷ lệ lấp đầy 85% & doanh thu',
+        actionTextEn: 'Verify 85% occupancy rate & revenue',
+      },
+      takeawayVi: 'Giúp chủ nhà trọ nắm trọn tình hình kinh doanh chỉ trong 5 giây mà không cần sổ sách ghi tay.',
+      takeawayEn: 'Empowers landlords with instant operational visibility, eliminating manual paper ledger errors.',
+    },
+    {
+      imageUrl: '/projects/rent-house-ai-meters.png',
+      imageCaptionVi: 'Động Cơ AI OCR Nhận Diện Số Công Tơ & Duyệt Human-In-The-Loop',
+      imageCaptionEn: 'AI OCR Meter Ingestion & Human-In-The-Loop Review Screen',
+      imageAlt: 'AI OCR Meter Ingestion with Laplacian Sharpness',
+      hotspot: {
+        x: 68,
+        y: 42,
+        labelVi: 'AI OCR Reader & Laplacian Variance Quality Audit',
+        labelEn: 'AI OCR Reader & Laplacian Variance Quality Audit',
+        actionVi: 'Đọc số tự động, cảnh báo ảnh mờ và đối chiếu song song ảnh gốc',
+        actionEn: 'Auto-read digits, detect blur, and review side-by-side with original photo',
+        descriptionVi: 'Microservice thị giác máy tính tự động trích xuất chỉ số điện/nước với độ tin cậy 98.6% kèm kiểm tra độ sắc nét.',
+        descriptionEn: 'Computer vision microservice extracting meter readings at 98.6% confidence with blur rejection.',
+      },
+      cursor: {
+        x: 66,
+        y: 40,
+        actionTextVi: 'Đối chiếu ảnh thực tế và số AI đọc (00142 kWh)',
+        actionTextEn: 'Verify original photo vs AI reading (00142 kWh)',
+      },
+      takeawayVi: 'Tiết kiệm 85% thời gian chốt số điện nước, triệt tiêu tranh cãi nhờ bằng chứng hình ảnh lưu trữ vĩnh viễn.',
+      takeawayEn: 'Saves 85% monthly meter logging time and eliminates tenant disputes via verifiable photo records.',
+    },
+    {
+      imageUrl: '/projects/rent-house-billing.png',
+      imageCaptionVi: 'Tự Động Lập Hóa Đơn Hàng Tháng & Phát Thông Báo Đa Kênh',
+      imageCaptionEn: 'Automated Monthly Billing & Multi-Channel Notification',
+      imageAlt: 'Automated Billing & SMS OTP Resend Email Dispatch',
+      hotspot: {
+        x: 50,
+        y: 46,
+        labelVi: 'Snapshot Pricing & Automated Multi-Channel Dispatch',
+        labelEn: 'Snapshot Pricing & Automated Multi-Channel Dispatch',
+        actionVi: 'Tính toán biểu giá bậc thang, chốt đơn giá snapshot và phát SMS/Email',
+        actionEn: 'Calculate tiered utilities, lock snapshot rates, and dispatch SMS/Email',
+        descriptionVi: 'Cơ chế Snapshot Pricing khóa cứng đơn giá tại thời điểm lập; tự động gửi tin nhắn SMS OTP và Email chi tiết qua Resend API.',
+        descriptionEn: 'Locks immutable rate snapshots; instantly notifies tenants via SMS OTP and Resend transactional email.',
+      },
+      cursor: {
+        x: 52,
+        y: 48,
+        actionTextVi: 'Phát hành hóa đơn P101 (2,450,000đ)',
+        actionTextEn: 'Publish Room P101 bill (2,450,000đ)',
+      },
+      takeawayVi: 'Quy trình kế toán tự động hóa hoàn toàn, đảm bảo tính chuẩn xác và lịch sử hóa đơn không bao giờ bị lệch.',
+      takeawayEn: 'End-to-end billing automation ensuring zero accounting drift and transparent tenant billing receipts.',
+    },
+    {
+      imageUrl: '/projects/rent-house-contracts.png',
+      imageCaptionVi: 'Hợp Đồng Thuê Điện Tử Bất Biến với Mã Băm SHA-256',
+      imageCaptionEn: 'Immutable Digital Contracts Secured by SHA-256 Checksum',
+      imageAlt: 'Immutable Digital Contract with SHA-256 Checksum',
+      hotspot: {
+        x: 45,
+        y: 48,
+        labelVi: 'Cryptographic SHA-256 Hash & Immutability Trigger',
+        labelEn: 'Cryptographic SHA-256 Hash & Immutability Trigger',
+        actionVi: 'Khóa văn bản hợp đồng với mã băm SHA-256 và trigger CSDL PostgreSQL',
+        actionEn: 'Seal contract with SHA-256 hash and enforce PostgreSQL immutability trigger',
+        descriptionVi: 'Database trigger trg_enforce_contract_immutability ngăn chặn tuyệt đối mọi hành vi sửa đổi hoặc xóa hợp đồng đã ký.',
+        descriptionEn: 'PostgreSQL database trigger enforces complete immutability against retroactive tampering or deletion.',
+      },
+      cursor: {
+        x: 47,
+        y: 50,
+        actionTextVi: 'Kiểm toán mã băm SHA-256 hợp đồng P101',
+        actionTextEn: 'Audit SHA-256 contract hash for Room P101',
+      },
+      takeawayVi: 'Bảo vệ giá trị pháp lý của thỏa thuận thuê phòng trọ, loại bỏ rủi ro tranh chấp hợp đồng về sau.',
+      takeawayEn: 'Guarantees legal tamper resistance for boarding tenancy agreements, eliminating dispute risks.',
+    },
+    {
+      imageUrl: '/projects/rent-house-tenant-portal.png',
+      imageCaptionVi: 'Cổng Người Thuê Phòng: Tương Phản Cao, Chữ To & Tra Cứu Ảnh Thật',
+      imageCaptionEn: 'Tenant Portal: High Contrast, Bold Typography & Real Meter Photo',
+      imageAlt: 'Accessible High Contrast Tenant Portal',
+      hotspot: {
+        x: 50,
+        y: 52,
+        labelVi: 'Accessible Ergonomic UI & Photo Inspection Modal',
+        labelEn: 'Accessible Ergonomic UI & Photo Inspection Modal',
+        actionVi: 'Đăng nhập OTP không mật khẩu, xem hóa đơn chữ to và mở modal ảnh thật',
+        actionEn: 'Passwordless OTP login, inspect bold receipts, and pop up meter photo',
+        descriptionVi: 'Thiết kế đặc thù cho người lớn tuổi với font chữ ≥18px, số tiền 32px nổi bật và nút bấm lớn dễ thao tác.',
+        descriptionEn: 'Ergonomic interface with large typography (≥18px), prominent bill amounts (32px), and photo proof modal.',
+      },
+      cursor: {
+        x: 52,
+        y: 54,
+        actionTextVi: 'Phóng to ảnh chụp đồng hồ điện tháng này',
+        actionTextEn: 'Zoom into current month electric meter photo',
+      },
+      takeawayVi: 'Giao diện công thái học thân thiện với mọi đối tượng khách thuê, tạo sự minh bạch tuyệt đối giữa chủ và khách.',
+      takeawayEn: 'Ergonomic accessibility fosters trust and smooth communication between landlords and tenants.',
+    },
+    {
+      imageUrl: '/projects/rent-house-mobile.png',
+      imageCaptionVi: 'Ký Cảm Ứng HTML5 Canvas & Ứng Dụng Di Động Android APK',
+      imageCaptionEn: 'Touch Canvas Signing & Capacitor Cross-Platform Mobile APK',
+      imageAlt: 'Capacitor Android APK & Liquid Glass Dock',
+      hotspot: {
+        x: 50,
+        y: 65,
+        labelVi: 'Capacitor 8 Mobile App & Liquid Glass Dock',
+        labelEn: 'Capacitor 8 Mobile App & Liquid Glass Dock',
+        actionVi: 'Ký ngón tay trực tiếp trên điện thoại & điều hướng Liquid Glass Dock',
+        actionEn: 'Finger touch signature pad and navigate via Liquid Glass Dock',
+        descriptionVi: 'Ứng dụng di động độc lập biên dịch APK Android trực tiếp, giao diện dạng thẻ card thông minh không cuộn ngang.',
+        descriptionEn: 'Standalone Android APK compiled via Capacitor with card UI and Apple-inspired Liquid Glass dock.',
+      },
+      cursor: {
+        x: 50,
+        y: 70,
+        actionTextVi: 'Ký số trên màn hình cảm ứng điện thoại',
+        actionTextEn: 'Touch sign agreement on smartphone screen',
+      },
+      takeawayVi: 'Trải nghiệm ký số mượt mà như giấy thật kết hợp tính di động cao của ứng dụng Native Android.',
+      takeawayEn: 'Delivers seamless tactile signing on mobile with standalone native Android APK distribution.',
+    },
+  ],
 };
 
 const PROJECT_CHAPTER_DOMAINS: Record<string, { vi: string; en: string }[]> = {
@@ -1293,6 +1463,15 @@ const PROJECT_CHAPTER_DOMAINS: Record<string, { vi: string; en: string }[]> = {
     { vi: 'VITAL SIGNS VECTOR // BP & HR TRAJECTORY', en: 'VITAL SIGNS VECTOR // BP & HR TRAJECTORY' },
     { vi: 'E-PRESCRIPTION // DRUG INTERACTION MATRIX', en: 'E-PRESCRIPTION // DRUG INTERACTION MATRIX' },
     { vi: 'RBAC VAULT // HIPAA PRIVACY COMPLIANCE', en: 'RBAC VAULT // HIPAA PRIVACY COMPLIANCE' },
+  ],
+  'rent-house-smart-management': [
+    { vi: 'CATALOG DISCOVERY // SCHEMA.ORG', en: 'CATALOG DISCOVERY // SCHEMA.ORG' },
+    { vi: 'OPERATIONS COMMAND // OCCUPANCY KPI', en: 'OPERATIONS COMMAND // OCCUPANCY KPI' },
+    { vi: 'LOCAL AI OCR // OPENCV LAPLACIAN', en: 'LOCAL AI OCR // OPENCV LAPLACIAN' },
+    { vi: 'AUTO BILLING // SMS OTP & RESEND', en: 'AUTO BILLING // SMS OTP & RESEND' },
+    { vi: 'IMMUTABLE CONTRACT // SHA-256 HASH', en: 'IMMUTABLE CONTRACT // SHA-256 HASH' },
+    { vi: 'ACCESSIBLE PORTAL // PHOTO AUDIT', en: 'ACCESSIBLE PORTAL // PHOTO AUDIT' },
+    { vi: 'CAPACITOR 8 // ANDROID APK & PWA', en: 'CAPACITOR 8 // ANDROID APK & PWA' },
   ],
 };
 
@@ -1629,6 +1808,52 @@ function ClinicalTimelineOverlay() {
   );
 }
 
+// 8. SMART RENTAL OVERLAY (IoT AI OCR Bounding Box Scanner, Laplacian Sharpness HUD, Neon DB Pool status)
+function SmartRentalOverlay() {
+  return (
+    <div className="rh-smart-overlay" aria-hidden="true">
+      {/* OCR Dynamic Scanning Reticle */}
+      <div className="rh-ocr-scanner-box">
+        <div className="rh-scan-corner top-l" />
+        <div className="rh-scan-corner top-r" />
+        <div className="rh-scan-corner bot-l" />
+        <div className="rh-scan-corner bot-r" />
+        <div className="rh-scan-laser-line" />
+        <div className="rh-scan-badge">
+          <span className="scan-dot" />
+          <span>AI OCR SCANNING // GELEX CV140 METER</span>
+        </div>
+      </div>
+
+      {/* Telemetry Status Strip */}
+      <div className="rh-telemetry-hud">
+        <div className="rh-hud-pill">
+          <span className="hud-label">OCR ENGINE:</span>
+          <strong className="hud-val">Tesseract + OpenCV</strong>
+        </div>
+        <div className="rh-hud-pill">
+          <span className="hud-label">SHARPNESS:</span>
+          <strong className="hud-val text-emerald-400">184.2 VAR (PASS)</strong>
+        </div>
+        <div className="rh-hud-pill">
+          <span className="hud-label">CONFIDENCE:</span>
+          <strong className="hud-val">98.6%</strong>
+        </div>
+        <div className="rh-hud-pill">
+          <span className="hud-label">DB:</span>
+          <strong className="hud-val">Neon Serverless Pool</strong>
+        </div>
+      </div>
+
+      {/* Location & Room Tag */}
+      <div className="rh-stamp top-left">
+        <span>NHÀ TRỌ THANH TÂM // P101</span>
+        <small>Snapshot Pricing • SMS OTP & Resend</small>
+      </div>
+    </div>
+  );
+}
+
 export function MasterInteractiveScrollytelling({
   project,
   chapters,
@@ -1783,6 +2008,15 @@ export function MasterInteractiveScrollytelling({
           color: '#0D9488',
           accentBg: 'rgba(13, 148, 136, 0.08)',
           overlayComponent: <ClinicalTimelineOverlay />,
+        };
+      case 'rent-house-smart-management':
+        return {
+          themeClass: 'theme-smart-rental',
+          badgeTextVi: 'SMART PROPTECH // LOCAL AI OCR & HUMAN-IN-THE-LOOP',
+          badgeTextEn: 'SMART PROPTECH // LOCAL AI OCR & HUMAN-IN-THE-LOOP',
+          color: '#0284C7',
+          accentBg: 'rgba(2, 132, 199, 0.08)',
+          overlayComponent: <SmartRentalOverlay />,
         };
       case 'nh-huynh-portfolio':
       default:
@@ -2010,13 +2244,15 @@ export function MasterInteractiveScrollytelling({
                 <div className="stage-url-display">
                   <span className="stage-ssl-lock">🔒</span>
                   <span className="stage-url-text">
-                    {project.liveUrl
+                    {project.slug === 'nh-huynh-portfolio'
+                      ? 'hoanghuynh.dev'
+                      : project.liveUrl
                       ? project.liveUrl.replace(/^https?:\/\//, '')
                       : `${project.slug}.online`}
                   </span>
                 </div>
 
-                {project.liveUrl && (
+                {project.liveUrl && project.slug !== 'nh-huynh-portfolio' && (
                   <a
                     href={project.liveUrl}
                     target="_blank"

@@ -55,9 +55,9 @@ export function HeroShowcase({
             <div className="hh-hero-name-wrap">
               <div className="hh-name-glow-aura" aria-hidden="true" />
               <h1 className="hh-hero-name">
-                <span className="hh-name-first">{lang === 'zh' ? '阮' : 'Nguyễn'}</span>
+                <span className="hh-name-first">{lang === 'zh' ? '阮' : lang === 'en' ? 'Nguyen' : 'Nguyễn'}</span>
                 <br />
-                <span className="hh-name-highlight">{lang === 'zh' ? '黄兄' : 'Hoàng Huynh'}</span>
+                <span className="hh-name-highlight">{lang === 'zh' ? '黄兄' : lang === 'en' ? 'Hoang Huynh' : 'Hoàng Huynh'}</span>
                 {lang === 'zh' && (
                   <span
                     className="hh-name-sub-latin"
@@ -71,7 +71,7 @@ export function HeroShowcase({
                       textTransform: 'uppercase',
                     }}
                   >
-                    Nguyễn Hoàng Huynh
+                    Nguyen Hoang Huynh
                   </span>
                 )}
               </h1>

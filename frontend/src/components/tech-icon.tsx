@@ -25,7 +25,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
           <circle cx="90" cy="90" r="90" fill="black" />
         </mask>
         <g mask="url(#next-mask)">
-          <circle cx="90" cy="90" r="90" fill="#000000" />
+          <circle cx="90" cy="90" r="90" fill="#000000" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="6" />
           <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="white" />
           <rect x="115" y="54" width="12" height="72" fill="white" />
         </g>
@@ -141,7 +141,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
   if (normalized.includes('langchain')) {
     return (
       <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4zm0 12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h4zm8-6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h4z" fill="#1C3C3C" />
+        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4zm0 12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h4zm8-6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h4z" fill="#10B981" />
       </svg>
     );
   }
@@ -170,7 +170,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
   if (normalized.includes('resend') || normalized.includes('email')) {
     return (
       <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="6" fill="#000000" />
+        <rect width="24" height="24" rx="6" fill="#000000" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1" />
         <path d="M6 8l6 4 6-4v8H6V8zm0-1h12c.6 0 1 .4 1 1v8c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1V8c0-.6.4-1 1-1z" fill="#FFFFFF" />
       </svg>
     );
@@ -198,7 +198,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
   if (normalized.includes('vercel')) {
     return (
       <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L24 22H0L12 2Z" fill="#000000" />
+        <path d="M12 2L24 22H0L12 2Z" fill="currentColor" />
       </svg>
     );
   }

@@ -138,7 +138,7 @@ export function ApiForm({ endpoint, method = 'POST', children, submitLabel, redi
           </ul>
         )}
       </div>
-      <button className="button button-dark" disabled={pending} type="submit">
+      <button className="button button-dark form-submit-btn" disabled={pending} type="submit">
         {pending ? 'Please wait…' : submitLabel}
         <span aria-hidden="true">
           ↗
