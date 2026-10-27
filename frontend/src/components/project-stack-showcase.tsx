@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { TechIcon } from './tech-icon';
 import { useLanguage } from '@/context/language-context';
+import { isRealWorldProject } from '@/components/featured-projects-grid';
 
 export function ProjectStackShowcase({ projects }: { projects: Project[] }) {
   const { t } = useLanguage();
@@ -50,6 +51,11 @@ export function ProjectStackShowcase({ projects }: { projects: Project[] }) {
             {/* LEFT COLUMN: METADATA & CONTENT */}
             <div className="horizontal-card-content">
               <div className="card-pills-row">
+                {isRealWorldProject(project.slug) && (
+                  <span className="card-real-world-pill">
+                    ★ {t('card.realWorldBadge')}
+                  </span>
+                )}
                 <span className="card-category-pill">{project.category}</span>
                 <span className={`card-status-pill ${project.status === 'Ongoing' ? 'ongoing' : 'completed'}`}>
                   <span className="pro-status-dot" />

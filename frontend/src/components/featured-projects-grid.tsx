@@ -19,6 +19,16 @@ interface ProjectTiltCardProps {
   categoryTag: string;
 }
 
+export const REAL_WORLD_PROJECT_SLUGS = [
+  'fashion-nail-morley',
+  'vk-digital-hub',
+  'examplatform-ai',
+];
+
+export function isRealWorldProject(slug: string): boolean {
+  return REAL_WORLD_PROJECT_SLUGS.includes(slug);
+}
+
 /**
  * Format any timeline string into standard Month/Year (MM/YYYY) format
  * Examples:
@@ -81,6 +91,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
   const { t, lang } = useLanguage();
   const { showLoading } = useProjectLoading();
   const router = useRouter();
+  const isRealWorld = isRealWorldProject(project.slug);
   const cardRef = useRef<HTMLDivElement>(null);
   const backlightRef = useRef<HTMLDivElement>(null);
   const ambientRef = useRef<HTMLDivElement>(null);
@@ -231,10 +242,17 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
           decoding="async"
           unoptimized
         />
-        {/* CATEGORY PILL ON IMAGE */}
-        <span className="hh-card-cat-badge">
-          {categoryTag}
-        </span>
+        {/* CATEGORY / REAL-WORLD PILL ON IMAGE */}
+        {isRealWorld ? (
+          <span className="hh-card-cat-badge real-world" title={t('card.realWorldBadge')}>
+            <span className="hh-real-world-star" aria-hidden="true">★</span>
+            <span>{t('card.realWorldBadge')}</span>
+          </span>
+        ) : (
+          <span className="hh-card-cat-badge">
+            {categoryTag}
+          </span>
+        )}
         {/* STATUS PILL ON TOP RIGHT */}
         <span className={`hh-card-status-badge ${project.status === 'Ongoing' ? 'ongoing' : 'completed'}`}>
           <span className="hh-status-dot-ping" />
@@ -369,26 +387,38 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
 }
 
 export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [activeTab, setActiveTab] = useState('All');
+
+  const realWorldProjects = projects.filter((p) => isRealWorldProject(p.slug));
+  const academicProjects = projects.filter((p) => !isRealWorldProject(p.slug));
 
   const tabs = [
     { id: 'All', label: t('filter.all') },
+    { id: 'RealWorld', label: `★ ${t('filter.realWorld')} (3)` },
+    { id: 'Academic', label: t('filter.academic') },
     { id: 'Web Application', label: t('filter.webApp') },
     { id: 'Landing Page', label: t('filter.landing') },
-    { id: 'Academic', label: t('filter.academic') },
     { id: 'Ongoing', label: t('filter.ongoing') },
   ];
 
   const filteredProjects = projects.filter((p) => {
     if (activeTab === 'All') return true;
+    if (activeTab === 'RealWorld') {
+      return isRealWorldProject(p.slug);
+    }
+    if (activeTab === 'Academic') {
+      return !isRealWorldProject(p.slug);
+    }
     if (activeTab === 'Web Application') {
       return (
         p.category.toLowerCase().includes('application') ||
         p.category.toLowerCase().includes('ai') ||
         p.category.toLowerCase().includes('cms') ||
         p.slug.includes('ticket-concert') ||
-        p.slug.includes('examplatform')
+        p.slug.includes('examplatform') ||
+        p.slug.includes('rent-house') ||
+        p.slug.includes('skyroute')
       );
     }
     if (activeTab === 'Landing Page') {
@@ -398,13 +428,6 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
         p.category.toLowerCase().includes('marketing') ||
         p.slug.includes('fashion-nail') ||
         p.slug.includes('vk-digital')
-      );
-    }
-    if (activeTab === 'Academic') {
-      return (
-        p.role.toLowerCase().includes('student') ||
-        p.slug.includes('ticket-concert') ||
-        p.slug.includes('examplatform')
       );
     }
     if (activeTab === 'Ongoing') {
@@ -436,7 +459,7 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
               <button
                 key={tab.id}
                 type="button"
-                className={`hh-filter-pill ${activeTab === tab.id ? 'active' : ''}`}
+                className={`hh-filter-pill ${activeTab === tab.id ? 'active' : ''} ${tab.id === 'RealWorld' ? 'hh-pill-real-world' : ''}`}
                 onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
@@ -445,22 +468,91 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
           </div>
         </div>
 
-        {/* 2X2 COLORFUL GLOWING PROJECTS GRID WITH 3D MOUSE TILT */}
-        <div className="hh-projects-grid">
-          {filteredProjects.map((project) => {
-            const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
-              ? t('filter.landing')
-              : t('filter.webApp');
+        {/* IF 'ALL': RENDER SEGMENTED REAL-WORLD PROJECTS & ACADEMIC RESEARCH PROJECTS */}
+        {activeTab === 'All' ? (
+          <div className="hh-projects-segmented-showcase">
+            {/* SUB-SECTION 1: DỰ ÁN THỰC TẾ (REAL-WORLD PROJECTS) */}
+            <div className="hh-project-category-block" id="real-world-projects">
+              <div className="hh-block-header">
+                <div className="hh-block-tag real-world">
+                  <span className="tag-star">★</span>
+                  <span>{t('featured.realWorld.eyebrow')}</span>
+                  <span className="hh-count-chip">3 {lang === 'vi' ? 'dự án' : (lang === 'zh' ? '个项目' : 'projects')}</span>
+                </div>
+                <h3 className="hh-block-title">{t('featured.realWorld.title')}</h3>
+                <p className="hh-block-desc">{t('featured.realWorld.desc')}</p>
+              </div>
 
-            return (
-              <ProjectTiltCard
-                key={project._id || project.slug}
-                project={project}
-                categoryTag={categoryTag}
-              />
-            );
-          })}
-        </div>
+              <div className="hh-projects-grid">
+                {realWorldProjects.map((project) => {
+                  const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
+                    ? t('filter.landing')
+                    : t('filter.webApp');
+
+                  return (
+                    <ProjectTiltCard
+                      key={project._id || project.slug}
+                      project={project}
+                      categoryTag={categoryTag}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* DIVIDER ACCENT */}
+            <div className="hh-projects-section-divider" aria-hidden="true">
+              <span className="divider-line" />
+              <span className="divider-badge">✦</span>
+              <span className="divider-line" />
+            </div>
+
+            {/* SUB-SECTION 2: ĐỒ ÁN HỌC THUẬT & NGHIÊN CỨU AI (ACADEMIC & AI RESEARCH) */}
+            <div className="hh-project-category-block" id="academic-projects">
+              <div className="hh-block-header">
+                <div className="hh-block-tag academic">
+                  <span className="tag-icon">🎓</span>
+                  <span>{t('featured.academic.eyebrow')}</span>
+                </div>
+                <h3 className="hh-block-title">{t('featured.academic.title')}</h3>
+                <p className="hh-block-desc">{t('featured.academic.desc')}</p>
+              </div>
+
+              <div className="hh-projects-grid">
+                {academicProjects.map((project) => {
+                  const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
+                    ? t('filter.landing')
+                    : t('filter.webApp');
+
+                  return (
+                    <ProjectTiltCard
+                      key={project._id || project.slug}
+                      project={project}
+                      categoryTag={categoryTag}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* FILTERED GRID WHEN A SPECIFIC TAB IS ACTIVE */
+          <div className="hh-projects-grid">
+            {filteredProjects.map((project) => {
+              const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
+                ? t('filter.landing')
+                : t('filter.webApp');
+
+              return (
+                <ProjectTiltCard
+                  key={project._id || project.slug}
+                  project={project}
+                  categoryTag={categoryTag}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
