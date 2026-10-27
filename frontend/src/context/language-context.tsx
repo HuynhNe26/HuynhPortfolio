@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { flushSync } from 'react-dom';
 
 export type Language = 'en' | 'vi' | 'zh';
 
@@ -513,6 +514,7 @@ const LanguageContext = createContext<LanguageContextType>({
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Default to 'vi' as requested by user, but restore preference if stored
   const [lang, setLangState] = useState<Language>('vi');
+  const isTransitioningRef = useRef(false);
 
   useEffect(() => {
     try {
@@ -532,13 +534,50 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setLang = (newLang: Language) => {
-    setLangState(newLang);
-    try {
-      localStorage.setItem('portfolio_lang', newLang);
-      document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : newLang;
-    } catch {
-      // ignore
+    if (newLang === lang || isTransitioningRef.current) return;
+
+    if (typeof window === 'undefined') {
+      setLangState(newLang);
+      return;
     }
+
+    const prefersReducedMotion =
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setLangState(newLang);
+      try {
+        localStorage.setItem('portfolio_lang', newLang);
+        document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : newLang;
+      } catch {}
+      return;
+    }
+
+    isTransitioningRef.current = true;
+    const root = document.documentElement;
+
+    // Phase 1: Tear / rip old letters into puzzle shards (220ms)
+    root.setAttribute('data-lang-shred', 'tearing');
+
+    setTimeout(() => {
+      // Phase 2: Synchronously flush React state and assemble new letters from puzzle shards
+      flushSync(() => {
+        setLangState(newLang);
+        try {
+          localStorage.setItem('portfolio_lang', newLang);
+          root.lang = newLang === 'zh' ? 'zh-CN' : newLang;
+        } catch {}
+      });
+
+      root.setAttribute('data-lang-shred', 'assembling');
+
+      // Phase 3: Cleanup and settle into idle state after 360ms
+      setTimeout(() => {
+        root.removeAttribute('data-lang-shred');
+        isTransitioningRef.current = false;
+      }, 360);
+    }, 220);
   };
 
   const toggleLang = () => {
