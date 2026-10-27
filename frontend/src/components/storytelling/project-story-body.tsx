@@ -7,6 +7,7 @@ import { STORYTELLING_MODES_CATALOG } from '@/lib/types';
 import { useLanguage } from '@/context/language-context';
 import { MasterInteractiveScrollytelling } from './master-interactive-scrollytelling';
 import { ProjectGalleryShowcase } from '@/components/project-gallery-showcase';
+import { ResponsiveOmniDeviceShowcase } from '@/components/responsive-omni-device-showcase';
 
 interface ProjectStoryBodyProps {
   project: Project;
@@ -638,6 +639,13 @@ export function ProjectStoryBody({
         project={project}
         chapters={chapters}
       />
+
+      {/* OMNI-DEVICE RESPONSIVE ANIMATION & CAPABILITY SHOWCASE */}
+      {project.slug === 'rent-house-smart-management' && (
+        <div style={{ marginTop: '56px', marginBottom: '64px' }}>
+          <ResponsiveOmniDeviceShowcase />
+        </div>
+      )}
 
       {/* FULL HIGH-RESOLUTION SCREENSHOTS GALLERY SHOWCASE */}
       {project.gallery && project.gallery.length > 0 && (

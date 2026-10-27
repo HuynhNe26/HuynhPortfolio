@@ -751,6 +751,13 @@ async function seed() {
             'Real-time room availability status and transparent pricing',
             'Mobile-first responsive layout optimized for all device form factors',
           ],
+          screenshots: [
+            {
+              url: '/projects/rent-house-hero.png',
+              caption: 'Public Rental Catalog & Room Showcase',
+              alt: 'Landing Page & Room Catalog for Thanh Tam Rental House',
+            },
+          ],
         },
         {
           id: 'chapter-02',
@@ -762,6 +769,13 @@ async function seed() {
             'HTTP-Only Cookie session security with aggressive Rate Limiting',
             'Real-time aggregated financial, revenue, and debt statistics',
             'Interactive Recharts data visualization for monthly utility patterns',
+          ],
+          screenshots: [
+            {
+              url: '/projects/rent-house-admin-dashboard.png',
+              caption: 'Central Administrative Dashboard & Financial Analytics',
+              alt: 'Admin Dashboard for Thanh Tam Rental House',
+            },
           ],
         },
         {
@@ -775,6 +789,13 @@ async function seed() {
             'Laplacian variance blur detector for automated photographic quality control',
             'Human-in-the-loop workflow: parallel verification of raw photos and OCR outputs',
           ],
+          screenshots: [
+            {
+              url: '/projects/rent-house-ai-meters.png',
+              caption: 'AI OCR Meter Verification Interface & Real Photo Inspection',
+              alt: 'AI OCR Meter Reading & Human-in-the-loop Review',
+            },
+          ],
         },
         {
           id: 'chapter-04',
@@ -786,6 +807,13 @@ async function seed() {
             'Snapshot Pricing mechanism freezing unit rates at statement creation',
             'Automated surcharge computation, deposit deductions, and prior debt carryover',
             'Resend API transactional email integration with meter photo attachments and SMS triggers',
+          ],
+          screenshots: [
+            {
+              url: '/projects/rent-house-billing.png',
+              caption: 'Billing Management & Automated Multi-Channel Dispatch',
+              alt: 'Admin Bills Management & Multi-channel Dispatch',
+            },
           ],
         },
         {
@@ -799,6 +827,13 @@ async function seed() {
             'SHA-256 cryptographic digest verification ensuring document integrity',
             'PostgreSQL database trigger preventing retroactive updates or deletions of signed leases',
           ],
+          screenshots: [
+            {
+              url: '/projects/rent-house-contracts.png',
+              caption: 'Immutable Lease Agreements with SHA-256 Cryptographic Seals',
+              alt: 'Admin Electronic Contracts Management',
+            },
+          ],
         },
         {
           id: 'chapter-06',
@@ -811,6 +846,13 @@ async function seed() {
             'High-contrast accessible user experience designed for all age groups',
             'Interactive modal inspector providing 100% photographic transparency',
           ],
+          screenshots: [
+            {
+              url: '/projects/rent-house-tenant-portal.png',
+              caption: 'High-Contrast Tenant Portal & Full-Resolution Meter Photo Inspector',
+              alt: 'Tenant Portal High-Contrast Accessible Dashboard',
+            },
+          ],
         },
         {
           id: 'chapter-07',
@@ -822,6 +864,13 @@ async function seed() {
             'Direct touchscreen electronic signature capture with HTML5 Canvas SignaturePad',
             'Native mobile packaging via Capacitor 8 (Android Studio / Gradle toolchain)',
             'Standalone Android APK compilation and iOS PWA Standalone compliance',
+          ],
+          screenshots: [
+            {
+              url: '/projects/rent-house-mobile.png',
+              caption: 'Cross-Platform Mobile Android APK & Liquid Glass Navigation Dock',
+              alt: 'Mobile Card UI & Liquid Glass Dock Navigation',
+            },
           ],
         },
       ],

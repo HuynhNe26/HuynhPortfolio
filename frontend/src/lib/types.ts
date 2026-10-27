@@ -1452,6 +1452,18 @@ export const defaultProjects: Project[] = [
         description: 'Unified management dashboard aggregating occupancy metrics, revenue forecasting, and utility consumption trends.',
       },
       {
+        url: '/projects/rent-house-admin-rooms.png',
+        caption: 'Room Inventory & Pricing Configuration Matrix',
+        alt: 'Room Management and Facilities Configuration',
+        description: 'Management console for room status (vacant/rented), facility amenities, and tiered electricity/water rates.',
+      },
+      {
+        url: '/projects/rent-house-admin-tenants.png',
+        caption: 'Tenant Directory & Identity Card Verification',
+        alt: 'Tenant Profiles and Security Deposit Management',
+        description: 'Centralized tenant profiles storing national ID documents, emergency contacts, room allocation, and security deposits.',
+      },
+      {
         url: '/projects/rent-house-ai-meters.png',
         caption: 'AI OCR Meter Processing & Human-in-the-Loop Review',
         alt: 'AI OCR Meter Reading & Human-in-the-loop Review',
@@ -1470,10 +1482,40 @@ export const defaultProjects: Project[] = [
         description: 'Legally compliant PDF lease agreements sealed with SHA-256 cryptographic digests and database immutability triggers.',
       },
       {
+        url: '/projects/rent-house-admin-notifications.png',
+        caption: 'Multi-Channel Notification Hub & Tenant Broadcasts',
+        alt: 'Notification Center for SMS and Email Delivery',
+        description: 'Integrated notification center tracking SMS delivery receipts, Resend email logs, and building-wide announcements.',
+      },
+      {
+        url: '/projects/rent-house-admin-audit.png',
+        caption: 'Comprehensive System Audit Trail & Security Logs',
+        alt: 'System Audit Trail and Security Access Logs',
+        description: 'Immutable historical audit ledger capturing all meter modifications, authentication attempts, and administrative actions.',
+      },
+      {
         url: '/projects/rent-house-tenant-portal.png',
         caption: 'High-Contrast Accessible Tenant Dashboard & Meter Inspector',
         alt: 'Tenant Portal High-Contrast Accessible Dashboard',
         description: 'Ergonomic tenant interface with high legibility (≥18px text, 32px amounts), OTP login, and full-resolution meter photo inspector.',
+      },
+      {
+        url: '/projects/rent-house-tenant-electricity.png',
+        caption: 'Tenant Electricity Consumption & kWh Tracker',
+        alt: 'Tenant Electricity Usage Breakdown and Meter Photo',
+        description: 'Transparent monthly electricity tracking with tiered tariff breakdown and full-resolution meter photo inspector.',
+      },
+      {
+        url: '/projects/rent-house-tenant-water.png',
+        caption: 'Tenant Water Consumption & M³ Tracker',
+        alt: 'Tenant Water Usage Breakdown and Meter Photo',
+        description: 'Accurate water consumption monitoring displaying monthly cubic meters and photographic proof from physical meters.',
+      },
+      {
+        url: '/projects/rent-house-tenant-history.png',
+        caption: 'Complete Tenant Billing Ledger & Payment Proof Archive',
+        alt: 'Tenant Payment History and PDF Receipts',
+        description: 'Archived historical statements, bank transfer references, and digital payment receipts accessible to tenants 24/7.',
       },
       {
         url: '/projects/rent-house-signing.png',
@@ -1486,6 +1528,24 @@ export const defaultProjects: Project[] = [
         caption: 'Cross-Platform Android APK & Liquid Glass Dock Navigation',
         alt: 'Mobile Card UI & Liquid Glass Dock Navigation',
         description: 'Native hybrid packaging via Capacitor 8 with iOS/Android fluid dock navigation.',
+      },
+      {
+        url: '/projects/rent-house-mobile-utility.png',
+        caption: 'Responsive Smartphone View of Utilities & Invoices',
+        alt: 'Mobile Smartphone Responsive Utility Dashboard',
+        description: 'Responsive mobile layout adapting utility bills, photo modals, and quick actions to narrow smartphone screens.',
+      },
+      {
+        url: '/projects/rent-house-mobile-contract.png',
+        caption: 'Responsive Mobile Electronic Lease Signing & PDF',
+        alt: 'Mobile Contract Review and Electronic Signing',
+        description: 'Fluid contract review and direct touchscreen signing tailored for smartphone displays on Android and iOS.',
+      },
+      {
+        url: '/projects/rent-house-tablet-responsive.png',
+        caption: 'Responsive Tablet View on iPad Pro (1024×768)',
+        alt: 'Responsive Tablet View on iPad Pro',
+        description: 'Optimized touch-friendly tablet ergonomics for landlords performing on-site room walkthrough inspections.',
       },
       {
         url: '/projects/rent-house-meter-real.jpg',
