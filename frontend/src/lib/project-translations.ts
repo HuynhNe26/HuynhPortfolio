@@ -93,6 +93,57 @@ export const PROJECT_TRANSLATIONS: Record<string, Partial<Record<Language, Proje
       role: 'Full-Stack Developer & UI/UX Architect',
     },
   },
+  'skyroute-aviation-ops': {
+    zh: {
+      title: 'SkyRoute Dispatcher — 民航实时航班调度与货物载重平衡中台',
+      summary: '基于实时雷达空域地图的民航航班调度与货物载重平衡中台，支持航空器重心包线（Center of Gravity）精确计算与 ULD 集装箱最优装载配置。',
+      role: '全栈开发工程师 & 航空系统架构师',
+    },
+    vi: {
+      title: 'SkyRoute Dispatcher — Nền tảng điều phối bay & kiểm soát tải trọng',
+      summary: 'Nền tảng điều phối bay và kiểm soát tải trọng hàng không thời gian thực với bản đồ bay radar, tính toán trọng tâm máy bay (Center of Gravity) và phân bổ ULD tối ưu.',
+      role: 'Lập trình viên Full-Stack & Hệ thống Hàng không',
+    },
+    en: {
+      title: 'SkyRoute Dispatcher — Real-Time Flight Operations & Cargo Management',
+      summary: 'Real-time flight dispatch and cargo load control platform featuring radar airspace mapping, aircraft center of gravity (CG) calculations, and optimal ULD pallet allocation.',
+      role: 'Full-Stack Developer & Aviation Systems Architect',
+    },
+  },
+  'medicare-ai-triage': {
+    zh: {
+      title: 'MediCare AI — 智慧远程医疗问诊与临床辅助决策分诊系统',
+      summary: '具备智能临床辅助决策的智慧医疗与 AI 分诊平台，集成 WebRTC 高清远程视频问诊、数字化电子处方与药物相互作用冲突预警引擎。',
+      role: '全栈开发工程师 & 医疗 AI 架构师',
+    },
+    vi: {
+      title: 'MediCare AI — Hệ thống phân loại bệnh & khám từ xa thông minh',
+      summary: 'Hệ thống bệnh án điện tử (EMR) và phân loại triệu chứng bệnh nhân bằng AI, tích hợp phòng khám video WebRTC và kê đơn thuốc số cảnh báo tương tác thuốc.',
+      role: 'Lập trình viên Full-Stack & Kỹ sư AI Y tế',
+    },
+    en: {
+      title: 'MediCare AI — Smart Telehealth & Clinical Decision Support System',
+      summary: 'Smart electronic medical records (EMR) and AI clinical triage platform featuring real-time WebRTC video consultation and digital prescription with drug interaction alerts.',
+      role: 'Full-Stack Developer & Healthcare AI Engineer',
+    },
+  },
+  'rent-house-smart-management': {
+    zh: {
+      title: '智能出租屋管理系统与本地 AI 抄表识别 — Thanh Tâm 公寓',
+      summary: '集成计算机视觉与本地 AI OCR 微服务的端到端出租屋智慧管理系统，支持实际水电表图像自动识别与人机协同审核、SMS 与邮件多渠道账单推送、SHA-256 不可篡改电子合同及跨平台 Android 原生应用。',
+      role: '全栈开发工程师 & AI 微服务架构师',
+    },
+    vi: {
+      title: 'Hệ thống quản lý nhà trọ thông minh & AI OCR cục bộ — Nhà Trọ Thanh Tâm',
+      summary: 'Hệ thống quản trị nhà trọ toàn diện với Microservice AI OCR nhận diện chỉ số điện nước từ ảnh chụp thực tế, quy trình duyệt Human-in-the-loop, tự động lập hóa đơn đa kênh (SMS OTP & Email Resend), ký hợp đồng điện tử bất biến bảo mật mã băm SHA-256 trên Neon PostgreSQL và ứng dụng di động Android APK (Capacitor).',
+      role: 'Lập trình viên Full-Stack & Kiến trúc sư AI Microservices',
+    },
+    en: {
+      title: 'Smart Rental House Management & Local AI OCR — Nhà Trọ Thanh Tâm',
+      summary: 'End-to-end rental boarding house management system featuring local AI OCR microservices for automated utility meter reading from actual photos, human-in-the-loop audit verification, automated multi-channel billing (SMS OTP & Resend Email), and SHA-256 tamper-proof electronic contract signing on PostgreSQL Neon.',
+      role: 'Full-Stack Developer & AI Microservices Architect',
+    },
+  },
 };
 
 export function getLocalizedRole(role: string | undefined, lang: Language): string {

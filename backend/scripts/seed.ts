@@ -702,11 +702,11 @@ async function seed() {
       title: 'Smart Rental House Management & Local AI OCR — Nhà Trọ Thanh Tâm',
       slug: 'rent-house-smart-management',
       summary:
-        'Hệ thống quản trị nhà trọ toàn diện với Microservice AI OCR nhận diện chỉ số điện nước từ ảnh chụp thực tế, quy trình duyệt Human-in-the-loop, tự động lập hóa đơn đa kênh (SMS OTP & Email Resend), ký hợp đồng điện tử bất biến bảo mật mã băm SHA-256 trên Neon PostgreSQL và ứng dụng di động Android APK (Capacitor).',
+        'End-to-end rental boarding house management system featuring local AI OCR microservices for automated utility meter reading from actual photos, human-in-the-loop audit verification, automated multi-channel billing (SMS OTP & Resend Email), and SHA-256 tamper-proof electronic contract signing on PostgreSQL Neon.',
       category: 'PropTech & Local AI Microservices',
       role: 'Full-Stack Developer & AI Microservices Architect',
       teamSize: 1,
-      timeline: 'Tháng 8, 2025 – Tháng 10, 2026',
+      timeline: 'August 2025 – October 2026',
       status: 'Completed',
       year: 2026,
       technologies: [
@@ -734,94 +734,94 @@ async function seed() {
       order: 8,
       storytellingStyle: 'sticky-split',
       problem:
-        'Chủ nhà trọ gặp nhiều khó khăn khi ghi số điện nước thủ công bằng sổ sách: tốn thời gian, dễ nhầm lẫn số liệu, hóa đơn tính tay dễ gây tranh chấp với khách thuê. Hợp đồng giấy truyền thống dễ thất lạc hoặc bị sửa đổi, và khách thuê (đặc biệt người lớn tuổi) khó theo dõi lịch sử tiêu thụ minh bạch.',
+        'Boarding house landlords face immense friction managing tenant utility records manually using paper notebooks: time-consuming data collection, transcription errors, dispute risks over utility calculations, vulnerable paper lease contracts susceptible to alteration, and tenant friction tracking historical consumption.',
       approach:
-        'Xây dựng giải pháp PropTech khép kín: Microservice AI OCR nhận diện chỉ số công tơ điện nước kèm phân tích chất lượng ảnh (độ mờ Laplacian variance), quy trình duyệt Human-In-The-Loop minh bạch, tự động hóa tính tiền điện bậc thang & dịch vụ, phát thông báo đa kênh SMS OTP/Email, và ký hợp đồng số trên màn hình cảm ứng lưu trữ mã băm SHA-256 với database trigger ngăn chặn sửa đổi.',
+        'Architected a closed-loop PropTech solution: FastAPI + OpenCV + Tesseract microservice with Laplacian variance blur detection for zero-cost local OCR meter reading, human-in-the-loop audit verification, tiered automated billing with Snapshot Pricing, multi-channel notifications (SMS OTP & Resend Email), and HTML5 Canvas touchscreen lease signing secured by SHA-256 cryptographic hashes and PostgreSQL immutability triggers.',
       outcome:
-        'Tiết kiệm 85% thời gian chốt số điện nước hàng tháng, độ chính xác nhận diện AI đạt 98.6%, minh bạch 100% hình ảnh thực tế cho khách thuê, loại bỏ hoàn toàn rủi ro gian lận hợp đồng và phát hành ứng dụng di động Android APK cài đặt trực tiếp.',
+        'Saved 85% of monthly billing audit hours, achieved 98.6% OCR recognition accuracy, provided 100% photographic transparency for tenants, eliminated contract forgery risks, and delivered a production-ready cross-platform Android APK.',
       chapters: [
         {
           id: 'chapter-01',
           number: '01',
-          title: 'Cổng Khám Phá & Danh Mục Phòng Trọ Minh Bạch (Landing Page)',
+          title: 'Public Rental Catalog & Discovery Portal (Landing Page)',
           content:
-            'Giao diện công khai tại nhatrothanhtam.netlify.app chào đón khách tìm phòng với danh mục trực quan các phòng trọ tiện nghi, bảng giá niêm yết rõ ràng, bộ lọc trạng thái (còn trống, đang thuê), cùng thông tin địa chỉ, tiện ích và vị trí thực tế.',
+            'The public-facing portal at nhatrothanhtam.netlify.app welcomes prospective tenants with an intuitive catalog of available rooms, transparent pricing matrices, real-time availability filters, and comprehensive amenity listings.',
           technicalNotes: [
-            'Giao diện chuẩn SEO Schema.org (ApartmentComplex) & OpenGraph',
-            'Hiển thị danh mục phòng với trạng thái thời gian thực và giá thuê minh bạch',
-            'Bố cục Responsive tối ưu cho cả máy tính và điện thoại di động',
+            'Schema.org (ApartmentComplex) & OpenGraph SEO metadata',
+            'Real-time room availability status and transparent pricing',
+            'Mobile-first responsive layout optimized for all device form factors',
           ],
         },
         {
           id: 'chapter-02',
           number: '02',
-          title: 'Trung Tâm Quản Trị & Phân Tích Hiệu Suất Vận Hành (Admin Dashboard)',
+          title: 'Central Administrative Dashboard & Operations Analytics',
           content:
-            'Bảng điều khiển quản trị trung tâm dành cho chủ nhà trọ, tổng hợp nhanh tỷ lệ lấp đầy phòng, doanh thu tiền phòng, tiền điện, tiền nước thực thu so với dự kiến. Biểu đồ trực quan theo dõi lượng tiêu thụ điện nước trung bình 3-6 tháng và cảnh báo nhanh các phòng quá hạn thanh toán.',
+            'Central operations console for boarding house owners, aggregating occupancy rates, rent revenue, electric/water collections against projections, 3-6 month consumption trend charts, and automated overdue payment flags.',
           technicalNotes: [
-            'Bảo mật phiên đăng nhập Quản trị viên với HTTP-Only Cookie & Rate Limiting',
-            'Tổng hợp số liệu tài chính, doanh thu và công nợ tức thời',
-            'Biểu đồ Recharts phân tích xu hướng tiêu thụ điện nước theo chu kỳ tháng',
+            'HTTP-Only Cookie session security with aggressive Rate Limiting',
+            'Real-time aggregated financial, revenue, and debt statistics',
+            'Interactive Recharts data visualization for monthly utility patterns',
           ],
         },
         {
           id: 'chapter-03',
           number: '03',
-          title: 'Động Cơ AI OCR Nhận Diện Chỉ Số & Quy Trình Duyệt Human-In-The-Loop',
+          title: 'AI OCR Meter Reading Engine & Human-in-the-Loop Review',
           content:
-            'Điểm đột phá của dự án là việc xử lý ảnh công tơ điện và đồng hồ nước bằng mô hình AI OCR kết hợp thuật toán thị giác máy tính OpenCV. Hệ thống tự động phân tích độ sắc nét bằng phương sai Laplacian, cảnh báo ảnh mờ, chói sáng hoặc quá tối. Chủ nhà đối chiếu trực tiếp ảnh chụp thực tế và số liệu AI nhận diện, phê duyệt 1 chạm hoặc điều chỉnh số liệu trước khi chốt sổ.',
+            'A proprietary AI OCR microservice pairing Computer Vision algorithms with Tesseract. Automatically assesses image sharpness using Laplacian variance, warning against blurry, glare-heavy, or underexposed photos. Landlords inspect side-by-side original photos against AI-detected figures for one-touch approvals.',
           technicalNotes: [
-            'Local AI OCR Microservice (FastAPI + OpenCV + Tesseract) tự chủ 100% chi phí',
-            'Thuật toán kiểm tra chất lượng ảnh (Laplacian variance blur detector)',
-            'Quy trình kiểm soát Human-in-the-loop: đối chiếu song song ảnh gốc và số liệu OCR',
+            'Zero-cost self-hosted Local AI OCR Microservice (FastAPI + OpenCV + Tesseract)',
+            'Laplacian variance blur detector for automated photographic quality control',
+            'Human-in-the-loop workflow: parallel verification of raw photos and OCR outputs',
           ],
         },
         {
           id: 'chapter-04',
           number: '04',
-          title: 'Tự Động Tính Tiền Hóa Đơn & Phát Thông Báo Đa Kênh (SMS OTP & Email Resend)',
+          title: 'Automated Tiered Billing & Multi-Channel Dispatch (SMS OTP & Resend)',
           content:
-            'Ngay sau khi chỉ số điện nước được phê duyệt, hệ thống tự động tính toán tổng hóa đơn gồm tiền phòng, tiền điện, tiền nước và phí dịch vụ. Cơ chế Snapshot Pricing chốt cứng đơn giá tại thời điểm lập hóa đơn để lịch sử kế toán không bao giờ sai lệch. Hóa đơn được phát tức thời tới khách thuê qua tin nhắn SMS OTP và Email thông báo chi tiết qua Resend API.',
+            'Upon meter verification, the billing engine aggregates rent, tiered electricity, water, and service fees. Immutable Snapshot Pricing seals unit tariffs at statement generation time to prevent retroactive accounting shifts. Invoices are dispatched immediately to tenants via SMS OTP and detailed email receipts via Resend API.',
           technicalNotes: [
-            'Cơ chế Snapshot Pricing lưu trữ bất biến đơn giá tại thời điểm lập phiếu',
-            'Tự động tính toán phụ phí, trừ tiền đặt cọc hoặc cộng dồn nợ cũ',
-            'Tích hợp Resend API gửi bảng kê chi tiết kèm ảnh chụp công tơ và SMS thông báo',
+            'Snapshot Pricing mechanism freezing unit rates at statement creation',
+            'Automated surcharge computation, deposit deductions, and prior debt carryover',
+            'Resend API transactional email integration with meter photo attachments and SMS triggers',
           ],
         },
         {
           id: 'chapter-05',
           number: '05',
-          title: 'Hợp Đồng Thuê Điện Tử Bất Biến & Khóa Mật Mã SHA-256 Trigger CSDL',
+          title: 'Immutable Electronic Lease Contracts & SHA-256 PostgreSQL Triggers',
           content:
-            'Giải quyết triệt để rủi ro thất lạc hoặc sửa đổi hợp đồng thuê truyền thống. Hệ thống sinh hợp đồng điện tử định dạng PDF, mã hóa toàn bộ văn bản và sinh chuỗi băm mật mã học SHA-256. Database Trigger (trg_enforce_contract_immutability) trên Neon PostgreSQL kích hoạt cơ chế bảo vệ bất biến, nghiêm cấm mọi hành vi cập nhật hoặc xóa hợp đồng đã được hai bên ký kết.',
+            'Eliminates paper contract loss and unauthorized modifications. Generates standardized PDF lease agreements, computes SHA-256 cryptographic hashes over document bytes, and enforces permanent record immutability via a dedicated PostgreSQL trigger (trg_enforce_contract_immutability) on Neon database.',
           technicalNotes: [
-            'Sinh file PDF hợp đồng chuẩn pháp lý với thư viện PDFKit',
-            'Băm mật mã SHA-256 (document_hash) bảo đảm tính toàn vẹn tài liệu',
-            'PostgreSQL trigger trg_enforce_contract_immutability ngăn chặn sửa đổi vĩnh viễn',
+            'Standardized PDF contract generation using PDFKit engine',
+            'SHA-256 cryptographic digest verification ensuring document integrity',
+            'PostgreSQL database trigger preventing retroactive updates or deletions of signed leases',
           ],
         },
         {
           id: 'chapter-06',
           number: '06',
-          title: 'Cổng Người Thuê Phòng: Chữ To, Tương Phản Cao & Đối Chiếu Ảnh Công Tơ',
+          title: 'Accessible Tenant Portal: High-Contrast Ergonomics & Meter Inspector',
           content:
-            'Thấu hiểu tâm lý khách thuê và người lớn tuổi, Tenant Portal được thiết kế theo tiêu chuẩn công thái học cao: chữ to rõ ràng (≥18px), số tiền thanh toán hiển thị đậm nét (32px), nút bấm lớn (≥52px). Khách thuê đăng nhập nhanh bằng số điện thoại và mã OTP, có thể mở modal phóng to ảnh chụp đồng hồ thực tế để tự kiểm tra đối chiếu chỉ số của phòng mình.',
+            'Engineered specifically for everyday tenants and older demographics with high ergonomics: large typography (≥18px), prominent bold sums (32px), and generous touch targets (≥52px). Passwordless OTP authentication allows quick access, while the built-in modal inspector lets tenants zoom in on raw meter photos for complete peace of mind.',
           technicalNotes: [
-            'Xác thực đăng nhập không mật khẩu qua số điện thoại và mã OTP',
-            'Giao diện Accessible High-Contrast thiết kế chuyên biệt cho mọi lứa tuổi',
-            'Modal phóng to hình ảnh công tơ điện nước thực tế minh bạch 100%',
+            'Passwordless phone number + SMS OTP authentication',
+            'High-contrast accessible user experience designed for all age groups',
+            'Interactive modal inspector providing 100% photographic transparency',
           ],
         },
         {
           id: 'chapter-07',
           number: '07',
-          title: 'Ký Hợp Đồng Cảm Ứng HTML5 Canvas & Ứng Dụng Di Động Android APK',
+          title: 'Touchscreen SignaturePad & Capacitor 8 Cross-Platform Android APK',
           content:
-            'Khách thuê có thể ký tên trực tiếp bằng ngón tay hoặc bút cảm ứng trên màn hình điện thoại thông qua khung ký Canvas mượt mà. Hệ thống đóng gói ứng dụng di động hoàn chỉnh với Capacitor 8 cho Android và iOS, thanh điều hướng Liquid Glass Dock kiểu dáng Apple tinh tế, và cung cấp sẵn tệp APK cài đặt trực tiếp.',
+            'Tenants sign lease documents directly using their fingertips or styluses on a fluid HTML5 Canvas SignaturePad. The client is fully packaged as a native hybrid mobile application using Capacitor 8 for Android and iOS, featuring an Apple-inspired Liquid Glass Dock and standalone APK distribution.',
           technicalNotes: [
-            'Ký số trực tiếp trên màn hình cảm ứng với HTML5 Canvas SignaturePad',
-            'Đóng gói ứng dụng di động Native bằng Capacitor 8 (Android Studio / Gradle)',
-            'Biên dịch sẵn tệp APK Android độc lập và hỗ trợ PWA Standalone trên iOS',
+            'Direct touchscreen electronic signature capture with HTML5 Canvas SignaturePad',
+            'Native mobile packaging via Capacitor 8 (Android Studio / Gradle toolchain)',
+            'Standalone Android APK compilation and iOS PWA Standalone compliance',
           ],
         },
       ],
