@@ -44,18 +44,18 @@ export const PROJECT_TRANSLATIONS: Record<string, Partial<Record<Language, Proje
   },
   'examplatform-ai': {
     zh: {
-      title: 'ExamPlatform AI — AI 智能在线考试与自适应评测系统',
-      summary: '具备自适应学习特性的在线考试评测系统，支持题目实时分发、安全防作弊监控与考生能力图谱追踪。',
+      title: 'ExamPlatform AI — 遵循 GDPT 2018 标准的新一代自适应在线考试与苏格拉底 AI 启发式导学系统',
+      summary: '贯穿小学至大学 18 大专业的自适应测评系统。集成 OpenCV 实时考场诚信监控、LangGraph 苏格拉底三阶思维导学引擎、Hamilton-Hare 题阵防重复算法、Pure SVG 60FPS 能力图谱与 BullMQ 自动化家长监护中枢。',
       role: '全栈开发工程师',
     },
     vi: {
-      title: 'ExamPlatform AI — Nền tảng thi trực tuyến thông minh',
-      summary: 'Nền tảng học tập thích ứng và kiểm tra tự động hóa với khả năng tạo câu hỏi thời gian thực, đánh giá an toàn và theo dõi năng lực sinh viên.',
+      title: 'ExamPlatform AI — Nền Tảng Thi Thử Thích Ứng & Khai Phóng Tư Duy Chuẩn GDPT 2018',
+      summary: 'Hệ thống khảo thí thích ứng và rèn luyện tư duy thế hệ mới chuẩn GDPT 2018 (Tiểu học đến Đại học 18 ngành), tích hợp Camera AI giám sát liêm chính thời gian thực, Gia sư Socratic 3 tầng dẫn dắt tư duy, Ma trận đề Hamilton-Hare không trùng lặp và Cổng phụ huynh minh bạch đồng hành.',
       role: 'Lập trình viên Full-Stack',
     },
     en: {
-      title: 'ExamPlatform AI — AI-Powered Online Examination Platform',
-      summary: 'An adaptive learning and automated examination platform featuring real-time question generation, secure evaluation, and student performance tracking.',
+      title: 'ExamPlatform AI — Adaptive Examination & Socratic AI Tutoring Platform (GDPT 2018)',
+      summary: 'Next-generation adaptive assessment and cognitive development platform covering Grades 1–12 and 18 University disciplines. Features real-time OpenCV AI proctoring, LangGraph 3-tier Socratic tutoring, Hamilton-Hare non-repeating exam matrices, 60FPS Pure SVG radar charts, and BullMQ automated parent reporting.',
       role: 'Full-Stack Developer',
     },
   },
