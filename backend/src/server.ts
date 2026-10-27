@@ -1,5 +1,6 @@
 import { createServer } from 'node:http';
 import type { IncomingMessage, ServerResponse } from 'node:http';
+import { execSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { z } from 'zod';
 import { assertOrigin, createSession, deleteSession, digest, hashPassword, rateLimit, requireAdmin, sessionCookie, sessionToken, verifyPassword } from './auth.js';
@@ -589,7 +590,36 @@ if (isMainModule) {
 
   server.on('error', (err: any) => {
     if (err.code === 'EADDRINUSE') {
-      console.warn(`Port ${port} busy, retrying in 500ms...`);
+      console.warn(`Port ${port} busy, attempting to terminate stale process...`);
+      try {
+        if (process.platform === 'win32') {
+          const output = execSync('netstat -ano', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+          for (const line of output.split('\n')) {
+            if ((line.includes(`:${port} `) || line.includes(`:${port}\t`)) && (line.includes('LISTENING') || line.includes('LISTEN'))) {
+              const parts = line.trim().split(/\s+/);
+              const pid = Number(parts[parts.length - 1]);
+              if (pid && pid !== process.pid) {
+                try {
+                  execSync(`taskkill /F /T /PID ${pid}`, { stdio: 'ignore' });
+                  console.log(`✓ Terminated stale process ${pid} on port ${port}`);
+                } catch {}
+              }
+            }
+          }
+        } else {
+          try {
+            const pids = execSync(`lsof -ti :${port} -sTCP:LISTEN 2>/dev/null`, { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+            for (const pid of pids) {
+              if (Number(pid) !== process.pid) {
+                try {
+                  process.kill(Number(pid), 'SIGKILL');
+                  console.log(`✓ Terminated stale process ${pid} on port ${port}`);
+                } catch {}
+              }
+            }
+          } catch {}
+        }
+      } catch {}
       setTimeout(() => {
         try {
           server.close();
