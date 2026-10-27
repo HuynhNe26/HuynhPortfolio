@@ -326,25 +326,28 @@ export function ResponsiveOmniDeviceShowcase() {
         {device === 'tablet' && (
           <div className="rh-frame-tablet">
             <div className="rh-tablet-bezel">
-              <div className="rh-tablet-camera-notch" />
-              <div className="rh-screen-viewport" onClick={() => setLightboxImage(activeScreen.imageUrl)}>
-                <Image
-                  src={activeScreen.imageUrl}
-                  alt={activeScreen.alt}
-                  width={1024}
-                  height={768}
-                  className="rh-viewport-img"
-                  priority
-                  unoptimized
-                />
-                <div className="rh-zoom-hint">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-                    <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
-                  </svg>
-                  <span>{lang === 'vi' ? 'Nhấn để phóng to ảnh siêu nét' : 'Click to zoom full resolution'}</span>
-                </div>
+              <span className="tablet-camera" />
+              <span className="tablet-indicator">iPad Pro • 1024px</span>
+            </div>
+            <div className="rh-screen-viewport" onClick={() => setLightboxImage(activeScreen.imageUrl)}>
+              <Image
+                src={activeScreen.imageUrl}
+                alt={activeScreen.alt}
+                width={1024}
+                height={768}
+                className="rh-viewport-img"
+                priority
+                unoptimized
+              />
+              <div className="rh-zoom-hint">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
+                </svg>
+                <span>{lang === 'vi' ? 'Nhấn để phóng to ảnh siêu nét' : 'Click to zoom full resolution'}</span>
               </div>
-              <div className="rh-tablet-home-indicator" />
+            </div>
+            <div className="rh-tablet-home-indicator">
+              <span className="home-bar" />
             </div>
           </div>
         )}
@@ -352,29 +355,40 @@ export function ResponsiveOmniDeviceShowcase() {
         {/* 3. MOBILE SMARTPHONE FRAME */}
         {device === 'mobile' && (
           <div className="rh-frame-mobile">
-            <div className="rh-phone-bezel">
-              <div className="rh-phone-dynamic-island">
+            <div className="rh-dynamic-island">
+              <span className="mobile-clock">9:41</span>
+              <div className="island-capsule">
                 <span className="island-lens" />
                 <span className="island-speaker" />
               </div>
-              <div className="rh-screen-viewport" onClick={() => setLightboxImage(activeScreen.imageUrl)}>
-                <Image
-                  src={activeScreen.imageUrl}
-                  alt={activeScreen.alt}
-                  width={393}
-                  height={852}
-                  className="rh-viewport-img"
-                  priority
-                  unoptimized
-                />
-                <div className="rh-zoom-hint">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-                    <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
-                  </svg>
-                  <span>{lang === 'vi' ? 'Nhấn để phóng to ảnh siêu nét' : 'Click to zoom full resolution'}</span>
-                </div>
+              <div className="mobile-icons" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A9.957 9.957 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10c0 2.32-.8 4.45-2.14 6.14l-.62-.62A8.966 8.966 0 0 0 21 12c0-4.97-4.03-9-9-9z"/>
+                </svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17 4h-3V2h-4v2H7v18h10V4zm-2 16H9V6h6v14z"/>
+                </svg>
               </div>
-              <div className="rh-phone-home-indicator" />
+            </div>
+            <div className="rh-screen-viewport" onClick={() => setLightboxImage(activeScreen.imageUrl)}>
+              <Image
+                src={activeScreen.imageUrl}
+                alt={activeScreen.alt}
+                width={393}
+                height={852}
+                className="rh-viewport-img"
+                priority
+                unoptimized
+              />
+              <div className="rh-zoom-hint">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
+                </svg>
+                <span>{lang === 'vi' ? 'Nhấn để phóng to ảnh siêu nét' : 'Click to zoom full resolution'}</span>
+              </div>
+            </div>
+            <div className="rh-mobile-home-indicator">
+              <span className="home-bar" />
             </div>
           </div>
         )}

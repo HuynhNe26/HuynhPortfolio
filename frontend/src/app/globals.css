@@ -20492,14 +20492,15 @@ html[data-lang-shred] :is(.hh-meta-val, .hh-meta-label span, .hh-case-cat-pill, 
 /* 3. MOBILE FRAME (IPHONE 15 PRO) */
 .rh-frame-mobile {
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
   background: #020617;
   border: 11px solid #1E293B;
-  border-radius: 46px;
-  box-shadow: 0 32px 80px -18px rgba(15, 23, 42, 0.35), 0 0 0 2px #475569;
+  border-radius: 48px;
+  box-shadow: 0 32px 80px -18px rgba(15, 23, 42, 0.4), 0 0 0 2px #475569;
   overflow: hidden;
   position: relative;
   transition: all 0.3s ease;
+  margin: 0 auto;
 }
 
 [data-theme="dark"] .rh-frame-mobile {
@@ -20508,33 +20509,55 @@ html[data-lang-shred] :is(.hh-meta-val, .hh-meta-label span, .hh-case-cat-pill, 
 }
 
 .rh-dynamic-island {
-  padding: 8px 16px 6px;
+  padding: 8px 18px 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #020617;
   color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .mobile-clock {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-mono, monospace);
   color: #F8FAFC;
+  letter-spacing: -0.02em;
 }
 
 .island-capsule {
-  width: 84px;
-  height: 20px;
+  width: 88px;
+  height: 22px;
   border-radius: 9999px;
   background: #000000;
   border: 1px solid #1E293B;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.9);
+}
+
+.island-lens {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 1.5px solid #1e293b;
+}
+
+.island-speaker {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: #1e293b;
 }
 
 .mobile-icons {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   color: #F8FAFC;
 }
 
@@ -20546,9 +20569,10 @@ html[data-lang-shred] :is(.hh-meta-val, .hh-meta-label span, .hh-case-cat-pill, 
 }
 
 .rh-mobile-home-indicator .home-bar {
-  width: 110px;
+  width: 120px;
   height: 4px;
-  background: #94A3B8;
+  border-radius: 9999px;
+  background: #64748B;
 }
 
 /* SCREEN VIEWPORT & ZOOM TRIGGER */
@@ -20557,9 +20581,8 @@ html[data-lang-shred] :is(.hh-meta-val, .hh-meta-label span, .hh-case-cat-pill, 
   background: #F8FAFC;
   cursor: pointer;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  width: 100%;
 }
 
 [data-theme="dark"] .rh-screen-viewport {
@@ -20570,32 +20593,46 @@ html[data-lang-shred] :is(.hh-meta-val, .hh-meta-label span, .hh-case-cat-pill, 
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .rh-screen-viewport:hover .rh-viewport-img {
-  transform: scale(1.02);
+  transform: scale(1.015);
 }
 
-.rh-screen-overlay-btn {
+/* FLOATING ZOOM PILL HINT */
+.rh-zoom-hint {
   position: absolute;
-  inset: 0;
-  display: flex;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(4px);
-  color: #FFFFFF;
-  font-size: 14px;
-  font-weight: 600;
   gap: 8px;
-  opacity: 0;
-  transition: opacity 0.25s ease;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  opacity: 0.92;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.rh-screen-viewport:hover .rh-screen-overlay-btn {
+.rh-screen-viewport:hover .rh-zoom-hint {
   opacity: 1;
+  transform: translateX(-50%) translateY(-2px) scale(1.03);
+  background: rgba(37, 99, 235, 0.94);
+  border-color: rgba(191, 219, 254, 0.6);
+  box-shadow: 0 14px 30px -4px rgba(37, 99, 235, 0.5);
 }
 
 /* Frame Meta */
