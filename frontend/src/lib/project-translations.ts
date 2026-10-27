@@ -27,18 +27,18 @@ export const PROJECT_TRANSLATIONS: Record<string, Partial<Record<Language, Proje
   },
   'fashion-nail-morley': {
     zh: {
-      title: 'Fashion Nail Morley 澳洲高端美甲沙龙官网',
-      summary: '专为澳大利亚美甲沙龙量身打造的高响应式预约与作品展示营销落地页，集成客户实时咨询与预约流程。',
+      title: 'Fashion Nail Morley — 澳洲 Morley Galleria 高端美甲沙龙全流程在线预约与管理系统',
+      summary: '专为西澳珀斯 Morley Galleria 高端美甲沙龙打造的全流程在线预约与数字化运营中枢。涵盖 29 种医疗级灭菌护理（BIAB 强化胶、Gel-X、水晶延甲、水疗美足），严格遵循珀斯时区（AWST UTC+8）的 6 步智能预约向导，24/7 AI 礼宾咨询顾问，以及基于 WebSocket 实时同步与 Node-cron 定时调度的管理后台。',
       role: '全栈开发工程师',
     },
     vi: {
-      title: 'Trang đích thương mại Fashion Nail Morley',
-      summary: 'Trang đích giới thiệu dịch vụ và đặt lịch hẹn chuẩn SEO, tốc độ cao dành cho tiệm nail tại Úc, tích hợp form tư vấn trực tiếp.',
+      title: 'Fashion Nail Morley — Hệ Thống Đặt Lịch & Quản Trị Salon Nail Cao Cấp (Morley Galleria, WA)',
+      summary: 'Nền tảng thương mại và quản trị vận hành toàn diện cho salon nail tại Morley Galleria, Tây Úc (Perth). Tích hợp danh mục 29 dịch vụ chuẩn y tế (BIAB, Gel-X, Acrylic, Spa), quy trình đặt lịch 6 bước theo múi giờ Perth (AWST), Trợ lý AI Fashion Nails Concierge tư vấn 24/7 và Executive Admin Suite quản lý lịch hẹn realtime qua WebSocket & điều phối voucher tự động qua Cronjob.',
       role: 'Lập trình viên Full-Stack',
     },
     en: {
-      title: 'Fashion Nail Morley Landing Page',
-      summary: 'A fast, responsive salon booking and showcase landing page designed for an Australian beauty salon with integrated customer inquiries.',
+      title: 'Fashion Nail Morley — Luxury Salon Booking & Executive Admin Suite (Morley Galleria, WA)',
+      summary: 'An end-to-end commercial booking and administrative management platform for a premier beauty salon at Morley Galleria, Western Australia (Perth). Features a 29-treatment medical-grade menu (BIAB, Gel-X, Acrylic, Spa), a 6-step booking wizard synchronized with Perth time (AWST UTC+8), 24/7 AI Concierge consultation, and an Executive Admin Suite with real-time WebSocket appointment feeds and automated Node-cron voucher scheduling.',
       role: 'Full-Stack Developer',
     },
   },
