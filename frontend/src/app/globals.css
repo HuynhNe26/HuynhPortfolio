@@ -19927,7 +19927,15 @@ html[data-lang-shred="tearing"] :is(
   .hh-btn-secondary,
   .hh-btn-report span,
   .nav-link-text,
-  .hh-nav-item span
+  .hh-nav-item span,
+  .hh-nav-link span,
+  .hh-nav-link-text,
+  .hh-brand-name,
+  .hh-btn-lets-talk span,
+  .hh-btn-lets-talk-text,
+  .hh-lang-trigger-code,
+  .hh-filter-pill span,
+  .chapter-nav-link span
 ) {
   animation: hhLetterShardTearOut 0.22s cubic-bezier(0.4, 0, 0.7, 0.2) forwards !important;
   will-change: transform, clip-path, opacity, filter;
@@ -19960,14 +19968,36 @@ html[data-lang-shred="assembling"] :is(
   .hh-btn-secondary,
   .hh-btn-report span,
   .nav-link-text,
-  .hh-nav-item span
+  .hh-nav-item span,
+  .hh-nav-link span,
+  .hh-nav-link-text,
+  .hh-brand-name,
+  .hh-btn-lets-talk span,
+  .hh-btn-lets-talk-text,
+  .hh-lang-trigger-code,
+  .hh-filter-pill span,
+  .chapter-nav-link span
 ) {
   animation: hhLetterShardAssembleIn 0.36s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
   will-change: transform, clip-path, opacity, filter;
   pointer-events: none;
 }
 
+/* Ensure inline text elements animate with crisp letter bounds */
+.hh-nav-link span,
+.hh-nav-link-text,
+.hh-brand-name,
+.hh-btn-lets-talk span,
+.hh-btn-lets-talk-text,
+.hh-lang-trigger-code {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* Subtle stagger wave across typography hierarchies */
+html[data-lang-shred] :is(.hh-brand-name, .hh-nav-link span, .hh-nav-link-text, .hh-btn-lets-talk span, .hh-btn-lets-talk-text) {
+  animation-delay: 0.01s !important;
+}
 html[data-lang-shred] :is(h1, .hh-case-title) {
   animation-delay: 0s !important;
 }

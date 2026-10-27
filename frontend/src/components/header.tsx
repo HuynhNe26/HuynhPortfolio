@@ -235,7 +235,7 @@ export function Header() {
                 className={`hh-nav-link ${active ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, item)}
               >
-                {t(item.labelKey)}
+                <span className="hh-nav-link-text">{t(item.labelKey)}</span>
               </Link>
             );
           })}
@@ -316,7 +316,7 @@ export function Header() {
               }
             }}
           >
-            {t('nav.letsTalk')}
+            <span className="hh-btn-lets-talk-text">{t('nav.letsTalk')}</span>
           </Link>
         </div>
       </div>
