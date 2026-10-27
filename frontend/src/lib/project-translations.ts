@@ -10,18 +10,18 @@ export interface ProjectLocalization {
 export const PROJECT_TRANSLATIONS: Record<string, Partial<Record<Language, ProjectLocalization>>> = {
   'ticket-concert-agentic-rag': {
     zh: {
-      title: '基于 Agentic RAG 的演唱会票务与智能客服系统',
-      summary: '基于 Agentic RAG 智能体的高性能演唱会票务与实时客服平台，支持上下文智能问答解析与自动化支付工作流。',
+      title: '基于 Agentic RAG 的智能演唱会票务与全流程运营系统',
+      summary: '基于 Agentic RAG（LangGraph + Gemini 2.5 Flash + pgvector）的高性能演唱会票务与全流程管理生态系统，集成 React-Konva 舞台可视化分区设计器、Socket.IO 实时防重锁座机制、MoMo/VNPay 双通道支付以及现场二维码扫码验票。',
       role: '全栈开发工程师',
     },
     vi: {
       title: 'Hệ thống hỗ trợ đặt vé hòa nhạc dựa trên Agentic RAG',
-      summary: 'Nền tảng bán vé hòa nhạc thông minh và hỗ trợ khách hàng theo thời gian thực ứng dụng Agentic RAG để giải đáp ngữ cảnh và xử lý thanh toán mượt mà.',
+      summary: 'Nền tảng phân phối vé concert quy mô lớn tích hợp Trợ lý AI Agentic RAG (LangGraph + Gemini 2.5 Flash + pgvector), bộ công cụ thiết kế sân khấu Canvas (React-Konva), bản đồ chọn chỗ thời gian thực (Socket.IO), thanh toán MoMo/VNPay và máy quét mã QR soát vé tại cổng.',
       role: 'Lập trình viên Full-Stack',
     },
     en: {
       title: 'Ticket Concert Support System Based on Agentic RAG',
-      summary: 'An intelligent concert ticketing and real-time customer support platform leveraging Agentic RAG for contextual inquiry resolution and seamless payment workflows.',
+      summary: 'A comprehensive concert ticketing and event management ecosystem featuring a multi-tool Agentic RAG AI Assistant (LangGraph + Gemini 2.5 Flash + pgvector), interactive Canvas stage designer (React-Konva), real-time seat sync via Socket.IO, dual MoMo & VNPay payment gateways, and gate check-in QR scanner.',
       role: 'Full-Stack Developer',
     },
   },
