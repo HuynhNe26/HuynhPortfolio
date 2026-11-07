@@ -232,7 +232,8 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                 <span aria-hidden="true">↗</span>
               </Link>
               <a
-                href={`mailto:${profile.email}?subject=Request CV - ${displayName}`}
+                href={profile.resumeUrl || '/cv/Nguyen-Hoang-Huynh-CV.pdf'}
+                download="Nguyen-Hoang-Huynh-CV.pdf"
                 className="button button-pro-secondary full-width"
               >
                 <span>

@@ -9,6 +9,7 @@ import { CertificateModal } from '@/components/certificate-modal';
 
 interface AboutMeProps {
   email?: string;
+  resumeUrl?: string;
 }
 
 const SKILLS_LIST = [
@@ -34,7 +35,10 @@ const SKILLS_LIST = [
  * 1. ABOUT ME HERO SECTION
  * Placed directly above Featured Projects
  */
-export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: AboutMeProps) {
+export function AboutMeSection({
+  email = 'nguyenhoanghuynh.vn@gmail.com',
+  resumeUrl = '/cv/Nguyen-Hoang-Huynh-CV.pdf',
+}: AboutMeProps) {
   const { t, lang } = useLanguage();
 
   return (
@@ -79,7 +83,8 @@ export function AboutMeSection({ email = 'nguyenhoanghuynh.vn@gmail.com' }: Abou
 
             <div className="hh-about-actions">
               <a
-                href={`mailto:${email}?subject=Request CV - ${lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}`}
+                href={resumeUrl || '/cv/Nguyen-Hoang-Huynh-CV.pdf'}
+                download="Nguyen-Hoang-Huynh-CV.pdf"
                 className="hh-btn-download-cv"
               >
                 <span>{t('bento.about.downloadCv')}</span>
