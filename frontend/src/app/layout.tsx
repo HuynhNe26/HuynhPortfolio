@@ -96,7 +96,7 @@ export const metadata: Metadata = {
   category: 'technology',
   classification: 'Developer Portfolio & Engineering Case Studies',
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'google0c70b1f0df0fda46',
   },
 };
 
@@ -104,6 +104,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="vi" suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="google0c70b1f0df0fda46" />
+        <meta name="author" content="Nguyễn Hoàng Huynh" />
+        <meta name="copyright" content="Nguyễn Hoàng Huynh" />
+        <meta name="geo.region" content="VN-SG" />
+        <meta name="geo.placename" content="Ho Chi Minh City, Dong Nai, Vietnam" />
+        <meta name="geo.position" content="10.8231;106.6297" />
+        <meta name="ICBM" content="10.8231, 106.6297" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

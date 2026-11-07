@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getSiteUrl } from '@/lib/site-config';
+import { defaultProjects } from '@/lib/types';
+import { EXCLUDED_PROJECT_SLUGS } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   };
 
-  return [
+  const staticEntries: MetadataRoute.Sitemap = [
     {
       url: base,
       lastModified: now,
@@ -36,8 +38,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${base}/about`,
       lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.9,
+      changeFrequency: 'weekly',
+      priority: 0.95,
       alternates: buildAlternates('/about'),
     },
     {
@@ -48,4 +50,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: buildAlternates('/contact'),
     },
   ];
+
+  // Include valid active public projects for deeper search engine indexing
+  const validProjects = defaultProjects.filter(
+    (p) => !EXCLUDED_PROJECT_SLUGS.has(p.slug)
+  );
+
+  const projectEntries: MetadataRoute.Sitemap = validProjects.map((p) => ({
+    url: `${base}/projects/${p.slug}`,
+    lastModified: p.updatedAt ? new Date(p.updatedAt) : now,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+    alternates: buildAlternates(`/projects/${p.slug}`),
+  }));
+
+  return [...staticEntries, ...projectEntries];
 }
