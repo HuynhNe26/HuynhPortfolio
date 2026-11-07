@@ -56,6 +56,14 @@ export const EXCLUDED_PROJECT_SLUGS = new Set([
   'medicare-ai-triage',
 ]);
 
+function resolveLiveUrl(dbLiveUrl?: string, fallbackLiveUrl?: string): string {
+  const trimmed = dbLiveUrl?.trim() || '';
+  if (!trimmed || /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/|$)/i.test(trimmed)) {
+    return fallbackLiveUrl || '';
+  }
+  return trimmed;
+}
+
 export async function publicContent() {
   const [profileResult, projectsResult] = await Promise.allSettled([
     api<Profile | null>('/profile'),
@@ -67,7 +75,15 @@ export async function publicContent() {
       ? projectsResult.value
       : defaultProjects;
 
-  const projects = rawProjects.filter((p) => !EXCLUDED_PROJECT_SLUGS.has(p.slug));
+  const projects = rawProjects
+    .filter((p) => !EXCLUDED_PROJECT_SLUGS.has(p.slug))
+    .map((p) => {
+      const fallback = defaultProjects.find((dp) => dp.slug === p.slug);
+      return {
+        ...p,
+        liveUrl: resolveLiveUrl(p.liveUrl, fallback?.liveUrl),
+      };
+    });
 
   const profile =
     profileResult.status === 'fulfilled' && profileResult.value
@@ -95,6 +111,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       return {
         ...fallback,
         ...fetched,
+        liveUrl: resolveLiveUrl(fetched.liveUrl, fallback?.liveUrl),
         gallery: fetched.gallery && fetched.gallery.length > 0 ? fetched.gallery : fallback?.gallery,
         features: fetched.features && fetched.features.length > 0 ? fetched.features : fallback?.features,
         chapters: fetched.chapters && fetched.chapters.length > 0 ? fetched.chapters : fallback?.chapters,
