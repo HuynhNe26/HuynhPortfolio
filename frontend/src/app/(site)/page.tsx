@@ -61,7 +61,7 @@ export default async function Home() {
       />
 
       {/* 2. GIỚI THIỆU BẢN THÂN (ABOUT ME HERO CARD) */}
-      <AboutMeSection email={profile.email} />
+      <AboutMeSection email={profile.email} resumeUrl={profile.resumeUrl} />
 
       {/* 3. DỰ ÁN NỔI BẬT (FEATURED PROJECTS 2X2 3D TILT GRID) */}
       <FeaturedProjectsGrid projects={projects} />

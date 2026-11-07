@@ -2483,7 +2483,6 @@ html.dark .site-layout-root[data-footer-reveal="active"] .site-content-layer {
   user-select: none;
   pointer-events: none;
   overflow: visible;
-  contain: layout style;
   z-index: 1;
 }
 
@@ -11218,11 +11217,12 @@ body {
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  will-change: background-position;
+  will-change: background-position, transform, opacity;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   animation: heroTextReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both, nameLuminousFlow 4.5s ease-in-out infinite 0.12s;
+  filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.2));
 }
 
 /* No hover overrides: the light effect runs continuously on its own */
@@ -11697,14 +11697,12 @@ html:not([data-lang-shred]) .hh-hero-section.hh-hero-settled .hh-scroll-hint {
   animation: none !important;
   opacity: 1 !important;
   transform: translate3d(0, 0, 0) !important;
-  will-change: auto !important;
 }
 
 html:not([data-lang-shred]) .hh-hero-section.hh-hero-settled .hh-handwritten-motto {
   animation: none !important;
   opacity: 1 !important;
   transform: translate3d(0, 0, 0) rotate(-6deg) !important;
-  will-change: auto !important;
 }
 
 html:not([data-lang-shred]) .hh-hero-section.hh-hero-settled .hh-hero-ambient-spotlight {
@@ -17425,6 +17423,7 @@ html.dark .hh-name-highlight {
   background-size: 200% 100% !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 8px rgba(56, 189, 248, 0.35)) !important;
 }
 
 [data-theme='dark'] .hh-hero-bio,

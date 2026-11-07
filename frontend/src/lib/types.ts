@@ -315,6 +315,7 @@ export const defaultProfile: Profile = {
     },
   ],
   avatarUrl: '/avatar.jpg',
+  resumeUrl: '/cv/Nguyen-Hoang-Huynh-CV.pdf',
   githubUrl: 'https://github.com/HuynhNe26',
   linkedinUrl: '',
 };

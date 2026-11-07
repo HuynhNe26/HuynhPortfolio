@@ -70,7 +70,12 @@ export async function publicContent() {
   const projects = rawProjects.filter((p) => !EXCLUDED_PROJECT_SLUGS.has(p.slug));
 
   const profile =
-    profileResult.status === 'fulfilled' && profileResult.value ? profileResult.value : defaultProfile;
+    profileResult.status === 'fulfilled' && profileResult.value
+      ? {
+          ...profileResult.value,
+          resumeUrl: profileResult.value.resumeUrl || defaultProfile.resumeUrl,
+        }
+      : defaultProfile;
 
   return {
     profile,
