@@ -3,7 +3,7 @@ import { publicContent } from '@/lib/api';
 import { HeroShowcase } from '@/components/hero-showcase';
 import { AboutMeSection, SkillsEducationContact } from '@/components/about-me-bento';
 import { FeaturedProjectsGrid } from '@/components/featured-projects-grid';
-import { ProfilePageJsonLd } from '@/components/seo-json-ld';
+import { ProfilePageJsonLd, ProjectsCollectionJsonLd } from '@/components/seo-json-ld';
 import { siteConfig } from '@/lib/site-config';
 
 export const dynamic = 'force-dynamic';
@@ -13,8 +13,15 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   alternates: {
     canonical: '/',
+    languages: {
+      'vi-VN': '/',
+      'en-US': '/',
+      'zh-CN': '/',
+      'x-default': '/',
+    },
   },
   openGraph: {
+    type: 'website',
     title: siteConfig.title,
     description: siteConfig.description,
     url: '/',
@@ -27,6 +34,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.title,
+    description: siteConfig.description,
+    creator: '@HuynhNe26',
+    images: ['/og-image.png'],
+  },
 };
 
 export default async function Home() {
@@ -34,7 +48,8 @@ export default async function Home() {
 
   return (
     <main id="main-content" className="hh-home-root">
-      <ProfilePageJsonLd />
+      <ProfilePageJsonLd path="/" />
+      <ProjectsCollectionJsonLd projects={projects} path="/" />
 
       {/* 1. HERO SHOWCASE WITH REAL PHOTO & MOTTO */}
       <HeroShowcase

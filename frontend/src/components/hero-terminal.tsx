@@ -88,11 +88,11 @@ export function HeroTerminal({ name }: HeroTerminalProps) {
         outputContent = (
           <div className="terminal-projects-list">
             <div>1. Ticket Concert Support System (Agentic RAG + MoMo API)</div>
-            <div>2. Dental Clinic Operations & Appointment Hub (Full-Stack)</div>
-            <div>3. Coffee Shop POS & Multi-Store Inventory Engine</div>
-            <div>4. Aviation Academy Student Information Portal</div>
-            <div>5. Real-Time Flight Analytics & SkyRoute Optimizer</div>
-            <div className="terminal-link-hint">Tip: Scroll down or click &ldquo;Projects&rdquo; in the nav to explore all case studies!</div>
+            <div>2. COLORBOX — Stage Lighting &amp; Live Event Production Platform</div>
+            <div>3. Fashion Nail Morley — Commercial Booking &amp; Client Portal</div>
+            <div>4. ExamPlatform AI — Adaptive Assessment &amp; Socratic AI Tutor</div>
+            <div>5. Smart Rental House Management (AI Meter OCR + VietQR)</div>
+            <div className="terminal-link-hint">Tip: Scroll down or click &ldquo;Projects&rdquo; in the nav to explore all projects!</div>
           </div>
         );
         break;

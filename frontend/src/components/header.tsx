@@ -17,9 +17,8 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: 'home', labelKey: 'nav.home', href: '/', targetId: 'home' },
-  { id: 'about', labelKey: 'nav.about', href: '/#about', targetId: 'about' },
+  { id: 'about', labelKey: 'nav.about', href: '/about', targetId: 'about' },
   { id: 'projects', labelKey: 'nav.projects', href: '/#projects', targetId: 'projects' },
-  { id: 'skills', labelKey: 'nav.experience', href: '/#skills', targetId: 'skills' },
   { id: 'education', labelKey: 'nav.education', href: '/#education', targetId: 'education' },
   { id: 'contact', labelKey: 'nav.contact', href: '/#contact', targetId: 'contact' },
 ];
@@ -29,7 +28,6 @@ const HOMEPAGE_SECTIONS = [
   'home',
   'about',
   'projects',
-  'skills',
   'education',
   'contact',
 ];
@@ -43,9 +41,19 @@ export function Header() {
   const { lang, toggleLang, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
-  // ScrollSpy listener for homepage
+  // 1. Global scroll listener: update isScrolled on ANY page
   useEffect(() => {
-    // If not on homepage, let pathname determine active item
+    const handleScrollState = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    handleScrollState();
+    window.addEventListener('scroll', handleScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollState);
+  }, []);
+
+  // 2. ScrollSpy listener: only for homepage sections
+  useEffect(() => {
     if (pathname !== '/') return;
 
     // Check initial hash on mount (e.g. user arrived with /#about)
@@ -64,15 +72,13 @@ export function Header() {
 
     let ticking = false;
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 20);
-
+    const handleScrollSpy = () => {
       // If a user just clicked a nav link, suppress spy until smooth scroll finishes
       if (isClickScrollingRef.current) return;
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
           const windowHeight = window.innerHeight;
           const docHeight = document.documentElement.scrollHeight;
 
@@ -112,9 +118,9 @@ export function Header() {
       }
     };
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScrollSpy();
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSpy);
   }, [pathname]);
 
   // Click handler for nav links
@@ -123,6 +129,11 @@ export function Header() {
     item: NavItem
   ) => {
     setOpen(false);
+
+    // If clicking 'about', allow direct navigation to /about (dedicated About Me page)
+    if (item.id === 'about') {
+      return;
+    }
 
     if (pathname === '/') {
       e.preventDefault();
@@ -169,144 +180,232 @@ export function Header() {
     return false;
   };
 
+  // Close menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  // Close menu on Escape key or window resize >= 860px
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    const handleResize = () => {
+      if (window.innerWidth > 860) setOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <header className={`hh-site-header ${isScrolled || open ? 'is-scrolled' : ''}`}>
-      <div className="container hh-header-inner">
-        {/* HH MONOGRAM LOGO & BRAND NAME */}
-        <Link
-          className="hh-brand-logo"
-          href="/"
-          aria-label="Nguyễn Hoàng Huynh, Home"
-          onClick={(e) => {
-            setOpen(false);
-            if (pathname === '/') {
-              e.preventDefault();
-              smoothScrollToTop(850);
-              setActiveSection('home');
-              try {
-                history.pushState(null, '', '/');
-              } catch {}
-            }
-          }}
-        >
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="hh-logo-svg">
-            <path d="M6 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
-            <path d="M6 16H16" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
-            <path d="M16 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
-            <path d="M16 16H26" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
-            <path d="M26 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
-          </svg>
-          <span className="hh-brand-name">{lang === 'zh' ? '阮黄兄 (NH HUYNH)' : 'NGUYỄN HOÀNG HUYNH'}</span>
-        </Link>
-
-        {/* MOBILE MENU TOGGLE */}
-        <button
-          className="hh-menu-toggle"
-          aria-expanded={open}
-          aria-controls="hh-navigation"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle navigation"
-        >
-          <span className={`hh-bar ${open ? 'open' : ''}`} />
-          <span className={`hh-bar ${open ? 'open' : ''}`} />
-        </button>
-
-        {/* CENTER NAVIGATION WITH DYNAMIC SCROLLSPY */}
-        <nav id="hh-navigation" className={`hh-nav-menu ${open ? 'is-open' : ''}`} aria-label="Main navigation">
-          {NAV_ITEMS.map((item) => {
-            const active = isItemActive(item);
-            return (
-              <Link
-                key={item.id}
-                href={item.href}
-                className={`hh-nav-link ${active ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, item)}
-              >
-                {t(item.labelKey)}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* RIGHT ACTIONS: THEME, LANG & LET'S TALK */}
-        <div className="hh-header-right">
-          {/* Light / Dark Theme Toggle Switch */}
-          <button
-            type="button"
-            className={`hh-theme-toggle ${theme}`}
-            onClick={toggleTheme}
-            aria-label={
-              lang === 'vi'
-                ? `Chuyển sang giao diện ${theme === 'dark' ? 'sáng' : 'tối'}`
-                : `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`
-            }
-            title={
-              lang === 'vi'
-                ? theme === 'dark' ? 'Bật giao diện Sáng' : 'Bật giao diện Tối'
-                : theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'
-            }
-          >
-            <span className="hh-theme-toggle-track" aria-hidden="true">
-              <span className="hh-theme-toggle-thumb">
-                {theme === 'dark' ? (
-                  <svg className="hh-theme-icon moon-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                  </svg>
-                ) : (
-                  <svg className="hh-theme-icon sun-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="5" />
-                    <line x1="12" y1="1" x2="12" y2="3" />
-                    <line x1="12" y1="21" x2="12" y2="23" />
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                    <line x1="1" y1="12" x2="3" y2="12" />
-                    <line x1="21" y1="12" x2="23" y2="12" />
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                  </svg>
-                )}
-              </span>
-              <span className="hh-theme-slot sun" aria-hidden="true">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="5" />
-                  <line x1="12" y1="1" x2="12" y2="3" />
-                  <line x1="12" y1="21" x2="12" y2="23" />
-                  <line x1="1" y1="12" x2="3" y2="12" />
-                  <line x1="21" y1="12" x2="23" y2="12" />
-                </svg>
-              </span>
-              <span className="hh-theme-slot moon" aria-hidden="true">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
-              </span>
-            </span>
-          </button>
-
-          {/* Language Dropdown (VI, EN, ZH) */}
-          <LanguageDropdown />
-
+    <>
+      <header className={`hh-site-header ${isScrolled || open || pathname !== '/' ? 'is-scrolled' : ''}`}>
+        <div className="container hh-header-inner">
+          {/* HH MONOGRAM LOGO & BRAND NAME */}
           <Link
-            href="/#contact"
-            className="hh-btn-lets-talk"
+            className="hh-brand-logo"
+            href="/"
+            aria-label={
+              lang === 'zh'
+                ? '阮黄兄 (Nguyen Hoang Huynh), 首页'
+                : lang === 'en'
+                ? 'Nguyen Hoang Huynh, Home'
+                : 'Nguyễn Hoàng Huynh, Trang chủ'
+            }
             onClick={(e) => {
+              setOpen(false);
               if (pathname === '/') {
                 e.preventDefault();
-                setActiveSection('contact');
-                const el = document.getElementById('contact');
-                if (el) {
-                  el.scrollIntoView({ behavior: 'smooth' });
-                  try {
-                    history.pushState(null, '', '/#contact');
-                  } catch {}
-                }
+                smoothScrollToTop(850);
+                setActiveSection('home');
+                try {
+                  history.pushState(null, '', '/');
+                } catch {}
               }
             }}
           >
-            {t('nav.letsTalk')}
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="hh-logo-svg">
+              <path d="M6 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+              <path d="M6 16H16" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+              <path d="M16 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+              <path d="M16 16H26" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+              <path d="M26 7V25" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"/>
+            </svg>
+            <span className="hh-brand-name">
+              {lang === 'zh' ? '阮黄兄 (NH HUYNH)' : lang === 'en' ? 'NGUYEN HOANG HUYNH' : 'NGUYỄN HOÀNG HUYNH'}
+            </span>
           </Link>
+
+          {/* CENTER NAVIGATION WITH DYNAMIC SCROLLSPY & MOBILE DRAWER */}
+          <nav id="hh-navigation" className={`hh-nav-menu ${open ? 'is-open' : ''}`} aria-label="Main navigation">
+            <div className="hh-nav-links-wrap">
+              {NAV_ITEMS.map((item) => {
+                const active = isItemActive(item);
+                return (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className={`hh-nav-link ${active ? 'active' : ''}`}
+                    onClick={(e) => handleNavClick(e, item)}
+                  >
+                    <span className="hh-nav-link-text">{t(item.labelKey)}</span>
+                    {active && <span className="hh-mobile-active-dot" aria-hidden="true" />}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* MOBILE ONLY DRAWER FOOTER */}
+            <div className="hh-mobile-drawer-footer">
+              <Link
+                href="/#contact"
+                className="hh-mobile-btn-lets-talk"
+                onClick={(e) => {
+                  setOpen(false);
+                  if (pathname === '/') {
+                    e.preventDefault();
+                    setActiveSection('contact');
+                    const el = document.getElementById('contact');
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                      try {
+                        history.pushState(null, '', '/#contact');
+                      } catch {}
+                    }
+                  }
+                }}
+              >
+                <span>{t('nav.letsTalk')}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </div>
+          </nav>
+
+          {/* RIGHT ACTIONS: THEME, LANG, LET'S TALK & HAMBURGER */}
+          <div className="hh-header-right">
+            {/* Light / Dark Theme Toggle Switch */}
+            <button
+              type="button"
+              className={`hh-theme-toggle ${theme}`}
+              onClick={toggleTheme}
+              aria-label={
+                lang === 'vi'
+                  ? `Chuyển sang giao diện ${theme === 'dark' ? 'sáng' : 'tối'}`
+                  : lang === 'zh'
+                  ? `切换到${theme === 'dark' ? '浅色' : '深色'}模式`
+                  : `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`
+              }
+              title={
+                lang === 'vi'
+                  ? theme === 'dark' ? 'Bật giao diện Sáng' : 'Bật giao diện Tối'
+                  : lang === 'zh'
+                  ? theme === 'dark' ? '切换浅色模式' : '切换深色模式'
+                  : theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'
+              }
+            >
+              <span className="hh-theme-toggle-track" aria-hidden="true">
+                <span className="hh-theme-toggle-thumb">
+                  {theme === 'dark' ? (
+                    <svg className="hh-theme-icon moon-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                  ) : (
+                    <svg className="hh-theme-icon sun-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="5" />
+                      <line x1="12" y1="1" x2="12" y2="3" />
+                      <line x1="12" y1="21" x2="12" y2="23" />
+                      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                      <line x1="1" y1="12" x2="3" y2="12" />
+                      <line x1="21" y1="12" x2="23" y2="12" />
+                      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                  )}
+                </span>
+                <span className="hh-theme-slot sun" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                  </svg>
+                </span>
+                <span className="hh-theme-slot moon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </svg>
+                </span>
+              </span>
+            </button>
+
+            {/* Language Dropdown (VI, EN, ZH) */}
+            <LanguageDropdown />
+
+            {/* Desktop Let's Talk CTA */}
+            <Link
+              href="/#contact"
+              className="hh-btn-lets-talk"
+              onClick={(e) => {
+                if (pathname === '/') {
+                  e.preventDefault();
+                  setActiveSection('contact');
+                  const el = document.getElementById('contact');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                    try {
+                      history.pushState(null, '', '/#contact');
+                    } catch {}
+                  }
+                }
+              }}
+            >
+              <span className="hh-btn-lets-talk-text">{t('nav.letsTalk')}</span>
+            </Link>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              className={`hh-menu-toggle ${open ? 'is-open' : ''}`}
+              aria-expanded={open}
+              aria-controls="hh-navigation"
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle navigation"
+            >
+              <span className="hh-bar hh-bar-top" />
+              <span className="hh-bar hh-bar-bottom" />
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* MOBILE BACKDROP OVERLAY */}
+      {open && (
+        <div
+          className="hh-mobile-backdrop"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+    </>
   );
 }

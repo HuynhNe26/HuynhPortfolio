@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { BreadcrumbsJsonLd } from '@/components/seo-json-ld';
+import { BreadcrumbsJsonLd, ContactPageJsonLd } from '@/components/seo-json-ld';
 import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
@@ -15,8 +15,15 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: '/contact',
+    languages: {
+      'vi-VN': '/contact',
+      'en-US': '/contact',
+      'zh-CN': '/contact',
+      'x-default': '/contact',
+    },
   },
   openGraph: {
+    type: 'website',
     title: 'Liên hệ Hợp tác & Tuyển dụng — Nguyễn Hoàng Huynh',
     description:
       'Kết nối trực tiếp với Nguyễn Hoàng Huynh qua email nguyenhoanghuynh.vn@gmail.com hoặc hotline +84 937 569 205.',
@@ -30,11 +37,20 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Liên hệ Hợp tác & Tuyển dụng — Nguyễn Hoàng Huynh',
+    description:
+      'Sẵn sàng tiếp nhận các cơ hội Full-Stack Web Developer Intern, Fresher & Junior. Email: nguyenhoanghuynh.vn@gmail.com.',
+    creator: '@HuynhNe26',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <ContactPageJsonLd />
       <BreadcrumbsJsonLd
         items={[
           { name: 'Trang chủ', url: '/' },

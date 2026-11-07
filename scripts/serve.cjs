@@ -27,14 +27,33 @@ const hostname = '127.0.0.1';
 // Automatically free port if already in use by a stale process
 function freePort(p) {
   try {
-    const pids = execSync(`lsof -ti :${p} -sTCP:LISTEN`, { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-    for (const pid of pids) {
-      if (Number(pid) !== process.pid) {
-        try {
-          process.kill(Number(pid), 'SIGKILL');
-          log(`✓ Freed occupied port ${p} (terminated stale PID ${pid})`);
-        } catch (_) {}
+    if (process.platform === 'win32') {
+      const output = execSync('netstat -ano', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+      const lines = output.trim().split('\n');
+      for (const line of lines) {
+        if ((line.includes(`:${p} `) || line.includes(`:${p}\t`)) && (line.includes('LISTENING') || line.includes('LISTEN'))) {
+          const parts = line.trim().split(/\s+/);
+          const pid = Number(parts[parts.length - 1]);
+          if (pid && pid !== process.pid) {
+            try {
+              execSync(`taskkill /F /T /PID ${pid}`, { stdio: 'ignore' });
+              log(`✓ Freed occupied port ${p} (terminated stale PID ${pid})`);
+            } catch (_) {}
+          }
+        }
       }
+    } else {
+      try {
+        const pids = execSync(`lsof -ti :${p} -sTCP:LISTEN 2>/dev/null`, { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+        for (const pid of pids) {
+          if (Number(pid) !== process.pid) {
+            try {
+              process.kill(Number(pid), 'SIGKILL');
+              log(`✓ Freed occupied port ${p} (terminated stale PID ${pid})`);
+            } catch (_) {}
+          }
+        }
+      } catch (_) {}
     }
   } catch (_) {}
 }

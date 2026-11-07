@@ -1,9 +1,7 @@
-export default function Loading() {
-  return (
-    <main id="main-content" className="error-page" aria-busy="true">
-      <p role="status">
-        Loading, one moment…
-      </p>
-    </main>
-  );
+'use client';
+
+import { ProjectLoadingView } from '@/components/project-loading-overlay';
+
+export default function RootLoading() {
+  return <ProjectLoadingView isFullPage={true} />;
 }

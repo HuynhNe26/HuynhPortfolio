@@ -40,19 +40,19 @@ interface ChapterVisualMeta {
 const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
   'ticket-concert-agentic-rag': [
     {
-      imageUrl: '/projects/ticket-concert-hero.png',
+      imageUrl: '/projects/ticket-concert-home-discovery.png',
       imageCaptionVi: 'Cổng Khám phá Sự kiện & Lịch diễn Live Concert',
       imageCaptionEn: 'Live Concert Discovery & Event Schedule Portal',
       imageAlt: 'Ticket Concert Discovery Interface',
       hotspot: {
         x: 50,
         y: 35,
-        labelVi: 'Live Concert Discovery & Timetable',
-        labelEn: 'Live Concert Discovery & Timetable',
+        labelVi: 'Live Concert Discovery & Trending Ranks',
+        labelEn: 'Live Concert Discovery & Trending Ranks',
         actionVi: 'Lọc sự kiện & xem thông tin concert thời gian thực',
         actionEn: 'Filter live events & inspect real-time concert details',
-        descriptionVi: 'Bố cục phân tầng trực quan, hiển thị lịch diễn, giá vé niêm yết và trạng thái còn vé cập nhật tự động.',
-        descriptionEn: 'High-throughput event listing with live status badges, interactive schedules, and venue information.',
+        descriptionVi: 'Bố cục phân tầng trực quan với hơn 110 concert, bảng xếp hạng xu hướng và bộ lọc danh mục phong phú.',
+        descriptionEn: 'High-throughput catalog with over 110 concerts, trending tour rankings, and dynamic genre filtering.',
       },
       cursor: {
         x: 52,
@@ -64,164 +64,164 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       takeawayEn: 'Retina-optimized interface cutting attendee event search latency by over 65%.',
     },
     {
-      imageUrl: '/projects/ticket-concert-full.png',
-      imageCaptionVi: 'Trợ lý AI Agentic RAG tích hợp LangChain.js & Gemini API',
-      imageCaptionEn: 'Agentic RAG Assistant with LangChain.js & Gemini',
-      imageAlt: 'LangChain Gemini Agentic RAG Assistant',
+      imageUrl: '/projects/ticket-concert-ai-chat-live.png',
+      imageCaptionVi: 'Trợ lý AI Agentic RAG tích hợp LangGraph, Gemini 2.5 Flash & pgvector',
+      imageCaptionEn: 'Agentic RAG Assistant with LangGraph, Gemini 2.5 Flash & pgvector',
+      imageAlt: 'LangGraph Gemini Agentic RAG Assistant Live',
       hotspot: {
-        x: 78,
-        y: 62,
-        labelVi: 'Agentic RAG Intelligent Chat Drawer',
-        labelEn: 'Agentic RAG Intelligent Chat Drawer',
-        actionVi: 'Tư vấn chỗ ngồi, giải đáp quy định sự kiện không hallucination',
-        actionEn: 'Ground-truth seat recommendations & venue policy Q&A',
-        descriptionVi: 'AI truy xuất dữ liệu từ Vector Database và sơ đồ chỗ ngồi thực tế để tư vấn chính xác trong 340ms.',
-        descriptionEn: 'Retrieves verified ground truth from vector store & venue seat records in 340ms without hallucinations.',
+        x: 75,
+        y: 55,
+        labelVi: 'Multi-Tool Agentic RAG Chat Drawer',
+        labelEn: 'Multi-Tool Agentic RAG Chat Drawer',
+        actionVi: 'Tư vấn chỗ ngồi, kiểm tra tồn kho vé và gợi ý theo ngân sách',
+        actionEn: 'Real-time ticket checking & multi-criteria recommendation',
+        descriptionVi: 'AI kích hoạt 7 công cụ nội bộ truy xuất dữ liệu vector và PostgreSQL, phản hồi chính xác trong 340ms.',
+        descriptionEn: 'Orchestrates 7 internal tools retrieving vector and relational data, responding within 340ms without hallucinations.',
       },
       cursor: {
-        x: 76,
-        y: 60,
-        actionTextVi: "Hỏi: 'Khu vực VIP còn vé không?'",
-        actionTextEn: "Ask: 'Any VIP tickets available?'",
-      },
-      takeawayVi: 'Giải quyết 82% thắc mắc khách hàng tự động trong các đợt mở bán vé cao điểm.',
-      takeawayEn: 'Automates 82% of customer inquiries during high-demand ticketing drops.',
-    },
-    {
-      imageUrl: '/projects/ticket-concert-booking.png',
-      imageCaptionVi: 'Bản đồ Giữ ghế Thời gian thực & WebSocket Anti-Collision',
-      imageCaptionEn: 'Real-Time Seating Map & WebSocket Anti-Collision',
-      imageAlt: 'WebSocket Anti-Collision Seat Map',
-      hotspot: {
-        x: 36,
-        y: 44,
-        labelVi: 'Atomic Seat Locking Engine (Redis TTL 600s)',
-        labelEn: 'Atomic Seat Locking Engine (Redis TTL 600s)',
-        actionVi: 'Khóa ghế tức thời, ngăn chặn 2 người đặt trùng ghế cùng lúc',
-        actionEn: 'Atomic lock preventing simultaneous booking collisions',
-        descriptionVi: 'Khi người dùng click chọn ghế, WebSocket phát broadcast ngay tới toàn bộ khách truy cập khác.',
-        descriptionEn: 'Bi-directional WebSocket broadcast notifies all active clients within 50ms upon seat selection.',
-      },
-      cursor: {
-        x: 38,
-        y: 46,
-        actionTextVi: 'Khóa giữ ghế VIP-D04',
-        actionTextEn: 'Lock seat VIP-D04',
-      },
-      takeawayVi: 'Triệt tiêu hoàn toàn lỗi Race Condition khi hàng nghìn người cùng tranh mua 1 vị trí.',
-      takeawayEn: 'Completely eliminates race conditions when thousands contest the exact same seat.',
-    },
-    {
-      imageUrl: '/projects/ticket-concert-booking.png',
-      imageCaptionVi: 'Ma trận Hạng vé & Tự động Tính toán Giỏ hàng',
-      imageCaptionEn: 'Ticket Pricing Matrix & Dynamic Cart Preview',
-      imageAlt: 'Ticket Pricing Matrix & Dynamic Cart',
-      hotspot: {
-        x: 65,
+        x: 72,
         y: 52,
-        labelVi: 'Dynamic Seating Matrix & Cart Preview',
-        labelEn: 'Dynamic Seating Matrix & Cart Preview',
-        actionVi: 'Tính toán phụ phí, áp mã ưu đãi và cập nhật tổng tiền',
-        actionEn: 'Calculate fees, apply voucher codes and update total',
-        descriptionVi: 'Hiển thị các khu vực VIP, Regular, Standing với màu sắc phân biệt rõ ràng và bộ lọc hạng vé.',
-        descriptionEn: 'Color-coded VIP, Regular, Standing zones with live seat counts and instant fee calculations.',
+        actionTextVi: "Hỏi: 'Tư vấn vé dưới 1 triệu?'",
+        actionTextEn: "Ask: 'Recommend tickets under 1M VND?'",
       },
-      cursor: {
-        x: 63,
-        y: 50,
-        actionTextVi: 'Chọn 2 vé hạng VIP Hàng D',
-        actionTextEn: 'Select 2 VIP Row D tickets',
-      },
-      takeawayVi: 'Trải nghiệm chọn vé trực quan giúp tăng 38% giá trị đơn hàng trung bình qua đề xuất hạng vé.',
-      takeawayEn: 'Visual tier comparison lifts average order value by 38% via smart tier suggestions.',
+      takeawayVi: 'Giải quyết 82% thắc mắc khách hàng tự động với cơ chế xoay vòng 16 API Key chống nghẽn quota.',
+      takeawayEn: 'Automates 82% of customer inquiries with 16-key fallback rotation preventing rate-limit issues.',
     },
     {
-      imageUrl: '/projects/ticket-concert-booking.png',
-      imageCaptionVi: 'Cổng Thanh toán MoMo API với HMAC SHA-256 Signature',
-      imageCaptionEn: 'MoMo Payment Gateway & HMAC SHA-256 Signature',
-      imageAlt: 'MoMo API QR Code Checkout Modal',
+      imageUrl: '/projects/ticket-concert-stage-booking.png',
+      imageCaptionVi: 'Sơ đồ Sân khấu Tương tác & Đồng bộ Realtime Socket.IO',
+      imageCaptionEn: 'Interactive Seating Map & Real-Time Socket.IO Synchronization',
+      imageAlt: 'Socket.IO Interactive Stage Booking Map',
+      hotspot: {
+        x: 42,
+        y: 46,
+        labelVi: 'Real-time Zone Inventory & Seat Hold Engine',
+        labelEn: 'Real-time Zone Inventory & Seat Hold Engine',
+        actionVi: 'Chọn phân khu và đồng bộ trạng thái vé tức thì qua Socket.IO',
+        actionEn: 'Select stage zone and sync ticket availability in real time',
+        descriptionVi: 'Khi người dùng chọn khu vực vé, Socket.IO phát broadcast cập nhật số lượng vé còn lại trong 50ms.',
+        descriptionEn: 'Room-based Socket.IO broadcasts update available ticket tallies within 50ms upon zone selection.',
+      },
+      cursor: {
+        x: 45,
+        y: 48,
+        actionTextVi: 'Chọn khu vực VIP - 1,500,000đ',
+        actionTextEn: 'Select VIP Zone - 1,500,000đ',
+      },
+      takeawayVi: 'Triệt tiêu hoàn toàn lỗi Race Condition và xung đột đặt trùng vé khi hàng ngàn người cùng truy cập.',
+      takeawayEn: 'Completely eliminates race conditions and overselling when thousands contend for hot tickets.',
+    },
+    {
+      imageUrl: '/projects/ticket-concert-admin-stage-designer.png',
+      imageCaptionVi: 'Bộ Công cụ Admin Vẽ Sơ đồ Sân khấu Canvas với React-Konva',
+      imageCaptionEn: 'Admin Canvas Stage Layout Designer with React-Konva',
+      imageAlt: 'Admin Canvas Stage Layout Designer with Polygon and Rect tools',
+      hotspot: {
+        x: 55,
+        y: 48,
+        labelVi: 'Interactive Konva Canvas Stage Blueprint Designer',
+        labelEn: 'Interactive Konva Canvas Stage Blueprint Designer',
+        actionVi: 'Vẽ phân khu đa giác (Polygon), hình khối (Rect) và gán giá vé',
+        actionEn: 'Draw polygon and rectangular zones and configure pricing',
+        descriptionVi: 'Giao diện đồ họa canvas cho phép ban tổ chức tự do phác thảo sơ đồ sân vận động và lưu trữ dạng JSONB.',
+        descriptionEn: 'Graphical canvas editor allowing organizers to sketch stage blueprints directly stored as JSONB.',
+      },
+      cursor: {
+        x: 58,
+        y: 50,
+        actionTextVi: 'Vẽ phân khu Polygon VIP Zone',
+        actionTextEn: 'Draw Polygon VIP Zone',
+      },
+      takeawayVi: 'Tùy biến 100% sơ đồ mọi nhà thi đấu, sân vận động mà không cần can thiệp mã nguồn.',
+      takeawayEn: '100% customizable stage layouts for any stadium or auditorium without code changes.',
+    },
+    {
+      imageUrl: '/projects/ticket-concert-admin-orders.png',
+      imageCaptionVi: 'Cổng Thanh toán MoMo / VNPay & Đối soát Giao dịch Đơn hàng',
+      imageCaptionEn: 'MoMo & VNPay Payment Gateways & Order Reconciliation',
+      imageAlt: 'Admin Order Management and Transaction Reconciliation',
       hotspot: {
         x: 50,
         y: 54,
-        labelVi: 'MoMo Payment Gateway & IPN Webhook',
-        labelEn: 'MoMo Payment Gateway & IPN Webhook',
-        actionVi: 'Quét mã MoMo QR và đối soát giao dịch bảo mật ACID',
-        actionEn: 'Scan MoMo QR and reconcile transactions under ACID',
-        descriptionVi: 'Xác thực chữ ký số HMAC SHA-256 từ MoMo, cập nhật trạng thái đơn hàng trên PostgreSQL trong 250ms.',
-        descriptionEn: 'Cryptographic signature verification ensures tamper-proof financial settlements in sub-250ms.',
+        labelVi: 'Multi-Gateway Order Audit & IPN Signature Verification',
+        labelEn: 'Multi-Gateway Order Audit & IPN Signature Verification',
+        actionVi: 'Xác thực chữ ký HMAC SHA-256 và đối soát giao dịch chuẩn ACID',
+        actionEn: 'Verify HMAC SHA-256 signatures and reconcile ACID transactions',
+        descriptionVi: 'Quản lý toàn bộ giao dịch thanh toán MoMo QR và VNPay với nhật ký IPN Webhook chi tiết.',
+        descriptionEn: 'Comprehensive transaction monitoring for MoMo and VNPay with verifiable IPN webhook audit trails.',
       },
       cursor: {
         x: 52,
         y: 56,
-        actionTextVi: 'Tạo mã QR thanh toán 1,850,000đ',
-        actionTextEn: 'Generate MoMo QR 1,850,000đ',
+        actionTextVi: 'Xem chi tiết đơn hàng #148',
+        actionTextEn: 'Inspect Order #148 details',
       },
       takeawayVi: 'Tỷ lệ thanh toán thành công đạt 99.4% nhờ cơ chế tự động đối soát IPN Webhook đa lớp.',
       takeawayEn: 'Achieves 99.4% payment success rate via multi-layer IPN webhook reconciliation.',
     },
     {
-      imageUrl: '/projects/ticket-concert-full.png',
-      imageCaptionVi: 'Kiến trúc API Full-Stack & WebSocket Bi-directional Event Layer',
-      imageCaptionEn: 'Full-Stack Architecture & WebSocket Event Layer',
-      imageAlt: 'Full-Stack Architecture & Event Routing',
+      imageUrl: '/projects/ticket-concert-admin-reports.png',
+      imageCaptionVi: 'Báo cáo Thống kê Doanh thu & Cảnh báo Cháy vé Thời gian thực (Recharts)',
+      imageCaptionEn: 'Financial Revenue Analytics & Live Sold-Out Alerts (Recharts)',
+      imageAlt: 'Admin Financial Reports and Sales Velocity Charts',
       hotspot: {
-        x: 44,
-        y: 32,
-        labelVi: 'Full-Stack API & Real-Time Socket Architecture',
-        labelEn: 'Full-Stack API & Real-Time Socket Architecture',
-        actionVi: 'Xây dựng WebSocket socket.io server & database pooling Neon',
-        actionEn: 'Engineered WebSocket cluster and Neon connection pooling',
-        descriptionVi: 'Đảm bảo độ trễ tin nhắn dưới 50ms cho các sự kiện phòng vé lưu lượng cao.',
-        descriptionEn: 'Guarantees sub-50ms message latency during high-concurrency ticket rush windows.',
+        x: 48,
+        y: 42,
+        labelVi: 'BI Sales Analytics & Instant Sold-Out Alerts',
+        labelEn: 'BI Sales Analytics & Instant Sold-Out Alerts',
+        actionVi: 'Trực quan hóa doanh thu, tỷ lệ lấp đầy vé và cảnh báo sự kiện hot',
+        actionEn: 'Visualize revenues, sell-through rates, and hot-event warnings',
+        descriptionVi: 'Biểu đồ Recharts phân tích tốc độ bán vé, kết hợp cảnh báo Socket.IO khi sự kiện đạt 90% và 100% vé bán.',
+        descriptionEn: 'Recharts analytics combined with Socket.IO alerts triggering when concerts reach 90% and 100% capacity.',
       },
       cursor: {
-        x: 46,
-        y: 34,
-        actionTextVi: 'Kiểm thử WebSocket Event SEAT_LOCKED',
-        actionTextEn: 'Test WebSocket Event SEAT_LOCKED',
+        x: 50,
+        y: 45,
+        actionTextVi: 'Phân tích tốc độ bán vé Em Xinh Say Hi',
+        actionTextEn: 'Analyze sell-out rate for Em Xinh Say Hi',
       },
-      takeawayVi: 'Kiến trúc phân tách rõ ràng giữa Socket Server và Transaction DB giúp hệ thống chịu tải mượt mà.',
-      takeawayEn: 'Decoupled socket streaming and transactional storage ensures zero database bottlenecks.',
+      takeawayVi: 'Giúp ban tổ chức ra quyết định mở bán thêm suất diễn chỉ sau vài phút phân tích biểu đồ.',
+      takeawayEn: 'Empowers organizers to authorize additional show dates within minutes of reviewing velocity data.',
     },
     {
-      imageUrl: '/projects/ticket-concert-home.png',
-      imageCaptionVi: 'Vé Điện tử QR Gửi Tức thì qua Resend API & Production Deploy',
-      imageCaptionEn: 'Instant QR E-Ticket Dispatch via Resend & Live Production',
-      imageAlt: 'Production E-Ticket Dispatch via Resend API',
+      imageUrl: '/projects/ticket-concert-admin-qr-checkin.png',
+      imageCaptionVi: 'Máy Quét Soát Vé QR Tại Cổng Sự Kiện & Vận Hành Thực Tế',
+      imageCaptionEn: 'Gate QR Ticket Scanner Check-in & Live Operations',
+      imageAlt: 'Gate QR Ticket Scanner Check-in Interface',
       hotspot: {
         x: 50,
         y: 38,
-        labelVi: 'Live Production at ticketconcert.online',
-        labelEn: 'Live Production at ticketconcert.online',
-        actionVi: 'Gửi vé điện tử QR về email trong 420ms sau khi thanh toán',
-        actionEn: 'Dispatch cryptographically signed QR ticket via email in 420ms',
-        descriptionVi: 'Tự động xuất vé PDF kèm mã QR bảo mật, cho phép quét kiểm soát vào cổng tại sự kiện.',
-        descriptionEn: 'Generates secure dynamic QR code e-tickets, ready for rapid on-site scanning scanners.',
+        labelVi: 'Real-time Camera QR Scanner (html5-qrcode)',
+        labelEn: 'Real-time Camera QR Scanner (html5-qrcode)',
+        actionVi: 'Quét mã QR soát vé tại cổng với thời gian xác thực dưới 150ms',
+        actionEn: 'Scan gate QR tickets with sub-150ms check-in validation',
+        descriptionVi: 'Hệ thống quét trực tiếp qua camera, phát hiện vé trùng lặp hoặc vé không hợp lệ tức thì.',
+        descriptionEn: 'Direct camera scanning detecting duplicated or expired tickets with zero gate bottleneck.',
       },
       cursor: {
         x: 50,
         y: 40,
-        actionTextVi: 'Mở vé điện tử đã phát hành',
-        actionTextEn: 'View issued e-ticket',
+        actionTextVi: 'Quét mã QR vé #TC-2026-9921',
+        actionTextEn: 'Scan QR ticket #TC-2026-9921',
       },
-      takeawayVi: 'Vận hành thực tế trên tên miền ticketconcert.online với hơn 99.9% độ khả dụng dịch vụ.',
-      takeawayEn: 'Live in production on ticketconcert.online with over 99.9% uptime SLA.',
+      takeawayVi: 'Vận hành thực tế trên tên miền ticketconcert.online với độ ổn định 99.9% và không ùn tắc tại cửa soát vé.',
+      takeawayEn: 'Deployed live on ticketconcert.online with 99.9% uptime and zero gate congestion.',
     },
   ],
   'fashion-nail-morley': [
     {
-      imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaptionVi: 'Mặt tiền Số Cao cấp Gam màu Champagne Rose',
-      imageCaptionEn: 'Luxury Salon Digital Storefront & Brand Identity',
+      imageUrl: '/projects/fashion-nail-hero-storefront.png',
+      imageCaptionVi: 'Mặt Tiền Số Nghệ Thuật Nail Cao Cấp Tại Morley Galleria WA',
+      imageCaptionEn: 'Luxury Salon Digital Storefront & Brand Identity (Morley WA)',
       imageAlt: 'Fashion Nail Morley Storefront Visual Direction',
       hotspot: {
         x: 50,
         y: 34,
-        labelVi: 'Luxury Salon Digital Front Door',
-        labelEn: 'Luxury Salon Digital Front Door',
+        labelVi: 'Luxury Salon Digital Front Door & 29 Treatments',
+        labelEn: 'Luxury Salon Digital Front Door & 29 Treatments',
         actionVi: 'Trải nghiệm nhận diện thương hiệu ấm cúng và sang trọng',
         actionEn: 'Warm, refined Western Australian salon aesthetic',
-        descriptionVi: 'Thiết kế chuẩn thẩm mỹ salon Úc tại Morley, Tây Úc với phong cách typography sắc sảo.',
+        descriptionVi: 'Thiết kế chuẩn thẩm mỹ salon Úc tại Shop 52 Morley Galleria với phong cách Champagne Rose quý phái.',
         descriptionEn: 'Bespoke typography, champagne blush tones, and editorial layout crafted for Australian clients.',
       },
       cursor: {
@@ -234,318 +234,318 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       takeawayEn: 'Elevates brand positioning, lifting average dwell time to 2m 40s.',
     },
     {
-      imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaptionVi: 'Visual Lookbook Bộ sưu tập Mẫu móng Nghệ thuật',
-      imageCaptionEn: 'Curated Studio Nail Art Lookbook Showcase',
-      imageAlt: 'Curated Studio Nail Art Lookbook',
+      imageUrl: '/projects/fashion-nail-services-menu.png',
+      imageCaptionVi: 'Menu 29 Liệu Trình Làm Móng & Bảng Giá AUD Niêm Yết',
+      imageCaptionEn: '29 Services Treatment Menu and Upfront AUD Pricing',
+      imageAlt: '29 Services Treatment Menu and AUD Pricing Cards',
       hotspot: {
-        x: 46,
-        y: 48,
-        labelVi: 'Curated Studio Lookbook Showcase',
-        labelEn: 'Curated Studio Lookbook Showcase',
-        actionVi: 'Showcase bộ sưu tập móng theo mùa với ảnh chuẩn retina',
-        actionEn: 'Showcase seasonal nail collections with retina imagery',
-        descriptionVi: 'Ảnh chụp thực tế tại salon, giúp khách hàng chọn kiểu dáng trước khi đặt lịch hẹn.',
-        descriptionEn: 'High-res gallery of real salon sets, helping clients preview styles before booking.',
-      },
-      cursor: {
-        x: 48,
-        y: 50,
-        actionTextVi: 'Xem mẫu Acrylic & Nail Art mới',
-        actionTextEn: 'View latest Acrylic & Nail Art sets',
-      },
-      takeawayVi: 'Tăng 52% số lượng khách hàng yêu cầu làm mẫu thiết kế riêng sau khi duyệt lookbook.',
-      takeawayEn: 'Drives 52% more custom art design requests after clients browse the lookbook.',
-    },
-    {
-      imageUrl: '/projects/fashion-nail-services.jpg',
-      imageCaptionVi: 'Thẻ Giá Dịch vụ Chuẩn AUD Tối ưu Thiết bị Di động',
-      imageCaptionEn: 'Mobile-First Treatment & AUD Pricing Cards',
-      imageAlt: 'Mobile-First Treatment Pricing Cards',
-      hotspot: {
-        x: 32,
-        y: 42,
-        labelVi: 'Mobile-First Treatment & AUD Pricing Cards',
-        labelEn: 'Mobile-First Treatment & AUD Pricing Cards',
-        actionVi: 'Bảng giá minh bạch từng dịch vụ: Acrylic, Shellac, Spa Pedicure',
-        actionEn: 'Transparent AUD pricing: Acrylic, Shellac, Spa Pedicure',
-        descriptionVi: 'Khách hàng truy cập từ Instagram hoặc Google Maps có thể xem giá rõ ràng chỉ sau 1 chạm.',
-        descriptionEn: 'Instant 1-tap pricing clarity for clients arriving via Instagram or Google Maps.',
-      },
-      cursor: {
         x: 35,
-        y: 44,
-        actionTextVi: 'Chọn dịch vụ Acrylic Full Set ($65)',
-        actionTextEn: 'Select Acrylic Full Set ($65)',
+        y: 42,
+        labelVi: '29 Treatments Menu & AUD Transparent Pricing',
+        labelEn: '29 Treatments Menu & AUD Transparent Pricing',
+        actionVi: 'Bảng giá minh bạch từng dịch vụ: BIAB, Gel-X, Acrylic, SNS, Spa Pedicure',
+        actionEn: 'Transparent AUD pricing: BIAB, Gel-X, Acrylic, SNS, Spa Pedicure',
+        descriptionVi: 'Khách hàng truy cập từ Instagram hoặc Google Maps có thể xem giá rõ ràng và thời lượng từng gói chỉ sau 1 chạm.',
+        descriptionEn: 'Instant 1-tap pricing and duration clarity for clients arriving via Instagram or Google Maps.',
       },
-      takeawayVi: 'Minh bạch giá dịch vụ giúp giảm 70% các câu hỏi hỏi giá qua tin nhắn điện thoại.',
+      cursor: {
+        x: 38,
+        y: 45,
+        actionTextVi: 'Chọn dịch vụ Builder Gel BIAB',
+        actionTextEn: 'Select Builder Gel BIAB Service',
+      },
+      takeawayVi: 'Minh bạch giá dịch vụ giúp giảm 70% các cuộc gọi và tin nhắn hỏi giá lặp lại.',
       takeawayEn: 'Upfront AUD pricing eliminates 70% of repetitive pricing inquiry calls.',
     },
     {
-      imageUrl: '/projects/fashion-nail-services.jpg',
-      imageCaptionVi: 'Khung Đặt Lịch Hẹn Nhanh 1 Chạm (One-Tap Booking)',
-      imageCaptionEn: 'One-Tap Appointment Request Form',
-      imageAlt: 'One-Tap Appointment Request Form',
+      imageUrl: '/projects/fashion-nail-hygiene-standards.png',
+      imageCaptionVi: 'Tiêu Chuẩn Tiệt Trùng Y Tế Autoclave 100% & Cam Kết An Toàn',
+      imageCaptionEn: '100% Medical-Grade Autoclave Sterilization & Safety Protocols',
+      imageAlt: '100% Autoclave Medical-Grade Sterilization Standards',
       hotspot: {
-        x: 68,
-        y: 46,
-        labelVi: 'One-Tap Appointment Request Modal',
-        labelEn: 'One-Tap Appointment Request Modal',
-        actionVi: 'Chọn thợ nail yêu thích, ngày giờ và số điện thoại liên lạc',
-        actionEn: 'Select preferred nail artist, date/time and phone contact',
-        descriptionVi: 'Tối ưu biểu mẫu không cần đăng ký tài khoản rườm rà, tăng tỉ lệ chuyển đổi đặt lịch lên 40%.',
-        descriptionEn: 'Frictionless modal requiring no account registration, lifting conversion by 40%.',
+        x: 48,
+        y: 50,
+        labelVi: '100% Autoclave Medical Sterilization & Vegan Polish',
+        labelEn: '100% Autoclave Medical Sterilization & Vegan Polish',
+        actionVi: 'Cam kết tiêu chuẩn vô trùng y khoa tiêu chuẩn bệnh viện',
+        actionEn: 'Hospital-grade autoclave sterilization for all metal instruments',
+        descriptionVi: '100% dụng cụ kim loại được tiệt trùng qua nồi hấp autoclave, dũa móng 1 lần và sơn móng thuần chay hữu cơ.',
+        descriptionEn: 'Single-use disposable files and buffers with non-toxic, cruelty-free vegan polish brands.',
       },
       cursor: {
-        x: 66,
-        y: 48,
-        actionTextVi: 'Chọn giờ 14:30 & thợ Sarah',
-        actionTextEn: 'Select 14:30 & Artist Sarah',
+        x: 50,
+        y: 52,
+        actionTextVi: 'Kiểm tra quy chuẩn tiệt trùng',
+        actionTextEn: 'Inspect sterilization protocols',
       },
-      takeawayVi: 'Quy trình đặt hẹn 3 bước siêu tốc hoàn thành chỉ trong vòng chưa đầy 30 giây.',
-      takeawayEn: 'Streamlined 3-step appointment flow completed in under 30 seconds.',
+      takeawayVi: 'Xây dựng lòng tin tuyệt đối với khách hàng Perth về an toàn vệ sinh sức khỏe.',
+      takeawayEn: 'Builds uncompromised client trust regarding hygiene and biological safety.',
     },
     {
-      imageUrl: '/projects/fashion-nail-services.jpg',
-      imageCaptionVi: 'Thông báo Lịch hẹn Tức thì qua Resend API',
-      imageCaptionEn: 'Automated Resend API Notification Stream',
-      imageAlt: 'Automated Resend API Notification Handler',
+      imageUrl: '/projects/fashion-nail-chatbot.png',
+      imageCaptionVi: 'Trợ Lý AI Fashion Nails Concierge Tư Vấn 24/7 Thời Gian Thực',
+      imageCaptionEn: 'Fashion Nails Concierge AI Interactive Chatbot Assistant',
+      imageAlt: 'Fashion Nails Concierge AI Chatbot',
       hotspot: {
-        x: 50,
-        y: 60,
-        labelVi: 'Node.js & Resend API Notification Stream',
-        labelEn: 'Node.js & Resend API Notification Stream',
-        actionVi: 'Gửi email xác nhận tức thời cho khách và chủ tiệm',
-        actionEn: 'Dispatch instant confirmation emails to customer & salon',
-        descriptionVi: 'Yêu cầu được lưu vào PostgreSQL Neon và kích hoạt email HTML gửi đến hộp thư salon trong 350ms.',
-        descriptionEn: 'Persists records into Neon PostgreSQL while triggering responsive HTML emails within 350ms.',
+        x: 75,
+        y: 55,
+        labelVi: 'Fashion Nails Concierge AI Assistant',
+        labelEn: 'Fashion Nails Concierge AI Assistant',
+        actionVi: 'Tư vấn tức thời 24/7 về 29 dịch vụ, báo giá và chăm sóc móng',
+        actionEn: '24/7 instant guidance on treatments, pricing, and aftercare advice',
+        descriptionVi: 'Bong bóng tương tác thông minh tự xoay vòng chủ đề, giải đáp nhanh và chuyển đổi 1 chạm sang modal đặt lịch.',
+        descriptionEn: 'Rotating smart speech bubbles answering FAQs and one-tap routing into the booking wizard.',
       },
       cursor: {
+        x: 78,
+        y: 58,
+        actionTextVi: 'Hỏi AI Concierge về giá Gel-X',
+        actionTextEn: 'Ask AI Concierge about Gel-X pricing',
+      },
+      takeawayVi: 'Giải phóng nhân viên khỏi việc trả lời tin nhắn lặp lại ngoài giờ mở cửa.',
+      takeawayEn: 'Automates after-hours inquiry triage, saving hours of receptionist messaging daily.',
+    },
+    {
+      imageUrl: '/projects/fashion-nail-booking-step3.png',
+      imageCaptionVi: 'Hệ Thống Đặt Hẹn 6 Bước Đồng Bộ Múi Giờ Perth (AWST UTC+8)',
+      imageCaptionEn: '6-Step Booking Wizard Synchronized with Perth Time (AWST UTC+8)',
+      imageAlt: 'Multi-Step Booking Wizard Perth Slot Picker',
+      hotspot: {
         x: 52,
-        y: 62,
-        actionTextVi: 'Gửi email thông báo tự động',
-        actionTextEn: 'Trigger automated email alert',
-      },
-      takeawayVi: 'Đảm bảo chủ salon không bỏ sót bất kỳ lịch hẹn nào ngay cả trong giờ làm bận rộn.',
-      takeawayEn: 'Ensures salon managers never miss walk-in or online requests during peak hours.',
-    },
-    {
-      imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaptionVi: 'Tích hợp Google Maps & Local SEO Tây Úc',
-      imageCaptionEn: 'Google Maps Directions & Local SEO Morley',
-      imageAlt: 'Google Maps Directions & Local SEO',
-      hotspot: {
-        x: 38,
-        y: 66,
-        labelVi: 'Google Maps Embed & 1-Tap Call Action',
-        labelEn: 'Google Maps Embed & 1-Tap Call Action',
-        actionVi: 'Chỉ đường 1 chạm và gọi điện thoại trực tiếp từ điện thoại',
-        actionEn: '1-tap GPS directions and direct telephone call trigger',
-        descriptionVi: 'Tối ưu hóa tìm kiếm địa phương tại khu vực Morley, Tây Úc giúp salon đón thêm khách vãng lai.',
-        descriptionEn: 'Geo-targeted schema markup for Morley WA suburbs driving high local foot-traffic.',
+        y: 48,
+        labelVi: 'Perth AWST Real-Time Time Slot Engine',
+        labelEn: 'Perth AWST Real-Time Time Slot Engine',
+        actionVi: 'Chọn khung giờ trống theo giờ mở cửa thực tế của salon',
+        actionEn: 'Select available time slot verified against salon trading hours',
+        descriptionVi: 'Quy trình 6 bước siêu tốc: dịch vụ -> ngày -> giờ Perth -> thông tin & giảm 10% -> voucher -> email xác nhận Resend API trong 350ms.',
+        descriptionEn: 'Streamlined 6-step flow with real-time slot lock, 10% concession discounts, and instant Resend confirmation.',
       },
       cursor: {
-        x: 38,
-        y: 68,
-        actionTextVi: 'Chỉ đường tới salon trên Maps',
-        actionTextEn: 'Get directions on Maps',
+        x: 55,
+        y: 50,
+        actionTextVi: 'Chọn khung giờ 11:30 AM',
+        actionTextEn: 'Select 11:30 AM appointment slot',
       },
-      takeawayVi: 'Tối ưu hóa Local SEO mang lại hơn 180 lượt tìm kiếm chỉ đường mới mỗi tháng.',
-      takeawayEn: 'Local SEO schema generates over 180 new GPS navigation requests every month.',
+      takeawayVi: 'Khách hàng đặt hẹn thành công trong dưới 45 giây, xóa bỏ hoàn toàn tình trạng trùng lịch.',
+      takeawayEn: 'Appointments booked in under 45 seconds with zero double-booking collisions.',
     },
     {
-      imageUrl: '/projects/fashion-nail-hero.jpg',
-      imageCaptionVi: 'Vận hành Thực tế tại fashionnailmorley.com.au',
-      imageCaptionEn: 'Live Commercial Deployment at fashionnailmorley.com.au',
-      imageAlt: 'Live Commercial Deployment at fashionnailmorley.com.au',
+      imageUrl: '/projects/fashion-nail-admin-dashboard.png',
+      imageCaptionVi: 'Executive Admin Suite Quản Trị Vận Hành & Đồng Bộ Socket.IO Realtime',
+      imageCaptionEn: 'Executive Admin Suite & Real-Time WebSocket Appointments Feed',
+      imageAlt: 'Executive Admin Suite Overview and Real-Time Feed',
       hotspot: {
-        x: 50,
-        y: 28,
-        labelVi: 'Live Site at fashionnailmorley.com.au',
-        labelEn: 'Live Site at fashionnailmorley.com.au',
-        actionVi: 'Trang web phục vụ khách hàng Úc với tốc độ tải dưới 1 giây',
-        actionEn: 'Serving WA clients with sub-1s load times via Vite SPA',
-        descriptionVi: 'Ứng dụng React & Vite siêu nhẹ, mang lại doanh thu và sự hài lòng cao cho chủ tiệm.',
-        descriptionEn: 'Lightweight Vite React bundle with 98+ Google Lighthouse performance score.',
+        x: 48,
+        y: 40,
+        labelVi: 'Executive Admin Suite & WebSocket Live Sync',
+        labelEn: 'Executive Admin Suite & WebSocket Live Sync',
+        actionVi: 'Theo dõi KPI doanh thu AUD và danh sách lịch hẹn tức thời',
+        actionEn: 'Monitor real-time AUD revenue and incoming client bookings',
+        descriptionVi: 'Xác thực Bcryptjs/JWT, quản trị danh mục 29 dịch vụ và đồng bộ lịch hẹn hai chiều qua Socket.IO không cần reload.',
+        descriptionEn: 'Bcryptjs/JWT security, 29-service catalog control, and bi-directional Socket.IO updates.',
       },
       cursor: {
         x: 50,
-        y: 31,
-        actionTextVi: 'Trải nghiệm trang web thực tế',
-        actionTextEn: 'Visit live production website',
+        y: 42,
+        actionTextVi: 'Xem lịch hẹn thời gian thực',
+        actionTextEn: 'View real-time appointments feed',
       },
-      takeawayVi: 'Điểm hiệu năng Google PageSpeed 98/100, tạo ấn tượng chuyên nghiệp tuyệt đối với khách hàng.',
-      takeawayEn: 'Perfect 98/100 Google PageSpeed score, delivering premium credibility to Australian clients.',
+      takeawayVi: 'Chủ salon nắm bắt toàn bộ hoạt động kinh doanh ngay cả khi không có mặt tại cửa hàng.',
+      takeawayEn: 'Empowers salon management with real-time mobile and desktop operational oversight.',
+    },
+    {
+      imageUrl: '/projects/fashion-nail-admin-vouchers.png',
+      imageCaptionVi: 'Hệ Thống Voucher Tự Động Hóa Node-cron & Vận Hành Thương Mại',
+      imageCaptionEn: 'Node-cron Automated Voucher Scheduler & Live Deployment',
+      imageAlt: 'Admin Voucher Promotions with Node-cron Scheduler',
+      hotspot: {
+        x: 52,
+        y: 45,
+        labelVi: 'Automated Node-cron Voucher Expiration Engine',
+        labelEn: 'Automated Node-cron Voucher Expiration Engine',
+        actionVi: 'Điều phối khuyến mãi và tự động khóa voucher quá hạn',
+        actionEn: 'Manage voucher campaigns and auto-expire stale promo codes',
+        descriptionVi: 'Tiến trình Node-cron chạy ngầm mỗi 10 phút và vào lúc 00:01 sáng giờ Úc, vận hành ổn định tại fashionnailmorley.com.au.',
+        descriptionEn: 'Background Node-cron job running every 10m & daily at 00:01 AM Australia/Perth with 98/100 PageSpeed.',
+      },
+      cursor: {
+        x: 54,
+        y: 47,
+        actionTextVi: 'Phát hành voucher ưu đãi',
+        actionTextEn: 'Publish new promotion voucher',
+      },
+      takeawayVi: 'Tự động hóa hoàn toàn vòng đời khuyến mãi và đảm bảo độ tin cậy tuyệt đối.',
+      takeawayEn: 'Full promotional lifecycle automation paired with 98/100 Google PageSpeed performance.',
     },
   ],
   'examplatform-ai': [
     {
-      imageUrl: '/projects/exam-platform-hero.png',
-      imageCaptionVi: 'Phòng thi Trực tuyến Không Xao nhãng (Distraction-Free)',
-      imageCaptionEn: 'Distraction-Free Assessment Exam Room',
-      imageAlt: 'Distraction-Free Assessment Exam Room',
+      imageUrl: '/projects/exam-platform-hero-landing.png',
+      imageCaptionVi: 'Khảo Thí Công Bằng & Khai Phóng Tư Duy Chuẩn GDPT 2018',
+      imageCaptionEn: 'Fair Assessment & Socratic Mind Opening (GDPT 2018)',
+      imageAlt: 'ExamPlatform AI Hero Landing & Live Simulator',
       hotspot: {
         x: 50,
-        y: 34,
-        labelVi: 'Distraction-Free Exam Assessment Room',
-        labelEn: 'Distraction-Free Exam Assessment Room',
-        actionVi: 'Không gian làm bài chuẩn mực với đồng hồ đếm ngược và bảng câu hỏi',
-        actionEn: 'Focused testing canvas with live countdown & question matrix',
-        descriptionVi: 'Loại bỏ các thành phần gây nhiễu, giúp sinh viên tập trung tối đa trong suốt thời gian làm bài.',
-        descriptionEn: 'Stripped of non-essential elements to maintain complete student focus throughout assessment.',
+        y: 28,
+        labelVi: 'Chấm Dứt Học Vẹt & Khảo Thí Công Bằng',
+        labelEn: 'Anti-Rote Learning & Fair Examination',
+        actionVi: 'Khởi tạo hành trình khảo thí thích ứng chuẩn GDPT 2018',
+        actionEn: 'Launch adaptive assessment pathway under GDPT 2018',
+        descriptionVi: 'Ngân hàng 100.000+ câu hỏi chuẩn hóa, bao phủ 12 khối lớp và Đại học, phản hồi Socratic 0.05s.',
+        descriptionEn: '100,000+ standardized items, 12 grades and university tiers, 0.05s Socratic response.',
       },
       cursor: {
         x: 52,
-        y: 36,
-        actionTextVi: 'Bắt đầu làm bài thi',
-        actionTextEn: 'Start assessment session',
-      },
-      takeawayVi: 'Giao diện tối giản loại bỏ 100% các yếu tố xao nhãng, nâng cao độ tập trung của thí sinh.',
-      takeawayEn: 'Minimalist layout eliminates 100% of distractions, maximizing candidate focus.',
-    },
-    {
-      imageUrl: '/projects/exam-platform-hero.png',
-      imageCaptionVi: 'Cơ chế Thích ứng Độ khó Câu hỏi (Adaptive Difficulty)',
-      imageCaptionEn: 'Adaptive Question Difficulty Progression Engine',
-      imageAlt: 'Adaptive Question Difficulty Progression',
-      hotspot: {
-        x: 28,
-        y: 54,
-        labelVi: 'Adaptive Difficulty Progression Engine',
-        labelEn: 'Adaptive Difficulty Progression Engine',
-        actionVi: 'Tự động điều chỉnh độ khó câu hỏi tiếp theo theo năng lực',
-        actionEn: 'Dynamically scales question complexity based on performance',
-        descriptionVi: 'Thuật toán đánh giá độ chính xác của câu trả lời trước để đưa ra câu hỏi phân hóa phù hợp.',
-        descriptionEn: 'Algorithmic assessment evaluates prior responses to calibrate future item difficulty levels.',
-      },
-      cursor: {
-        x: 30,
-        y: 56,
-        actionTextVi: 'Chọn đáp án câu hỏi phân hóa',
-        actionTextEn: 'Select advanced answer',
-      },
-      takeawayVi: 'Phân loại chính xác 5 cấp bậc năng lực sinh viên ngay trong cùng một đề thi chung.',
-      takeawayEn: 'Accurately segments 5 tiers of candidate competency within a single standardized test.',
-    },
-    {
-      imageUrl: '/projects/exam-platform-overview.png',
-      imageCaptionVi: 'Giám sát Tab Blur & Chống Gian lận (Anti-Cheat Telemetry)',
-      imageCaptionEn: 'Anti-Cheat Tab Monitoring & Integrity Telemetry',
-      imageAlt: 'Anti-Cheat Tab Monitoring & Integrity Telemetry',
-      hotspot: {
-        x: 75,
-        y: 30,
-        labelVi: 'Anti-Cheat Tab Blur & Integrity Lock',
-        labelEn: 'Anti-Cheat Tab Blur & Integrity Lock',
-        actionVi: 'Phát hiện thí sinh rời khỏi tab thi hoặc chuyển sang cửa sổ khác',
-        actionEn: 'Detects blur events, window defocus, and clipboard actions',
-        descriptionVi: 'Phiên thi sử dụng mã hóa JWT và ghi nhận số lần mất focus để đảm bảo tính công bằng học thuật.',
-        descriptionEn: 'Enforces JWT session telemetry and logs defocus events to maintain academic integrity.',
-      },
-      cursor: {
-        x: 73,
         y: 32,
-        actionTextVi: 'Ghi nhận sự kiện đổi tab',
-        actionTextEn: 'Log tab switch event',
+        actionTextVi: 'Khám phá triết lý khảo thí',
+        actionTextEn: 'Explore assessment philosophy',
       },
-      takeawayVi: 'Giảm 94% các hành vi gian lận tra cứu tài liệu trái phép trong các kỳ thi học thuật trực tuyến.',
-      takeawayEn: 'Reduces unauthorized external lookups by 94% across virtual academic exams.',
+      takeawayVi: 'Khẳng định triết lý giáo dục khai phóng, triệt tiêu thói quen học vẹt và thúc đẩy tự học độc lập.',
+      takeawayEn: 'Champions emancipatory pedagogy, eliminating rote memorization in favor of genuine mastery.',
     },
     {
-      imageUrl: '/projects/exam-platform-hero.png',
-      imageCaptionVi: 'Đồng hồ Đếm ngược & Tự động Lưu vào Redis Cache (Autosave)',
-      imageCaptionEn: 'Live Countdown Timer & Redis Autosave Engine',
-      imageAlt: 'Live Countdown Timer & Redis Autosave Engine',
-      hotspot: {
-        x: 80,
-        y: 25,
-        labelVi: 'Sub-Second Autosave to Redis Cache (6ms)',
-        labelEn: 'Sub-Second Autosave to Redis Cache (6ms)',
-        actionVi: 'Lưu đáp án ngay khi click với độ trễ chỉ 6ms',
-        actionEn: 'Persists student selections to memory in 6ms latency',
-        descriptionVi: 'Dữ liệu lưu tạm trên Redis in-memory cache, ngăn ngừa tuyệt đối nguy cơ mất bài thi do rớt mạng.',
-        descriptionEn: 'In-memory Redis buffers eliminate any risk of answer loss during intermittent network drops.',
-      },
-      cursor: {
-        x: 78,
-        y: 28,
-        actionTextVi: 'Lưu đáp án câu 03 vào Redis',
-        actionTextEn: 'Autosave answer to Redis',
-      },
-      takeawayVi: 'Bảo vệ bài làm 100% an toàn ngay cả khi trình duyệt bất ngờ bị đóng hoặc mất kết nối mạng.',
-      takeawayEn: 'Guarantees 100% exam progress retention even during sudden tab closes or WiFi drops.',
-    },
-    {
-      imageUrl: '/projects/exam-platform-overview.png',
-      imageCaptionVi: 'Báo cáo Phân tích AI Rubric theo từng Khái niệm Kiến thức',
-      imageCaptionEn: 'AI Evaluation Rubrics & Conceptual Breakdown',
-      imageAlt: 'AI Evaluation Rubric & Conceptual Mastery',
-      hotspot: {
-        x: 45,
-        y: 55,
-        labelVi: 'AI Evaluation Rubrics & Conceptual Breakdown',
-        labelEn: 'AI Evaluation Rubrics & Conceptual Breakdown',
-        actionVi: 'Chấm điểm chi tiết và gợi ý lộ trình cải thiện cho từng sinh viên',
-        actionEn: 'Actionable diagnostic breakdown across technical mastery areas',
-        descriptionVi: 'Báo cáo phân tích chuẩn xác điểm mạnh, điểm yếu theo từng chủ đề kiến thức kỹ thuật phần mềm.',
-        descriptionEn: 'Pinpoints conceptual deficiencies and recommends personalized revision pathways.',
-      },
-      cursor: {
-        x: 47,
-        y: 57,
-        actionTextVi: 'Xem phân tích gợi ý ôn tập',
-        actionTextEn: 'View AI diagnostic summary',
-      },
-      takeawayVi: 'Giúp sinh viên nhận diện ngay các lỗ hổng kiến thức để ôn tập có trọng tâm thay vì học dàn trải.',
-      takeawayEn: 'Enables candidates to isolate conceptual gaps immediately for targeted revisions.',
-    },
-    {
-      imageUrl: '/projects/exam-platform-hero.png',
-      imageCaptionVi: 'Kiến trúc State Management & Redis Caching',
-      imageCaptionEn: 'Decoupled React-Node-Redis Architecture',
-      imageAlt: 'Decoupled React-Node-Redis Architecture',
+      imageUrl: '/projects/exam-platform-4tiers-education.png',
+      imageCaptionVi: 'Hệ Thống 4 Khối Cấp Học Toàn Diện & Nút "Chưa Học" Nhân Văn',
+      imageCaptionEn: '4 Comprehensive Educational Tiers & Humane "Unlearned" Mechanism',
+      imageAlt: '4 Educational Tiers Showcase',
       hotspot: {
         x: 32,
-        y: 38,
-        labelVi: 'Decoupled Architecture & Connection Pooling',
-        labelEn: 'Decoupled Architecture & Connection Pooling',
-        actionVi: 'Xây dựng REST API, quản lý phiên thi và đồng bộ PostgreSQL',
-        actionEn: 'Engineered REST endpoints, session isolation & Neon sync',
-        descriptionVi: 'Tách biệt giữa phiên làm bài tốc độ cao và lưu trữ điểm lâu dài, chịu tải tốt khi thi tập trung.',
-        descriptionEn: 'High-speed in-memory session tier completely separated from persistent reporting tier.',
+        y: 42,
+        labelVi: 'Phân Tầng Đào Tạo Chuẩn Hóa Lớp 1 Đến Đại Học',
+        labelEn: 'Standardized Learning Tiers: Grade 1 to University',
+        actionVi: 'Chuyển đổi giữa Tiểu học, THCS, THPT và 18 chuyên ngành Đại học',
+        actionEn: 'Switch between Primary, Secondary, High School, and University',
+        descriptionVi: 'Tiểu học có Toán tư duy trực quan và nút "Chưa học" bảo toàn điểm; THPT luyện thi ĐGNL và Đại học ứng dụng Bayesian Knowledge Tracing.',
+        descriptionEn: 'Primary features visual math and point-safe "Unlearned" skip; High School & University feature BKT and rigorous university prep.',
       },
       cursor: {
         x: 34,
-        y: 40,
-        actionTextVi: 'Đồng bộ kết quả về PostgreSQL',
-        actionTextEn: 'Sync exam grades to PostgreSQL',
+        y: 45,
+        actionTextVi: 'Xem chi tiết khối cấp học',
+        actionTextEn: 'Inspect education tier specifics',
       },
-      takeawayVi: 'Chịu tải ổn định trên 500 sinh viên nộp bài cùng một thời điểm mà không gây nghẽn database.',
-      takeawayEn: 'Effortlessly handles 500+ concurrent submissions at submission deadlines without lag.',
+      takeawayVi: 'Mỗi cấp học sở hữu phương pháp sư phạm chuyên biệt, bảo vệ động lực học tập với cơ chế "Chưa học" nhân văn.',
+      takeawayEn: 'Tailored pedagogical architecture per tier with humane mechanisms safeguarding student confidence.',
     },
     {
-      imageUrl: '/projects/exam-platform-overview.png',
-      imageCaptionVi: 'Vận hành tại exam-platform.online & Mở rộng Tự luận',
-      imageCaptionEn: 'Live Platform at exam-platform.online & AI Essay Expansion',
-      imageAlt: 'Production at exam-platform.online',
+      imageUrl: '/projects/exam-platform-stem-quantum-lab.png',
+      imageCaptionVi: 'Phòng Lab STEM & Ma Trận Đề Phân Hóa Hamilton-Hare',
+      imageCaptionEn: 'STEM Interactive Problem Lab & Hamilton-Hare Matrix Sampler',
+      imageAlt: 'STEM Interactive Problem Lab',
       hotspot: {
-        x: 50,
+        x: 58,
+        y: 45,
+        labelVi: 'Ma Trận Đề Không Trùng Lặp & Phân Tích Bẫy Phương Án Nhiễu',
+        labelEn: 'Non-Repeating Matrix Sampler & Distractor Analysis',
+        actionVi: 'Render công thức KaTeX và bóc tách lỗi sai tư duy của học sinh',
+        actionEn: 'Render KaTeX formulas & dissect student distractor traps',
+        descriptionVi: 'Thuật toán Hamilton-Hare phân bổ 4 mức nhận thức (Nhận biết, Thông hiểu, Vận dụng, Vận dụng cao), làm bao nhiêu đề cũng mới 100%.',
+        descriptionEn: 'Hamilton-Hare algorithm balances Bloom cognitive levels, guaranteeing 100% fresh questions every exam.',
+      },
+      cursor: {
+        x: 60,
+        y: 48,
+        actionTextVi: 'Tương tác phòng Lab STEM',
+        actionTextEn: 'Interact with STEM Lab',
+      },
+      takeawayVi: 'Loại bỏ hoàn toàn vấn đề trùng lặp đề thi, giúp học sinh thấu hiểu bản chất lỗi sai qua Distractor Analysis.',
+      takeawayEn: 'Eliminates repetitive test questions while decoding candidate cognitive missteps via Distractor Analysis.',
+    },
+    {
+      imageUrl: '/projects/exam-platform-ai-socratic-engine.png',
+      imageCaptionVi: 'Gia Sư AI Socratic 3 Tầng & Cụm Multi-Key Gemini Failover',
+      imageCaptionEn: '3-Tier Socratic AI Tutoring & Multi-Key Gemini Failover',
+      imageAlt: 'AI Socratic Tutoring Engine',
+      hotspot: {
+        x: 68,
+        y: 35,
+        labelVi: 'Gia Sư Socratic 3 Tầng Dẫn Dắt Tư Duy (LangGraph JS)',
+        labelEn: '3-Tier Socratic Mind Guide (LangGraph JS StateGraph)',
+        actionVi: 'Mở gợi ý Socratic: Khơi gợi góc nhìn -> Phân tích công thức -> Phương pháp giải',
+        actionEn: 'Trigger Socratic hints: Perspective -> Formula analysis -> Solution method',
+        descriptionVi: 'Không bao giờ mớm sẵn đáp án để chống học vẹt; cụm Multi-Key Gemini tự động đảo khóa khi chạm quota.',
+        descriptionEn: 'Never leaks raw answers to prevent rote copying; Multi-Key Gemini manager automatically fails over upon quotas.',
+      },
+      cursor: {
+        x: 70,
+        y: 38,
+        actionTextVi: 'Mở gợi ý Socratic Level 2',
+        actionTextEn: 'Open Socratic Level 2 hint',
+      },
+      takeawayVi: 'Rèn luyện năng lực tư duy phản biện độc lập, phản hồi siêu tốc 0.05 giây với độ sẵn sàng cao.',
+      takeawayEn: 'Cultivates independent critical thinking with blazing fast 0.05s response times and high availability.',
+    },
+    {
+      imageUrl: '/projects/exam-platform-proctor-integrity.png',
+      imageCaptionVi: 'Camera AI Giám Sát Liêm Chính & Chống Gian Lận Đa Luồng',
+      imageCaptionEn: 'AI Proctoring & Multi-Threaded Integrity Telemetry',
+      imageAlt: 'AI Proctoring Telemetry View',
+      hotspot: {
+        x: 42,
+        y: 38,
+        labelVi: 'Camera AI OpenCV & Thang Cảnh Báo Vi Phạm 5 Cấp Độ',
+        labelEn: 'OpenCV Computer Vision & 5-Stage Warning Escalation',
+        actionVi: 'Phát hiện quay đầu, vắng mặt, người lạ và giám sát thoát toàn màn hình',
+        actionEn: 'Detects head turn, absence, multiple faces & fullscreen escapes',
+        descriptionVi: 'Xử lý video Privacy-First không lưu trữ hình ảnh cá nhân; cảnh báo từ 1/5 đến 4/5 và tự nộp bài ở 5/5.',
+        descriptionEn: 'Privacy-First edge processing without persistent recordings; escalates 1/5 to 4/5, auto-submits at 5/5.',
+      },
+      cursor: {
+        x: 44,
         y: 42,
-        labelVi: 'Live Platform at exam-platform.online',
-        labelEn: 'Live Platform at exam-platform.online',
-        actionVi: 'Phục vụ hàng trăm lượt thi thử trực tuyến ổn định',
-        actionEn: 'Serving real mock exams with automated grading pipelines',
-        descriptionVi: 'Nền tảng liên tục được mở rộng với tính năng chấm điểm tự luận tự động bằng AI.',
-        descriptionEn: 'Scalable educational platform expanding into automated AI essay evaluation.',
+        actionTextVi: 'Kích hoạt camera giám sát AI',
+        actionTextEn: 'Activate AI proctor camera',
+      },
+      takeawayVi: 'Đảm bảo kết quả thi trực tuyến tại nhà đạt độ liêm chính và tin cậy học thuật 99.8%.',
+      takeawayEn: 'Guarantees 99.8% academic integrity and exam validity for unsupervised remote assessments.',
+    },
+    {
+      imageUrl: '/projects/exam-platform-parent-portal.png',
+      imageCaptionVi: 'Cổng Phụ Huynh Minh Bạch & Tự Động Hóa Email BullMQ + Resend',
+      imageCaptionEn: 'Transparent Parent Portal & BullMQ Resend Email Automation',
+      imageAlt: 'Parent Portal Dashboard & Streak',
+      hotspot: {
+        x: 48,
+        y: 32,
+        labelVi: 'Cổng Phụ Huynh Riêng Biệt & Báo Cáo Học Tập 19:00',
+        labelEn: 'Dedicated Parent Dashboard & Automated 19:00 BullMQ Report',
+        actionVi: 'Theo dõi chuỗi chuyên cần (Streak), thời gian học và vi phạm liêm chính',
+        actionEn: 'Monitor study streak, active learning hours & integrity audits',
+        descriptionVi: 'BullMQ quét tự động tiến độ học tập và gửi email nhận xét sư phạm đến phụ huynh qua Resend API.',
+        descriptionEn: 'BullMQ automated worker scans progress and dispatches pedagogical insights via Resend API.',
       },
       cursor: {
         x: 50,
-        y: 44,
-        actionTextVi: 'Xem tổng quan kết quả thi',
-        actionTextEn: 'Inspect exam summary metrics',
+        y: 35,
+        actionTextVi: 'Xem nhật ký học tập con em',
+        actionTextEn: 'Review student learning diary',
       },
-      takeawayVi: 'Minh chứng cho tiềm năng của việc ứng dụng AI vào tự động hóa chấm điểm và khảo thí.',
-      takeawayEn: 'Demonstrates the power of agentic AI in automating academic grading pipelines.',
+      takeawayVi: 'Gắn kết phụ huynh đồng hành cùng con trẻ một cách khoa học, văn minh và hoàn toàn minh bạch.',
+      takeawayEn: 'Bridges parent-student collaboration through transparent, data-driven pedagogical communication.',
+    },
+    {
+      imageUrl: '/projects/exam-platform-admin-dashboard.png',
+      imageCaptionVi: 'Bảng Điều Khiển Quản Trị Viên, Live Proctor & Pure SVG Analytics',
+      imageCaptionEn: 'Admin Operations Dashboard, Live Proctor & Pure SVG Analytics',
+      imageAlt: 'Admin Operations & Analytics View',
+      hotspot: {
+        x: 52,
+        y: 40,
+        labelVi: 'Live Proctoring Stream & Pure SVG Analytics 60FPS',
+        labelEn: 'Live Proctoring Stream & 60FPS Pure SVG Charts',
+        actionVi: 'Giám sát thí sinh realtime, quản trị cụm khóa Gemini và biểu đồ ScoreChart/RadarChart',
+        actionEn: 'Supervise candidates live, manage Gemini key health & SVG radar charts',
+        descriptionVi: 'In-Memory JWT Token Rotation bảo mật kép chống reuse attack; vận hành thực tế tại exam-platform.online.',
+        descriptionEn: 'In-Memory JWT Token Rotation preventing reuse attacks; running live in production at exam-platform.online.',
+      },
+      cursor: {
+        x: 54,
+        y: 43,
+        actionTextVi: 'Giám sát phòng thi trực tiếp',
+        actionTextEn: 'Inspect live proctored room',
+      },
+      takeawayVi: 'Nền tảng vận hành ổn định, tải trang siêu tốc 60fps, sẵn sàng mở rộng cho hàng nghìn thí sinh đồng thời.',
+      takeawayEn: 'Rock-solid production stability, blazing 60fps SVG rendering, ready for massive exam concurrency.',
     },
   ],
   'vk-digital-hub': [
@@ -792,52 +792,52 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       takeawayEn: 'Tells technical engineering stories with narrative clarity matching international design standards.',
     },
     {
-      imageUrl: '/projects/portfolio-scrollytelling.png',
-      imageCaptionVi: 'Điểm nhấn Radar Hotspot & Con trỏ Thao tác Mô phỏng',
-      imageCaptionEn: 'Radar Hotspot System & Simulated Cursor Pointer',
-      imageAlt: 'Radar Hotspot Pin & Cursor',
-      hotspot: {
-        x: 50,
-        y: 48,
-        labelVi: 'Điểm Radar Hotspot Xung nhịp & Thẻ Hành động',
-        labelEn: 'Pulsing Radar Hotspot & Contextual Callout',
-        actionVi: 'Định vị chính xác thành phần UI đang được đề cập trong nội dung',
-        actionEn: 'Pinpoints exact UI feature explained in current chapter',
-        descriptionVi: 'Hiển thị giải thích chi tiết khi hover và con trỏ chuột mô phỏng thao tác người dùng.',
-        descriptionEn: 'Expandable card explains the architectural rationale and user interaction cue.',
-      },
-      cursor: {
-        x: 52,
-        y: 50,
-        actionTextVi: 'Chỉ rõ vị trí nút bấm & hành động',
-        actionTextEn: 'Locate UI component and action',
-      },
-      takeawayVi: 'Người đọc không bao giờ bị lạc khi xem ảnh chụp màn hình nhờ hệ thống định vị radar chính xác.',
-      takeawayEn: 'Visitors never get lost in complex screenshots thanks to precise radar targeting.',
-    },
-    {
-      imageUrl: '/projects/portfolio-scrollytelling.png',
+      imageUrl: '/projects/portfolio-themes.png',
       imageCaptionVi: 'Mỗi Dự án Sở hữu Animation & Storytelling Riêng biệt',
       imageCaptionEn: 'Bespoke Animations & Tailored Storytelling per Project',
       imageAlt: 'Unique Project Storytelling Themes',
       hotspot: {
         x: 50,
-        y: 78,
-        labelVi: 'Ngôn ngữ Thiết kế Riêng cho Từng Dự án',
-        labelEn: 'Domain-Tailored Storytelling Atmosphere',
+        y: 65,
+        labelVi: 'Ngôn ngữ Thiết kế Riêng & Trình Giả lập Độc bản',
+        labelEn: 'Domain-Tailored Storytelling & Interactive Simulators',
         actionVi: 'Mỗi dự án mang một phong cách visual và animation độc bản',
         actionEn: 'Each project boasts unique domain-specific motion aesthetics',
         descriptionVi: 'Ticket Concert mang sóng âm Cyber; Fashion Nail mang hiệu ứng Ken Burns & Bokeh vàng; ExamPlatform mang radar AI proctoring.',
         descriptionEn: 'Concert features audio waves; Fashion Nail features Ken Burns & gold bokeh; ExamPlatform features AI proctoring HUD.',
       },
       cursor: {
-        x: 50,
-        y: 80,
+        x: 52,
+        y: 68,
         actionTextVi: 'Chiêm ngưỡng chuyển động động cơ',
         actionTextEn: 'Observe thematic motion design',
       },
       takeawayVi: 'Tôn vinh tính cá bản của từng dự án, chứng minh năng lực thiết kế UI/UX phong phú và đa dạng.',
       takeawayEn: 'Celebrates each project’s unique identity, showcasing versatile UI/UX craftsmanship.',
+    },
+    {
+      imageUrl: '/projects/portfolio-bento.png',
+      imageCaptionVi: 'Hệ thống Kỹ năng & Khối Bento Grid Tương tác',
+      imageCaptionEn: 'Interactive Skills Matrix & Bento Grid Layout',
+      imageAlt: 'Skills and Bento Grid Layout',
+      hotspot: {
+        x: 35,
+        y: 42,
+        labelVi: 'Ma trận Kỹ năng Phân loại & Thẻ Học vấn VAA',
+        labelEn: 'Categorized Skills Matrix & VAA Education Card',
+        actionVi: 'Lọc kỹ năng thời gian thực theo danh mục và xem chi tiết học vấn',
+        actionEn: 'Real-time category filtering and academic background inspection',
+        descriptionVi: 'Phân tầng Frontend, Backend, Database, Cloud APIs kèm thẻ chứng chỉ TOEIC 550 chính thức.',
+        descriptionEn: 'Tiered Frontend, Backend, Database, Cloud APIs with official TOEIC 550 certificate preview.',
+      },
+      cursor: {
+        x: 38,
+        y: 45,
+        actionTextVi: 'Lọc kỹ năng & xem chứng chỉ',
+        actionTextEn: 'Filter skills and inspect certificate',
+      },
+      takeawayVi: 'Tổ chức thông tin mạch lạc, minh bạch năng lực thực tế tới người xem.',
+      takeawayEn: 'Clean, structured information architecture presenting verified engineering capabilities.',
     },
     {
       imageUrl: '/projects/portfolio-admin.png',
@@ -888,344 +888,174 @@ const PROJECT_VISUAL_MAP: Record<string, ChapterVisualMeta[]> = {
       takeawayEn: 'Rigorous transparency and verified credentials build deep trust with engineering recruiters.',
     },
   ],
-  'skyroute-aviation-ops': [
+  'rent-house-smart-management': [
     {
-      imageUrl: '/projects/skyroute-hero.png',
-      imageCaptionVi: 'Bản đồ Radar Giám sát Chuyến bay Toàn cầu & HUD Telemetry',
-      imageCaptionEn: 'Global Flight Radar Operations & HUD Telemetry',
-      imageAlt: 'SkyRoute Flight Dispatch Radar Dashboard',
+      imageUrl: '/projects/rent-house-hero.png',
+      imageCaptionVi: 'Cổng Khám Phá & Danh Mục Phòng Trọ Minh Bạch (Landing Page)',
+      imageCaptionEn: 'Landing Page & Transparent Boarding Rooms Catalog',
+      imageAlt: 'Landing Page & Rooms Catalog Nha Tro Thanh Tam',
       hotspot: {
-        x: 50,
-        y: 35,
-        labelVi: '3D Exploded Flight Radar & Telemetry HUD',
-        labelEn: '3D Exploded Flight Radar & Telemetry HUD',
-        actionVi: 'Kích hoạt radar không lưu & stream dữ liệu ADS-B thời gian thực',
-        actionEn: 'Activate airspace radar & real-time ADS-B telemetry stream',
-        descriptionVi: 'Màn hình hiển thị tọa độ chuyến bay, độ cao FL360, tốc độ mặt đất 485kts và trạng thái cân bằng tải.',
-        descriptionEn: 'High-density cockpit radar displaying live coordinates, FL360 altitude, 485kts ground speed, and load balance.',
-      },
-      cursor: {
-        x: 52,
-        y: 37,
-        actionTextVi: 'Kích hoạt radar không lưu ADS-B',
-        actionTextEn: 'Activate ADS-B radar stream',
-      },
-      takeawayVi: 'Theo dõi đồng thời hàng trăm chuyến bay với tần số cập nhật dữ liệu 1090MHz ADS-B dưới 80ms.',
-      takeawayEn: 'Concurrent tracking of global flights via 1090MHz ADS-B with sub-80ms message delivery.',
-    },
-    {
-      imageUrl: '/projects/skyroute-hero.png',
-      imageCaptionVi: 'Kiến trúc 3D Exploded Đa tầng: 4 Lớp Hệ thống Phân tán',
-      imageCaptionEn: '3D Exploded-View Architecture: 4 Distributed Layers',
-      imageAlt: 'SkyRoute 3D Exploded Architecture Diagram',
-      hotspot: {
-        x: 74,
-        y: 32,
-        labelVi: '3D Exploded System Architecture Layer',
-        labelEn: '3D Exploded System Architecture Layer',
-        actionVi: 'Bóc tách tầng Trình diễn → Cổng Telemetry → Động cơ C.G → Database',
-        actionEn: 'Explode Presentation → Telemetry Gateway → C.G Engine → Database layers',
-        descriptionVi: 'Bóc tách trực quan 4 tầng hệ thống giúp giải thích rõ ràng luồng dữ liệu thời gian thực và an toàn bay.',
-        descriptionEn: 'Visual exploded-view separating frontend presentation, WebSocket gateway, aerodynamic calculation, and Geo spatial storage.',
-      },
-      cursor: {
-        x: 72,
-        y: 34,
-        actionTextVi: 'Bóc tách 4 tầng kiến trúc 3D',
-        actionTextEn: 'Explode 4-layer 3D architecture',
-      },
-      takeawayVi: 'Bóc tách 4 lớp hệ thống giúp cô lập hoàn toàn tiến trình tính toán khí động học khỏi luồng radar streaming.',
-      takeawayEn: 'Isolating aerodynamic physics engine from WebSocket radar pub/sub prevents telemetry bottlenecks.',
-    },
-    {
-      imageUrl: '/projects/skyroute-cargo.png',
-      imageCaptionVi: 'Đồ thị Phong bì Trọng tâm C.G Boeing 777F Thời gian thực',
-      imageCaptionEn: 'Real-Time Boeing 777F Center of Gravity (C.G) Envelope',
-      imageAlt: 'SkyRoute Center of Gravity Envelope Polygon',
-      hotspot: {
-        x: 78,
-        y: 48,
-        labelVi: 'Center of Gravity (% MAC) Safety Envelope',
-        labelEn: 'Center of Gravity (% MAC) Safety Envelope',
-        actionVi: 'Tính toán vị trí % MAC và đối soát biên an toàn cất cánh / hạ cánh',
-        actionEn: 'Compute % MAC position and verify takeoff / landing safety envelope',
-        descriptionVi: 'Đồ thị đa giác phong bì trọng tâm C.G tự động cảnh báo đỏ khi tải trọng lệch khỏi giới hạn an toàn hàng không.',
-        descriptionEn: 'Interactive polygon envelope with dynamic warning thresholds preventing tail strike or nose-heavy stalls.',
-      },
-      cursor: {
-        x: 76,
-        y: 46,
-        actionTextVi: 'Kiểm tra biên an toàn C.G (28.4% MAC)',
-        actionTextEn: 'Inspect C.G envelope (28.4% MAC)',
-      },
-      takeawayVi: 'Ngăn chặn hoàn toàn hiện tượng máy bay mất thăng bằng khi cất cánh bằng thuật toán giải đa giác phong bì trọng tâm.',
-      takeawayEn: 'Eliminates flight trim imbalances using aerodynamic center-of-gravity polygon algorithms.',
-    },
-    {
-      imageUrl: '/projects/skyroute-cargo.png',
-      imageCaptionVi: 'Sơ đồ Mặt cắt Hầm hàng Boeing 777F & Bố trí Vị trí Thùng Hàng ULD',
-      imageCaptionEn: 'Boeing 777F Cross-Section Cargo Bay & ULD Positioning',
-      imageAlt: 'Boeing 777F Cargo Bay ULD Grid',
-      hotspot: {
-        x: 42,
-        y: 36,
-        labelVi: 'Interactive 28-Bay ULD Container Grid',
-        labelEn: 'Interactive 28-Bay ULD Container Grid',
-        actionVi: 'Kéo thả pallet ULD, phân loại hàng nguy hiểm DG và hàng lạnh',
-        actionEn: 'Drag-and-drop ULD pallets, isolate Dangerous Goods (DG) and perishables',
-        descriptionVi: 'Bố cục mặt cắt 28 vị trí boong chính và hầm dưới tàu bay Boeing 777F, tự động cộng dồn tải trọng từng khoang.',
-        descriptionEn: '28-position main deck and lower cargo hold layout with instant running weight tally per compartment.',
-      },
-      cursor: {
-        x: 40,
+        x: 48,
         y: 38,
-        actionTextVi: 'Xếp pallet ULD vào vị trí khoang 11L',
-        actionTextEn: 'Stow ULD pallet into bay 11L',
-      },
-      takeawayVi: 'Tối ưu hóa phân bổ tải trọng giữa boong chính và hầm dưới, giảm 30 phút thời gian bốc xếp trước giờ khởi hành.',
-      takeawayEn: 'Optimized main/lower deck distribution slashes pre-departure load planning time by 30 minutes.',
-    },
-    {
-      imageUrl: '/projects/skyroute-hero.png',
-      imageCaptionVi: 'Đồng bộ Tọa độ Radar Bay qua WebSocket & Redis Geo',
-      imageCaptionEn: 'Real-Time Radar Sync via WebSocket & Redis Geo',
-      imageAlt: 'WebSocket Redis Geo Flight Radar Ingestion',
-      hotspot: {
-        x: 30,
-        y: 60,
-        labelVi: 'Redis Geo Spatial Ingestion Engine',
-        labelEn: 'Redis Geo Spatial Ingestion Engine',
-        actionVi: 'Truy vấn bán kính chuyến bay GEORADIUS và broadcast pub/sub',
-        actionEn: 'Execute GEORADIUS flight queries and broadcast via pub/sub',
-        descriptionVi: 'Lưu trữ kinh độ, vĩ độ và độ cao máy bay trong bộ nhớ RAM, phân phối tín hiệu đến bàn điều phái trong 80ms.',
-        descriptionEn: 'In-memory geospatial indexing distributing real-time aircraft vectors to dispatch stations under 80ms.',
+        labelVi: 'Cổng Khám Phá & Danh Mục Phòng Trọ Minh Bạch',
+        labelEn: 'Landing Page & Transparent Boarding Rooms Catalog',
+        actionVi: 'Khám phá danh sách phòng trọ, lọc phòng trống và xem giá niêm yết',
+        actionEn: 'Filter vacancies, compare amenities and inspect transparent pricing',
+        descriptionVi: 'Giao diện công khai tối ưu hóa SEO Schema.org, hỗ trợ tìm kiếm phòng trọ tiện nghi nhanh chóng.',
+        descriptionEn: 'SEO Schema.org (ApartmentComplex) compliant portal providing instant real-time vacancy lookup.',
       },
       cursor: {
-        x: 32,
-        y: 58,
-        actionTextVi: 'Truy vấn GEORADIUS 500km không lưu',
-        actionTextEn: 'Query GEORADIUS 500km airspace',
-      },
-      takeawayVi: 'Xử lý truy vấn không gian cực nhanh dưới 5ms với cấu trúc dữ liệu GeoHash tối ưu của Redis.',
-      takeawayEn: 'Sub-5ms geospatial range queries powered by optimized Redis GeoHash memory structures.',
-    },
-    {
-      imageUrl: '/projects/skyroute-cargo.png',
-      imageCaptionVi: 'Bộ Xuất Điện văn Tải trọng Loadsheet Chuẩn IATA & PDF',
-      imageCaptionEn: 'IATA Standard Electronic Loadsheet & PDF Exporter',
-      imageAlt: 'IATA AHMR Compliant Electronic Loadsheet',
-      hotspot: {
         x: 50,
-        y: 72,
-        labelVi: 'IATA AHMR Compliant Loadsheet Generator',
-        labelEn: 'IATA AHMR Compliant Loadsheet Generator',
-        actionVi: 'Ký số mật mã học và phát hành điện văn ACARS truyền lên buồng lái',
-        actionEn: 'Cryptographically sign and dispatch ACARS telex to cockpit',
-        descriptionVi: 'Xuất văn bản phân bổ tải trọng đạt chuẩn IATA AHMR kèm mã hash kiểm toán chống chỉnh sửa trái phép.',
-        descriptionEn: 'Generates standardized IATA AHMR weight-and-balance manifest with tamper-evident cryptographic hash.',
-      },
-      cursor: {
-        x: 52,
-        y: 70,
-        actionTextVi: 'Ký số điện văn ACARS truyền buồng lái',
-        actionTextEn: 'Sign ACARS dispatch telex for cockpit',
-      },
-      takeawayVi: 'Chuẩn hóa định dạng điện văn hàng không quốc tế với chữ ký số toàn vẹn dữ liệu cho phi hành đoàn.',
-      takeawayEn: 'Standardized international aviation telemetry format with zero-tampering cryptographic signatures.',
-    },
-    {
-      imageUrl: '/projects/skyroute-hero.png',
-      imageCaptionVi: 'Đóng gói Triển khai Docker & Giám sát Sức khỏe Dịch vụ 99.9%',
-      imageCaptionEn: 'Docker Containerization & 99.9% High Availability Audit',
-      imageAlt: 'Docker High Availability Cluster Telemetry',
-      hotspot: {
-        x: 86,
-        y: 20,
-        labelVi: 'High Availability Multi-Node Docker Engine',
-        labelEn: 'High Availability Multi-Node Docker Engine',
-        actionVi: 'Tự động kiểm tra sức khỏe container và đối soát Neon Postgres',
-        actionEn: 'Automated container health check and Neon Postgres pooling',
-        descriptionVi: 'Hạ tầng phân tán bảo đảm hệ thống trực tuyến liên tục 24/7 phục vụ các chuyến bay liên lục địa.',
-        descriptionEn: 'Multi-container orchestration maintaining 99.9% uptime for round-the-clock transcontinental flight ops.',
-      },
-      cursor: {
-        x: 84,
-        y: 22,
-        actionTextVi: 'Kiểm tra trạng thái cluster 99.9%',
-        actionTextEn: 'Inspect 99.9% cluster health',
-      },
-      takeawayVi: 'Kiến trúc container hóa sẵn sàng cho môi trường điều hành bay khắt khe, zero downtime khi nâng cấp.',
-      takeawayEn: 'Production-ready containerized architecture ensuring zero-downtime rolling upgrades.',
-    },
-  ],
-  'medicare-ai-triage': [
-    {
-      imageUrl: '/projects/medicare-hero.png',
-      imageCaptionVi: 'Hàng đợi Tiếp nhận Bệnh nhân & Xem trước Bệnh án EMR',
-      imageCaptionEn: 'Patient Intake Queue & Real-Time EMR Preview',
-      imageAlt: 'MediCare AI Patient Intake Queue',
-      hotspot: {
-        x: 30,
         y: 40,
-        labelVi: 'Intake Queue & Manchester Triage Priority',
-        labelEn: 'Intake Queue & Manchester Triage Priority',
-        actionVi: 'Tiếp nhận bệnh nhân và xếp lớp ưu tiên theo mã màu chuẩn y khoa',
-        actionEn: 'Intake patient and sort queue by medical priority color code',
-        descriptionVi: 'Phân loại tự động 3 cấp độ: Emergency (Đỏ), Urgent (Cam), Routine (Xanh lá) dựa trên triệu chứng lâm sàng.',
-        descriptionEn: 'Three-tier triage queue sorting patients by emergency urgency score rather than arrival timestamp.',
+        actionTextVi: 'Xem danh sách phòng trống P101 - P202',
+        actionTextEn: 'Inspect room vacancies P101 - P202',
       },
-      cursor: {
+      takeawayVi: 'Tối ưu hóa khả năng hiển thị trên công cụ tìm kiếm và mang lại sự tin cậy tuyệt đối về giá thuê phòng.',
+      takeawayEn: 'Search-engine optimized catalog establishing total transparency in boarding room pricing.',
+    },
+    {
+      imageUrl: '/projects/rent-house-admin-dashboard.png',
+      imageCaptionVi: 'Trung Tâm Quản Trị & Phân Tích Hiệu Suất Vận Hành Nhà Trọ',
+      imageCaptionEn: 'Operations Command Center & Boarding House Analytics',
+      imageAlt: 'Admin Dashboard Nha Tro Thanh Tam',
+      hotspot: {
         x: 32,
+        y: 44,
+        labelVi: 'Chỉ Số Lấp Đầy & Doanh Thu Vận Hành Thời Gian Thực',
+        labelEn: 'Real-Time Occupancy Rate & Revenue Analytics',
+        actionVi: 'Tổng hợp tỷ lệ lấp đầy, doanh thu phòng và công nợ điện nước',
+        actionEn: 'Aggregate occupancy metrics, room rent, and utility receivables',
+        descriptionVi: 'Bảng điều khiển tập trung số liệu tài chính, cảnh báo nợ quá hạn và biểu đồ xu hướng tiêu thụ 3-6 tháng.',
+        descriptionEn: 'Consolidated financial dashboard with delinquency alerts and 3-6 month consumption trends.',
+      },
+      cursor: {
+        x: 34,
+        y: 46,
+        actionTextVi: 'Kiểm tra tỷ lệ lấp đầy 85% & doanh thu',
+        actionTextEn: 'Verify 85% occupancy rate & revenue',
+      },
+      takeawayVi: 'Giúp chủ nhà trọ nắm trọn tình hình kinh doanh chỉ trong 5 giây mà không cần sổ sách ghi tay.',
+      takeawayEn: 'Empowers landlords with instant operational visibility, eliminating manual paper ledger errors.',
+    },
+    {
+      imageUrl: '/projects/rent-house-ai-meters.png',
+      imageCaptionVi: 'Động Cơ AI OCR Nhận Diện Số Công Tơ & Duyệt Human-In-The-Loop',
+      imageCaptionEn: 'AI OCR Meter Ingestion & Human-In-The-Loop Review Screen',
+      imageAlt: 'AI OCR Meter Ingestion with Laplacian Sharpness',
+      hotspot: {
+        x: 68,
         y: 42,
-        actionTextVi: 'Chọn bệnh nhân cấp cứu P-042',
-        actionTextEn: 'Select emergency patient P-042',
-      },
-      takeawayVi: 'Phân loại thứ tự khám ưu tiên dựa trên mức độ đe dọa sinh tồn thay vì quy tắc xếp hàng thông thường.',
-      takeawayEn: 'Triages clinical priority by physiological threat score, reducing critical emergency wait time.',
-    },
-    {
-      imageUrl: '/projects/medicare-consult.png',
-      imageCaptionVi: 'Trục Thời gian Lâm sàng: Quy trình 4 Giai đoạn Khám bệnh',
-      imageCaptionEn: 'Clinical Timeline: 4-Phase Longitudinal Consultation Journey',
-      imageAlt: 'Clinical Timeline Consultation Journey',
-      hotspot: {
-        x: 18,
-        y: 45,
-        labelVi: 'Clinical Milestone Timeline Track',
-        labelEn: 'Clinical Milestone Timeline Track',
-        actionVi: 'Lướt dọc trục thời gian từ Tiếp đón → AI Triage → Khám bệnh → Kê đơn',
-        actionEn: 'Scrub timeline from Intake → AI Triage → Consultation → Prescription',
-        descriptionVi: 'Giao diện dòng thời gian trực quan giúp bác sĩ nắm bắt trọn vẹn diễn biến sức khỏe và tiền sử khám qua nhiều năm.',
-        descriptionEn: 'Timeline-based storytelling interface providing longitudinal health trajectory at a glance.',
+        labelVi: 'AI OCR Reader & Laplacian Variance Quality Audit',
+        labelEn: 'AI OCR Reader & Laplacian Variance Quality Audit',
+        actionVi: 'Đọc số tự động, cảnh báo ảnh mờ và đối chiếu song song ảnh gốc',
+        actionEn: 'Auto-read digits, detect blur, and review side-by-side with original photo',
+        descriptionVi: 'Microservice thị giác máy tính tự động trích xuất chỉ số điện/nước với độ tin cậy 98.6% kèm kiểm tra độ sắc nét.',
+        descriptionEn: 'Computer vision microservice extracting meter readings at 98.6% confidence with blur rejection.',
       },
       cursor: {
-        x: 20,
-        y: 47,
-        actionTextVi: 'Xem mốc khám lâm sàng 02:15',
-        actionTextEn: 'Inspect clinical milestone 02:15',
+        x: 66,
+        y: 40,
+        actionTextVi: 'Đối chiếu ảnh thực tế và số AI đọc (00142 kWh)',
+        actionTextEn: 'Verify original photo vs AI reading (00142 kWh)',
       },
-      takeawayVi: 'Mô hình Timeline-Based Storytelling giúp bác sĩ nắm bắt tiền sử bệnh chỉ trong 10 giây lướt trục thời gian.',
-      takeawayEn: 'Timeline-based storytelling enables clinicians to grasp longitudinal patient history within 10 seconds.',
+      takeawayVi: 'Tiết kiệm 85% thời gian chốt số điện nước, triệt tiêu tranh cãi nhờ bằng chứng hình ảnh lưu trữ vĩnh viễn.',
+      takeawayEn: 'Saves 85% monthly meter logging time and eliminates tenant disputes via verifiable photo records.',
     },
     {
-      imageUrl: '/projects/medicare-hero.png',
-      imageCaptionVi: 'Động cơ Phân loại Triệu chứng Cấp cứu Gemini Medical AI',
-      imageCaptionEn: 'Gemini Medical AI Automatic Symptom Triage Engine',
-      imageAlt: 'Gemini AI Clinical Symptom Analysis',
-      hotspot: {
-        x: 75,
-        y: 35,
-        labelVi: 'Gemini Medical AI Differential Triage',
-        labelEn: 'Gemini Medical AI Differential Triage',
-        actionVi: 'Phân tích ngôn ngữ tự nhiên và đề xuất chẩn đoán phân biệt có cơ sở',
-        actionEn: 'Analyze natural language complaint and propose grounded differentials',
-        descriptionVi: 'AI trích xuất các chỉ số sinh tồn bất thường và cảnh báo nguy cơ nhồi máu cơ tim hoặc sốc phản vệ trong 450ms.',
-        descriptionEn: 'Extracts vital sign anomalies and surfaces differential diagnoses for myocardial infarction or anaphylaxis in 450ms.',
-      },
-      cursor: {
-        x: 73,
-        y: 33,
-        actionTextVi: 'Phân tích lý do khám: Đau ngực cấp',
-        actionTextEn: 'Analyze complaint: Acute chest pain',
-      },
-      takeawayVi: 'Đề xuất các khả năng chẩn đoán phân biệt và chỉ số nguy cơ nhồi máu cơ tim tức thì không hallucination.',
-      takeawayEn: 'Surfaces differential diagnostic options and critical risk indices without clinical hallucinations.',
-    },
-    {
-      imageUrl: '/projects/medicare-consult.png',
-      imageCaptionVi: 'Phòng Khám Video Trực tuyến Mã hóa WebRTC Peer-to-Peer',
-      imageCaptionEn: 'Peer-to-Peer Encrypted WebRTC Telehealth Consultation Room',
-      imageAlt: 'WebRTC Telehealth Consultation Video Interface',
+      imageUrl: '/projects/rent-house-billing.png',
+      imageCaptionVi: 'Tự Động Lập Hóa Đơn Hàng Tháng & Phát Thông Báo Đa Kênh',
+      imageCaptionEn: 'Automated Monthly Billing & Multi-Channel Notification',
+      imageAlt: 'Automated Billing & SMS OTP Resend Email Dispatch',
       hotspot: {
         x: 50,
-        y: 35,
-        labelVi: 'Encrypted WebRTC Telehealth Video Channel',
-        labelEn: 'Encrypted WebRTC Telehealth Video Channel',
-        actionVi: 'Kết nối âm thanh/hình ảnh E2EE và ghi nhận lâm sàng song song',
-        actionEn: 'Establish E2EE video/audio and record clinical notes simultaneously',
-        descriptionVi: 'Phòng khám trực tuyến bảo mật cao, kết nối trực tiếp không qua máy chủ trung gian để bảo vệ bí mật y tế.',
-        descriptionEn: 'HIPAA-compliant peer-to-peer WebRTC stream with zero cloud video persistence for total patient privacy.',
+        y: 46,
+        labelVi: 'Snapshot Pricing & Automated Multi-Channel Dispatch',
+        labelEn: 'Snapshot Pricing & Automated Multi-Channel Dispatch',
+        actionVi: 'Tính toán biểu giá bậc thang, chốt đơn giá snapshot và phát SMS/Email',
+        actionEn: 'Calculate tiered utilities, lock snapshot rates, and dispatch SMS/Email',
+        descriptionVi: 'Cơ chế Snapshot Pricing khóa cứng đơn giá tại thời điểm lập; tự động gửi tin nhắn SMS OTP và Email chi tiết qua Resend API.',
+        descriptionEn: 'Locks immutable rate snapshots; instantly notifies tenants via SMS OTP and Resend transactional email.',
       },
       cursor: {
         x: 52,
-        y: 33,
-        actionTextVi: 'Bắt đầu cuộc gọi video bác sĩ WebRTC',
-        actionTextEn: 'Start doctor WebRTC video consult',
+        y: 48,
+        actionTextVi: 'Phát hành hóa đơn P101 (2,450,000đ)',
+        actionTextEn: 'Publish Room P101 bill (2,450,000đ)',
       },
-      takeawayVi: 'Kết nối video HD trực tiếp bác sĩ - bệnh nhân với độ trễ dưới 200ms và không lưu trữ media trên cloud.',
-      takeawayEn: 'Direct peer-to-peer HD telehealth video stream with sub-200ms latency and zero server-side media retention.',
+      takeawayVi: 'Quy trình kế toán tự động hóa hoàn toàn, đảm bảo tính chuẩn xác và lịch sử hóa đơn không bao giờ bị lệch.',
+      takeawayEn: 'End-to-end billing automation ensuring zero accounting drift and transparent tenant billing receipts.',
     },
     {
-      imageUrl: '/projects/medicare-consult.png',
-      imageCaptionVi: 'Biểu đồ Diễn tiến Chỉ số Sinh tồn (Huyết áp & SpO2)',
-      imageCaptionEn: 'Longitudinal Vital Signs Chart (Blood Pressure & SpO2)',
-      imageAlt: 'Dynamic Vital Signs ECG Chart',
+      imageUrl: '/projects/rent-house-contracts.png',
+      imageCaptionVi: 'Hợp Đồng Thuê Điện Tử Bất Biến với Mã Băm SHA-256',
+      imageCaptionEn: 'Immutable Digital Contracts Secured by SHA-256 Checksum',
+      imageAlt: 'Immutable Digital Contract with SHA-256 Checksum',
       hotspot: {
+        x: 45,
+        y: 48,
+        labelVi: 'Cryptographic SHA-256 Hash & Immutability Trigger',
+        labelEn: 'Cryptographic SHA-256 Hash & Immutability Trigger',
+        actionVi: 'Khóa văn bản hợp đồng với mã băm SHA-256 và trigger CSDL PostgreSQL',
+        actionEn: 'Seal contract with SHA-256 hash and enforce PostgreSQL immutability trigger',
+        descriptionVi: 'Database trigger trg_enforce_contract_immutability ngăn chặn tuyệt đối mọi hành vi sửa đổi hoặc xóa hợp đồng đã ký.',
+        descriptionEn: 'PostgreSQL database trigger enforces complete immutability against retroactive tampering or deletion.',
+      },
+      cursor: {
+        x: 47,
+        y: 50,
+        actionTextVi: 'Kiểm toán mã băm SHA-256 hợp đồng P101',
+        actionTextEn: 'Audit SHA-256 contract hash for Room P101',
+      },
+      takeawayVi: 'Bảo vệ giá trị pháp lý của thỏa thuận thuê phòng trọ, loại bỏ rủi ro tranh chấp hợp đồng về sau.',
+      takeawayEn: 'Guarantees legal tamper resistance for boarding tenancy agreements, eliminating dispute risks.',
+    },
+    {
+      imageUrl: '/projects/rent-house-tenant-portal.png',
+      imageCaptionVi: 'Cổng Người Thuê Phòng: Tương Phản Cao, Chữ To & Tra Cứu Ảnh Thật',
+      imageCaptionEn: 'Tenant Portal: High Contrast, Bold Typography & Real Meter Photo',
+      imageAlt: 'Accessible High Contrast Tenant Portal',
+      hotspot: {
+        x: 50,
+        y: 52,
+        labelVi: 'Accessible Ergonomic UI & Photo Inspection Modal',
+        labelEn: 'Accessible Ergonomic UI & Photo Inspection Modal',
+        actionVi: 'Đăng nhập OTP không mật khẩu, xem hóa đơn chữ to và mở modal ảnh thật',
+        actionEn: 'Passwordless OTP login, inspect bold receipts, and pop up meter photo',
+        descriptionVi: 'Thiết kế đặc thù cho người lớn tuổi với font chữ ≥18px, số tiền 32px nổi bật và nút bấm lớn dễ thao tác.',
+        descriptionEn: 'Ergonomic interface with large typography (≥18px), prominent bill amounts (32px), and photo proof modal.',
+      },
+      cursor: {
         x: 52,
+        y: 54,
+        actionTextVi: 'Phóng to ảnh chụp đồng hồ điện tháng này',
+        actionTextEn: 'Zoom into current month electric meter photo',
+      },
+      takeawayVi: 'Giao diện công thái học thân thiện với mọi đối tượng khách thuê, tạo sự minh bạch tuyệt đối giữa chủ và khách.',
+      takeawayEn: 'Ergonomic accessibility fosters trust and smooth communication between landlords and tenants.',
+    },
+    {
+      imageUrl: '/projects/rent-house-mobile.png',
+      imageCaptionVi: 'Ký Cảm Ứng HTML5 Canvas & Ứng Dụng Di Động Android APK',
+      imageCaptionEn: 'Touch Canvas Signing & Capacitor Cross-Platform Mobile APK',
+      imageAlt: 'Capacitor Android APK & Liquid Glass Dock',
+      hotspot: {
+        x: 50,
         y: 65,
-        labelVi: 'Dynamic Vital Signs Vector Chart (BP & HR)',
-        labelEn: 'Dynamic Vital Signs Vector Chart (BP & HR)',
-        actionVi: 'Quan sát diễn biến huyết áp, SpO2 và nhịp tim qua từng buổi khám',
-        actionEn: 'Track blood pressure, SpO2, and heart rate trajectories over visits',
-        descriptionVi: 'Biểu đồ vector tương tác giúp bác sĩ phát hiện các xu hướng tăng huyết áp tiềm ẩn hoặc hạ oxy máu.',
-        descriptionEn: 'Interactive vector trendlines highlighting occult hypertension or desaturation episodes.',
+        labelVi: 'Capacitor 8 Mobile App & Liquid Glass Dock',
+        labelEn: 'Capacitor 8 Mobile App & Liquid Glass Dock',
+        actionVi: 'Ký ngón tay trực tiếp trên điện thoại & điều hướng Liquid Glass Dock',
+        actionEn: 'Finger touch signature pad and navigate via Liquid Glass Dock',
+        descriptionVi: 'Ứng dụng di động độc lập biên dịch APK Android trực tiếp, giao diện dạng thẻ card thông minh không cuộn ngang.',
+        descriptionEn: 'Standalone Android APK compiled via Capacitor with card UI and Apple-inspired Liquid Glass dock.',
       },
       cursor: {
         x: 50,
-        y: 63,
-        actionTextVi: 'So sánh chỉ số huyết áp 3 lần khám',
-        actionTextEn: 'Compare BP trends across 3 visits',
+        y: 70,
+        actionTextVi: 'Ký số trên màn hình cảm ứng điện thoại',
+        actionTextEn: 'Touch sign agreement on smartphone screen',
       },
-      takeawayVi: 'Biểu đồ vector SVG trực quan giúp phát hiện sớm các cơn tăng huyết áp kịch phát bất thường.',
-      takeawayEn: 'Intuitive SVG vector trajectories allow early detection of acute hypertensive spikes.',
-    },
-    {
-      imageUrl: '/projects/medicare-consult.png',
-      imageCaptionVi: 'Bộ Kê đơn Thuốc Điện tử & Cảnh báo Tương tác Thuốc Nguy hại',
-      imageCaptionEn: 'Digital e-Prescription Builder & Drug-Drug Interaction Warning',
-      imageAlt: 'Digital e-Prescription Builder with Interaction Checks',
-      hotspot: {
-        x: 80,
-        y: 60,
-        labelVi: 'e-Prescription & Drug-Drug Interaction Matrix',
-        labelEn: 'e-Prescription & Drug-Drug Interaction Matrix',
-        actionVi: 'Tự động tính liều lượng theo cân nặng và quét xung đột dược lý chéo',
-        actionEn: 'Auto-calculate weight-based dosage and scan cross-drug interactions',
-        descriptionVi: 'Cảnh báo màu đỏ nổi bật khi bác sĩ kê đơn 2 loại thuốc tương tác nguy hiểm, gợi ý thuốc thay thế an toàn.',
-        descriptionEn: 'Instant visual alert flagging severe drug interactions with safe therapeutic alternative suggestions.',
-      },
-      cursor: {
-        x: 78,
-        y: 58,
-        actionTextVi: 'Kê đơn Amoxicillin 500mg (An toàn)',
-        actionTextEn: 'Prescribe Amoxicillin 500mg (Safe)',
-      },
-      takeawayVi: 'Thuật toán đối soát cơ sở dữ liệu dược lý tự động ngăn chặn 100% rủi ro kê đơn trùng lặp và tương tác xấu.',
-      takeawayEn: 'Automated pharmacovigilance matrix eliminates adverse drug-drug interactions before dispensary.',
-    },
-    {
-      imageUrl: '/projects/medicare-hero.png',
-      imageCaptionVi: 'Phân quyền RBAC Y tế & Bảo mật Hồ sơ Bệnh án EMR',
-      imageCaptionEn: 'Role-Based Access Control (RBAC) & EMR Privacy Compliance',
-      imageAlt: 'HIPAA Compliant RBAC Security Vault',
-      hotspot: {
-        x: 88,
-        y: 18,
-        labelVi: 'HIPAA Compliant RBAC Security Vault',
-        labelEn: 'HIPAA Compliant RBAC Security Vault',
-        actionVi: 'Xác thực phân quyền Bác sĩ, Y tá và Bệnh nhân với JWT token an toàn',
-        actionEn: 'Authenticate Doctor, Nurse, and Patient roles with secure JWT tokens',
-        descriptionVi: 'Cơ chế mã hóa các trường nhạy cảm trong MongoDB Atlas bảo đảm tuân thủ quyền riêng tư dữ liệu y tế.',
-        descriptionEn: 'Field-level encryption across MongoDB Atlas clusters guaranteeing medical confidentiality.',
-      },
-      cursor: {
-        x: 86,
-        y: 20,
-        actionTextVi: 'Xác thực bác sĩ chuyên khoa khoa Nội',
-        actionTextEn: 'Verify Internal Medicine specialist',
-      },
-      takeawayVi: 'Phân tách nghiêm ngặt quyền truy cập giữa Bác sĩ, Y tá và Bệnh nhân, bảo vệ quyền riêng tư hồ sơ y tế.',
-      takeawayEn: 'Strict role-based isolation between clinical staff and patients protects personal health information.',
+      takeawayVi: 'Trải nghiệm ký số mượt mà như giấy thật kết hợp tính di động cao của ứng dụng Native Android.',
+      takeawayEn: 'Delivers seamless tactile signing on mobile with standalone native Android APK distribution.',
     },
   ],
 };
@@ -1250,13 +1080,13 @@ const PROJECT_CHAPTER_DOMAINS: Record<string, { vi: string; en: string }[]> = {
     { vi: 'VITE SPA // LIGHTHOUSE 98/100', en: 'VITE SPA // LIGHTHOUSE 98/100' },
   ],
   'examplatform-ai': [
-    { vi: 'DISTRACTION-FREE // ZERO-NOISE ROOM', en: 'DISTRACTION-FREE // ZERO-NOISE ROOM' },
-    { vi: 'ADAPTIVE DIFFICULTY // 5 TIERS', en: 'ADAPTIVE DIFFICULTY // 5 TIERS' },
-    { vi: 'ANTI-CHEAT // TAB DEFOCUS TELEMETRY', en: 'ANTI-CHEAT // TAB DEFOCUS TELEMETRY' },
-    { vi: 'REDIS CACHE // 6ms TIMEOUT PROTECTION', en: 'REDIS CACHE // 6ms TIMEOUT PROTECTION' },
-    { vi: 'ACADEMIC INTEGRITY // JWT TOKEN ENCRYPT', en: 'ACADEMIC INTEGRITY // JWT TOKEN ENCRYPT' },
-    { vi: 'FULL-STACK ARCH // TAILWIND UI', en: 'FULL-STACK ARCH // TAILWIND UI' },
-    { vi: 'OUTCOME AUDIT // 99.8% RELIABILITY', en: 'OUTCOME AUDIT // 99.8% RELIABILITY' },
+    { vi: 'GDPT 2018 // 4 EDUCATION TIERS', en: 'GDPT 2018 // 4 EDUCATION TIERS' },
+    { vi: 'HAMILTON-HARE // NON-REPEATING MATRIX', en: 'HAMILTON-HARE // NON-REPEATING MATRIX' },
+    { vi: 'LANGGRAPH JS // 3-TIER SOCRATIC AI', en: 'LANGGRAPH JS // 3-TIER SOCRATIC AI' },
+    { vi: 'MULTI-KEY GEMINI // COOLDOWN FAILOVER', en: 'MULTI-KEY GEMINI // COOLDOWN FAILOVER' },
+    { vi: 'AI PROCTOR // OPENCV HAAR CASCADE', en: 'AI PROCTOR // OPENCV HAAR CASCADE' },
+    { vi: 'PARENT PORTAL // BULLMQ & RESEND 19:00', en: 'PARENT PORTAL // BULLMQ & RESEND 19:00' },
+    { vi: 'PURE SVG CHARTS // 60FPS SCORE & RADAR', en: 'PURE SVG CHARTS // 60FPS SCORE & RADAR' },
   ],
   'vk-digital-hub': [
     { vi: 'B2B FINTECH // HIGH CONVERSION', en: 'B2B FINTECH // HIGH CONVERSION' },
@@ -1276,23 +1106,14 @@ const PROJECT_CHAPTER_DOMAINS: Record<string, { vi: string; en: string }[]> = {
     { vi: 'VERIFIED CREDENTIALS // TOEIC 550 & GPA 3.1', en: 'VERIFIED CREDENTIALS // TOEIC 550 & GPA 3.1' },
     { vi: 'ENGINEERING EXCELLENCE // NEXT.JS 15 & TS', en: 'ENGINEERING EXCELLENCE // NEXT.JS 15 & TS' },
   ],
-  'skyroute-aviation-ops': [
-    { vi: 'AERODROME RADAR // 1090MHz ADS-B', en: 'AERODROME RADAR // 1090MHz ADS-B' },
-    { vi: '3D EXPLODED ARCH // 4 DISTRIBUTED LAYERS', en: '3D EXPLODED ARCH // 4 DISTRIBUTED LAYERS' },
-    { vi: 'MASS & BALANCE // CENTER OF GRAVITY (CG)', en: 'MASS & BALANCE // CENTER OF GRAVITY (CG)' },
-    { vi: 'CARGO BAY SCHEMATIC // 28 ULD POSITIONS', en: 'CARGO BAY SCHEMATIC // 28 ULD POSITIONS' },
-    { vi: 'REDIS GEO ENGINE // 80ms RADAR SYNC', en: 'REDIS GEO ENGINE // 80ms RADAR SYNC' },
-    { vi: 'IATA LOADSHEET // CRYPTOGRAPHIC CHECKSUM', en: 'IATA LOADSHEET // CRYPTOGRAPHIC CHECKSUM' },
-    { vi: 'DOCKER HA CLUSTER // 99.9% UPTIME AUDIT', en: 'DOCKER HA CLUSTER // 99.9% UPTIME AUDIT' },
-  ],
-  'medicare-ai-triage': [
-    { vi: 'CLINICAL INTAKE // MANCHESTER TRIAGE', en: 'CLINICAL INTAKE // MANCHESTER TRIAGE' },
-    { vi: 'LONGITUDINAL TIMELINE // 4-PHASE CARE', en: 'LONGITUDINAL TIMELINE // 4-PHASE CARE' },
-    { vi: 'GEMINI MEDICAL AI // DIFFERENTIAL DIAGNOSIS', en: 'GEMINI MEDICAL AI // DIFFERENTIAL DIAGNOSIS' },
-    { vi: 'TELEHEALTH WEBRTC // E2EE CONSULTATION', en: 'TELEHEALTH WEBRTC // E2EE CONSULTATION' },
-    { vi: 'VITAL SIGNS VECTOR // BP & HR TRAJECTORY', en: 'VITAL SIGNS VECTOR // BP & HR TRAJECTORY' },
-    { vi: 'E-PRESCRIPTION // DRUG INTERACTION MATRIX', en: 'E-PRESCRIPTION // DRUG INTERACTION MATRIX' },
-    { vi: 'RBAC VAULT // HIPAA PRIVACY COMPLIANCE', en: 'RBAC VAULT // HIPAA PRIVACY COMPLIANCE' },
+  'rent-house-smart-management': [
+    { vi: 'CATALOG DISCOVERY // SCHEMA.ORG', en: 'CATALOG DISCOVERY // SCHEMA.ORG' },
+    { vi: 'OPERATIONS COMMAND // OCCUPANCY KPI', en: 'OPERATIONS COMMAND // OCCUPANCY KPI' },
+    { vi: 'LOCAL AI OCR // OPENCV LAPLACIAN', en: 'LOCAL AI OCR // OPENCV LAPLACIAN' },
+    { vi: 'AUTO BILLING // SMS OTP & RESEND', en: 'AUTO BILLING // SMS OTP & RESEND' },
+    { vi: 'IMMUTABLE CONTRACT // SHA-256 HASH', en: 'IMMUTABLE CONTRACT // SHA-256 HASH' },
+    { vi: 'ACCESSIBLE PORTAL // PHOTO AUDIT', en: 'ACCESSIBLE PORTAL // PHOTO AUDIT' },
+    { vi: 'CAPACITOR 8 // ANDROID APK & PWA', en: 'CAPACITOR 8 // ANDROID APK & PWA' },
   ],
 };
 
@@ -1512,118 +1333,47 @@ function ArchitecturalGlassOverlay() {
 }
 
 // 6. AVIATION 3D EXPLODED OVERLAY (Radar Sweep, 3D Layers Stack, Telemetry Altitude & CG HUD)
-function AviationExplodedOverlay() {
+// 8. SMART RENTAL OVERLAY (IoT AI OCR Bounding Box Scanner, Laplacian Sharpness HUD, Neon DB Pool status)
+function SmartRentalOverlay() {
   return (
-    <div className="av-exploded-overlay" aria-hidden="true">
-      {/* 3D Exploded-View Layer Stack Indicator */}
-      <div className="av-layer-stack">
-        <div className="av-layer-item layer-4">
-          <span className="layer-dot" />
-          <span className="layer-name">L4: ADS-B RADAR // 1090MHz</span>
-        </div>
-        <div className="av-layer-item layer-3">
-          <span className="layer-dot" />
-          <span className="layer-name">L3: AIRFRAME & ULD CARGO BAY</span>
-        </div>
-        <div className="av-layer-item layer-2">
-          <span className="layer-dot" />
-          <span className="layer-name">L2: WEIGHT & CG ENVELOPE</span>
-        </div>
-        <div className="av-layer-item layer-1">
-          <span className="layer-dot" />
-          <span className="layer-name">L1: POSTGIS & REDIS GEO</span>
+    <div className="rh-smart-overlay" aria-hidden="true">
+      {/* OCR Dynamic Scanning Reticle */}
+      <div className="rh-ocr-scanner-box">
+        <div className="rh-scan-corner top-l" />
+        <div className="rh-scan-corner top-r" />
+        <div className="rh-scan-corner bot-l" />
+        <div className="rh-scan-corner bot-r" />
+        <div className="rh-scan-laser-line" />
+        <div className="rh-scan-badge">
+          <span className="scan-dot" />
+          <span>AI OCR SCANNING // GELEX CV140 METER</span>
         </div>
       </div>
 
-      {/* Aerodrome Radar Beam & Reticle */}
-      <div className="av-radar-beam" />
-      <div className="av-crosshair-center" />
-
-      {/* Flight Telemetry Altitude & CG Strip */}
-      <div className="av-telemetry-hud">
-        <div className="av-hud-pill">
-          <span className="hud-label">ALT:</span>
-          <strong className="hud-val">FL360</strong>
+      {/* Telemetry Status Strip */}
+      <div className="rh-telemetry-hud">
+        <div className="rh-hud-pill">
+          <span className="hud-label">OCR ENGINE:</span>
+          <strong className="hud-val">Tesseract + OpenCV</strong>
         </div>
-        <div className="av-hud-pill">
-          <span className="hud-label">GS:</span>
-          <strong className="hud-val">485 kts</strong>
+        <div className="rh-hud-pill">
+          <span className="hud-label">SHARPNESS:</span>
+          <strong className="hud-val text-emerald-400">184.2 VAR (PASS)</strong>
         </div>
-        <div className="av-hud-pill">
-          <span className="hud-label">MACH:</span>
-          <strong className="hud-val">0.82</strong>
+        <div className="rh-hud-pill">
+          <span className="hud-label">CONFIDENCE:</span>
+          <strong className="hud-val">98.6%</strong>
         </div>
-        <div className="av-hud-pill">
-          <span className="hud-label">CG:</span>
-          <strong className="hud-val">28.4% MAC</strong>
+        <div className="rh-hud-pill">
+          <span className="hud-label">DB:</span>
+          <strong className="hud-val">Neon Serverless Pool</strong>
         </div>
       </div>
 
-      {/* Cockpit Coordinates Stamp */}
-      <div className="av-cockpit-stamp top-left">
-        <span>VVTS ➔ WSSS // OFP-0772</span>
-        <small>B777-200F • MTOW: 347,815 KG</small>
-      </div>
-    </div>
-  );
-}
-
-// 7. MEDICARE CLINICAL TIMELINE OVERLAY (Pulsing ECG Waveform, Longitudinal Milestones, HIPAA Vault)
-function ClinicalTimelineOverlay() {
-  return (
-    <div className="mc-timeline-overlay" aria-hidden="true">
-      {/* Animated ECG Pulse Waveform SVG */}
-      <div className="mc-ecg-container">
-        <svg viewBox="0 0 200 40" className="mc-ecg-svg" fill="none">
-          <path
-            d="M 0 20 L 40 20 L 48 8 L 54 32 L 62 4 L 70 24 L 78 20 L 120 20 L 128 8 L 134 32 L 142 4 L 150 24 L 158 20 L 200 20"
-            stroke="url(#mcEcgGrad)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <defs>
-            <linearGradient id="mcEcgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#0D9488" stopOpacity="0.2" />
-              <stop offset="50%" stopColor="#14B8A6" stopOpacity="1" />
-              <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0.2" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
-      {/* Clinical Timeline Journey Ribbon */}
-      <div className="mc-timeline-ribbon">
-        <span className="timeline-node done">00:00 Intake</span>
-        <span className="timeline-arrow">➔</span>
-        <span className="timeline-node done">02:15 AI Triage</span>
-        <span className="timeline-arrow">➔</span>
-        <span className="timeline-node active">05:30 Consult</span>
-        <span className="timeline-arrow">➔</span>
-        <span className="timeline-node">08:45 Rx</span>
-      </div>
-
-      {/* Vital Signs Real-Time Monitor Badge */}
-      <div className="mc-vitals-hud">
-        <div className="mc-vital-item">
-          <span className="vital-icon">❤️</span>
-          <span className="vital-label">HR:</span>
-          <strong>72 bpm</strong>
-        </div>
-        <div className="mc-vital-item">
-          <span className="vital-icon">🫁</span>
-          <span className="vital-label">SpO2:</span>
-          <strong>98%</strong>
-        </div>
-        <div className="mc-vital-item">
-          <span className="vital-icon">🩺</span>
-          <span className="vital-label">BP:</span>
-          <strong>120/80</strong>
-        </div>
-        <div className="mc-vital-item">
-          <span className="vital-icon">🔒</span>
-          <strong>HIPAA VAULT</strong>
-        </div>
+      {/* Location & Room Tag */}
+      <div className="rh-stamp top-left">
+        <span>NHÀ TRỌ THANH TÂM // P101</span>
+        <small>Snapshot Pricing • SMS OTP & Resend</small>
       </div>
     </div>
   );
@@ -1766,23 +1516,14 @@ export function MasterInteractiveScrollytelling({
           accentBg: 'rgba(5, 150, 105, 0.08)',
           overlayComponent: <GrowthPipelineOverlay />,
         };
-      case 'skyroute-aviation-ops':
+      case 'rent-house-smart-management':
         return {
-          themeClass: 'theme-aviation-exploded',
-          badgeTextVi: '3D EXPLODED FLIGHT OPS // BOEING 777F TELEMETRY',
-          badgeTextEn: '3D EXPLODED FLIGHT OPS // BOEING 777F TELEMETRY',
+          themeClass: 'theme-smart-rental',
+          badgeTextVi: 'SMART PROPTECH // LOCAL AI OCR & HUMAN-IN-THE-LOOP',
+          badgeTextEn: 'SMART PROPTECH // LOCAL AI OCR & HUMAN-IN-THE-LOOP',
           color: '#0284C7',
           accentBg: 'rgba(2, 132, 199, 0.08)',
-          overlayComponent: <AviationExplodedOverlay />,
-        };
-      case 'medicare-ai-triage':
-        return {
-          themeClass: 'theme-clinical-timeline',
-          badgeTextVi: 'CLINICAL TIMELINE TELEHEALTH // MANCHESTER TRIAGE & FHIR',
-          badgeTextEn: 'CLINICAL TIMELINE TELEHEALTH // MANCHESTER TRIAGE & FHIR',
-          color: '#0D9488',
-          accentBg: 'rgba(13, 148, 136, 0.08)',
-          overlayComponent: <ClinicalTimelineOverlay />,
+          overlayComponent: <SmartRentalOverlay />,
         };
       case 'nh-huynh-portfolio':
       default:
@@ -2010,13 +1751,15 @@ export function MasterInteractiveScrollytelling({
                 <div className="stage-url-display">
                   <span className="stage-ssl-lock">🔒</span>
                   <span className="stage-url-text">
-                    {project.liveUrl
+                    {project.slug === 'nh-huynh-portfolio'
+                      ? 'hoanghuynh.dev'
+                      : project.liveUrl
                       ? project.liveUrl.replace(/^https?:\/\//, '')
                       : `${project.slug}.online`}
                   </span>
                 </div>
 
-                {project.liveUrl && (
+                {project.liveUrl && project.slug !== 'nh-huynh-portfolio' && (
                   <a
                     href={project.liveUrl}
                     target="_blank"

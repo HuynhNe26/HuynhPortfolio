@@ -42,12 +42,14 @@ function mapProjectRow(row: any): Project {
   };
 }
 
+const EXCLUDED_PROJECT_SLUGS = ['skyroute-aviation-ops', 'medicare-ai-triage'];
+
 export async function listProjects(includeDrafts = false): Promise<Project[]> {
   const sql = includeDrafts
-    ? `SELECT * FROM projects ORDER BY featured DESC, display_order ASC, created_at DESC LIMIT 200`
-    : `SELECT * FROM projects WHERE published = true ORDER BY featured DESC, display_order ASC, created_at DESC LIMIT 200`;
+    ? `SELECT * FROM projects WHERE slug <> ALL($1::text[]) ORDER BY featured DESC, display_order ASC, created_at DESC LIMIT 200`
+    : `SELECT * FROM projects WHERE published = true AND slug <> ALL($1::text[]) ORDER BY featured DESC, display_order ASC, created_at DESC LIMIT 200`;
 
-  const result = await query(sql);
+  const result = await query(sql, [EXCLUDED_PROJECT_SLUGS]);
   return result.rows.map(mapProjectRow);
 }
 
@@ -61,6 +63,9 @@ export async function getProjectById(id: string): Promise<Project> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project> {
+  if (EXCLUDED_PROJECT_SLUGS.includes(slug)) {
+    throw new HttpError(404, 'Project not found.');
+  }
   const result = await query(
     'SELECT * FROM projects WHERE slug = $1 AND published = true',
     [slug]

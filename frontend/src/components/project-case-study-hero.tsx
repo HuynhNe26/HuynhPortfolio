@@ -1,241 +1,63 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
-import { TechIcon } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
 import { getLocalizedProject } from '@/lib/project-translations';
+import { getCaseStudyCopy, getCaseStudyPresentation, getCaseStudyReportUrl } from '@/lib/case-study-content';
 
-interface ProjectCaseStudyHeroProps {
-  project: Project;
-  themeClass?: string;
+export function CaseArrow({ direction = 'up', className = '' }: { direction?: 'up' | 'right' | 'left'; className?: string }) {
+  return <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {direction === 'up' ? <path d="M6 18 18 6M6 6h12v12" /> : direction === 'left' ? <path d="m10 5-7 7 7 7M3 12h18" /> : <path d="m14 5 7 7-7 7M3 12h18" />}
+  </svg>;
 }
 
-export function ProjectCaseStudyHero({ project, themeClass }: ProjectCaseStudyHeroProps) {
-  const { t, lang } = useLanguage();
+export function ProjectCaseStudyHero({ project }: { project: Project }) {
+  const { lang } = useLanguage();
+  const c = getCaseStudyCopy(lang);
+  const presentation = getCaseStudyPresentation(project, lang);
   const localized = getLocalizedProject(project, lang);
-  const accentColor = project.themeColor || '#7C3AED';
-  const categoryTag = project.category.includes('Landing') || project.category.includes('Client')
-    ? t('filter.landing')
-    : t('filter.webApp');
-
-  const defaultKeyFeatures = lang === 'vi'
-    ? [
-        'Hỗ trợ khách hàng thông minh & truy xuất ngữ cảnh (Agentic RAG)',
-        'Hệ thống giữ chỗ & đặt vé hiệu năng cao theo thời gian thực',
-        'Đồng bộ trạng thái ghế tức thì thông qua WebSockets',
-        'Tự động đối soát cổng thanh toán trực tuyến & phát hành vé điện tử',
-      ]
-    : lang === 'zh'
-    ? [
-        '智能客户服务与上下文精准检索 (Agentic RAG)',
-        '高并发实时在线选座与锁票系统',
-        '基于 WebSockets 的毫秒级座位状态实时同步',
-        '全自动在线支付网关对账与电子票实时签发',
-      ]
-    : [
-        'AI-powered support & contextual retrieval (Agentic RAG)',
-        'High-throughput interactive booking & seat holds',
-        'Real-time availability synchronization with WebSockets',
-        'Automated payment gateway verification & instant ticket dispatch',
-      ];
-
-  const featuresList = project.features && project.features.length > 0
-    ? project.features.map((f) => f.title)
-    : defaultKeyFeatures;
-
-  const teamSizeLabel = project.teamSize
-    ? `${project.teamSize} ${t('case.members')}`
-    : t('case.solo');
+  const reportUrl = getCaseStudyReportUrl(project.reportUrl);
+  let domain = '';
+  try { domain = new URL(project.liveUrl).hostname.replace(/^www\./, ''); } catch { /* Projects may have no public URL. */ }
 
   return (
-    <header className={`hh-case-hero-root ${themeClass || ''}`}>
-      <div className="container">
-        {/* BACK LINK */}
-        <div className="hh-case-back-row">
-          <Link href="/projects" className="hh-case-back-link">
-            {t('case.back')}
-          </Link>
+    <header className="cs-hero">
+      <div className="cs-container">
+        <div className="cs-breadcrumb">
+          <Link href="/projects"><CaseArrow direction="left" />{c.back}</Link>
+          <span className="cs-project-state"><i aria-hidden="true" />{project.status === 'Ongoing' ? c.ongoing : c.completed}</span>
         </div>
-
-        {/* HERO 2 COLUMNS: LEFT META/TITLE/ACTIONS, RIGHT 3D LAPTOP MOCKUP */}
-        <div className="hh-case-hero-grid">
-          <div className="hh-case-hero-left">
-            <span className="hh-case-cat-pill" style={{ color: accentColor, borderColor: accentColor }}>
-              {categoryTag}
-            </span>
-
-            <h1 className="hh-case-title">{localized.title.toUpperCase()}</h1>
-
-            <p className="hh-case-summary">{localized.summary}</p>
-
-            <div className="hh-case-actions">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hh-btn-primary"
-                >
-                  {t('case.visitSite')}
-                </a>
-              )}
-              {(project.reportUrl || true) && (
-                <a
-                  href={project.reportUrl || `https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hh-btn-report"
-                  title={lang === 'vi' ? 'Xem báo cáo chi tiết dự án trên Google Docs' : 'View full project report on Google Docs'}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                    <line x1="16" y1="13" x2="8" y2="13"/>
-                    <line x1="16" y1="17" x2="8" y2="17"/>
-                    <line x1="10" y1="9" x2="8" y2="9"/>
-                  </svg>
-                  <span>{t('case.viewReport')}</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                </a>
-              )}
-              {project.sourceUrl ? (
-                <a
-                  href={project.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hh-btn-secondary"
-                >
-                  {t('case.viewGithub')}
-                </a>
-              ) : (
-                <Link href="#overview" className="hh-btn-secondary">
-                  {t('case.exploreArch')}
-                </Link>
-              )}
+        <div className="cs-hero-grid">
+          <div className="cs-hero-copy">
+            <p className="cs-eyebrow"><span className="cs-accent-line" />{c.caseStudy}<span className="cs-year">/ {project.year}</span></p>
+            <h1>{presentation.name}</h1>
+            {presentation.subtitle && <p className="cs-hero-subtitle">{presentation.subtitle}</p>}
+            <p className="cs-hero-description">{presentation.description}</p>
+            <div className="cs-actions">
+              {project.liveUrl && project.slug !== 'nh-huynh-portfolio' ?
+                <a className="cs-button cs-button-primary" href={project.liveUrl} target="_blank" rel="noopener noreferrer">{c.live}<CaseArrow /></a> :
+                <a className="cs-button cs-button-primary" href="#overview">{c.explore}<CaseArrow direction="right" /></a>}
+              {project.sourceUrl && <a className="cs-text-link" href={project.sourceUrl} target="_blank" rel="noopener noreferrer">{c.source}<CaseArrow /></a>}
+              {reportUrl && <a className="cs-text-link" href={reportUrl} target="_blank" rel="noopener noreferrer">{c.report}<CaseArrow /></a>}
             </div>
           </div>
-
-          <div className="hh-case-hero-right">
-            <div className="hh-laptop-mockup-wrap">
-              {/* VIBRANT AMBIENT BACKLIGHT GLOW */}
-              <div
-                className="hh-laptop-glow"
-                style={{
-                  background: `radial-gradient(circle, ${accentColor}80 0%, transparent 70%)`,
-                }}
-                aria-hidden="true"
-              />
-
-              {/* 3D LAPTOP HARDWARE SHELL */}
-              <div className="hh-laptop-shell">
-                <div className="hh-laptop-screen">
-                  <div className="hh-laptop-screen-header">
-                    <div className="hh-dots-mini">
-                      <span className="dot dot-red" />
-                      <span className="dot dot-yellow" />
-                      <span className="dot dot-green" />
-                    </div>
-                    <span className="hh-laptop-url">{project.liveUrl || 'https://project.online'}</span>
-                  </div>
-                  <div className="hh-laptop-screen-body">
-                    <Image
-                      src={project.coverUrl || '/projects/ticket-concert-hero.png'}
-                      alt={project.title}
-                      width={1200}
-                      height={750}
-                      className="hh-laptop-img"
-                      priority
-                      unoptimized
-                    />
-                  </div>
-                </div>
-                <div className="hh-laptop-base" aria-hidden="true" />
-              </div>
+          <figure className="cs-hero-art">
+            <div className="cs-art-topline"><span>{presentation.name}</span><span>WEB APPLICATION <span aria-hidden="true">↗</span></span></div>
+            <div className="cs-browser">
+              <div className="cs-browser-bar"><span className="cs-browser-dots" aria-hidden="true"><i /><i /><i /></span><span>{domain || presentation.name}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg></div>
+              {project.coverUrl ? <Image src={project.coverUrl} alt={`${c.preview} — ${presentation.name}`} width={1440} height={900} priority unoptimized className="cs-cover" /> : <div className="cs-cover-fallback">{presentation.name}</div>}
             </div>
-          </div>
+            <figcaption><span className="cs-caption-mark" aria-hidden="true">01 /</span>{c.preview}<span aria-hidden="true">DESIGN · DEVELOP · DELIVER</span></figcaption>
+          </figure>
         </div>
-
-        {/* 4 SPEC TILES IN A ROW */}
-        <div className="hh-specs-row">
-          <div className="hh-spec-card">
-            <div className="spec-icon" aria-hidden="true">👤</div>
-            <div className="spec-text">
-              <span className="spec-label">{t('case.role')}</span>
-              <strong className="spec-val">{localized.role}</strong>
-            </div>
-          </div>
-
-          <div className="hh-spec-card">
-            <div className="spec-icon" aria-hidden="true">👥</div>
-            <div className="spec-text">
-              <span className="spec-label">{t('case.teamSize')}</span>
-              <strong className="spec-val">{teamSizeLabel}</strong>
-            </div>
-          </div>
-
-          <div className="hh-spec-card">
-            <div className="spec-icon" aria-hidden="true">⏱</div>
-            <div className="spec-text">
-              <span className="spec-label">{t('case.time')}</span>
-              <strong className="spec-val">{localized.timeline}</strong>
-            </div>
-          </div>
-
-          <div className="hh-spec-card">
-            <div className="spec-icon" aria-hidden="true">⚡</div>
-            <div className="spec-text">
-              <span className="spec-label">{t('case.status')}</span>
-              <strong className="spec-val status-green">
-                <span className="status-ping-dot" />
-                {project.status === 'Ongoing' ? t('case.inDev') : t('case.completed')}
-              </strong>
-            </div>
-          </div>
-        </div>
-
-        {/* TECHNOLOGIES USED ICON BADGES ROW */}
-        <div className="hh-techs-used-panel">
-          <span className="techs-panel-title">{t('case.techsUsed')}</span>
-          <div className="techs-badges-row">
-            {project.technologies.map((t) => (
-              <div key={t} className="tech-badge-item">
-                <div className="tech-badge-icon">
-                  <TechIcon name={t} className="tech-svg" />
-                </div>
-                <span className="tech-badge-name">{t}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* TWO-COLUMN OVERVIEW & KEY FEATURES */}
-        <div id="overview" className="hh-overview-features-grid">
-          <div className="hh-overview-col">
-            <h3 className="subheading-white">{t('case.overview')}</h3>
-            <p className="overview-prose">
-              {project.problem} {project.approach} {project.outcome}
-            </p>
-          </div>
-
-          <div className="hh-features-col">
-            <h3 className="subheading-white">{t('case.features')}</h3>
-            <ul className="features-checklist">
-              {featuresList.map((feat, idx) => (
-                <li key={idx}>
-                  <span className="green-check" aria-hidden="true">✔</span>
-                  <span>{feat}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <dl className="cs-facts">
+          <div><dt>{c.role}</dt><dd>{localized.role || 'Developer'}</dd></div>
+          <div><dt>{c.team}</dt><dd>{project.teamSize && project.teamSize > 1 ? `${project.teamSize} ${c.members}` : c.solo}</dd></div>
+          <div><dt>{c.timeline}</dt><dd>{localized.timeline}</dd></div>
+          <div><dt>{c.field}</dt><dd>{project.category}</dd></div>
+        </dl>
       </div>
     </header>
   );

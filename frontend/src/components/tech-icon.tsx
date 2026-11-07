@@ -25,7 +25,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
           <circle cx="90" cy="90" r="90" fill="black" />
         </mask>
         <g mask="url(#next-mask)">
-          <circle cx="90" cy="90" r="90" fill="#000000" />
+          <circle cx="90" cy="90" r="90" fill="#000000" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="6" />
           <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="white" />
           <rect x="115" y="54" width="12" height="72" fill="white" />
         </g>
@@ -141,7 +141,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
   if (normalized.includes('langchain')) {
     return (
       <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4zm0 12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h4zm8-6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h4z" fill="#1C3C3C" />
+        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4zm0 12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h4zm8-6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h4z" fill="#10B981" />
       </svg>
     );
   }
@@ -170,7 +170,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
   if (normalized.includes('resend') || normalized.includes('email')) {
     return (
       <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="6" fill="#000000" />
+        <rect width="24" height="24" rx="6" fill="#000000" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1" />
         <path d="M6 8l6 4 6-4v8H6V8zm0-1h12c.6 0 1 .4 1 1v8c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1V8c0-.6.4-1 1-1z" fill="#FFFFFF" />
       </svg>
     );
@@ -198,7 +198,7 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
   if (normalized.includes('vercel')) {
     return (
       <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L24 22H0L12 2Z" fill="#000000" />
+        <path d="M12 2L24 22H0L12 2Z" fill="currentColor" />
       </svg>
     );
   }
@@ -213,15 +213,66 @@ export function TechIcon({ name, className = 'w-4 h-4' }: { name: string; classN
     );
   }
 
-  // WebSocket
-  if (normalized.includes('websocket')) {
+  // WebSocket / Socket.IO
+  if (normalized.includes('websocket') || normalized.includes('socketio') || normalized.includes('socket')) {
     return (
-      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#3268D8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07" opacity="0.3" />
-        <circle cx="12" cy="12" r="4" fill="#3268D8" stroke="none" />
+      <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="#010101" stroke="#00F0FF" strokeWidth="1.5" />
+        <path d="M15.5 8.5C14.5 7.5 13.5 7 12 7C9.2 7 7 9.2 7 12C7 14.8 9.2 17 12 17C13.5 17 14.5 16.5 15.5 15.5" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="15.5" cy="12" r="1.5" fill="#00F0FF" />
       </svg>
     );
   }
+
+  // Framer Motion
+  if (normalized.includes('framermotion') || normalized.includes('framer')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z" fill="#0055FF" />
+      </svg>
+    );
+  }
+
+  // GSAP
+  if (normalized.includes('gsap') || normalized.includes('greensock')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#0AE448" />
+        <path d="M12 4C7.58 4 4 7.58 4 12C4 16.42 7.58 20 12 20C15.61 20 18.66 17.61 19.64 14.33H16.42C15.63 16.1 13.96 17.33 12 17.33C9.06 17.33 6.67 14.94 6.67 12C6.67 9.06 9.06 6.67 12 6.67C13.62 6.67 15.06 7.4 16.03 8.54L18.41 6.16C16.8 4.82 14.53 4 12 4Z" fill="#000000" />
+      </svg>
+    );
+  }
+
+  // Web Audio API / Audio
+  if (normalized.includes('audio') || normalized.includes('webaudio') || normalized.includes('sound')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="#F59E0B" fillOpacity="0.2" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+      </svg>
+    );
+  }
+
+  // Zod
+  if (normalized.includes('zod')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="#3E63DD" />
+        <path d="M9 9h6l-6 6h6" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  // JWT
+  if (normalized.includes('jwt')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#000000" stroke="#D63AFF" strokeWidth="1.5" />
+        <text x="12" y="16" fill="#D63AFF" fontSize="10" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">JWT</text>
+      </svg>
+    );
+  }
+
 
   // Default / Clean Generic Code Icon
   return (

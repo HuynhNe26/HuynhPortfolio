@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { flushSync } from 'react-dom';
 
 export type Language = 'en' | 'vi' | 'zh';
 
@@ -15,7 +16,7 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Nav
     'nav.home': 'Home',
-    'nav.about': 'About',
+    'nav.about': 'About Me',
     'nav.projects': 'Projects',
     'nav.experience': 'Experience',
     'nav.education': 'Education',
@@ -52,16 +53,24 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.viewReport': 'View Report',
     'featured.visitProduct': 'Live Demo',
     'filter.all': 'All',
+    'filter.realWorld': 'Real-World Projects',
+    'filter.academic': 'Academic Capstones',
     'filter.webApp': 'Web Application',
     'filter.landing': 'Landing Page',
-    'filter.academic': 'Academic',
     'filter.ongoing': 'Ongoing',
+    'featured.realWorld.eyebrow': 'PRODUCTION & CLIENT PROJECTS',
+    'featured.realWorld.title': 'Real-World & Client Projects',
+    'featured.realWorld.desc': 'Commercial client applications, marketing platforms, and live production software operating in the real world.',
+    'featured.academic.eyebrow': 'ACADEMIC RESEARCH & CAPSTONES',
+    'featured.academic.title': 'Technical Research & Capstone Systems',
+    'featured.academic.desc': 'Complex engineering systems tackling high-concurrency event ticketing, live stage lighting production, and PropTech AI OCR.',
+    'card.realWorldBadge': 'Real-World Project',
 
     // Bento Grid: About Me (Frame 4)
     'bento.about.eyebrow': 'ABOUT ME',
     'bento.about.heading1': 'Turning Ideas',
     'bento.about.heading2': 'Into Real Products',
-    'bento.about.bio': "I'm Nguyễn Hoàng Huynh, a 3rd year Information Technology student at Vietnam Aviation Academy. I'm passionate about web development and love building products that solve real-world problems.",
+    'bento.about.bio': "I'm Nguyen Hoang Huynh, a 3rd year Information Technology student at Vietnam Aviation Academy. I'm passionate about web development and love building products that solve real-world problems.",
     'bento.about.downloadCv': 'Download CV',
     'bento.badge.student': '3rd year',
     'bento.badge.studentSub': 'IT Student',
@@ -130,14 +139,14 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects Page (/projects)
     'projects.featuresTitle': 'Key Features',
-    'projects.caseStudy': 'Case Study',
+    'projects.caseStudy': 'View Details',
     'projects.viewReport': 'View Report',
     'projects.liveSite': 'Live Demo',
     'projects.emptyTitle': 'No projects found',
     'projects.emptyDesc': 'Projects and case studies are being updated regularly.',
     'projectsPage.eyebrow': 'PRODUCTION SYSTEMS & CASE STUDIES',
     'projectsPage.title': 'Engineered for scale & resilience',
-    'projectsPage.desc': 'Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyễn Hoàng Huynh.',
+    'projectsPage.desc': 'Explore complete full-stack web applications, AI Agentic RAG implementations, and commercial web platforms engineered by Nguyen Hoang Huynh.',
 
     // About Page (/about)
     'aboutPage.eyebrow': 'PROFILE & BACKGROUND',
@@ -178,7 +187,7 @@ const translations: Record<Language, Record<string, string>> = {
   vi: {
     // Nav
     'nav.home': 'Trang chủ',
-    'nav.about': 'Giới thiệu',
+    'nav.about': 'Về tôi',
     'nav.projects': 'Dự án',
     'nav.experience': 'Kinh nghiệm',
     'nav.education': 'Học vấn',
@@ -215,10 +224,18 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.viewReport': 'Xem báo cáo',
     'featured.visitProduct': 'Xem sản phẩm',
     'filter.all': 'Tất cả',
+    'filter.realWorld': 'Dự án thực tế',
+    'filter.academic': 'Đồ án Học thuật',
     'filter.webApp': 'Ứng dụng Web',
     'filter.landing': 'Trang đích Marketing',
-    'filter.academic': 'Đồ án Học thuật',
     'filter.ongoing': 'Đang phát triển',
+    'featured.realWorld.eyebrow': 'DỰ ÁN THỰC TẾ & KHÁCH HÀNG',
+    'featured.realWorld.title': 'Dự án Triển khai Thực tế',
+    'featured.realWorld.desc': 'Các sản phẩm số thương mại, trang đích khách hàng quốc tế và nền tảng dịch vụ đã triển khai chạy thực tế trên môi trường Production.',
+    'featured.academic.eyebrow': 'ĐỒ ÁN HỌC THUẬT & NGHIÊN CỨU AI',
+    'featured.academic.title': 'Đồ án Kỹ thuật & Nghiên cứu Chuyên sâu',
+    'featured.academic.desc': 'Các hệ sinh thái phức tạp giải quyết bài toán lớn: đặt vé sự kiện AI Agentic RAG, điều phối ánh sáng sân khấu COLORBOX và quản lý phòng trọ AI OCR.',
+    'card.realWorldBadge': 'Dự án thực tế',
 
     // Bento Grid: About Me (Frame 4)
     'bento.about.eyebrow': 'VỀ BẢN THÂN',
@@ -378,10 +395,18 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.viewReport': '技术报告',
     'featured.visitProduct': '在线演示',
     'filter.all': '全部',
+    'filter.realWorld': '实战落地项目',
+    'filter.academic': '学术课设',
     'filter.webApp': 'Web 应用',
     'filter.landing': '营销落地页',
-    'filter.academic': '学术课设',
     'filter.ongoing': '进行中',
+    'featured.realWorld.eyebrow': '商业落地与生产实战',
+    'featured.realWorld.title': '商业与生产级上线项目',
+    'featured.realWorld.desc': '已在真实生产环境中上线运营的商业客户项目、国际营销网站及在线平台。',
+    'featured.academic.eyebrow': '学术课设与 AI 研究',
+    'featured.academic.title': '深度技术研究与毕业级系统',
+    'featured.academic.desc': '攻克高并发演唱会票务、大型舞台灯光视觉制作与智能公寓 AI OCR 识别的复杂工程系统。',
+    'card.realWorldBadge': '实战落地项目',
 
     // Bento Grid: About Me (Frame 4)
     'bento.about.eyebrow': '关于我',
@@ -456,7 +481,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects Page (/projects)
     'projects.featuresTitle': '核心特性',
-    'projects.caseStudy': '查看案例',
+    'projects.caseStudy': '查看详情',
     'projects.viewReport': '查看报告',
     'projects.liveSite': '访问网站',
     'projects.emptyTitle': '暂无项目',
@@ -513,6 +538,7 @@ const LanguageContext = createContext<LanguageContextType>({
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Default to 'vi' as requested by user, but restore preference if stored
   const [lang, setLangState] = useState<Language>('vi');
+  const isTransitioningRef = useRef(false);
 
   useEffect(() => {
     try {
@@ -532,13 +558,50 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setLang = (newLang: Language) => {
-    setLangState(newLang);
-    try {
-      localStorage.setItem('portfolio_lang', newLang);
-      document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : newLang;
-    } catch {
-      // ignore
+    if (newLang === lang || isTransitioningRef.current) return;
+
+    if (typeof window === 'undefined') {
+      setLangState(newLang);
+      return;
     }
+
+    const prefersReducedMotion =
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setLangState(newLang);
+      try {
+        localStorage.setItem('portfolio_lang', newLang);
+        document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : newLang;
+      } catch {}
+      return;
+    }
+
+    isTransitioningRef.current = true;
+    const root = document.documentElement;
+
+    // Phase 1: Tear / rip old letters into puzzle shards (220ms)
+    root.setAttribute('data-lang-shred', 'tearing');
+
+    setTimeout(() => {
+      // Phase 2: Synchronously flush React state and assemble new letters from puzzle shards
+      flushSync(() => {
+        setLangState(newLang);
+        try {
+          localStorage.setItem('portfolio_lang', newLang);
+          root.lang = newLang === 'zh' ? 'zh-CN' : newLang;
+        } catch {}
+      });
+
+      root.setAttribute('data-lang-shred', 'assembling');
+
+      // Phase 3: Cleanup and settle into idle state after 360ms
+      setTimeout(() => {
+        root.removeAttribute('data-lang-shred');
+        isTransitioningRef.current = false;
+      }, 360);
+    }, 220);
   };
 
   const toggleLang = () => {

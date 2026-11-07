@@ -6,6 +6,7 @@ const text = (minimum: number, maximum: number) => {
 
 const safeUrl = z.union([
   z.literal(''),
+  z.string().regex(/^\/[a-zA-Z0-9_\-\./]+$/, 'Root-relative path starting with /'),
   z.string().url().max(2048).refine((value) => {
     try {
       const url = new URL(value);

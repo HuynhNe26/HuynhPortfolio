@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { LanguageProvider } from '@/context/language-context';
 import { ThemeProvider } from '@/context/theme-context';
+import { ProjectLoadingProvider } from '@/components/project-loading-overlay';
 import { NetflixLightReveal } from '@/components/netflix-light-reveal';
 import { PersonJsonLd, WebSiteJsonLd } from '@/components/seo-json-ld';
 import { getSiteUrl, siteConfig } from '@/lib/site-config';
@@ -42,6 +43,8 @@ export const metadata: Metadata = {
     languages: {
       'vi-VN': '/',
       'en-US': '/',
+      'zh-CN': '/',
+      'x-default': '/',
     },
   },
   openGraph: {
@@ -104,7 +107,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
         {/* Schema.org Knowledge Graph Structured Data */}
@@ -121,6 +124,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
                   document.documentElement.setAttribute('data-theme', theme);
                   document.documentElement.classList.add(theme);
+                  document.documentElement.style.colorScheme = theme;
                 } catch (e) {}
               })();
             `,
@@ -130,11 +134,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body id="top">
         <ThemeProvider>
           <LanguageProvider>
-            <NetflixLightReveal autoPlayOnMount={false} />
-            <a className="skip-link" href="#main-content">
-              Skip to content
-            </a>
-            {children}
+            <ProjectLoadingProvider>
+              <NetflixLightReveal autoPlayOnMount={false} />
+              <a className="skip-link" href="#main-content">
+                Skip to content
+              </a>
+              {children}
+            </ProjectLoadingProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

@@ -1,29 +1,55 @@
+# Dependencies
 node_modules
 node_modules/
 **/node_modules
 **/node_modules/
 node_modules*
+
+# Build outputs
 .next
 .next/
 **/.next
 **/.next/
+**/dist/
+*.tsbuildinfo
+
+# Environment configurations (including example files as requested)
+.env
+.env*
+**/.env
+**/.env*
+.env.example
+**/.env.example
+*.env
+*.env.example
+
+# Databases, data files & dumps
+data/
+**/data/
+database/
+**/database/
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.rdb
+uploads/
+**/uploads/
+*.dump
+*.csv
+
+# Cache, logs & temporary files
 *.nosync
 *.nosync/
 **/*.nosync
 **/*.nosync/
 .metadata_never_index
 **/.metadata_never_index
-**/dist/
-.env*
-**/.env*
-!.env.example
-!**/.env.example
-*.tsbuildinfo
 .DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 test-results/
 playwright-report/
 .agents/
-database/
-*.sql
-*.sqlite
-*.db
