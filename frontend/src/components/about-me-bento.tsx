@@ -96,8 +96,14 @@ export function AboutMeSection({
           <div className="hh-about-right">
             <div className="hh-about-photo-wrapper">
               <Image
-                src="/avatar.jpg"
-                alt={lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}
+                src="/about-developer-studio.jpg"
+                alt={
+                  lang === 'zh'
+                    ? '阮黄兄 (Nguyen Hoang Huynh) — 全栈 Web 开发工作室与系统架构环境'
+                    : lang === 'en'
+                    ? 'Nguyen Hoang Huynh — Full-Stack Web Development & Software Engineering Workspace'
+                    : 'Không gian làm việc phát triển Web Full-Stack của Nguyễn Hoàng Huynh'
+                }
                 width={480}
                 height={520}
                 className="hh-about-photo"

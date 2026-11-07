@@ -698,7 +698,7 @@ export const defaultProjects: Project[] = [
     themeColor: '#00F0FF',
     themeBg: '#080808',
     coverUrl: '/projects/colorbox-hero.png',
-    liveUrl: 'http://localhost:5173',
+    liveUrl: 'https://colorboxlighting.netlify.app/',
     sourceUrl: '',
     reportUrl: '',
     featured: true,
