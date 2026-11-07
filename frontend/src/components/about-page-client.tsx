@@ -59,10 +59,15 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
           <div className="snapshot-card-header">
             <span className="snapshot-tag">
               <span className="status-dot live" />
-              {lang === 'vi' ? 'Tổng quan Kỹ thuật' : lang === 'zh' ? '工程师核心速览' : 'Technical Snapshot'}
+              <span className="hh-lang-text">
+                {lang === 'vi' ? 'Tổng quan Kỹ thuật' : lang === 'zh' ? '工程师核心速览' : 'Technical Snapshot'}
+              </span>
             </span>
             <span className="snapshot-location">
-              📍 {lang === 'vi' ? 'TP.HCM & Đồng Nai' : lang === 'zh' ? '胡志明市 & 同奈' : 'HCMC & Dong Nai'}
+              <span aria-hidden="true">📍 </span>
+              <span className="hh-lang-text">
+                {lang === 'vi' ? 'TP.HCM & Đồng Nai' : lang === 'zh' ? '胡志明市 & 同奈' : 'HCMC & Dong Nai'}
+              </span>
             </span>
           </div>
 
@@ -119,11 +124,13 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
           <div className="snapshot-footer">
             <span className="snapshot-status-pill">
               <span className="status-dot live" />
-              {lang === 'vi'
-                ? 'Sẵn sàng nhận cơ hội Thực tập & Dự án Web'
-                : lang === 'zh'
-                ? '开放实习与 Web 全栈项目合作'
-                : 'Available for Internship & Full-Stack Projects'}
+              <span className="hh-lang-text">
+                {lang === 'vi'
+                  ? 'Sẵn sàng nhận cơ hội Thực tập & Dự án Web'
+                  : lang === 'zh'
+                  ? '开放实习与 Web 全栈项目合作'
+                  : 'Available for Internship & Full-Stack Projects'}
+              </span>
             </span>
           </div>
         </aside>
@@ -199,18 +206,6 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                     : lang === 'zh'
                     ? '越南同奈'
                     : 'Dong Nai, Vietnam'}
-                </span>
-              </li>
-              <li>
-                <span className="fact-label">
-                  {lang === 'vi' ? 'Địa bàn' : lang === 'zh' ? '活动区域' : 'Current Base'}
-                </span>
-                <span className="fact-value">
-                  {lang === 'vi'
-                    ? 'Đồng Nai & TP. Hồ Chí Minh'
-                    : lang === 'zh'
-                    ? '同奈 & 胡志明市'
-                    : 'Dong Nai & Ho Chi Minh City'}
                 </span>
               </li>
               <li>

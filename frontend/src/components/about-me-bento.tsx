@@ -171,15 +171,27 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
       });
 
       if (!res.ok) {
-        throw new Error('Không thể gửi tin nhắn. Vui lòng thử lại sau.');
+        throw new Error(
+          lang === 'vi'
+            ? 'Không thể gửi tin nhắn. Vui lòng thử lại sau.'
+            : lang === 'zh'
+            ? '消息发送失败，请稍后重试。'
+            : 'Unable to send message. Please try again later.'
+        );
       }
 
       setFormSuccess(true);
       setFormName('');
       setFormEmail('');
       setFormMessage('');
-    } catch (err: any) {
-      setFormError(err.message || 'Lỗi gửi tin nhắn.');
+    } catch (err: unknown) {
+      const fallbackErr =
+        lang === 'vi'
+          ? 'Lỗi gửi tin nhắn.'
+          : lang === 'zh'
+          ? '发送消息时出错。'
+          : 'Failed to send message.';
+      setFormError(err instanceof Error ? err.message : fallbackErr);
     } finally {
       setFormPending(false);
     }
@@ -205,7 +217,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                   className={`hh-skill-tab ${activeSkillCat === cat.id ? 'active' : ''}`}
                   onClick={() => setActiveSkillCat(cat.id)}
                 >
-                  {cat.label}
+                  <span>{cat.label}</span>
                 </button>
               ))}
             </div>
@@ -230,7 +242,7 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
             <div className="hh-card-top-row">
               <h3>{t('bento.edu.title')}</h3>
               <Link href="/about" className="hh-link-more">
-                {t('bento.more')}
+                <span>{t('bento.more')}</span>
               </Link>
             </div>
 
@@ -388,10 +400,15 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
         isOpen={isCertModalOpen}
         onClose={() => setIsCertModalOpen(false)}
         certificate={{
-          name: lang === 'vi' ? 'Chứng chỉ TOEIC Nghe & Đọc (550 / 990)' : 'TOEIC Listening & Reading Certificate (550 / 990)',
+          name:
+            lang === 'vi'
+              ? 'Chứng chỉ TOEIC Nghe & Đọc (550 / 990)'
+              : lang === 'zh'
+              ? 'TOEIC 听力与阅读官方成绩证书 (550 / 990)'
+              : 'TOEIC Listening & Reading Certificate (550 / 990)',
           issuer: 'ETS (Educational Testing Service)',
           score: '550 / 990',
-          issueDate: lang === 'vi' ? 'Tháng 10, 2025' : 'October 2025',
+          issueDate: lang === 'vi' ? 'Tháng 10, 2025' : lang === 'zh' ? '2025年10月' : 'October 2025',
           imageUrl: '/certificates/toeic-550-official.jpg',
         }}
       />

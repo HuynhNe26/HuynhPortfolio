@@ -205,7 +205,7 @@ export function ProjectLoadingProvider({ children }: { children: React.ReactNode
 
   const hideLoading = useCallback(() => {
     const elapsed = Date.now() - startTimeRef.current;
-    const minDuration = 650; // Ensure at least 650ms for smooth undulating wave cycle
+    const minDuration = 360; // Snappy undulating wave transition
     const remaining = Math.max(0, minDuration - elapsed);
 
     if (timerRef.current) clearTimeout(timerRef.current);

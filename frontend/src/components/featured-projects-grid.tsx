@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import type { Project } from '@/lib/types';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage, type Language } from '@/context/language-context';
-import { getLocalizedProject } from '@/lib/project-translations';
+import { getLocalizedProject, isPublicLiveUrl } from '@/lib/project-translations';
 import { useProjectLoading } from '@/components/project-loading-overlay';
 
 interface FeaturedProjectsGridProps {
@@ -250,7 +250,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
           </span>
         ) : (
           <span className="hh-card-cat-badge">
-            {categoryTag}
+            <span>{categoryTag}</span>
           </span>
         )}
         {/* STATUS PILL ON TOP RIGHT */}
@@ -364,7 +364,7 @@ function ProjectTiltCard({ project, categoryTag }: ProjectTiltCardProps) {
             </a>
           )}
 
-          {project.liveUrl && project.slug !== 'nh-huynh-portfolio' && (
+          {isPublicLiveUrl(project.liveUrl) && project.slug !== 'nh-huynh-portfolio' && (
             <a
               href={project.liveUrl}
               target="_blank"
@@ -418,7 +418,7 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
         p.slug.includes('ticket-concert') ||
         p.slug.includes('examplatform') ||
         p.slug.includes('rent-house') ||
-        p.slug.includes('skyroute')
+        p.slug.includes('colorbox')
       );
     }
     if (activeTab === 'Landing Page') {
@@ -462,7 +462,7 @@ export function FeaturedProjectsGrid({ projects }: FeaturedProjectsGridProps) {
                 className={`hh-filter-pill ${activeTab === tab.id ? 'active' : ''} ${tab.id === 'RealWorld' ? 'hh-pill-real-world' : ''}`}
                 onClick={() => setActiveTab(tab.id)}
               >
-                {tab.label}
+                <span>{tab.label}</span>
               </button>
             ))}
           </div>

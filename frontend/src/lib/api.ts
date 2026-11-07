@@ -32,7 +32,7 @@ export async function api<T>(path: string, authenticated = false): Promise<T> {
     response = await fetch(`${backendUrl}/api${path}`, {
       headers,
       cache: 'no-store',
-      signal: AbortSignal.timeout(authenticated ? 3000 : 350),
+      signal: AbortSignal.timeout(authenticated ? 5000 : 3000),
     });
     // On success, reset offline circuit
     backendOfflineUntil = 0;
@@ -51,16 +51,23 @@ export async function api<T>(path: string, authenticated = false): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+export const EXCLUDED_PROJECT_SLUGS = new Set([
+  'skyroute-aviation-ops',
+  'medicare-ai-triage',
+]);
+
 export async function publicContent() {
   const [profileResult, projectsResult] = await Promise.allSettled([
     api<Profile | null>('/profile'),
     api<Project[]>('/projects'),
   ]);
 
-  const projects =
+  const rawProjects =
     projectsResult.status === 'fulfilled' && projectsResult.value && projectsResult.value.length > 0
       ? projectsResult.value
       : defaultProjects;
+
+  const projects = rawProjects.filter((p) => !EXCLUDED_PROJECT_SLUGS.has(p.slug));
 
   const profile =
     profileResult.status === 'fulfilled' && profileResult.value ? profileResult.value : defaultProfile;
@@ -73,6 +80,9 @@ export async function publicContent() {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  if (EXCLUDED_PROJECT_SLUGS.has(slug)) {
+    return null;
+  }
   const fallback = defaultProjects.find((p) => p.slug === slug);
   try {
     const fetched = await api<Project>(`/projects/${encodeURIComponent(slug)}`);
@@ -85,8 +95,8 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         chapters: fetched.chapters && fetched.chapters.length > 0 ? fetched.chapters : fallback?.chapters,
       };
     }
-  } catch {
-    // Graceful fallback to verified project registry
+  } catch (err) {
+    console.error('[API] getProjectBySlug error for', slug, err);
   }
 
   return fallback || null;

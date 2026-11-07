@@ -1,5 +1,5 @@
 /* TEAM */
-  Name: Nguyễn Hoàng Huynh (Nguyen Hoang Huynh)
+  Name: Nguyễn Hoàng Huynh (Nguyen Hoang Huynh / 阮黄兄)
   Role: Full-Stack Web Developer & Software Engineer
   GitHub: https://github.com/HuynhNe26
   Repository: https://github.com/HuynhNe26/HuynhPortfolio
@@ -9,11 +9,11 @@
   GPA: 3.1 / 4.0
 
 /* SITE */
-  Last update: 2026-10-20
-  Language: Vietnamese / English
+  Last update: 2026-11-07
+  Language: Vietnamese / English / Chinese (Simplified)
   Standards: HTML5, CSS3, ES2024, Schema.org JSON-LD
   Framework: Next.js 16 (App Router), React 19, TypeScript
-  Styling: Tailwind CSS & Vanilla Modern CSS
+  Styling: Tailwind CSS & Modern CSS Architecture
   Database: PostgreSQL (Neon Serverless), MongoDB Atlas, Redis
-  AI Integration: Agentic RAG, LangChain.js, Google Gemini API
+  AI Integration: Agentic RAG, LangGraph, LangChain.js, Google Gemini API
   Hosting: Netlify / Node.js

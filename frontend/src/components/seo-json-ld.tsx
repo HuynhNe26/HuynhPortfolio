@@ -27,6 +27,7 @@ export function PersonJsonLd() {
     email: `mailto:${siteConfig.author.email}`,
     telephone: siteConfig.author.phone,
     gender: 'Male',
+    knowsLanguage: ['vi', 'en', 'zh'],
     nationality: {
       '@type': 'Country',
       name: 'Vietnam',
@@ -46,24 +47,23 @@ export function PersonJsonLd() {
     sameAs: [
       siteConfig.author.github,
       siteConfig.author.repo,
-      'https://github.com/HuynhNe26',
     ],
     knowsAbout: [
       'Full-Stack Web Development',
       'Next.js 16',
-      'React.js',
+      'React 19',
       'TypeScript',
       'Node.js',
       'Agentic RAG (Retrieval-Augmented Generation)',
-      'LangChain.js',
+      'LangGraph & LangChain.js',
       'Google Gemini AI API',
-      'PostgreSQL (Neon Serverless)',
+      'PostgreSQL (Neon Serverless & pgvector)',
       'MongoDB Atlas',
-      'Redis Caching & Redis Geo',
+      'Redis Caching & BullMQ',
       'WebSocket Real-Time Systems',
       'Tailwind CSS',
       'Docker Containerization',
-      'Aviation IT Operations & Weight & Balance Engine',
+      'Real-Time Stage Visual Systems & Computer Vision OCR',
     ],
     hasCredential: [
       {
@@ -97,7 +97,7 @@ export function PersonJsonLd() {
 }
 
 /**
- * Schema.org WebSite Entity with search action & publisher reference
+ * Schema.org WebSite Entity with publisher & author reference
  */
 export function WebSiteJsonLd() {
   const siteUrl = getSiteUrl();
@@ -108,9 +108,12 @@ export function WebSiteJsonLd() {
     '@id': `${siteUrl}/#website`,
     url: siteUrl,
     name: siteConfig.title,
-    alternateName: [siteConfig.shortTitle, 'HuynhPortfolio', 'Nguyễn Hoàng Huynh Portfolio'],
+    alternateName: [siteConfig.shortTitle, 'HuynhPortfolio', 'Nguyễn Hoàng Huynh Portfolio', 'Nguyen Hoang Huynh Portfolio'],
     description: siteConfig.description,
-    inLanguage: ['vi-VN', 'en-US'],
+    inLanguage: ['vi-VN', 'en-US', 'zh-CN'],
+    author: {
+      '@id': `${siteUrl}/#person`,
+    },
     publisher: {
       '@id': `${siteUrl}/#person`,
     },
@@ -127,15 +130,19 @@ export function WebSiteJsonLd() {
 /**
  * Schema.org ProfilePage Entity
  */
-export function ProfilePageJsonLd() {
+export function ProfilePageJsonLd({ path = '/' }: { path?: string }) {
   const siteUrl = getSiteUrl();
+  const pageUrl = path === '/' ? siteUrl : `${siteUrl}${path}`;
 
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    '@id': `${siteUrl}/#profilepage`,
-    url: siteUrl,
+    '@id': `${pageUrl}#profilepage`,
+    url: pageUrl,
     name: siteConfig.title,
+    isPartOf: {
+      '@id': `${siteUrl}/#website`,
+    },
     mainEntity: {
       '@id': `${siteUrl}/#person`,
     },
@@ -152,8 +159,116 @@ export function ProfilePageJsonLd() {
 }
 
 /**
+ * Schema.org CollectionPage + ItemList for Portfolio Projects
+ * Helps search engines index the full catalog of software projects cleanly.
+ */
+export function ProjectsCollectionJsonLd({
+  projects,
+  path = '/projects',
+}: {
+  projects: Project[];
+  path?: string;
+}) {
+  const siteUrl = getSiteUrl();
+  const pageUrl = path === '/' ? siteUrl : `${siteUrl}${path}`;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${pageUrl}#projects-collection`,
+    url: pageUrl,
+    name: `Dự án Kỹ thuật — ${siteConfig.name}`,
+    description: siteConfig.description,
+    isPartOf: {
+      '@id': `${siteUrl}/#website`,
+    },
+    about: {
+      '@id': `${siteUrl}/#person`,
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: projects.length,
+      itemListElement: projects.map((project, idx) => {
+        const publicLive =
+          project.liveUrl &&
+          !project.liveUrl.includes('localhost') &&
+          !project.liveUrl.includes('127.0.0.1')
+            ? project.liveUrl
+            : undefined;
+        const cover = project.coverUrl.startsWith('http')
+          ? project.coverUrl
+          : `${siteUrl}${project.coverUrl}`;
+
+        return {
+          '@type': 'ListItem',
+          position: idx + 1,
+          item: {
+            '@type': 'SoftwareApplication',
+            name: project.title,
+            description: project.summary,
+            applicationCategory: 'WebApplication',
+            operatingSystem: 'All (Web Browser)',
+            url: publicLive || `${siteUrl}/projects#${project.slug}`,
+            image: cover,
+            author: {
+              '@id': `${siteUrl}/#person`,
+            },
+            softwareRequirements: project.technologies.join(', '),
+          },
+        };
+      }),
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+/**
+ * Schema.org ContactPage Entity
+ */
+export function ContactPageJsonLd() {
+  const siteUrl = getSiteUrl();
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${siteUrl}/contact#contactpage`,
+    url: `${siteUrl}/contact`,
+    name: `Liên hệ — ${siteConfig.name}`,
+    description:
+      'Kết nối trực tiếp với Nguyễn Hoàng Huynh cho các cơ hội phát triển phần mềm Full-Stack, thực tập và hợp tác kỹ thuật.',
+    isPartOf: {
+      '@id': `${siteUrl}/#website`,
+    },
+    mainEntity: {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#person`,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'Hiring & Project Inquiries',
+        email: siteConfig.author.email,
+        telephone: siteConfig.author.phone,
+        availableLanguage: ['Vietnamese', 'English', 'Chinese'],
+      },
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+/**
  * Schema.org SoftwareApplication / WebApplication Schema for Project Pages
- * Enables Google rich results for individual project searches (e.g. Ticket Concert Agentic RAG, SkyRoute, MediCare)
+ * Enables Google rich results for individual project searches (e.g. Ticket Concert Agentic RAG, COLORBOX, ExamPlatform AI)
  */
 export function ProjectJsonLd({ project }: { project: Project }) {
   const siteUrl = getSiteUrl();
@@ -214,7 +329,7 @@ export function ProjectJsonLd({ project }: { project: Project }) {
 
 /**
  * Schema.org BreadcrumbList Schema
- * Produces readable breadcrumbs in Google SERP results (e.g. Home > Projects > Ticket Concert)
+ * Produces readable breadcrumbs in Google SERP results (e.g. Home > Projects)
  */
 export function BreadcrumbsJsonLd({ items }: { items: BreadcrumbItem[] }) {
   const siteUrl = getSiteUrl();

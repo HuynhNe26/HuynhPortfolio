@@ -3,6 +3,7 @@
 import { createContext, useContext, useRef, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/context/language-context';
 
 const FieldErrors = createContext<Record<string, string[]>>({});
 
@@ -26,7 +27,8 @@ export function Field({ label, name, multiline = false, hint, ...props }: {
   return (
     <div className="field">
       <label htmlFor={name}>
-        {label}{props.required ? ' *' : ''}
+        <span className="hh-lang-text">{label}</span>
+        {props.required ? ' *' : ''}
       </label>
       {hint && <p className="field-hint">{hint}</p>}
       {multiline ? (
@@ -55,11 +57,15 @@ export function ApiForm({ endpoint, method = 'POST', children, submitLabel, redi
   transform?: 'plain' | 'project' | 'profile';
 }) {
   const router = useRouter();
+  const { lang } = useLanguage();
   const [pending, setPending] = useState(false);
   const [result, setResult] = useState('');
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [failed, setFailed] = useState(false);
   const feedback = useRef<HTMLDivElement>(null);
+
+  const waitLabel =
+    lang === 'vi' ? 'Đang gửi…' : lang === 'zh' ? '正在发送…' : 'Please wait…';
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -94,14 +100,28 @@ export function ApiForm({ endpoint, method = 'POST', children, submitLabel, redi
 
       if (!response.ok) {
         setErrors(data.fields || {});
-        throw new Error(data.error || 'Unable to save. Please try again.');
+        throw new Error(
+          data.error ||
+            (lang === 'vi'
+              ? 'Không thể gửi lúc này. Vui lòng thử lại.'
+              : lang === 'zh'
+              ? '无法提交，请稍后重试。'
+              : 'Unable to save. Please try again.')
+        );
       }
 
       if (redirectTo) {
         router.push(redirectTo);
         router.refresh();
       } else {
-        setResult(data.message || 'Saved successfully.');
+        setResult(
+          data.message ||
+            (lang === 'vi'
+              ? 'Đã gửi thành công! Cảm ơn bạn đã liên hệ.'
+              : lang === 'zh'
+              ? '发送成功！感谢您的联系。'
+              : 'Saved successfully.')
+        );
 
         if (endpoint === '/api/contact') {
           form.reset();
@@ -110,7 +130,15 @@ export function ApiForm({ endpoint, method = 'POST', children, submitLabel, redi
       }
     } catch (error) {
       setFailed(true);
-      setResult(error instanceof Error ? error.message : 'Unable to connect. Please try again.');
+      setResult(
+        error instanceof Error
+          ? error.message
+          : lang === 'vi'
+          ? 'Không thể kết nối máy chủ. Vui lòng thử lại.'
+          : lang === 'zh'
+          ? '网络连接失败，请稍后重试。'
+          : 'Unable to connect. Please try again.'
+      );
     } finally {
       setPending(false);
       requestAnimationFrame(() => feedback.current?.focus());
@@ -139,10 +167,8 @@ export function ApiForm({ endpoint, method = 'POST', children, submitLabel, redi
         )}
       </div>
       <button className="button button-dark form-submit-btn" disabled={pending} type="submit">
-        {pending ? 'Please wait…' : submitLabel}
-        <span aria-hidden="true">
-          ↗
-        </span>
+        <span className="hh-lang-text">{pending ? waitLabel : submitLabel}</span>
+        <span aria-hidden="true">↗</span>
       </button>
     </form>
   );
@@ -158,8 +184,12 @@ export function MutationButton({ endpoint, method, label, body, confirmMessage, 
   redirectTo?: string;
 }) {
   const router = useRouter();
+  const { lang } = useLanguage();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
+
+  const waitLabel =
+    lang === 'vi' ? 'Đang xử lý…' : lang === 'zh' ? '处理中…' : 'Please wait…';
 
   async function run() {
     const confirmation = confirm || confirmMessage;
@@ -199,7 +229,7 @@ export function MutationButton({ endpoint, method, label, body, confirmMessage, 
   return (
     <div>
       <button type="button" className="button button-outline" onClick={run} disabled={pending}>
-        {pending ? 'Please wait…' : label}
+        <span className="hh-lang-text">{pending ? waitLabel : label}</span>
       </button>
       {error && (
         <p role="alert" className="form-error">

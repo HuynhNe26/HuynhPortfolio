@@ -1,25 +1,23 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { TechIcon } from './tech-icon';
 import { useLanguage } from '@/context/language-context';
-import { getLocalizedProject } from '@/lib/project-translations';
+import { getLocalizedProject, isPublicLiveUrl } from '@/lib/project-translations';
 
-export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
+export function ProjectCard({ project }: { project: Project; index?: number }) {
   const { lang, t } = useLanguage();
-  const [inspectOpen, setInspectOpen] = useState(false);
   const localized = getLocalizedProject(project, lang);
+  const hasPublicLive = isPublicLiveUrl(project.liveUrl) && project.slug !== 'nh-huynh-portfolio';
 
-  // Extract clean domain from liveUrl for browser window header
-  let domain = '';
-  if (project.liveUrl) {
+  let domain = `${project.slug}.app`;
+  if (hasPublicLive && project.liveUrl) {
     try {
       domain = new URL(project.liveUrl).hostname.replace('www.', '');
     } catch {
-      domain = project.title;
+      domain = `${project.slug}.app`;
     }
   }
 
@@ -41,10 +39,10 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 
           <div className="pro-window-address">
             <span className="address-lock" aria-hidden="true">🔒</span>
-            <span className="address-text">{domain || 'production.app'}</span>
+            <span className="address-text">{domain}</span>
           </div>
 
-          {project.liveUrl ? (
+          {hasPublicLive ? (
             <a
               href={project.liveUrl}
               target="_blank"
@@ -52,24 +50,28 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
               className="window-live-badge"
               title="Visit live production website"
             >
-              <span>Live</span>
+              <span className="hh-lang-text">
+                {lang === 'vi' ? 'Trực tiếp' : lang === 'zh' ? '在线' : 'Live'}
+              </span>
               <span aria-hidden="true">↗</span>
             </a>
           ) : (
-            <span className="window-local-badge">Case Study</span>
+            <span className="window-local-badge">
+              <span className="hh-lang-text">{t('projects.caseStudy')}</span>
+            </span>
           )}
         </div>
 
         <Link
           href={`/projects/${project.slug}`}
           className="pro-screenshot-link"
-          aria-label={`View complete case study for ${project.title}`}
+          aria-label={`${t('projects.caseStudy')} — ${localized.title}`}
         >
           {project.coverUrl ? (
             <div className="pro-screenshot-wrapper">
               <Image
                 src={project.coverUrl}
-                alt={`${project.title} live interface preview`}
+                alt={localized.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="pro-screenshot-img"
@@ -78,13 +80,16 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
             </div>
           ) : (
             <div className="pro-screenshot-fallback">
-              <div className="fallback-monogram">{project.title.slice(0, 2).toUpperCase()}</div>
-              <span>{project.category}</span>
+              <div className="fallback-monogram">{localized.title.slice(0, 2).toUpperCase()}</div>
+              <span className="hh-lang-text">{localized.category}</span>
             </div>
           )}
 
           <div className="pro-screenshot-overlay">
-            <span className="overlay-pill">Explore Case Study &amp; Architecture →</span>
+            <span className="overlay-pill">
+              <span className="hh-lang-text">{t('projects.caseStudy')}</span>
+              <span aria-hidden="true"> →</span>
+            </span>
           </div>
         </Link>
       </div>
@@ -92,10 +97,12 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       {/* 2. CARD CONTENT & METADATA */}
       <div className="pro-card-body">
         <div className="pro-card-meta-row">
-          <span className="pro-category-tag">{project.category}</span>
+          <span className="pro-category-tag">
+            <span className="hh-lang-text">{localized.category}</span>
+          </span>
           <span className={`pro-status-tag ${project.status === 'Ongoing' ? 'ongoing' : 'completed'}`}>
             <span className="pro-status-dot" />
-            {project.status || 'Completed'}
+            <span className="hh-lang-text">{localized.status}</span>
           </span>
           <span className="pro-year-tag">{project.year}</span>
         </div>
@@ -111,12 +118,16 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
         {/* HIGHLIGHTED ENGINEERING SPECS */}
         <div className="pro-specs-snippet">
           <div className="snippet-item">
-            <span className="snippet-label">{lang === 'zh' ? '担任角色:' : (lang === 'vi' ? 'Vai trò:' : 'Role:')}</span>
-            <span className="snippet-val">{localized.role}{project.teamSize ? (lang === 'zh' ? ` (${project.teamSize}人团队)` : ` (Team of ${project.teamSize})`) : (lang === 'zh' ? ' (独立开发)' : ' (Solo)')}</span>
+            <span className="snippet-label hh-lang-text">
+              {lang === 'zh' ? '担任角色:' : lang === 'vi' ? 'Vai trò:' : 'Role:'}
+            </span>
+            <span className="snippet-val hh-lang-text">{localized.role}</span>
           </div>
           <div className="snippet-item">
-            <span className="snippet-label">{lang === 'zh' ? '项目周期:' : (lang === 'vi' ? 'Thời gian:' : 'Timeline:')}</span>
-            <span className="snippet-val">{project.timeline || `${project.year}`}</span>
+            <span className="snippet-label hh-lang-text">
+              {lang === 'zh' ? '项目周期:' : lang === 'vi' ? 'Thời gian:' : 'Timeline:'}
+            </span>
+            <span className="snippet-val hh-lang-text">{localized.timeline}</span>
           </div>
         </div>
 
@@ -140,12 +151,12 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
             className="pro-btn-primary"
             id={`view-study-${project.slug}`}
           >
-            <span>Case Study</span>
+            <span className="hh-lang-text">{t('projects.caseStudy')}</span>
             <span aria-hidden="true">→</span>
           </Link>
 
           <div className="pro-secondary-actions">
-            {project.liveUrl && project.slug !== 'nh-huynh-portfolio' && (
+            {hasPublicLive && (
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -153,60 +164,27 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
                 className="pro-btn-secondary"
                 title="Launch live website in new tab"
               >
-                <span>Live Site</span>
+                <span className="hh-lang-text">{t('projects.liveSite')}</span>
                 <span aria-hidden="true">↗</span>
               </a>
             )}
-
-            <button
-              type="button"
-              className="pro-btn-specs"
-              onClick={() => setInspectOpen(!inspectOpen)}
-              aria-expanded={inspectOpen}
-              title="Toggle architectural highlights"
-            >
-              {inspectOpen ? 'Hide Specs' : 'Specs'}
-            </button>
           </div>
         </div>
-
-        {/* EXPANDABLE ARCHITECTURE SPECS DRAWER */}
-        {inspectOpen && (
-          <div className="pro-specs-drawer">
-            <div className="drawer-row">
-              <strong>Core Challenge:</strong>
-              <p>{project.problem}</p>
-            </div>
-            <div className="drawer-row">
-              <strong>Engineering Approach:</strong>
-              <p>{project.approach}</p>
-            </div>
-            <div className="drawer-row">
-              <strong>Measured Outcome:</strong>
-              <p>{project.outcome}</p>
-            </div>
-            <Link href={`/projects/${project.slug}`} className="drawer-full-link">
-              Read 7-Chapter Technical Case Study ↗
-            </Link>
-          </div>
-        )}
       </div>
     </article>
   );
 }
 
 export function EmptyProjects({ unavailable }: { unavailable: boolean }) {
+  const { t } = useLanguage();
   return (
     <div className="pro-empty-card">
       <div className="empty-icon" aria-hidden="true">📂</div>
-      <h3>{unavailable ? 'Project Catalog Initializing...' : 'Production Projects Ready.'}</h3>
-      <p>
-        {unavailable
-          ? 'Connecting to database cluster. In the meantime, feel free to send a message via contact.'
-          : 'Projects and case studies are updated regularly.'}
-      </p>
+      <h3>{unavailable ? t('projects.emptyTitle') : t('projects.emptyTitle')}</h3>
+      <p>{t('projects.emptyDesc')}</p>
       <Link className="pro-btn-primary" href="/contact">
-        Get in Touch ↗
+        <span className="hh-lang-text">{t('nav.contact')}</span>
+        <span aria-hidden="true">↗</span>
       </Link>
     </div>
   );

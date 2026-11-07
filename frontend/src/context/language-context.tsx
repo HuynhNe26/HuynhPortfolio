@@ -63,7 +63,7 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.realWorld.desc': 'Commercial client applications, marketing platforms, and live production software operating in the real world.',
     'featured.academic.eyebrow': 'ACADEMIC RESEARCH & CAPSTONES',
     'featured.academic.title': 'Technical Research & Capstone Systems',
-    'featured.academic.desc': 'Complex engineering systems tackling high-concurrency event ticketing, aviation flight dispatch, and PropTech AI OCR.',
+    'featured.academic.desc': 'Complex engineering systems tackling high-concurrency event ticketing, live stage lighting production, and PropTech AI OCR.',
     'card.realWorldBadge': 'Real-World Project',
 
     // Bento Grid: About Me (Frame 4)
@@ -139,7 +139,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects Page (/projects)
     'projects.featuresTitle': 'Key Features',
-    'projects.caseStudy': 'Case Study',
+    'projects.caseStudy': 'View Details',
     'projects.viewReport': 'View Report',
     'projects.liveSite': 'Live Demo',
     'projects.emptyTitle': 'No projects found',
@@ -234,7 +234,7 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.realWorld.desc': 'Các sản phẩm số thương mại, trang đích khách hàng quốc tế và nền tảng dịch vụ đã triển khai chạy thực tế trên môi trường Production.',
     'featured.academic.eyebrow': 'ĐỒ ÁN HỌC THUẬT & NGHIÊN CỨU AI',
     'featured.academic.title': 'Đồ án Kỹ thuật & Nghiên cứu Chuyên sâu',
-    'featured.academic.desc': 'Các hệ sinh thái phức tạp giải quyết bài toán lớn: AI Agentic RAG, điều hành bay hàng không, và quản lý phòng trọ AI OCR.',
+    'featured.academic.desc': 'Các hệ sinh thái phức tạp giải quyết bài toán lớn: đặt vé sự kiện AI Agentic RAG, điều phối ánh sáng sân khấu COLORBOX và quản lý phòng trọ AI OCR.',
     'card.realWorldBadge': 'Dự án thực tế',
 
     // Bento Grid: About Me (Frame 4)
@@ -405,7 +405,7 @@ const translations: Record<Language, Record<string, string>> = {
     'featured.realWorld.desc': '已在真实生产环境中上线运营的商业客户项目、国际营销网站及在线平台。',
     'featured.academic.eyebrow': '学术课设与 AI 研究',
     'featured.academic.title': '深度技术研究与毕业级系统',
-    'featured.academic.desc': '解决复杂高并发票务、航空调度与智能房产 AI OCR 识别的高难度技术系统。',
+    'featured.academic.desc': '攻克高并发演唱会票务、大型舞台灯光视觉制作与智能公寓 AI OCR 识别的复杂工程系统。',
     'card.realWorldBadge': '实战落地项目',
 
     // Bento Grid: About Me (Frame 4)
@@ -481,7 +481,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects Page (/projects)
     'projects.featuresTitle': '核心特性',
-    'projects.caseStudy': '查看案例',
+    'projects.caseStudy': '查看详情',
     'projects.viewReport': '查看报告',
     'projects.liveSite': '访问网站',
     'projects.emptyTitle': '暂无项目',

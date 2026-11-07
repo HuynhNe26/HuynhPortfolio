@@ -372,6 +372,347 @@ async function seed() {
       ],
     },
     {
+      title: 'COLORBOX — Nền Tảng Trực Quan & Quản Trị Hệ Thống Ánh Sáng Sân Khấu Sự Kiện Chuyên Nghiệp',
+      slug: 'colorbox-event-lighting',
+      summary:
+        'Nền tảng trực quan và trung tâm điều hành sản xuất ánh sáng sân khấu sự kiện chuyên nghiệp cho COLORBOX. Tích hợp hiệu ứng sân khấu điện ảnh Volumetric Lighting Beams, vòng tròn tương tác Four-Piece Circle HUD, hồ sơ kỹ thuật đại nhạc hội (FWD Music Fest, Countdown Quảng Ninh, Heineken Super Arena), quy trình đặt lịch khảo sát qua Resend API, trung tâm quản trị Real-Time qua Socket.IO với âm báo Harmonic Synth (Web Audio API) và trợ lý kỹ thuật trực tuyến 24/7.',
+      category: 'Full-Stack & Real-Time Production',
+      role: 'Lead Full-Stack Developer',
+      teamSize: 2,
+      timeline: 'October 2025 – October 2026',
+      status: 'Completed',
+      year: 2026,
+      technologies: [
+        'React 18',
+        'TypeScript',
+        'Vite',
+        'Tailwind CSS',
+        'Framer Motion',
+        'GSAP',
+        'Node.js',
+        'Express.js',
+        'PostgreSQL (Neon)',
+        'Socket.IO',
+        'JWT Token Rotation',
+        'Zod',
+        'React Hook Form',
+        'Resend API',
+        'Web Audio API',
+        'Lucide React',
+      ],
+      themeColor: '#00F0FF',
+      themeBg: '#080808',
+      coverUrl: '/projects/colorbox-hero.png',
+      liveUrl: 'http://localhost:5173',
+      sourceUrl: '',
+      reportUrl: '',
+      featured: true,
+      published: true,
+      order: 2,
+      storytellingStyle: 'cinematic-scroll',
+      problem:
+        'Các công ty tổ chức sự kiện và tổng đạo diễn thường gặp rủi ro lớn khi duyệt thiết kế ánh sáng sân khấu qua các bản vẽ 2D tĩnh hoặc file PDF cồng kềnh; việc trao đổi kỹ thuật rider thiết bị, báo giá và phản hồi đặt lịch qua email/tin nhắn truyền thống thiếu tính trực quan, dẫn đến sai lệch thông số DMX trên hiện trường và chậm trễ thời gian setup.',
+      approach:
+        'Phát triển nền tảng trải nghiệm số cao cấp cho COLORBOX kết hợp hiệu ứng Volumetric Light Beams và vòng tròn HUD tương tác 4 phân vùng; tích hợp bộ giải pháp trình chiếu 3D Previz / grandMA3 timecode automation, quy trình đặt lịch khảo sát kỹ thuật tự động hóa qua Resend API và hệ thống quản trị thời gian thực với Socket.IO kèm cảnh báo âm thanh Web Audio API.',
+      outcome:
+        'Hệ thống vận hành mượt mà 60FPS với thời gian phản hồi API dưới 120ms, số hóa toàn diện hồ sơ kỹ thuật cho hơn 11 đại nhạc hội và sự kiện sân vận động quy mô tới 50.000 khán giả, rút ngắn 85% thời gian tiếp nhận rider kỹ thuật và tự động hóa 100% thông báo booking theo thời gian thực.',
+      gallery: [
+        {
+          url: '/projects/colorbox-hero.png',
+          caption: 'Sân Khấu Ánh Sáng Điện Ảnh & Hiệu Ứng Volumetric Light Beams',
+          alt: 'ColorBox Cinematic Volumetric Stage Lighting Interface',
+          description: 'Trang chủ chuyển động điện ảnh với chùm sáng hội tụ Volumetric Beams, hệ thống bục nâng sân khấu và hiệu ứng dimmer ánh sáng mô phỏng không gian đại nhạc hội thực tế.',
+        },
+        {
+          url: '/projects/colorbox-services-storytelling.png',
+          caption: 'Quy Trình 4 Giai Đoạn Sản Xuất & Điều Phối Ánh Sáng Sân Khấu',
+          alt: 'ColorBox 4-Stage Lighting Production Lifecycle',
+          description: 'Bố cục kể chuyện trực quan 4 bước: Thiết kế ánh sáng sáng tạo, Mô phỏng không gian 3D Previz (Wysiwyg/Depence), Lập trình bàn điều khiển grandMA3 và Thi công vận hành trực tiếp tại hiện trường.',
+        },
+        {
+          url: '/projects/colorbox-interactive-circle-case-studies.png',
+          caption: 'Vòng Tròn Tương Tác Four-Piece Circle HUD Điều Khiển Bằng Tọa Độ Góc',
+          alt: 'ColorBox Interactive Four-Piece Circle Case Studies HUD',
+          description: 'Công cụ điều hướng độc quyền cho phép người xem xoay góc hoặc chọn trực tiếp 4 phân vùng để khám phá các đại nhạc hội tiêu biểu kèm thông số kỹ thuật rider và quy mô khán giả.',
+        },
+        {
+          url: '/projects/colorbox-case-study-detail.png',
+          caption: 'Hồ Sơ Sản Xuất Countdown Hạ Long Quảng Ninh & Nghệ Sĩ Trình Diễn',
+          alt: 'Countdown Ha Long Production Case Study and Lineup',
+          description: 'Trang chi tiết sự kiện trình bày bối cảnh quảng trường 30/10, dàn nghệ sĩ hàng đầu (Binz, Soobin Hoàng Sơn, Bùi Lan Hương), quy mô 50.000 khán giả và giải pháp timecode đồng bộ ánh sáng.',
+        },
+        {
+          url: '/projects/colorbox-case-study-gallery.png',
+          caption: 'Đại Nhạc Hội 50.000 Khán Giả & Bản Vẽ Bố Trí Giàn Khung Thiết Bị',
+          alt: 'ColorBox Concert Arena Crowd and Technical Rig Platform',
+          description: 'Thư viện hình ảnh sắc nét ghi lại khoảnh khắc biển ánh sáng từ khán giả, hệ thống giàn truss chịu tải nặng và bố trí ma trận đèn Moving Head Beam 480W công suất cao.',
+        },
+        {
+          url: '/projects/colorbox-booking-modal.png',
+          caption: 'Biểu Mẫu Đặt Lịch Khảo Sát Kỹ Thuật & Tư Vấn Sân Khấu Trực Tuyến',
+          alt: 'ColorBox Stage Consultation and Technical Booking Modal',
+          description: 'Modal đặt lịch chia đôi màn hình với hiệu ứng kính mờ glassmorphism, tích hợp chọn loại hình sự kiện, địa điểm, quy mô sân khấu, xác thực Zod và điều phối email tự động qua Resend API.',
+        },
+        {
+          url: '/projects/colorbox-chatbot.png',
+          caption: 'Trợ Lý Kỹ Thuật Ánh Sáng Sân Khấu Trực Tuyến 24/7',
+          alt: 'ColorBox 24/7 Live Stage Lighting FAQ Chatbot',
+          description: 'Widget hội thoại trực tiếp giải đáp mọi thắc mắc chuyên môn của ban tổ chức: thông số kỹ thuật giàn truss, phân phối nguồn điện 3 pha, điều kiện an toàn gió bão và quy chuẩn rider.',
+        },
+        {
+          url: '/projects/colorbox-admin-dashboard.png',
+          caption: 'Trung Tâm Điều Hành Quản Trị Hệ Thống & Socket.IO Telemetry',
+          alt: 'ColorBox Executive Admin Operations Hub',
+          description: 'Bảng điều khiển quản trị viên bảo mật cao với thống kê thời gian thực: số lượng yêu cầu đặt lịch mới, dự án đang công chiếu, tình trạng giàn thiết bị lưu diễn và nhật ký hoạt động hệ thống.',
+        },
+        {
+          url: '/projects/colorbox-admin-case-studies.png',
+          caption: 'Bảng Quản Lý Danh Mục Hồ Sơ Sản Xuất & Bật/Tắt Công Chiếu',
+          alt: 'Admin Production Case Studies Management Table',
+          description: 'Bảng điều khiển quản trị viên quản lý danh sách 11+ case study sự kiện, hỗ trợ lọc theo danh mục (Music Festival, Corporate Gala, Concert Tour, Cultural Ceremony) và chuyển đổi trạng thái hiển thị.',
+        },
+        {
+          url: '/projects/colorbox-admin-bookings.png',
+          caption: 'Quản Lý Yêu Cầu Booking & Đối Soát Thông Số Kỹ Thuật Sự Kiện',
+          alt: 'Admin Live Booking Inquiries and Event Rider Inspection',
+          description: 'Theo dõi chi tiết từng yêu cầu đặt lịch của khách hàng: thông tin liên hệ, ngày diễn ra, địa điểm tổ chức, quy mô khán giả và trạng thái xử lý hồ sơ.',
+        },
+        {
+          url: '/projects/colorbox-mobile-responsive.png',
+          caption: 'Trải Nghiệm Giao Diện Tối Ưu Trên Thiết Bị Di Động (iPhone 14 Viewport)',
+          alt: 'ColorBox Mobile Responsive Viewport Showcase',
+          description: 'Kiến trúc giao diện đáp ứng công thái học màn hình nhỏ: menu trượt mượt mà, typography tối ưu và tương tác chạm nhạy bén.',
+        },
+        {
+          url: '/projects/colorbox-tablet-responsive.png',
+          caption: 'Bố Cục Thích Ứng Màn Hình Máy Tính Bảng (iPad Viewport)',
+          alt: 'ColorBox Tablet Viewport Responsive Showcase',
+          description: 'Bố cục cân đối trên màn hình tablet, tối ưu hóa không gian hiển thị cho các bảng điều khiển kỹ thuật và các thư viện hình ảnh sự kiện.',
+        },
+      ],
+      features: [
+        {
+          id: 'feat-cb-01',
+          title: 'Sân Khấu Volumetric Light Beams & Chuyển Động Điện Ảnh',
+          description: 'Giao diện Hero ứng dụng toán học hình học CSS và Framer Motion để giả lập chùm sáng hội tụ Volumetric Beams, góc chiếu biến thiên và hệ thống bục nâng sân khấu, tạo trải nghiệm thị giác điện ảnh chân thực ngay khi mở trang.',
+          category: 'Visual & Motion Engineering',
+          screenshotUrl: '/projects/colorbox-hero.png',
+          screenshotAlt: 'ColorBox Cinematic Volumetric Stage Lighting Interface',
+        },
+        {
+          id: 'feat-cb-02',
+          title: 'Vòng Tròn Tương Tác Four-Piece Circle HUD Điều Khiển Bằng Tọa Độ Góc',
+          description: 'Bộ điều hướng hình tròn 4 góc phần tư độc quyền được tính toán theo hàm lượng giác Math.atan2. Người dùng có thể click hoặc xoay vòng tròn để chuyển đổi tức thời giữa các đại nhạc hội tiêu biểu mà không gây giật khung hình.',
+          category: 'Interactive HUD',
+          screenshotUrl: '/projects/colorbox-interactive-circle-case-studies.png',
+          screenshotAlt: 'Interactive Four-Piece Circle Case Studies HUD',
+        },
+        {
+          id: 'feat-cb-03',
+          title: 'Hồ Sơ Kỹ Thuật Đại Nhạc Hội & Tích Hợp Rider Thiết Bị Độc Quyền',
+          description: 'Trang hồ sơ chi tiết số hóa toàn diện thông số kỹ thuật cho các concert lớn (Countdown Quảng Ninh, Heineken Super Arena, Đấu Trường Danh Vọng): danh sách thiết bị chiếu sáng, sơ đồ DMX Patch, bàn điều khiển grandMA3 và danh sách nghệ sĩ biểu diễn.',
+          category: 'Production Architecture',
+          screenshotUrl: '/projects/colorbox-case-study-detail.png',
+          screenshotAlt: 'Countdown Ha Long Production Case Study and Lineup',
+        },
+        {
+          id: 'feat-cb-04',
+          title: 'Quy Trình Đặt Lịch Khảo Sát Kỹ Thuật & Tự Động Hóa Email Với Resend API',
+          description: 'Modal đặt lịch khảo sát chuyên nghiệp tích hợp React Hook Form và Zod schema validation. Dữ liệu sau khi kiểm tra hợp lệ được gửi về backend, lưu trữ vào PostgreSQL và đồng thời kích hoạt Resend API gửi email xác nhận tức thời cho khách hàng.',
+          category: 'Lead Capture & Automation',
+          screenshotUrl: '/projects/colorbox-booking-modal.png',
+          screenshotAlt: 'ColorBox Stage Consultation and Technical Booking Modal',
+        },
+        {
+          id: 'feat-cb-05',
+          title: 'Trung Tâm Điều Hành Realtime Socket.IO & Âm Báo Harmonic Synth (Web Audio API)',
+          description: 'Kênh truyền thông hai chiều Socket.IO thông báo tức thì khi có booking mới tới màn hình ban quản trị. Tích hợp bộ tổng hợp âm thanh Web Audio API tạo tiếng chuông đa âm sắc Harmonic Chime (C5-G5 synth) độc đáo không cần tải file âm thanh ngoài.',
+          category: 'Real-Time & Audio Engine',
+          screenshotUrl: '/projects/colorbox-admin-dashboard.png',
+          screenshotAlt: 'ColorBox Executive Admin Operations Hub',
+        },
+        {
+          id: 'feat-cb-06',
+          title: 'Trợ Lý Kỹ Thuật Ánh Sáng Sân Khấu Trực Tuyến 24/7',
+          description: 'Chatbot FAQ chuyên biệt hỗ trợ ban tổ chức và đạo diễn tra cứu nhanh quy chuẩn tải trọng giàn truss, công suất nguồn điện 3 pha, điều kiện chống nước IP65 và quy trình phối hợp kỹ thuật trước ngày tổng duyệt.',
+          category: 'Client Support & FAQ',
+          screenshotUrl: '/projects/colorbox-chatbot.png',
+          screenshotAlt: 'ColorBox 24/7 Live Stage Lighting FAQ Chatbot',
+        },
+        {
+          id: 'feat-cb-07',
+          title: 'Kiến Trúc Bảo Mật JWT Token Rotation & Kiểm Soát Truy Cập Chặt Chẽ',
+          description: 'Cơ chế xác thực quản trị viên sử dụng JWT Access Token lưu trong bộ nhớ (15 phút) kết hợp Refresh Token bảo mật cao trong HttpOnly Cookie (7 ngày). Tự động xoay vòng khóa phiên và ngăn ngừa tuyệt đối tấn công XSS / CSRF.',
+          category: 'Security & Auth',
+          screenshotUrl: '/projects/colorbox-admin-case-studies.png',
+          screenshotAlt: 'Admin Production Case Studies Management Table',
+        },
+        {
+          id: 'feat-cb-08',
+          title: 'Tối Ưu Hiệu Năng 60FPS & Chuẩn Công Thái Học Responsive Đa Màn Hình',
+          description: 'Tận dụng GPU acceleration cho các hiệu ứng ánh sáng và chuyển động phức tạp. Giao diện được kiểm thử nghiêm ngặt và tối ưu hóa công thái học cảm ứng trên cả điện thoại di động và máy tính bảng.',
+          category: 'Performance & UX',
+          screenshotUrl: '/projects/colorbox-mobile-responsive.png',
+          screenshotAlt: 'ColorBox Mobile Responsive Viewport Showcase',
+        },
+      ],
+      chapters: [
+        {
+          id: 'chapter-01',
+          number: '01',
+          title: 'Tổng Quan & Giao Diện Sân Khấu Volumetric Lighting Điện Ảnh',
+          content:
+            'COLORBOX là đơn vị chuyên môn hàng đầu trong lĩnh vực thiết kế ánh sáng, mô phỏng 3D previz và điều hành hệ thống chiếu sáng cho các concert, lễ hội âm nhạc và sự kiện quy mô lớn tại Việt Nam. Nền tảng số được thiết kế với phong cách Dark Mode cao cấp, lấy cảm hứng từ các bàn điều khiển ánh sáng grandMA3 và không gian sân khấu đại nhạc hội. Điểm nhấn thị giác là khu vực Hero mô phỏng các chùm sáng hội tụ (Volumetric Beams) chuyển động nhịp nhàng, kết hợp typography hiện đại và các chi tiết viền neon công nghệ cao.',
+          screenshots: [
+            {
+              url: '/projects/colorbox-hero.png',
+              caption: 'Sân Khấu Volumetric Lighting Điện Ảnh & Chùm Sáng Hội Tụ',
+              alt: 'ColorBox Cinematic Volumetric Stage Lighting Interface',
+            },
+          ],
+          technicalNotes: [
+            'Frontend xây dựng trên nền tảng React 18, Vite và TypeScript với kiến trúc Feature-First mô-đun hóa cao',
+            'Hệ thống Volumetric Light Beams được tính toán vị trí góc và giả lập bằng CSS Gradients kết hợp Framer Motion GPU transform',
+            'Bảng màu Neon Cyan (#00F0FF) và Amber Gold trên nền đen thẳm (#080808) tạo độ tương phản thị giác đạt chuẩn WCAG AAA',
+          ],
+        },
+        {
+          id: 'chapter-02',
+          number: '02',
+          title: 'Vòng Tròn Tương Tác Four-Piece Circle HUD & Khám Phá Dự Án Động',
+          content:
+            'Thay vì sử dụng danh sách trượt ảnh thông thường, COLORBOX trang bị bộ điều hướng Four-Piece Circle HUD độc quyền. Lấy cảm hứng từ giao diện điều khiển bàn xoay encoder trên các bàn MA Lighting, vòng tròn được chia làm 4 góc phần tư tương ứng với các đại nhạc hội tiêu biểu: Countdown Hạ Long, Heineken Refresh Super Arena, Đấu Trường Danh Vọng và Lễ Hội Vía Bà Chúa Xứ. Người dùng có thể di chuột hoặc xoay vòng tròn theo góc lượng giác để chuyển đổi mượt mà các chỉ số kỹ thuật, quy mô khán giả và công nghệ điều khiển tương ứng.',
+          screenshots: [
+            {
+              url: '/projects/colorbox-interactive-circle-case-studies.png',
+              caption: 'Vòng Tròn Tương Tác Four-Piece Circle HUD Điều Khiển Góc Xoay',
+              alt: 'Interactive Four-Piece Circle HUD Quadrant Selector',
+            },
+          ],
+          technicalNotes: [
+            'Thuật toán tính toán góc xoay liên tục dựa trên hàm lượng giác Math.atan2 kết hợp SVG path arcs',
+            'Đồng bộ trạng thái active quadrant mượt mà 60FPS không gây giật lag nhờ React useMemo và Framer Motion spring physics',
+            'Cung cấp khả năng truy cập song song bằng bàn phím (Arrow keys / Tab navigation) và cảm ứng touch trên màn hình di động',
+          ],
+        },
+        {
+          id: 'chapter-03',
+          number: '03',
+          title: 'Hồ Sơ Kỹ Thuật Dự Án & Tích Hợp Rider Thiết Bị Độc Quyền',
+          content:
+            'Mỗi case study trên hệ thống là một bản hồ sơ kỹ thuật toàn diện được chuẩn hóa cho giới sản xuất sự kiện. Khách hàng và đối tác có thể xem chi tiết số lượng thiết bị (ví dụ 160 Moving Head Beam 480W, 48 Strobe RGB Matrix, 8 Laser 40W High-Power), thông số giao thức điều khiển DMX/ArtNet/sACN, quy trình lập trình timecode trên grandMA3 đồng bộ từng 1/100 giây với âm thanh, cũng như danh sách nghệ sĩ biểu diễn hàng đầu.',
+          screenshots: [
+            {
+              url: '/projects/colorbox-case-study-detail.png',
+              caption: 'Hồ Sơ Sản Xuất Countdown Hạ Long Quảng Ninh & Nghệ Sĩ Lineup',
+              alt: 'Countdown Ha Long Production Case Study and Lineup',
+            },
+            {
+              url: '/projects/colorbox-case-study-gallery.png',
+              caption: 'Đại Nhạc Hội 50.000 Khán Giả & Bản Vẽ Kỹ Thuật Đèn',
+              alt: '50,000 Spectator Arena Crowd and Technical Rig Platform',
+            },
+          ],
+          technicalNotes: [
+            'Cơ sở dữ liệu PostgreSQL (Neon) lưu trữ thông số kỹ thuật rider, sơ đồ patch đèn và danh sách thiết bị dưới dạng JSONB linh hoạt',
+            'Tối ưu hóa hình ảnh độ phân giải cao kết hợp lazy-loading và responsive image breakpoints',
+            'Tích hợp nút tải rider kỹ thuật PDF và bảng tra cứu quy chuẩn an toàn tải trọng giàn truss sân khấu',
+          ],
+        },
+        {
+          id: 'chapter-04',
+          number: '04',
+          title: 'Quy Trình Đặt Lịch Khảo Sát Kỹ Thuật & Tự Động Hóa Email Với Resend',
+          content:
+            'Nhằm số hóa hoàn toàn khâu tiếp nhận yêu cầu từ các đạo diễn và nhà tổ chức sự kiện, COLORBOX xây dựng modal đặt lịch khảo sát chuyên nghiệp. Khách hàng lựa chọn loại hình sự kiện (Festival ngoài trời, Lễ trao giải truyền hình, Tour lưu diễn, Sự kiện thương mại), nhập thời gian dự kiến, địa điểm và quy mô sân khấu. Toàn bộ dữ liệu được xác thực nghiêm ngặt bằng Zod schema, lưu vào database và kích hoạt ngay lập tức dịch vụ Resend API để gửi email biên nhận chi tiết cho khách hàng kèm thông báo khẩn cấp tới ban điều hành kỹ thuật.',
+          screenshots: [
+            {
+              url: '/projects/colorbox-booking-modal.png',
+              caption: 'Biểu Mẫu Đặt Lịch Khảo Sát Kỹ Thuật & Tư Vấn Sân Khấu Trực Tuyến',
+              alt: 'ColorBox Stage Consultation and Technical Booking Modal',
+            },
+          ],
+          technicalNotes: [
+            'Xử lý biểu mẫu bằng React Hook Form kết hợp Zod resolver đảm bảo an toàn kiểu dữ liệu từ frontend tới backend',
+            'Tự động gửi email biên nhận HTML đẹp mắt với tỷ lệ vào hộp thư đến (deliverability) cao qua Resend API',
+            'Hỗ trợ đặt lịch khảo sát hiện trường trước 24 giờ với tính năng tự động phát hiện trùng lặp lịch',
+          ],
+        },
+        {
+          id: 'chapter-05',
+          number: '05',
+          title: 'Trung Tâm Điều Hành Admin Thời Gian Thực & Socket.IO Telemetry',
+          content:
+            'Hệ sinh thái quản trị COLORBOX Admin Suite là trung tâm điều phối sản xuất sự kiện toàn diện. Kết nối trực tiếp qua Socket.IO, bảng điều khiển tự động hiển thị số lượng yêu cầu booking mới trong vòng 80ms mà không cần tải lại trang. Đặc biệt, hệ thống tích hợp bộ tổng hợp âm thanh Web Audio API độc quyền: khi có booking mới phát sinh, trình duyệt sẽ tự động phát chuông đa âm sắc Harmonic Chime (chuỗi hợp âm C5, E5, G5) tạo phản hồi thính giác trực quan sống động cho ban điều hành.',
+          screenshots: [
+            {
+              url: '/projects/colorbox-admin-dashboard.png',
+              caption: 'Trung Tâm Điều Hành Quản Trị Hệ Thống & Socket.IO Telemetry',
+              alt: 'ColorBox Executive Admin Operations Hub',
+            },
+            {
+              url: '/projects/colorbox-admin-bookings.png',
+              caption: 'Hệ Thống Tiếp Nhận & Phân Phối Yêu Cầu Booking Thời Gian Thực',
+              alt: 'Admin Live Booking Inquiries and Event Rider Inspection',
+            },
+          ],
+          technicalNotes: [
+            'Kênh WebSocket hai chiều Socket.IO đồng bộ sự kiện booking giữa client và server trong thời gian thực dưới 80ms',
+            'Bộ tổng hợp âm thanh Harmonic Synth tự sinh bằng Web Audio API (AudioContext, OscillatorNode, GainNode envelope)',
+            'Bảng điều khiển trực quan hóa trạng thái tour lưu diễn, tình trạng bảo dưỡng đèn và số lượng dự án công chiếu',
+          ],
+        },
+        {
+          id: 'chapter-06',
+          number: '06',
+          title: 'Bảo Mật Phân Quyền JWT Token Rotation & Quản Lý Hồ Sơ Sản Xuất',
+          content:
+            'COLORBOX Admin Hub được bảo vệ bởi kiến trúc bảo mật phân quyền đa lớp. Quy trình đăng nhập sử dụng cơ chế JWT Token Rotation hiện đại: Access Token ngắn hạn (15 phút) được bảo vệ trong bộ nhớ ứng dụng, trong khi Refresh Token dài hạn (7 ngày) được lưu trữ trong HttpOnly Secure Cookie với cờ SameSite=Strict. Toàn bộ mật khẩu được băm bằng bcrypt 10 vòng, kết hợp middleware kiểm soát truy cập phân quyền nghiêm ngặt trên mọi API endpoint.',
+          screenshots: [
+            {
+              url: '/projects/colorbox-admin-case-studies.png',
+              caption: 'Quản Lý Danh Mục Hồ Sơ Sản Xuất & Bật/Tắt Trạng Thái Công Chiếu',
+              alt: 'Admin Production Case Studies Management Table',
+            },
+          ],
+          technicalNotes: [
+            'Kiến trúc xác thực JWT Token Rotation loại bỏ hoàn toàn nguy cơ rò rỉ token qua tấn công XSS',
+            'Mã hóa mật khẩu quản trị viên an toàn bằng bcrypt kết hợp muối ngẫu nhiên (salt rounds: 10)',
+            'Hệ thống quản lý CRUD đầy đủ cho 11+ case study sự kiện với tính năng bật/tắt hiển thị tức thì',
+          ],
+        },
+        {
+          id: 'chapter-07',
+          number: '07',
+          title: 'Kiến Trúc Micro-Animations, FAQ Chatbot & Tối Ưu Hóa Di Động',
+          content:
+            'COLORBOX hoàn thiện trải nghiệm người dùng với trợ lý kỹ thuật trực tuyến 24/7 (FAQ Chatbot) giúp trả lời ngay lập tức các câu hỏi thường gặp về kỹ thuật giàn truss, quy chuẩn nguồn điện và lưu ý thời tiết. Toàn bộ giao diện được thiết kế tương thích hoàn hảo từ màn hình máy tính để bàn 4K đến máy tính bảng và điện thoại di động thông minh, duy trì tốc độ khung hình 60FPS mượt mà trên mọi nền tảng.',
+          screenshots: [
+            {
+              url: '/projects/colorbox-chatbot.png',
+              caption: 'Trợ Lý Kỹ Thuật Ánh Sáng Sân Khấu Trực Tuyến 24/7',
+              alt: 'ColorBox 24/7 Live Stage Lighting FAQ Chatbot',
+            },
+            {
+              url: '/projects/colorbox-mobile-responsive.png',
+              caption: 'Trải Nghiệm Giao Diện Tối Ưu Trên Thiết Bị Di Động',
+              alt: 'ColorBox Mobile Responsive Viewport Showcase',
+            },
+            {
+              url: '/projects/colorbox-tablet-responsive.png',
+              caption: 'Bố Cục Thích Ứng Màn Hình Máy Tính Bảng',
+              alt: 'ColorBox Tablet Viewport Responsive Showcase',
+            },
+          ],
+          technicalNotes: [
+            'Chatbot FAQ phân loại ý định kỹ thuật với danh mục câu trả lời được tối ưu hóa cho ngành sự kiện',
+            'Kiến trúc Responsive linh hoạt với Tailwind CSS breakpoints và CSS clamp() fluid typography',
+            'Tối ưu hóa tài nguyên tĩnh, font chữ và hình ảnh mang lại chỉ số Web Vitals xuất sắc',
+          ],
+        },
+      ],
+    },
+    {
       title: 'Fashion Nail Morley — Hệ Thống Đặt Lịch & Quản Trị Salon Nail Cao Cấp (Morley Galleria, WA)',
       slug: 'fashion-nail-morley',
       summary:
@@ -403,7 +744,7 @@ async function seed() {
       reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
       featured: true,
       published: true,
-      order: 2,
+      order: 3,
       storytellingStyle: 'cinematic-scroll',
       problem:
         'Salon làm đẹp tại Morley Galleria (Perth, WA) đối mặt với tình trạng quá tải cuộc gọi hỏi giá, thất thoát lịch hẹn trong giờ cao điểm, sai lệch múi giờ khi khách đặt qua tin nhắn và thiếu công cụ quản trị tập trung để kiểm soát doanh thu, nhân sự và chiến dịch khuyến mãi.',
@@ -692,7 +1033,7 @@ async function seed() {
       reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
       featured: true,
       published: true,
-      order: 3,
+      order: 4,
       storytellingStyle: 'interactive-hotspot',
       problem:
         'Phương pháp khảo thí truyền thống nặng về học vẹt, thiếu tính cá nhân hóa, dễ phát sinh gian lận khi thi tại nhà và phụ huynh hoàn toàn bị cô lập khỏi tiến trình học tập thực tế của học sinh.',
@@ -1002,7 +1343,7 @@ async function seed() {
       sourceUrl: '',
       featured: true,
       published: true,
-      order: 4,
+      order: 5,
       problem:
         'Agency needed a modern showcase for digital growth services with automated routing of prospective client inquiries directly to CRM and team inboxes.',
       approach:
@@ -1079,7 +1420,7 @@ async function seed() {
       sourceUrl: 'https://github.com/HuynhNe26/HuynhPortfolio',
       featured: true,
       published: true,
-      order: 5,
+      order: 6,
       problem:
         'Các website portfolio truyền thống thường nhàm chán, hiển thị danh sách tĩnh và không thể hiện được chiều sâu kỹ thuật, khả năng xử lý tương tác thời gian thực cũng như câu chuyện đằng sau mỗi sản phẩm công nghệ.',
       approach:
@@ -1139,186 +1480,6 @@ async function seed() {
       ],
     },
     {
-      title: 'SkyRoute Dispatcher — Real-Time Flight Operations & Cargo Management',
-      slug: 'skyroute-aviation-ops',
-      summary:
-        'Nền tảng điều phối bay và kiểm soát tải trọng hàng không thời gian thực với bản đồ bay radar, tính toán trọng tâm máy bay (Center of Gravity) và phân bổ ULD tối ưu.',
-      category: 'Aviation IT & Real-Time Logistics',
-      role: 'Lead Full-Stack Developer',
-      teamSize: 2,
-      timeline: 'Tháng 9, 2025 – Hiện tại',
-      status: 'Completed',
-      year: 2026,
-      technologies: [
-        'Next.js 15',
-        'TypeScript',
-        'Node.js',
-        'WebSocket',
-        'Redis Geo',
-        'PostgreSQL (Neon)',
-        'Leaflet / Mapbox',
-        'Docker',
-        'Tailwind CSS',
-      ],
-      themeColor: '#0284C7',
-      themeBg: '#F0F9FF',
-      coverUrl: '/projects/skyroute-hero.png',
-      liveUrl: 'https://aviaops.online',
-      sourceUrl: 'https://github.com/HuynhNe26/skyroute-aviation-ops',
-      reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
-      featured: true,
-      published: true,
-      order: 6,
-      storytellingStyle: '3d-exploded',
-      problem:
-        'Nhân viên điều phái bay và loadmaster thường phải thao tác thủ công trên nhiều phần mềm rời rạc để tính toán trọng tâm máy bay (CG) và giám sát tải trọng bay, dễ gây chậm trễ lịch trình và sai lệch tải trọng khí động học.',
-      approach:
-        'Kiến trúc nền tảng thời gian thực với Next.js 15 và Node.js WebSocket hai chiều. Xây dựng động cơ tính toán Weight & Balance tự động cho tàu bay Boeing 777F, lưu trữ tọa độ radar bay với Redis Geo và CSDL PostgreSQL Neon Serverless.',
-      outcome:
-        'Triệt tiêu hoàn toàn sai sót tính toán trọng tâm máy bay, đồng bộ hóa tọa độ radar bay toàn cầu dưới 100ms và tự động xuất điện văn tải trọng chuẩn IATA.',
-      chapters: [
-        {
-          id: 'chapter-01',
-          number: '01',
-          title: 'Tổng quan & Trung tâm Điều hành Bay Hàng không Toàn cầu',
-          content:
-            'SkyRoute Dispatcher là nền tảng công nghệ hàng không chuyên sâu được thiết kế để hiện đại hóa quy trình điều phái bay và bốc xếp hàng hóa hàng không. Dự án do sinh viên ngành CNTT tại Học viện Hàng không Việt Nam phát triển, kết hợp giữa nghiệp vụ hàng không thực tế và công nghệ web hiệu năng cao.',
-        },
-        {
-          id: 'chapter-02',
-          number: '02',
-          title: 'Bóc tách Kiến trúc 3D Đa tầng: 4 Lớp Hệ thống Phân tán',
-          content:
-            'Hệ thống áp dụng kiến trúc 3D Exploded 4 tầng lớp rõ rệt: Tầng Trình diễn (Next.js & Bản đồ Radar Leaflet) ➔ Tầng Cổng Thu nhận Telemetry (Node.js & WebSocket stream) ➔ Tầng Động cơ Tính toán Khí động học (Weight & Balance Engine) ➔ Tầng Lưu trữ Tốc độ cao (Redis Geo Cache & Neon PostgreSQL).',
-        },
-        {
-          id: 'chapter-03',
-          number: '03',
-          title: 'Cân bằng Trọng lượng & Trọng tâm Tàu bay (Center of Gravity Envelope)',
-          content:
-            'Tính toán trọng tâm chính xác là yếu tố sống còn cho an toàn bay. Động cơ tự động tính toán vị trí dây cung khí động trung bình (% MAC) khi thay đổi tải trọng hàng hóa, vẽ biểu đồ phong bì giới hạn trọng tâm cất cánh và hạ cánh theo thời gian thực.',
-        },
-        {
-          id: 'chapter-04',
-          number: '04',
-          title: 'Sơ đồ Tương tác Mặt cắt Hầm hàng & Bố trí Vị trí Thùng Hàng ULD',
-          content:
-            'Chuyên viên Loadmaster trực tiếp sắp xếp các thùng hàng Unit Load Devices (ULD) trên 28 vị trí boong chính và hầm dưới. Sơ đồ tự động nhận diện hàng nguy hiểm (DG), hàng dễ vỡ và pallet siêu trọng với màu sắc phân biệt trực quan.',
-        },
-        {
-          id: 'chapter-05',
-          number: '05',
-          title: 'Đồng bộ Tọa độ Radar Bay qua WebSocket & Redis Geo',
-          content:
-            'Tín hiệu tọa độ từ các chuyến bay đang bay được nạp qua các lệnh Redis Geo (GEOADD, GEORADIUS) và phát sóng đến tất cả bàn điều phối chỉ trong dưới 80ms, mang lại khả năng nắm bắt tình hình không lưu toàn cầu liên tục.',
-        },
-        {
-          id: 'chapter-06',
-          number: '06',
-          title: 'Tự động Xuất Điện văn Tải trọng Loadsheet Chuẩn IATA',
-          content:
-            'Sau khi hoàn tất sơ đồ xếp dỡ, hệ thống xuất điện văn loadsheet điện tử theo đúng chuẩn IATA AHMR. Chữ ký số mã hóa bảo đảm không xảy ra bất kỳ sự can thiệp dữ liệu trái phép nào giữa khâu phát hành và buồng lái.',
-        },
-        {
-          id: 'chapter-07',
-          number: '07',
-          title: 'Đóng gói Triển khai Container Docker & Đảm bảo Tính Sẵn sàng Cao',
-          content:
-            'Toàn bộ hệ thống được đóng gói container hóa với Docker, thiết lập cơ chế giám sát trạng thái sức khỏe tự động, đảm bảo thời gian hoạt động liên tục 99.9% cho các quy trình điều hành bay nghiêm ngặt.',
-        },
-      ],
-    },
-    {
-      title: 'MediCare AI — Smart Telehealth & Clinical Decision Support System',
-      slug: 'medicare-ai-triage',
-      summary:
-        'Hệ thống bệnh án điện tử (EMR) và phân loại triệu chứng bệnh nhân bằng AI, tích hợp phòng khám video WebRTC và kê đơn thuốc số cảnh báo tương tác thuốc.',
-      category: 'Healthcare & Clinical AI',
-      role: 'Full-Stack Developer',
-      teamSize: 3,
-      timeline: 'Tháng 11, 2025 – Tháng 5, 2026',
-      status: 'Completed',
-      year: 2026,
-      technologies: [
-        'React.js',
-        'TypeScript',
-        'Express.js',
-        'MongoDB Atlas',
-        'WebRTC',
-        'Gemini AI API',
-        'JWT Role Auth',
-        'Tailwind CSS',
-        'Cloudinary',
-      ],
-      themeColor: '#0D9488',
-      themeBg: '#F0FDFA',
-      coverUrl: '/projects/medicare-hero.png',
-      liveUrl: 'https://medicare-ai.health',
-      sourceUrl: 'https://github.com/HuynhNe26/medicare-ai-triage',
-      reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
-      featured: true,
-      published: true,
-      order: 7,
-      storytellingStyle: 'timeline-based',
-      problem:
-        'Các phòng khám và bệnh viện thường xuyên quá tải ở khâu tiếp đón ban đầu, bệnh nhân chờ đợi lâu, thiếu phân loại mức độ khẩn cấp tự động và tiềm ẩn nguy cơ kê đơn tương tác thuốc nguy hiểm.',
-      approach:
-        'Xây dựng quy trình khám bệnh khép kín tích hợp AI phân loại triệu chứng bằng Gemini API, phòng khám trực tuyến bảo mật WebRTC, hồ sơ bệnh án điện tử EMR lưu trữ trên MongoDB Atlas và động cơ cảnh báo tương tác thuốc tự động.',
-      outcome:
-        'Rút ngắn 55% thời gian chờ đợi tiếp nhận, ưu tiên xử lý tức thì các ca khẩn cấp, hỗ trợ bác sĩ chẩn đoán phân biệt chính xác và giảm thiểu rủi ro dùng thuốc.',
-      chapters: [
-        {
-          id: 'chapter-01',
-          number: '01',
-          title: 'Cổng Tiếp nhận Khám Trực tuyến & Hàng đợi Bệnh nhân',
-          content:
-            'MediCare AI là giải pháp khám chữa bệnh từ xa và quản lý bệnh án điện tử (EMR) được xây dựng nhằm chuẩn hóa quy trình chăm sóc sức khỏe ban đầu. Hệ thống kết nối bệnh nhân với đội ngũ y bác sĩ thông qua một cổng dịch vụ duy nhất.',
-        },
-        {
-          id: 'chapter-02',
-          number: '02',
-          title: 'Trục Thời gian Lâm sàng: Quy trình 4 Giai đoạn từ Tiếp nhận đến Kê đơn',
-          content:
-            'Toàn bộ câu chuyện dự án được thể hiện qua Trục thời gian lâm sàng (Timeline-Based): Giai đoạn 1 (Đăng ký & Đo lường Chỉ số Sinh tồn) ➔ Giai đoạn 2 (AI Phân loại Triệu chứng Khẩn cấp) ➔ Giai đoạn 3 (Bác sĩ Khám Trực tuyến WebRTC) ➔ Giai đoạn 4 (Xuất Đơn thuốc Điện tử & Lịch Tái khám).',
-        },
-        {
-          id: 'chapter-03',
-          number: '03',
-          title: 'Động cơ Phân loại Triệu chứng Cấp cứu Tự động với Gemini Medical AI',
-          content:
-            'Bệnh nhân mô tả triệu chứng bằng ngôn ngữ tự nhiên. Mô hình Gemini AI phân tích lý do khám, tiền sử bệnh án và các chỉ số sinh tồn để xếp lớp cấp cứu: Khẩn cấp đỏ (Emergency), Cần khám sớm (Urgent), hoặc Khám thông thường (Routine), giúp phòng khám xử lý ngay các ca nguy kịch.',
-        },
-        {
-          id: 'chapter-04',
-          number: '04',
-          title: 'Phòng Khám Video Trực tuyến Bảo mật Peer-to-Peer WebRTC',
-          content:
-            'Buổi tư vấn diễn ra qua kênh truyền thông video WebRTC ngang hàng được mã hóa hai đầu cuối. Bác sĩ vừa có thể quan sát triệu chứng của bệnh nhân, vừa tra cứu hồ sơ bệnh án và cập nhật ghi chú khám bệnh trong thời gian thực.',
-        },
-        {
-          id: 'chapter-05',
-          number: '05',
-          title: 'Hồ sơ Bệnh án Điện tử (EMR) & Biểu đồ Chỉ số Sinh tồn Theo Thời gian',
-          content:
-            'Bác sĩ có thể theo dõi biểu đồ diễn tiến sinh tồn của bệnh nhân qua các đợt khám: huyết áp tâm thu/tâm trương, nhịp tim, nhiệt độ và nồng độ oxy trong máu SpO2, hỗ trợ chẩn đoán phân biệt chuẩn xác.',
-        },
-        {
-          id: 'chapter-06',
-          number: '06',
-          title: 'Bộ Kê đơn Thuốc Điện tử & Cảnh báo Tương tác Thuốc Nguy hại',
-          content:
-            'Công cụ kê đơn tự động tính toán liều lượng chuẩn (ví dụ Amoxicillin 500mg, ngày 4 lần) và tự động đối chiếu với danh mục thuốc bệnh nhân đang sử dụng để phát hiện cảnh báo tương tác thuốc chéo, ngăn ngừa sốc thuốc hoặc tương tác bất lợi.',
-        },
-        {
-          id: 'chapter-07',
-          number: '07',
-          title: 'Phân quyền Vai trò (Bác sĩ, Y tá, Bệnh nhân) & Bảo mật Y tế',
-          content:
-            'Hệ thống áp dụng cơ chế phân quyền RBAC nghiêm ngặt: Bác sĩ có quyền chẩn đoán và kê đơn; Y tá phụ trách tiếp nhận và ghi nhận chỉ số sinh tồn ban đầu; Bệnh nhân có cổng riêng theo dõi đơn thuốc và lịch hẹn.',
-        },
-      ],
-    },
-    {
       title: 'Smart Rental House Management & Local AI OCR — Nhà Trọ Thanh Tâm',
       slug: 'rent-house-smart-management',
       summary:
@@ -1351,7 +1512,7 @@ async function seed() {
       reportUrl: 'https://docs.google.com/document/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing',
       featured: true,
       published: true,
-      order: 8,
+      order: 7,
       storytellingStyle: 'sticky-split',
       problem:
         'Boarding house landlords face immense friction managing tenant utility records manually using paper notebooks: time-consuming data collection, transcription errors, dispute risks over utility calculations, vulnerable paper lease contracts susceptible to alteration, and tenant friction tracking historical consumption.',
@@ -1496,6 +1657,9 @@ async function seed() {
       ],
     },
   ];
+
+  // Remove deprecated sample projects if present in database
+  await query(`DELETE FROM projects WHERE slug IN ('skyroute-aviation-ops', 'medicare-ai-triage')`);
 
   for (const proj of projectsData) {
     await query(

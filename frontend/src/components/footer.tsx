@@ -30,26 +30,27 @@ export function Footer() {
 
           <div className="footer-links-col">
             <span className="footer-col-title">{lang === 'vi' ? 'Điều hướng' : lang === 'zh' ? '快速导航' : 'Navigation'}</span>
-            <Link href="/">{t('nav.home')}</Link>
-            <Link href="/about">{t('nav.about')}</Link>
-            <Link href="/projects">{t('nav.projects')}</Link>
-            <Link href="/#education">{t('nav.education')}</Link>
-            <Link href="/contact">{t('nav.contact')}</Link>
+            <Link href="/"><span className="hh-lang-text">{t('nav.home')}</span></Link>
+            <Link href="/about"><span className="hh-lang-text">{t('nav.about')}</span></Link>
+            <Link href="/projects"><span className="hh-lang-text">{t('nav.projects')}</span></Link>
+            <Link href="/#education"><span className="hh-lang-text">{t('nav.education')}</span></Link>
+            <Link href="/contact"><span className="hh-lang-text">{t('nav.contact')}</span></Link>
           </div>
 
           <div className="footer-links-col">
             <span className="footer-col-title">{lang === 'vi' ? 'Kết nối & Trực tiếp' : lang === 'zh' ? '保持联系' : 'Connect & Direct'}</span>
             <a href="tel:+84937569205">
-              📞 +84 937 569 205
+              <span>📞 +84 937 569 205</span>
             </a>
             <a href="mailto:nguyenhoanghuynh.vn@gmail.com">
-              Email ↗
+              <span>Email ↗</span>
             </a>
             <a href="https://github.com/HuynhNe26" target="_blank" rel="noopener noreferrer">
-              GitHub ↗
+              <span>GitHub ↗</span>
             </a>
             <Link href="/admin">
-              {t('footer.admin')} ↗
+              <span className="hh-lang-text">{t('footer.admin')}</span>
+              <span aria-hidden="true"> ↗</span>
             </Link>
           </div>
         </div>
@@ -159,7 +160,13 @@ export function Footer() {
 
         <div className="footer-bottom-bar">
           <div className="footer-copyright">
-            © {new Date().getFullYear()} {lang === 'en' ? 'Nguyen Hoang Huynh' : 'Nguyễn Hoàng Huynh'}. {t('footer.rights')}
+            © {new Date().getFullYear()}{' '}
+            {lang === 'zh'
+              ? '阮黄兄 (Nguyen Hoang Huynh)'
+              : lang === 'en'
+              ? 'Nguyen Hoang Huynh'
+              : 'Nguyễn Hoàng Huynh'}
+            . {t('footer.rights')}
           </div>
           <a
             href="#top"
@@ -175,7 +182,7 @@ export function Footer() {
               } catch {}
             }}
           >
-            {t('footer.top')}
+            <span className="hh-lang-text">{t('footer.top')}</span>
           </a>
         </div>
       </div>

@@ -18,6 +18,12 @@ export default function Contact() {
               <br />
               chất lượng vượt trội<span className="brand-dot">.</span>
             </>
+          ) : lang === 'zh' ? (
+            <>
+              携手创造不凡的
+              <br />
+              产品与系统<span className="brand-dot">。</span>
+            </>
           ) : (
             <>
               Let’s build something
@@ -91,6 +97,8 @@ export default function Contact() {
           <p className="privacy-note">
             {lang === 'vi'
               ? 'Họ tên, email và nội dung tin nhắn được bảo mật riêng tư và chỉ dùng để phản hồi liên hệ. Vui lòng không chia sẻ thông tin tài khoản hay mật khẩu nhạy cảm.'
+              : lang === 'zh'
+              ? '您的姓名、电子邮箱与留言内容将严格保密，仅用于回复您的咨询。请勿填写敏感密码信息。'
               : 'Your name, email, and message are stored privately and used to respond to your enquiry. Email notifications are delivered through Resend. Please don’t include sensitive information.'}
           </p>
         </ApiForm>

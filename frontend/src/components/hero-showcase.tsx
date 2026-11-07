@@ -83,10 +83,10 @@ export function HeroShowcase({
 
             <div className="hh-hero-actions">
               <Link href="/projects" className="hh-btn-primary">
-                {t('hero.viewProjects')}
+                <span className="hh-lang-text">{t('hero.viewProjects')}</span>
               </Link>
               <Link href="/contact" className="hh-btn-secondary">
-                {t('hero.contactMe')}
+                <span className="hh-lang-text">{t('hero.contactMe')}</span>
               </Link>
             </div>
 

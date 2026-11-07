@@ -216,7 +216,7 @@ export default async function Image() {
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-              <span style={{ fontSize: '20px', fontWeight: 800, color: '#60A5FA' }}>7 Live Case Studies</span>
+              <span style={{ fontSize: '20px', fontWeight: 800, color: '#60A5FA' }}>7 Production &amp; AI Projects</span>
               <span style={{ fontSize: '12px', color: '#94A3B8' }}>github.com/HuynhNe26</span>
             </div>
           </div>
