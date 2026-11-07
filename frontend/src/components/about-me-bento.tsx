@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { TechIcon } from '@/components/tech-icon';
 import { useLanguage } from '@/context/language-context';
 import { CertificateModal } from '@/components/certificate-modal';
@@ -252,12 +251,43 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
           <div className="hh-bento-card hh-edu-card">
             <div className="hh-card-top-row">
               <h3>{t('bento.edu.title')}</h3>
-              <Link href="/about" className="hh-link-more">
-                <span>{t('bento.more')}</span>
-              </Link>
+              <a
+                href="https://dichvusinhvien.vau.edu.vn/d205bdff-89c4-4a95-b28b-26f017839116"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hh-link-more hh-btn-cert-preview"
+                title={
+                  lang === 'vi'
+                    ? 'Xem chứng nhận tốt nghiệp chính thức (mở tab mới)'
+                    : lang === 'zh'
+                    ? '在新标签页打开官方毕业认证'
+                    : 'Open official graduation certificate in new tab'
+                }
+              >
+                <span className="hh-lang-text">
+                  {lang === 'vi'
+                    ? 'Xem chứng nhận'
+                    : lang === 'zh'
+                    ? '毕业认证'
+                    : 'Certificate'}
+                </span>
+                <span aria-hidden="true">↗</span>
+              </a>
             </div>
 
-            <div className="hh-edu-item">
+            <a
+              href="https://dichvusinhvien.vau.edu.vn/d205bdff-89c4-4a95-b28b-26f017839116"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hh-edu-item hh-edu-item-link"
+              title={
+                lang === 'vi'
+                  ? 'Nhấn để xem chứng nhận tốt nghiệp chính thức của Học viện Hàng không Việt Nam (mở tab mới)'
+                  : lang === 'zh'
+                  ? '点击在新标签页查看越南航空学院官方毕业认证'
+                  : 'Click to view official Graduation Certificate from Vietnam Aviation Academy (opens in new tab)'
+              }
+            >
               <div className="hh-edu-logo" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
@@ -265,6 +295,13 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                 </svg>
               </div>
               <div className="hh-edu-details">
+                <div className="hh-cert-badge-row">
+                  <span className="ets-logo-txt-pill">VAA</span>
+                  <span className="cert-status-tag">
+                    <span className="cert-verified-dot" />
+                    <span>{lang === 'vi' ? 'Đã xác thực' : lang === 'zh' ? '已官方认证' : 'Verified'}</span>
+                  </span>
+                </div>
                 <h4>{t('bento.edu.school')}</h4>
                 <p className="edu-major">{t('bento.edu.major')}</p>
                 <div className="edu-meta">
@@ -272,8 +309,17 @@ export function SkillsEducationContact({ email = 'nguyenhoanghuynh.vn@gmail.com'
                   <span className="meta-dot">•</span>
                   <span className="gpa-highlight">{t('bento.edu.gpa')}</span>
                 </div>
+                <div className="hh-cert-view-link">
+                  <span>
+                    {lang === 'vi'
+                      ? 'Xem chứng nhận tốt nghiệp ↗'
+                      : lang === 'zh'
+                      ? '查看官方毕业认证 ↗'
+                      : 'View Graduation Certificate ↗'}
+                  </span>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* CERTIFICATES CARD WITH THUMBNAIL PREVIEW & LIGHTBOX */}

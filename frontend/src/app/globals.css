@@ -12552,9 +12552,24 @@ html.dark .hh-card-summary {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hh-edu-item:hover {
-  border-color: #CBD5E1;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+.hh-edu-item-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.hh-edu-item:hover,
+.hh-edu-item-link:focus-visible {
+  border-color: #2563EB;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+  background: #FFFFFF;
+}
+
+.hh-edu-item-link:hover .hh-cert-view-link {
+  color: #1D4ED8;
+  text-decoration: underline;
 }
 
 .hh-edu-logo,
@@ -17996,10 +18011,24 @@ html.dark .hh-edu-item {
 }
 
 [data-theme='dark'] .hh-edu-item:hover,
-html.dark .hh-edu-item:hover {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+[data-theme='dark'] .hh-edu-item-link:focus-visible,
+html.dark .hh-edu-item:hover,
+html.dark .hh-edu-item-link:focus-visible {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: #38BDF8;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.16);
+}
+
+[data-theme='dark'] .hh-edu-item-link:hover .hh-cert-view-link,
+html.dark .hh-edu-item-link:hover .hh-cert-view-link {
+  color: #93C5FD;
+}
+
+[data-theme='dark'] .cert-badge,
+html.dark .cert-badge {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #34D399;
 }
 
 [data-theme='dark'] .hh-cert-interactive-box,

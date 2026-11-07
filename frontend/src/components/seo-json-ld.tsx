@@ -47,6 +47,8 @@ export function PersonJsonLd() {
     sameAs: [
       siteConfig.author.github,
       siteConfig.author.repo,
+      'https://dichvusinhvien.vau.edu.vn/d205bdff-89c4-4a95-b28b-26f017839116',
+      'https://colorboxlighting.netlify.app',
     ],
     knowsAbout: [
       'Full-Stack Web Development',
@@ -68,18 +70,21 @@ export function PersonJsonLd() {
     hasCredential: [
       {
         '@type': 'EducationalOccupationalCredential',
-        name: 'Bachelor of Science in Information Technology (In Progress)',
+        name: 'Bachelor of Science in Information Technology (Cử nhân Công nghệ Thông tin) — Graduation Certificate',
         credentialCategory: 'degree',
         educationalLevel: 'Undergraduate',
+        url: 'https://dichvusinhvien.vau.edu.vn/d205bdff-89c4-4a95-b28b-26f017839116',
         recognizedBy: {
           '@type': 'EducationalOrganization',
           name: siteConfig.author.university,
+          url: 'https://vaa.edu.vn',
         },
       },
       {
         '@type': 'EducationalOccupationalCredential',
         name: 'TOEIC Listening & Reading 550',
         credentialCategory: 'certificate',
+        url: `${siteUrl}/certificates/toeic-550.pdf`,
         recognizedBy: {
           '@type': 'Organization',
           name: 'ETS (Educational Testing Service)',

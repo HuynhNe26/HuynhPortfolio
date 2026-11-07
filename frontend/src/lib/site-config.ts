@@ -75,13 +75,16 @@ export const siteConfig = {
     'Huynh Nguyễn portfolio',
     'HuynhNe26 GitHub',
 
-    // Academic & University
+    // Academic & Credentials
     'Nguyễn Hoàng Huynh Học viện Hàng không',
     'Nguyễn Hoàng Huynh VAA',
     'Học viện Hàng không Việt Nam',
     'Vietnam Aviation Academy',
     'VAA Information Technology',
     'Sinh viên CNTT Học viện Hàng không',
+    'Chứng nhận tốt nghiệp Nguyễn Hoàng Huynh',
+    'Chứng nhận tốt nghiệp Học viện Hàng không Việt Nam',
+    'dichvusinhvien vau edu vn',
 
     // Roles & Titles
     'Full-Stack Web Developer',
@@ -93,6 +96,10 @@ export const siteConfig = {
     'Backend Developer Node.js',
     'Fresher Full-Stack Developer',
     'Junior Web Developer',
+    'Thực tập sinh Web Developer',
+    'Web Developer Intern',
+    'Web Developer Ho Chi Minh',
+    'Software Engineer Intern Vietnam',
 
     // Core Technologies
     'Next.js 16',
@@ -117,6 +124,8 @@ export const siteConfig = {
     'ticketconcert online',
     'COLORBOX Event Stage Lighting Platform',
     'colorbox stage lighting',
+    'colorboxlighting netlify app',
+    'colorbox lighting platform',
     'Fashion Nail Morley',
     'fashion nail morley landing page',
     'fashionnailmorley com au',

@@ -328,6 +328,32 @@ export function AboutPageClient({ profile }: AboutPageClientProps) {
                     ? '大三在读本科生 (2023 – 2027) • 重点专业课程：Web 应用工程开发、数据结构与算法、数据库管理系统 (PostgreSQL/SQL)、系统分析与设计。'
                     : 'Third-year undergraduate (Class of 2023 – 2027) • Key Coursework: Web Application Development, Data Structures & Algorithms, Database Systems (PostgreSQL/SQL), Software Engineering & Systems Analysis.'}
                 </p>
+                <div className="cert-bottom-actions" style={{ marginTop: '14px' }}>
+                  <span className="cert-badge cert-badge-verified">
+                    <span className="cert-verified-dot" aria-hidden="true" />
+                    <span className="hh-lang-text">
+                      {lang === 'vi'
+                        ? 'Chứng nhận chính thức VAA'
+                        : lang === 'zh'
+                        ? 'VAA 官方毕业认证'
+                        : 'Official VAA Credential'}
+                    </span>
+                  </span>
+                  <a
+                    href="https://dichvusinhvien.vau.edu.vn/d205bdff-89c4-4a95-b28b-26f017839116"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cert-view-cta"
+                  >
+                    <span className="hh-lang-text">
+                      {lang === 'vi'
+                        ? 'Xem chứng nhận tốt nghiệp ↗'
+                        : lang === 'zh'
+                        ? '查看官方毕业认证 ↗'
+                        : 'View Graduation Certificate ↗'}
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </section>

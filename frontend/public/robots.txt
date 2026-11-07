@@ -1,0 +1,53 @@
+# ==============================================================================
+# Robots.txt for Nguyễn Hoàng Huynh Portfolio
+# Website: https://huynhportfolio.netlify.app
+# Author: Nguyễn Hoàng Huynh (HuynhNe26)
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /projects
+Allow: /contact
+Allow: /cv/
+Allow: /certificates/
+Allow: /og-image.png
+Allow: /icon.svg
+
+# Protect sensitive, private, or administrative routes
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Explicit permissions for major search engine crawlers
+User-agent: Googlebot
+Allow: /
+Allow: /projects/
+Allow: /about
+Allow: /contact
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /avatar.jpg
+Allow: /about-developer-studio.jpg
+Allow: /certificates/
+Allow: /og-image.png
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Canonical Sitemaps
+Sitemap: https://huynhportfolio.netlify.app/sitemap.xml
+Host: https://huynhportfolio.netlify.app
